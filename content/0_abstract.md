@@ -12,7 +12,7 @@ for aggregation based on Bayesian conditioning and compare it to mean
 aggregation and attentive aggregation used in related work. We show the
 performance of the different methods on a set of cooperative tasks that can
 scale to a large number of agents, including tasks that have other objects in
-the world.
+the world that need to be observed by the agents in order to solve the task.
 
 We optimize the hyperparameters to be able to show which parameters lead to the
 best results for each of the methods. In addition, we compare different variants

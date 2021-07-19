@@ -1,6 +1,6 @@
 ## Introduction
 
-Ant colonies, bee swarms, fish colonies, migrating birds all exhibit swarming
+Ant colonies, bee swarms, fish colonies, and migrating birds all exhibit swarming
 behaviour to achieve a common goal or to gain an advantage over what's possible
 alone. Each individual within a swarm usually only has limited perception, and
 often there is no central control that enforces a common goal or gives
