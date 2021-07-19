@@ -3,14 +3,14 @@
 ### Conclusion
 
 We have made a comprehensive comparison between the performance of mean
-aggregation, bayesian aggregation, and attentive aggregation to collect a
+aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
 tasks. We have shown that there is no clear advantage of one of the methods over
 the others, with the results differing strongly between the different tasks.
 
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->
 
-We have also shown the results of a few variants of the bayesian aggregation and
+We have also shown the results of a few variants of the Bayesian aggregation and
 concluded that encoding the variance with the same encoder as the estimate,
 aggregating into separate latent spaces and not using the aggregated variance as
 an input to the decoder achieves the best results.
@@ -27,7 +27,7 @@ There are many avenues for future work in this area.
 All of our experiments used global visibility due to the noisy nature of limited
 local visibility making it harder to make any strong conclusions. Since the
 local visibility case also increases the uncertainty of each observation though,
-it might be a case where bayesian aggregation performs better. Future work
+it might be a case where Bayesian aggregation performs better. Future work
 should include experiments that have a larger environment with observability
 limited by range or by obstacles.
 
@@ -40,6 +40,6 @@ the world. Explicit communication architectures may be able to handle some tasks
 better than those with implicit communication, but they are often only
 applicable to environments with exactly two agents. For more agents, the
 performance of explicit communication architectures may be affected by the
-aggregation methods used and thus might be a use case for bayesian aggregation.
+aggregation methods used and thus might be a use case for Bayesian aggregation.
 
 - recurrent architecture

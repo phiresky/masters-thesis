@@ -47,7 +47,7 @@ few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
 varying amount of observations from the neighboring agents into the fixed size
 input of a dense neural network. In this work, we consider three aggregation
-methods on a set of different multi-agent tasks: Mean aggregation, bayesian
+methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
 methods with regards to their training performance and sample efficiency.
 

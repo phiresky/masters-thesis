@@ -4,7 +4,7 @@ keywords:
   - MARL
   - multi-agent
   - mreinforcement learning
-  - bayesian conditioning
+  - Bayesian conditioning
 lang: en-US
 pandoc: 
   # chapter: true # pandoc-crossref name figures per chapter

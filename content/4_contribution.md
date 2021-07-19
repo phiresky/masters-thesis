@@ -66,7 +66,7 @@ the compute graph for the value function, so the weights and training are
 completely independent.
 
 The tasks we consider have a continuous action space. We use a diagonalized
-gaussian distribution where the mean $μ$ of each action is output by the neural
+Gaussian  distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
@@ -100,7 +100,7 @@ distribution:
 
 $$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
 
-This random variable is estimated using a diagonal gaussian prior as an a-priori
+This random variable is estimated using a diagonal Gaussian  prior as an a-priori
 estimate:
 
 $$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$

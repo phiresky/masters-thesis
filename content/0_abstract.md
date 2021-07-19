@@ -8,7 +8,7 @@ should one agent use the information gathered from a large and varying number of
 observations of the world in order to make decisions? We focus on three
 different methods for aggregating observations and compare them regarding their
 training performance and sample efficiency. We introduce a policy architecture
-for aggregation based on bayesian conditioning and compare it to mean
+for aggregation based on Bayesian conditioning and compare it to mean
 aggregation and attentive aggregation used in related work. We show the
 performance of the different methods on a set of cooperative tasks that can
 scale to a large number of agents, including tasks that have other objects in
@@ -16,6 +16,6 @@ the world.
 
 We optimize the hyperparameters to be able to show which parameters lead to the
 best results for each of the methods. In addition, we compare different variants
-of bayesian aggregation and compare the recently introduced Trust Region Layers
+of Bayesian aggregation and compare the recently introduced Trust Region Layers
 learning method to the commonly used Proximal Policy Optimization.
 

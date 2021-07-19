@@ -317,7 +317,7 @@ Max-pooling is widely used in convolutional neural networks to reduce the image
 dimensionality where it consistently outperforms mean (average) pooling. Softmax
 aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
 
-#### Bayesian gaussian conditioning
+#### Bayesian Gaussian conditioning
 
 Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
@@ -326,7 +326,7 @@ Gaussian process regression
 [@{https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4}]. Bayesian
 aggregation was used by @bayesiancontextaggregation for context aggregation in
 conditional latent variable (CLV) models. There is no related work using
-bayesian aggregation for MARL.
+Bayesian aggregation for MARL.
 
 #### Attention mechanisms
 
