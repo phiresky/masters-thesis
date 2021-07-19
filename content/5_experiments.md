@@ -37,7 +37,7 @@ In the rendezvous task, a set of $n$ agents try to meet up in a single point. An
 example is shown in @fig:rendezvous1. Our implementation of the rendezvous task
 is modeled after [@maxpaper].
 
-![Visualization of one successful episode of the rendezvous task (from [@maxpaper])](img/rendezvous1.png){#fig:rendezvous1}
+![Visualization of one successful episode of the rendezvous task (from [@maxpaper])](images/rendezvous1.png){#fig:rendezvous1}
 
 The agents are modeled as infinitesimal dots without collisions. They use
 double-integrator unicycle dynamics
@@ -77,7 +77,7 @@ could run away in one direction forever, and if it had walls, the pursuers could
 easily corner the evader. The pursuit tasks are modeled after [@maxpaper]. An
 example episode of the pursuit task is in [@fig:pursuit1].
 
-![Visualization of one successful episode of the pursuit task (from [@maxpaper]). The pursuers are in blue, the evader is in red.](img/pursuit1.png){#fig:pursuit1}
+![Visualization of one successful episode of the pursuit task (from [@maxpaper]). The pursuers are in blue, the evader is in red.](images/pursuit1.png){#fig:pursuit1}
 
 The agents are modeled with single-integrator unicycle dynamics. The action
 outputs are the linear velocity ($v$) and the angular velocity ($ω$).
@@ -139,7 +139,7 @@ distances between the boxes. We run this task with four boxes and 10 agents.
 
 An example successful episode of the task is in @fig:assembly.
 
-![Example successful episode of the box assembly task (from [@gregor])](img/box-assembly.png){#fig:assembly}
+![Example successful episode of the box assembly task (from [@gregor])](images/box-assembly.png){#fig:assembly}
 
 [@gregor]:
   https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3

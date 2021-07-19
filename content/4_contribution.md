@@ -7,7 +7,7 @@ architecture scale to any number as well as a varying number of observables.
 
 ### Policy Architecture
 
-![Overview of our general model architecture.](build/model.drawio.pdf){#fig:model}
+![Overview of our general model architecture.](images/model.drawio.svg){#fig:model}
 
 [@Fig:model] shows a schematic of the general model architecture we describe
 below.
@@ -138,7 +138,7 @@ one for the variance).
 
 A graphical overview of this method is shown in [@fig:bayesianagg].
 
-![Bayesian Aggregation in graphical form. The output is concatenated with the other observations and passed to the decoder.](build/bayesianagg.drawio.pdf){#fig:bayesianagg}
+![Bayesian Aggregation in graphical form. The output is concatenated with the other observations and passed to the decoder.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
 
 #### Attentive Aggregation
 
@@ -160,7 +160,7 @@ This method of attentive aggregation is similar to the method successfully used
 by @openai. An overview over the model architecture used in [@openai] can be
 seen in [@fig:openai].
 
-![A schematic of the model architecture used by OpenAI [@openai] using masked residual self-attention. It is similar to our architecture ([@fig:model]) except for the LIDAR in the self-observations as well as the LSTM layer at the end.](build/model-openai.drawio.pdf){#fig:openai}
+![A schematic of the model architecture used by OpenAI [@openai] using masked residual self-attention. It is similar to our architecture ([@fig:model]) except for the LIDAR in the self-observations as well as the LSTM layer at the end.](images/model-openai.drawio.svg){#fig:openai}
 
 ### Multi-agent learning with PPO
 

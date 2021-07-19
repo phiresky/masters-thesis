@@ -41,8 +41,8 @@ performs best.
 
 ![Results on the multi-evader pursuit task with the NN architecture adapted from
 [@maxpaper]. The bayesian aggregation performs
-best.](../../plots/2021-07-10_13.30.06-Multi-Evader Pursuit
-(smallarch).pdf){#fig:resmpsmall}
+best.](images/plots/2021-07-10_13.30.06-Multi-Evader Pursuit
+(smallarch).svg){#fig:resmpsmall}
 
 @Fig:resmpopt shows the results with the neural network architectures separately
 hyper-parameter optimized on the task. The optimized architecture for the mean
@@ -62,26 +62,26 @@ able to implicitly learn to transform and weigh the information from the
 different observables, compensating the advantage of the additional structure of
 relevancy / certainty that is given in the bayesian aggregation.
 
-![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](../../plots/2021-07-10_16.06.20-Multi-Evader
-Pursuit (hpsopt).pdf){#fig:resmpopt}
+![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-10_16.06.20-Multi-Evader
+Pursuit (hpsopt).svg){#fig:resmpopt}
 
-![Like @fig:resmpopt but only the top 1/3 of runs.](../../plots/2021-07-10_16.07.12-Multi-Evader
-Pursuit (hpsopt top.33).pdf){#fig:resmpopttop}
+![Like @fig:resmpopt but only the top 1/3 of runs.](images/plots/2021-07-10_16.07.12-Multi-Evader
+Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
 #### Single-evader pursuit task
 
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
 and one evader.
 
-![Results on Single Pursuit task. Architecture: 120-60-agg-160.](../../plots/2021-07-14_13.55.20-Single-evader
-Pursuit.pdf){#fig:ressp}
+![Results on Single Pursuit task. Architecture: 120-60-agg-160.](images/plots/2021-07-14_13.55.20-Single-evader
+Pursuit.svg){#fig:ressp}
 
 #### Rendezvous task
 
 @Fig:resrendezvous.
 
 ![Results on the Rendezvous task. Large Architecture: 120-60-agg-160.
-Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162](../../plots/2021-07-18_12.34.40-Rendezvous.pdf){#fig:resrendezvous}
+Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162](images/plots/2021-07-18_12.34.40-Rendezvous.svg){#fig:resrendezvous}
 
 #### Assembly task
 
@@ -89,16 +89,16 @@ Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162](../../p
 boxes. The three aggregation methods perform very similar, with the attentive
 aggregation learning the task slightly quicker.
 
-![Results on the assembly task.](../../plots/2021-07-07_15.07.38-assembly (by
-agg method).pdf){#fig:resassembly}
+![Results on the assembly task.](images/plots/2021-07-07_15.07.38-assembly (by
+agg method).svg){#fig:resassembly}
 
 #### Clustering task with two clusters
 
 @Fig:resclustering2 shows the results on the clustering task with four boxes
 split into two clusters.
 
-![Clustering2 results](../../plots/2021-07-10_18.56.32-Clustering task (2
-clusters, by agg method).pdf){#fig:resclustering2}
+![Clustering2 results](images/plots/2021-07-10_18.56.32-Clustering task (2
+clusters, by agg method).svg){#fig:resclustering2}
 
 #### Clustering task with three clusters
 
@@ -109,8 +109,8 @@ Doesn't work :(
 @Fig:resaggmax shows a comparison between mean-aggregation and max-aggregation
 on the multi-evader pursuit task.
 
-![Max aggregation results on the multi-evader pursuit task.](../../plots/2021-07-14_13.43.27-Multi-Evader
-Pursuit Max.pdf){#fig:resaggmax}
+![Max aggregation results on the multi-evader pursuit task.](images/plots/2021-07-14_13.43.27-Multi-Evader
+Pursuit Max.svg){#fig:resaggmax}
 
 ### Learning algorithm comparison (PPO vs TRL)
 
@@ -125,17 +125,17 @@ shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
 fewer runs fail to achieve the optimal performance.
 
-![TRL vs PPO (multi-evader pursuit)](../../plots/2021-07-11_11.57.49-Multi-Evader
-Pursuit TRL.pdf){#fig:resmptrl}
+![TRL vs PPO (multi-evader pursuit)](images/plots/2021-07-11_11.57.49-Multi-Evader
+Pursuit TRL.svg){#fig:resmptrl}
 
-![TRL vs PPO (multi-evader pursuit). Top 1/3 of runs](../../plots/2021-07-11_13.23.22-Multi-Evader
-Pursuit TRL Top.33.pdf){#fig:resmptrltop}
+![TRL vs PPO (multi-evader pursuit). Top 1/3 of runs](images/plots/2021-07-11_13.23.22-Multi-Evader
+Pursuit TRL Top.33.svg){#fig:resmptrltop}
 
-![TRL vs PPO on the assembly task](../../plots/2021-07-11_13.13.37-assembly (by
-train algo and agg method).pdf)
+![TRL vs PPO on the assembly task](images/plots/2021-07-11_13.13.37-assembly (by
+train algo and agg method).svg)
 
-![TRL vs PPO on single pursuit task](../../plots/2021-07-15_12.57.59-Single-evader
-Pursuit TRL vs PPO.pdf){#fig:ressptrl}
+![TRL vs PPO on single pursuit task](images/plots/2021-07-15_12.57.59-Single-evader
+Pursuit TRL vs PPO.svg){#fig:ressptrl}
 
 ### Same space vs separate space aggregation
 
@@ -152,13 +152,13 @@ In the other experiments we alwas use separate spaces. @Fig:ressameseparate and
 into separate spaces for the multi-evader pursuit and assembly tasks. The
 separate-space aggregation performs better.
 
-![Schematic of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared.](build/model-sameseparate.drawio.pdf){#fig:sameseparate}
+![Schematic of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
 
-![Multi-pursuit same space comparison](../../plots/2021-07-14_13.37.01-Multi-Evader
-Pursuit samespace.pdf){#fig:ressameseparate}
+![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
+Pursuit samespace.svg){#fig:ressameseparate}
 
-![Assembly task same space comparison](../../plots/2021-07-14_13.19.13-Assembly
-samespace.pdf){#fig:ressameseparate2}
+![Assembly task same space comparison](images/plots/2021-07-14_13.19.13-Assembly
+samespace.svg){#fig:ressameseparate2}
 
 ### Bayesian aggregation variants
 
@@ -194,8 +194,8 @@ other experiments with bayesian aggregation on multi-evader pursuit
 (`120-60-agg-160`). Including the variance in the decoder inputs decreases the
 performance.
 
-![Results of bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.](../../plots/2021-07-11_12.27.17-Pursuit
-(bayes outputvariance).pdf){#fig:resoutputvariance}
+![Results of bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.](images/plots/2021-07-11_12.27.17-Pursuit
+(bayes outputvariance).svg){#fig:resoutputvariance}
 
 <!-- ### Local obs aggregation space -->
 
