@@ -1,26 +1,19 @@
 ---
-title: "Manuscript Title"
+title: "Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning"
 keywords:
-  - markdown
-  - publishing
-  - manubot
+  - MARL
+  - multi-agent
+  - mreinforcement learning
+  - bayesian conditioning
 lang: en-US
 authors:
-  - github: johndoe
-    name: John Doe
-    initials: JD
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+  - github: phiresky
+    name: Robin Ruede
+    initials: RR
+    #orcid: XXXX-XXXX-XXXX-XXXX
+    #twitter: johndoe
+    email: robin.ruede@student.kit.edu
     affiliations:
-      - Department of Something, University of Whatever
-    funders:
-      - Grant XXXXXXXX
-  - github: janeroe
-    name: Jane Roe
-    initials: JR
-    orcid: XXXX-XXXX-XXXX-XXXX
-    email: jane.roe@whatever.edu
-    affiliations:
-      - Department of Something, University of Whatever
-      - Department of Whatever, University of Something
+      - Autonomous Learning Robots Lab, Karlsruhe Institute of Technology
+    #funders:
+    #  - Grant XXXXXXXX
