@@ -108,7 +108,7 @@ $$r = min_{i=0}^n ||p_{a_i} - p_{e}||$$
 
 The episode ends once the evader is caught or 1024 timesteps have passed. The
 evader is declared as caught if the distance is minimum distance between an
-agent and the evader is less than $\frac{1}{100}$ of the world width.
+agent and the evader is less than $1%$ of the world width.
 
 ##### Multi-evader pursuit
 
@@ -137,7 +137,7 @@ together as possible. Since they agents are much smaller than the boxes, moving
 a box is hard for a single agent. The reward is the negative sum of the pairwise
 distances between the boxes. We run this task with four boxes and 10 agents.
 
-An example successful episode of the task is in @fig:assembly.
+An example of a successful episode of the task is in @fig:assembly.
 
 ![Example successful episode of the box assembly task (from [@gregor])](images/box-assembly.png){#fig:assembly}
 
@@ -173,6 +173,8 @@ aggregation space.
 
 {example clustering episode}
 
-### Other considered tasks
+<!-- ### Other considered tasks
 
 PettingZoo tasks (without results?)
+
+-->

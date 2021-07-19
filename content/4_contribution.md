@@ -1,4 +1,4 @@
-## Our Contribution {#sec:contribution}
+## Scalable information aggregation for deep MARL policies {#sec:contribution}
 
 We introduce a policy architecture for deep reinforcement learning that projects
 observations from one or more different kinds of observables into samples of
@@ -6,11 +6,6 @@ latent spaces, then aggregates them into a single latent value. This makes the
 architecture scale to any number as well as a varying number of observables.
 
 ### Policy Architecture
-
-![Overview of our general model architecture.](images/model.drawio.svg){#fig:model}
-
-[@Fig:model] shows a schematic of the general model architecture we describe
-below.
 
 In general, our policy architecture is based on [@maxpaper] and [@openai].
 
@@ -54,26 +49,30 @@ latent space value for each aggregation group:
 $$e_{k→G} = \text{agg}_{i=0}^n(e_{k→g_i})$$
 
 We then concatenate all of the latent spaces as well as the proprioceptive
-observations $p$ to get a single encoded value $e_k$.
+observations $p$ to get a single encoded value $e_k$:
 
 $$e_k = (p, G_1, G_2, ...)$$
 
 This value is then passed through a decoder that consists of one or more dense
-layers. Finally the decoded value is transformed to the dimensionality of the
+layers. Finally, the decoded value is transformed to the dimensionality of the
 action space or to $1$ to get the output of the value function. While we share
 the architecture for the policy and value function, we use a separate copy of
 the compute graph for the value function, so the weights and training are
 completely independent.
 
+@Fig:model shows a schematic of the general model architecture described above.
+
+![A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed though an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.](images/model.drawio.svg){#fig:model}
+
 The tasks we consider have a continuous action space. We use a diagonalized
-Gaussian  distribution where the mean $μ$ of each action is output by the neural
+Gaussian distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
 #### Mean/Max/Softmax Aggregation
 
 Each sample in the latent space is weighted by a function $\text{weigh}()$ and
-aggregated using an aggregation operator $\bigoplus$.
+aggregated using an aggregation operator $\bigoplus$:
 
 $$e_{k→G} = \bigoplus_{i=1}^n \text{weigh}(e_{k→g_i})$$
 
@@ -94,7 +93,7 @@ $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k
 
 #### Bayesian Aggregation {#sec:bayesianagg}
 
-For the bayesian aggregation, we introduze $z$ as the aggregated latent variable
+For the bayesian aggregation, we introduce $z$ as the aggregated latent variable
 with $$e_{k→G}=:μ_z.$$ $z$ is seen as a random variable with a Gaussian
 distribution:
 
@@ -110,7 +109,7 @@ elements $o_{k→g_i}$ in the aggregation group. We interpret each observation a
 a new sample from the distribution $p(z)$, each with a mean $r_{k→g_i}$ and a
 standard deviation $σ_{r_{k→g_i}}$. We use the probabilistic observation model
 and consider the conditional probability
-$$p(r_{k→g_i}|z) ≡ \mathcal{N}(r_{k→g}, σ_{r_{k→g}}^2)$$.
+$$p(r_{k→g_i}|z) ≡ \mathcal{N}(r_{k→g}, σ_{r_{k→g}}^2).$$
 
 With Bayes' rule, we can invert this conditional probability to get:
 $$p(z|r_{k→g_i}) = \frac{p(r_{k→g_i}|z) p(z)}{p(r_{k→g_i})}$$
@@ -138,7 +137,7 @@ one for the variance).
 
 A graphical overview of this method is shown in [@fig:bayesianagg].
 
-![Bayesian Aggregation in graphical form. The output is concatenated with the other observations and passed to the decoder.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
+![Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable $z$ to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of $z$ are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in @fig:model.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
 
 #### Attentive Aggregation
 
@@ -173,7 +172,7 @@ of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.
 
-During training, the data of each agent is collected as if that agent was the
+Similarily to the setup used for TRPO by @maxpaper, we collect the data of each agent as if that agent was the
 only agent in the world. For example, a batch of a single step of 10 agents each
 in 20 different environment becomes 200 separate training samples. Each agent
 still only has access to its own local observations, not the global system

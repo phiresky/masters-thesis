@@ -5,7 +5,7 @@
 We have made a comprehensive comparison between the performance of mean
 aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
-tasks. We have shown that there is no clear advantage of one of the methods over
+tasks. We have observed that there is no clear advantage of one of the methods over
 the others, with the results differing strongly between the different tasks.
 
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->

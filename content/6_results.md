@@ -16,8 +16,17 @@ each training step on a separate set of evaluation environments.
 
 Unless mentioned otherwise, the following setup is used:
 
-- Plotted is the median of the n runs, the error band is the 25th and 75th
-  percentile of runs.
+- Plotted is the median reward of the n runs at a specific training step, the error band is the 25th and 75th
+  percentile of runs
+- The activation function used after each layer is LeakyReLU
+- For the bayesian aggregation:
+   - We only use the mean value $μ_z$ as an output, not $μ_z$ and $σ_z^2$
+   - We use a single shared encoder for the value and confidence estimates
+   - The a-priori estimate $μ_z_0$ is learnable separately for each feature dimension
+   - The variance of both the a-priori estimate as well as the encoded estimates are rectified using $\text{softplus}$.
+- Multiple aggregatable groups are aggregated into separate latent spaces
+- The parameters of the policy and value function are not shared
+- The training algorithm used is PPO
 
 ### Aggregation method results
 
@@ -32,7 +41,7 @@ observations with the aggregated observations (compare @fig:model).
 
 #### Multi-evader pursuit task
 
-Here we consider the multi-evader pursuit task with 20 pursuers and 5 evaders on
+Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders on
 a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task with
 different aggregation methdos with the same architecture used in [@maxpaper] to
 be able to directly compare the results. The architecture is 64-agg-64 with the
@@ -44,19 +53,18 @@ performs best.
 best.](images/plots/2021-07-10_13.30.06-Multi-Evader Pursuit
 (smallarch).svg){#fig:resmpsmall}
 
-@Fig:resmpopt shows the results with the neural network architectures separately
-hyper-parameter optimized on the task. The optimized architecture for the mean
-aggregation is `174-226-97-agg-96` with LeakyReLU activation functions. The
-optimized architecture for the Bayesian aggregation is `120-60-agg-160` with
-LeakyReLU activation functions. The optimized architecture for the attentive
-aggregation is `72-agg-132-200`. Note that the architecture optimized on the
+@Fig:resmpopt shows the results with neural network architectures that were separately
+hyper-parameter optimized for each aggregation method. The optimized architecture for the mean
+aggregation is `174-226-97-agg-96`. The
+optimized architecture for the Bayesian aggregation is `120-60-agg-160`. The optimized architecture for the attentive
+aggregation is `72-agg-132-200`. All optimized architectures use the LeakyReLU activation functions. Note that the architecture optimized on the
 mean aggregation is the deepest with three hidden layers before the aggregation,
 while the optimized architecture on the attentive aggregation has multiple
 layers after the aggregation instead. With the hyper-parameter optimized
 architecture, the mean aggregation performs best. The results are still similar
 when using the `120-60-agg-160` architecture for every aggregation method. These
 results indicate that the Bayesian aggregation outperforms the mean aggregation
-when the neuronal network is limited in size, but has no advantage when the
+when the neural network is limited in size, but has no advantage when the
 neural network is sufficiently large and deep. The neural network seems to be
 able to implicitly learn to transform and weigh the information from the
 different observables, compensating the advantage of the additional structure of
@@ -67,6 +75,12 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 
 ![Like @fig:resmpopt but only the top 1/3 of runs.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
+
+
+In addition two the three main aggregation methods we compare in this and the other tasks, we also show a comparison to between mean aggregation and max aggregation on the multi-evader pursuit task in @fig:resaggmax.
+
+![Max aggregation results on the multi-evader pursuit task.](images/plots/2021-07-14_13.43.27-Multi-Evader
+Pursuit Max.svg){#fig:resaggmax}
 
 #### Single-evader pursuit task
 
@@ -104,13 +118,7 @@ clusters, by agg method).svg){#fig:resclustering2}
 
 Doesn't work :(
 
-### Max aggregation
 
-@Fig:resaggmax shows a comparison between mean-aggregation and max-aggregation
-on the multi-evader pursuit task.
-
-![Max aggregation results on the multi-evader pursuit task.](images/plots/2021-07-14_13.43.27-Multi-Evader
-Pursuit Max.svg){#fig:resaggmax}
 
 ### Learning algorithm comparison (PPO vs TRL)
 
@@ -144,7 +152,7 @@ observables into the same latent space instead of separate ones. This means that
 instead of each aggregation space containing the information of those
 aggregatables, the single aggregation space must contain the information of all
 observables as it pertains to the current agent. The potential advantage is that
-the policy can share more parameters and thus be more sample efficient.
+the policy can share more parameters and thus be more sample efficient. It can also scale to a larger number of categories of objects (aggregation groups).
 @Fig:sameseparate shows a schematic comparison between the two methods.
 
 In the other experiments we alwas use separate spaces. @Fig:ressameseparate and
@@ -152,7 +160,7 @@ In the other experiments we alwas use separate spaces. @Fig:ressameseparate and
 into separate spaces for the multi-evader pursuit and assembly tasks. The
 separate-space aggregation performs better.
 
-![Schematic of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
+![Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
 
 ![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
 Pursuit samespace.svg){#fig:ressameseparate}
@@ -172,7 +180,7 @@ last layer of the encoder have two outputs for each feature, or have two fully
 separate networks ($enc_r$ and $enc_σ$). In our experiments, using one common
 encoder with two outputs generally performs better.
 
-#### Output variance vs not output variance
+#### Using the aggregated variance or only the mean
 
 In the other experiments with Bayesian aggregation, we only use the predicted
 mean of the Gaussian distribution as an input to the decoder:
@@ -189,16 +197,20 @@ this additional information:
 $$e_{k→G}=(μ_z, σ_z^2)$$
 
 The results of applying this method to the multi-evader pursuit are seen in
-@fig:resoutputvariance. The neuronal network architecture is the same as for the
+@fig:resoutputvariance. The neural network architecture is the same as for the
 other experiments with Bayesian aggregation on multi-evader pursuit
 (`120-60-agg-160`). Including the variance in the decoder inputs decreases the
 performance.
+
+The decreasing performance could be a result of the increased dimension of the decoder inputs. Adding the variance inputs doubles the number of values the decoder has to process and learn from. Since the structure of the encoded values and variances can not known beforehand to the decoder, it has to learn to interpret more information than when receiving just the mean values. The added variance inputs should give the decoder the ability to understand the confidence of each of the value predictions and weigh them accordingly, but the added complexity seems to make it not worth it.
 
 ![Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.](images/plots/2021-07-11_12.27.17-Pursuit
 (bayes outputvariance).svg){#fig:resoutputvariance}
 
 <!-- ### Local obs aggregation space -->
 
-### Activation functions
+<!-- ### Activation functions
 
 (probably uninteresting)
+
+-->
