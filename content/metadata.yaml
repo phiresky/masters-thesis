@@ -6,6 +6,9 @@ keywords:
   - mreinforcement learning
   - bayesian conditioning
 lang: en-US
+pandoc: 
+  # chapter: true # pandoc-crossref name figures per chapter
+  cref: true
 authors:
   - github: phiresky
     name: Robin Ruede

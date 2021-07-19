@@ -1,5 +1,3 @@
-## Abstract {.page_break_before}
-
 Multi-agent reinforcement learning (MARL) is an emerging field in reinforcement
 learning with real world applications such as unmanned aerial vehicles,
 search-and-rescue, and warehouse organization. There are many different

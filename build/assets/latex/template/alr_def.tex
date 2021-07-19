@@ -1,0 +1,67 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% ARL Paper Definitions
+%
+% Please include this file in all ALR papers and use the definitions
+% as a common standard.
+%
+% If something is missing in this file, please extend it, but keep
+% it simple and don't pollute it.
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% Packages
+\usepackage[per-mode=fraction]{siunitx}
+\usepackage{comment}
+\usepackage[normalem]{ulem}
+\usepackage{xspace}
+
+% Units commonly used in robotics
+\DeclareSIUnit\px{px}
+\DeclareSIUnit\fps{fps}
+
+% Colors
+\definecolor{OliveGreen}{RGB}{0,200,25}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\darkgreen}[1]{\textcolor{OliveGreen}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+
+% Abbreviations
+\newcommand{\ie}{i.\,e.\, }
+\newcommand{\eg}{e.\,g.\, }
+\newcommand{\etal}{et\,al.\ }
+
+% Revision macros
+\newcommand{\added}[1]{\darkgreen{#1}}
+\newcommand{\replaced}[2]{\red{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}\darkgreen{#2}}
+\newcommand{\removed}[1]{\red{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}}
+\newcommand{\remark}[1]{\blue{#1}}
+
+% Uncomment the following lines for the final version (without revision marks)
+% Attention: Always check the final version!
+%            Misplaced revision macros might add unwanted spaces.
+
+\begin{comment}
+	\renewcommand{\added}[1]{#1}
+	\renewcommand{\replaced}[2]{#2}
+	\renewcommand{\removed}[1]{}
+\end{comment}
+
+% More complex revision macros (for rebuttal letters, subject to extension)
+\newcommand{\addedimage}[1]{\fcolorbox{blue}{blue}{#1}}
+\newcommand{\removedfootnote}[1]{\footnote{\removed{#1}}}
+\newcommand{\removedsubsection}[1]{\subsection{\texorpdfstring{\removed{#1}}{#1}}}
+\newcommand{\replacedsubsection}[2]{\subsection{\texorpdfstring{\removed{#1}\added{#2}}{#2}}}
+\newcommand{\addedsection}[1]{\section{\texorpdfstring{\added{#1}}{#1}}}
+
+% Uncomment the following lines for the final version (without revision marks)
+% Attention: Always check the final version!
+\begin{comment}
+	\renewcommand{\addedimage}[1]{#1}
+	\renewcommand{\removedfootnote}[1]{}
+	\renewcommand{\removedsubsection}[1]{}
+	\renewcommand{\replacedsubsection}[2]{\subsection{#2}}
+	\renewcommand{\removedsubsection}[1]{}
+\end{comment}
+

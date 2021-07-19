@@ -1,5 +1,15 @@
-# Pandoc --defaults for LaTeX output.
-# Load on top of common defaults.
+from: markdown
+filters:
+- pandoc-crossref
+- pandoc-url2cite
+- citeproc
+- build/pandoc-svg2pdf.py
+wrap: preserve
+metadata:
+  csl: build/assets/style.csl
+  link-citations: true
 to: latex
-output-file: output/manuscript.tex
+output-file: output/output-tex/manuscript.tex
 shift-heading-level-by: -1
+top-level-division: chapter
+input-file: output/output-tex/manuscript.md
