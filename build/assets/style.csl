@@ -41,15 +41,15 @@
   </macro>
   <citation>
     <sort>
-      <key variable="citation-number"/>
+      <key variable="citation-label"/>
     </sort>
-    <layout prefix="[" suffix="]" delimiter=",">
-      <text variable="citation-number"/>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-label"/>
     </layout>
   </citation>
   <bibliography second-field-align="flush">
     <layout>
-      <text variable="citation-number" suffix=". "/>
+      <text variable="citation-label" prefix="[" suffix="] " />
       <group delimiter=" ">
         <group>
           <text variable="title" font-weight="bold"/>
