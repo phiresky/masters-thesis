@@ -1,4 +1,4 @@
-# Results {#sec:results}
+## Results {#sec:results}
 
 In this section, we present the results of our experiments. We compare (1) the
 training performance of the different aggregation methods on various tasks, (2)
@@ -19,7 +19,7 @@ Unless mentioned otherwise, the following setup is used:
 - Plotted is the median of the n runs, the error band is the 25th and 75th
   percentile of runs.
 
-## Aggregation method results
+### Aggregation method results
 
 We compare the performance of the different aggregation methods (bayesian
 aggregation, mean aggregation, attentive aggregation) on multiple tasks.
@@ -30,7 +30,7 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatentation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
-### Multi-evader pursuit task
+#### Multi-evader pursuit task
 
 Here we consider the multi-evader pursuit task with 20 pursuers and 5 evaders on
 a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task with
@@ -68,7 +68,7 @@ Pursuit (hpsopt).pdf){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs.](../../plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).pdf){#fig:resmpopttop}
 
-### Single-evader pursuit task
+#### Single-evader pursuit task
 
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
 and one evader.
@@ -76,14 +76,14 @@ and one evader.
 ![Results on Single Pursuit task. Architecture: 120-60-agg-160.](../../plots/2021-07-14_13.55.20-Single-evader
 Pursuit.pdf){#fig:ressp}
 
-### Rendezvous task
+#### Rendezvous task
 
 @Fig:resrendezvous.
 
 ![Results on the Rendezvous task. Large Architecture: 120-60-agg-160.
 Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162](../../plots/2021-07-18_12.34.40-Rendezvous.pdf){#fig:resrendezvous}
 
-### Assembly task
+#### Assembly task
 
 @Fig:resassembly shows the results on the assembly task with ten agents and four
 boxes. The three aggregation methods perform very similar, with the attentive
@@ -92,7 +92,7 @@ aggregation learning the task slightly quicker.
 ![Results on the assembly task.](../../plots/2021-07-07_15.07.38-assembly (by
 agg method).pdf){#fig:resassembly}
 
-### Clustering task with two clusters
+#### Clustering task with two clusters
 
 @Fig:resclustering2 shows the results on the clustering task with four boxes
 split into two clusters.
@@ -100,11 +100,11 @@ split into two clusters.
 ![Clustering2 results](../../plots/2021-07-10_18.56.32-Clustering task (2
 clusters, by agg method).pdf){#fig:resclustering2}
 
-### Clustering task with three clusters
+#### Clustering task with three clusters
 
 Doesn't work :(
 
-## Max aggregation
+### Max aggregation
 
 @Fig:resaggmax shows a comparison between mean-aggregation and max-aggregation
 on the multi-evader pursuit task.
@@ -112,7 +112,7 @@ on the multi-evader pursuit task.
 ![Max aggregation results on the multi-evader pursuit task.](../../plots/2021-07-14_13.43.27-Multi-Evader
 Pursuit Max.pdf){#fig:resaggmax}
 
-## Learning algorithm comparison (PPO vs TRL)
+### Learning algorithm comparison (PPO vs TRL)
 
 In the following, we show some results of the trust region layers training
 method (see [@sec:trl]) compared to PPO.
@@ -137,7 +137,7 @@ train algo and agg method).pdf)
 ![TRL vs PPO on single pursuit task](../../plots/2021-07-15_12.57.59-Single-evader
 Pursuit TRL vs PPO.pdf){#fig:ressptrl}
 
-## Same space vs separate space aggregation
+### Same space vs separate space aggregation
 
 For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
@@ -160,11 +160,11 @@ Pursuit samespace.pdf){#fig:ressameseparate}
 ![Assembly task same space comparison](../../plots/2021-07-14_13.19.13-Assembly
 samespace.pdf){#fig:ressameseparate2}
 
-## Bayesian aggregation variants
+### Bayesian aggregation variants
 
 The following shows results for some variants of the bayesian aggregation.
 
-### Separate vs common encoder
+#### Separate vs common encoder
 
 As described in @sec:bayesianagg, we can either have a shared encoder to predict
 the mean and variance of each sample in each aggregation space by making the
@@ -172,7 +172,7 @@ last layer of the encoder have two outputs for each feature, or have two fully
 separate networks ($enc_r$ and $enc_σ$). In our experiments, using one common
 encoder with two outputs generally performs better.
 
-### Output variance vs not output variance
+#### Output variance vs not output variance
 
 In the other experiments with bayesian aggregation, we only use the predicted
 mean of the gaussian distribution as an input to the decoder:
@@ -199,6 +199,6 @@ performance.
 
 <!-- ### Local obs aggregation space -->
 
-## Activation functions
+### Activation functions
 
 (probably uninteresting)

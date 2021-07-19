@@ -1,4 +1,4 @@
-# Introduction
+## Introduction
 
 Ant colonies, bee swarms, fish colonies, migrating birds all exhibit swarming
 behaviour to achieve a common goal or to gain an advantage over what's possible

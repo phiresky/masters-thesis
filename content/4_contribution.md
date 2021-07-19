@@ -1,11 +1,11 @@
-# Our Contribution {#sec:contribution}
+## Our Contribution {#sec:contribution}
 
 We introduce a policy architecture for deep reinforcement learning that projects
 observations from one or more different kinds of observables into samples of
 latent spaces, then aggregates them into a single latent value. This makes the
 architecture scale to any number as well as a varying number of observables.
 
-## Policy Architecture
+### Policy Architecture
 
 ![Overview of our general model architecture.](build/model.drawio.pdf){#fig:model}
 
@@ -70,7 +70,7 @@ gaussian distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
-### Mean/Max/Softmax Aggregation
+#### Mean/Max/Softmax Aggregation
 
 Each sample in the latent space is weighted by a function $\text{weigh}()$ and
 aggregated using an aggregation operator $\bigoplus$.
@@ -92,7 +92,7 @@ aggregation operator is the sum:
 
 $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k→g_j})}\right) e_{k→g_i}$$
 
-### Bayesian Aggregation {#sec:bayesianagg}
+#### Bayesian Aggregation {#sec:bayesianagg}
 
 For the bayesian aggregation, we introduze $z$ as the aggregated latent variable
 with $$e_{k→G}=:μ_z.$$ $z$ is seen as a random variable with a Gaussian
@@ -140,7 +140,7 @@ A graphical overview of this method is shown in [@fig:bayesianagg].
 
 ![Bayesian Aggregation in graphical form. The output is concatenated with the other observations and passed to the decoder.](build/bayesianagg.drawio.pdf){#fig:bayesianagg}
 
-### Attentive Aggregation
+#### Attentive Aggregation
 
 When using residual self-attentive aggregation, we define the aggregated feature
 as
@@ -162,7 +162,7 @@ seen in [@fig:openai].
 
 ![A schematic of the model architecture used by OpenAI [@openai] using masked residual self-attention. It is similar to our architecture ([@fig:model]) except for the LIDAR in the self-observations as well as the LSTM layer at the end.](build/model-openai.drawio.pdf){#fig:openai}
 
-## Multi-agent learning with PPO
+### Multi-agent learning with PPO
 
 PPO and other policy gradient methods are designed for single-agent
 environments. We adapt PPO to the multi-agent setting without making any major

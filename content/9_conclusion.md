@@ -1,6 +1,6 @@
-# Conclusion and Future Work {#sec:conclusion}
+## Conclusion and Future Work {#sec:conclusion}
 
-## Conclusion
+### Conclusion
 
 We have made a comprehensive comparison between the performance of mean
 aggregation, bayesian aggregation, and attentive aggregation to collect a
@@ -20,7 +20,7 @@ multi-agent reinforcement learning and compared it to the commonly used PPO. The
 results indicate that TRL is usually at least as good as PPO and in some cases
 outperforms it.
 
-## Future Work
+### Future Work
 
 There are many avenues for future work in this area.
 

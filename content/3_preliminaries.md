@@ -1,8 +1,8 @@
-# Preliminaries and related work {#sec:preliminaries}
+## Preliminaries and related work {#sec:preliminaries}
 
-## Policy Gradient training methods
+### Policy Gradient training methods
 
-### Proximal Policy Optimization (PPO)
+#### Proximal Policy Optimization (PPO)
 
 Proximal Policy Optimization [@{https://arxiv.org/abs/1707.06347}] is a commonly
 used policy gradient method for reinforcement learning. In PPO, each training
@@ -22,7 +22,7 @@ implementation
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
 
-### Trust Region Layers (PG-TRL) {#sec:trl}
+#### Trust Region Layers (PG-TRL) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
 region during policy updates introduced by [@trl]. PPO uses a fixed clipping
@@ -37,7 +37,7 @@ factor. {todo: more detail?}
 
 We explore PG-TRL as an alternative training method to PPO.
 
-## Reinforcement Learning in multi-agent systems (MARL)
+### Reinforcement Learning in multi-agent systems (MARL)
 
 There are many variants of applying reinforcement learning to multi-agent
 systems.
@@ -60,7 +60,7 @@ process and the environments, as well as the variants we choose to consider.
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
 
-#### Homogenous vs heterogenous agents
+##### Homogenous vs heterogenous agents
 
 In general, the agents in a multi-agent environments can differ in their
 intrinsic properties. For example, they can have different control dynamics,
@@ -72,7 +72,7 @@ also causes them to have a different perspective, different observations and
 thus different actions, resulting in differing behavior even when they are
 acting according to the same policy.
 
-#### Centralized learning
+##### Centralized learning
 
 During training, we can either learn the agent policies in a centralized or a
 decentralized fasion.
@@ -95,7 +95,7 @@ all agents. It is used for example in [@{https://arxiv.org/abs/1705.08926};
 @{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}]. We only
 consider the CLDE case.
 
-#### Decentralized execution
+##### Decentralized execution
 
 When using centralized learning, it is possible to use a single policy to output
 actions for all agents at the same time. This is called "centralized execution".
@@ -118,7 +118,7 @@ performance, robustness, and sample efficiency. CLDE is used e.g. by [@mpe;
 @{https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/17193};
 @{https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html}].
 
-#### Cooperative, adversarial, team-based
+##### Cooperative, adversarial, team-based
 
 Multi-agent environments can be cooperative, adversarial, or team-based.
 Cooperative environments are those where all the agents have one common goal. In
@@ -171,7 +171,7 @@ reward function for all agents. Real-world multi-agent tasks are usually
 cooperative since in adversarial environments, one entity would not have control
 over multiple adversarial parties.
 
-#### Local observations, partial visibility
+##### Local observations, partial visibility
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
@@ -186,7 +186,7 @@ quality of our results.
 
 <!-- We consider both global visibility as well as local visibility cases. -->
 
-#### Simultaneous vs turn-based
+##### Simultaneous vs turn-based
 
 In general, multi-agent environments can be turn-based or simultaneous. In
 turn-based environments each agent acts in sequence, with the world state
@@ -202,7 +202,7 @@ is based around turn-based environments. Examples of turn-based environments
 include most board games and many video games. Most real world scenarios are
 simultaneous though, so we only consider environments with simultaneous actions.
 
-### MARL tasks in related work
+#### MARL tasks in related work
 
 @openai create a team-based multi-agent environment with one team of agents
 trying to find and "catch" the agents of the other team.
@@ -234,7 +234,7 @@ robots in a virtual environment together with boxes. The Kilobots are tasked
 with moving the boxes around or arranging them based on their color. We compare
 our method on both the box assembly as well as the box clustering task.
 
-## Aggregation methods
+### Aggregation methods
 
 The observations of each agent in a MARL task contains a varying number of
 observables. The observables can be clustered into groups where each observable
@@ -248,7 +248,7 @@ means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
 their properties.
 
-### Concatenation
+#### Concatenation
 
 The simplest aggregation method is concatenation, where each observable is
 concatenated along the feature dimension into a single observation vector. This
@@ -268,7 +268,7 @@ observables.
 Concatenation is used for example by @mpe to aggregate the neighboring agents'
 observations and actions.
 
-### Mean aggregation
+#### Mean aggregation
 
 Instead of concatenating each element $o_i$ in an observable group $O$, we can
 also interpret each element as a sample of a distribution that describes the
@@ -301,7 +301,7 @@ vehicles.
   https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
 [@meanfielduav]: https://ieeexplore.ieee.org/abstract/document/9137257
 
-### Aggregation with other pooling functions
+#### Aggregation with other pooling functions
 
 Instead of using the empirical mean, other aggregation methods can also be used:
 
@@ -317,7 +317,7 @@ Max-pooling is widely used in convolutional neural networks to reduce the image
 dimensionality where it consistently outperforms mean (average) pooling. Softmax
 aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
 
-### Bayesian gaussian conditioning
+#### Bayesian gaussian conditioning
 
 Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
@@ -328,7 +328,7 @@ aggregation was used by @bayesiancontextaggregation for context aggregation in
 conditional latent variable (CLV) models. There is no related work using
 bayesian aggregation for MARL.
 
-### Attention mechanisms
+#### Attention mechanisms
 
 Attention mechanisms are commonly used in other areas of machine learning. The
 multi-head attention mechanism was introduced by
@@ -370,7 +370,7 @@ another encoder from that and aggregate the features retrieved from a separate
 
 [@are]: https://ieeexplore.ieee.org/document/9049415
 
-### Other aggregation methods
+#### Other aggregation methods
 
 @maxpaper also did experiments with aggregation into histograms and aggregation
 with radial basis functions, though the results indicated they were outperformed
