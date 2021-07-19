@@ -27,6 +27,7 @@ PANDOC_DATA_DIR=build/pandoc
 pandoc \
     --data-dir="$PANDOC_DATA_DIR" \
     --defaults=latex.yaml \
+    -M url2cite-output-bib=output/latex-intermediaries/thesis.bib \
     --verbose
 
 args=(--shift-heading-level-by=-1 --top-level-division=chapter)
