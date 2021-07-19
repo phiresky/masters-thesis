@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # copy files to new dir but without the stuff we process separately
-rm -r output/content-tex
+rm -rf output/content-tex
 mkdir -p output/content-tex
 (
     cd content;

@@ -11,13 +11,13 @@ strength of every individual.
 In recent years and with the advent of deep reinforcement learning, it has
 become possible to create artificial agents that solve fairly complex tasks both
 in simulated environments as well as the real world, even when the path to the
-goal is difficult to identify and the reward is sparse. Most of the research
-however is focused on a single agent interacting with a world, and giving the
+goal is difficult to identify and the reward is sparse. Most of the research,
+however, is focused on a single agent interacting with a world, and giving the
 single agent as much power and flexibility as it needs to solve the task. Akin
 to animal swarms, which often consist of fairly simple and limited individuals,
 we focus on simple artificial agents that need to cooperate to solve a common
-task, where the task is either difficult or impossible for a single one of the
-agents. The agents thus need to be able to learn to work together and to act
+task, where the task is either difficult or impossible for an individual
+agent. The agents thus need to be able to learn to work together and to act
 even with the limited information they are able to perceive.
 
 Swarms of artificial agents can have multiple applications, some inspired by
@@ -51,13 +51,12 @@ methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
 methods with regards to their training performance and sample efficiency.
 
-We first give an overview over related literature in @sec:relatedwork and an
-overview of all the preliminaries we need for our work in @sec:preliminaries,
+We first give an overview over related literature of all the preliminaries we need for our work in @sec:preliminaries,
 including the environments / tasks we consider, the background for the
-aggregation methods we use, and the reinforcement learning algorithms. Then we
+aggregation methods we use, and the reinforcement learning algorithms. Then, we
 describe the details of our contribution in @sec:contribution with details about
 the policy architecture and the different aggregation methods. Our experimental
 setup, including the specific environments we use to carry out our experiments
-are described in @sec:experiments. Finally we show and interpret the results of
+are described in @sec:experiments. Finally, we show and interpret the results of
 our experiments in @sec:results and talk about the conclusions we can draw from
-the experiments, as well as the potential for future work in @sec:conclusion.
+the experiments as well as the potential for future work in @sec:conclusion.

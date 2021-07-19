@@ -1,6 +1,14 @@
 ## Preliminaries and related work {#sec:preliminaries}
 
+In this chapter, we introduce the preliminaries we need for our work. We describe reinforcement learning and two specific policy gradient training methods used for deep reinforcement learning in general and then the specifics of RL for multi-agent systems. While introducing the different variants and properties of multi-agent reinforcement learning we also describe the related work.
+
+### Deep reinforcement learning
+
+{todo}
+
 ### Policy Gradient training methods
+
+There are multiple commonly used policy gradient training methods such as TRPO, PPO, Soft Actor Critic {ref}... We run most of our experiments with of the most commonly used methods (PPO) and also explore a new method that promises stabler training (PG-TRL).
 
 #### Proximal Policy Optimization (PPO)
 
@@ -25,7 +33,7 @@ other deep reinforcement learning work.
 #### Trust Region Layers (PG-TRL) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
-region during policy updates introduced by [@trl]. PPO uses a fixed clipping
+region during policy updates introduced by @trl. PPO uses a fixed clipping
 ratio to enforce the trust region, which can result in unstable training.
 Instead of using a fixed clipping boundary, in PG-TRL a surrogate policy is
 created with a new layer at the end that projects the unclipped policy back into
@@ -77,7 +85,7 @@ acting according to the same policy.
 During training, we can either learn the agent policies in a centralized or a
 decentralized fasion.
 
-In decentralized learning each agent learns their own policy, while in
+In decentralized learning, each agent learns their own policy, while in
 centralized learning, the policy is shared between all agents. Decentralized
 learning has the advantage that the agents do not need to be homogenous, since
 the learned policy can be completely different. It also means that it's harder
@@ -149,7 +157,7 @@ all agents is zero. An example for an adversarial environment is the _Gather_
 task described by @{https://ojs.aaai.org/index.php/AAAI/article/view/11371}: In
 a world with limited food, agents need to gather food to survive. They can also
 kill each other to reduce the scarcity of the food. Another example of an
-adversarial task is Go [@{https://www.nature.com/articles/nature24270}; ] as
+adversarial task is Go [@{https://www.nature.com/articles/nature24270}] as
 well as many other board games, though these usually have a fairly small number
 of agents.
 
@@ -161,7 +169,7 @@ averaging a reward function of each team member.
 <!-- One example of a team-based environment is [@{https://openai.com/blog/openai-five/}]. -->
 
 An example of a team-based environment is the OpenAI Hide-and-Seek Task
-[@openai]. In this task there are two teams of agents in a simulated physical
+[@openai]. In this task, there are two teams of agents in a simulated physical
 world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
@@ -179,7 +187,7 @@ relative to the current agent - the distance, relative bearing, and relative
 speed.
 
 In addition, each agent may only have local visibility, for example it can only
-observe the positions of agents and objects in the world within some radius or
+observe the positions of agents and objects in the world within some radius or the visibility can be
 hindered by obstacles. In this work we focus on global visibility since the
 additional noise introduced by local observability would be detrimental to the
 quality of our results.
@@ -239,7 +247,7 @@ our method on both the box assembly as well as the box clustering task.
 The observations of each agent in a MARL task contains a varying number of
 observables. The observables can be clustered into groups where each observable
 is of the same kind and shape. For example, one observable group would contain
-all the neighboring agents, while another would contain e.g. a specific type of
+all the neighboring agents, while another would contain, e.g., a specific type of
 other observed objects in the world.
 
 We need a method to aggregate the observations in one observable group into a
@@ -274,10 +282,10 @@ Instead of concatenating each element $o_i$ in an observable group $O$, we can
 also interpret each element as a sample of a distribution that describes the
 current system state. We encode each of these samples into a latent space that
 describes the relevant properties of the system, then use the empirical mean of
-the encoded samples to retrieve a representation of the system state $ψ$ based
-on all observed observables.
+the encoded samples to retrieve a representation of the system state $ψ_O$ based
+on all observed observables, as shown in @eq:meanagg.
 
-$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} \text{encode}(o_i)$$
+$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} \text{encode}(o_i)$$ {#eq:meanagg}
 
 The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
