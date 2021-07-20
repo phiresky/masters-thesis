@@ -1,18 +1,19 @@
 {
   "pandoc": {
-    "title": "Manuscript Title",
+    "title": "Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning",
     "keywords": [
-      "markdown",
-      "publishing",
-      "manubot"
+      "MARL",
+      "multi-agent",
+      "mreinforcement learning",
+      "Bayesian conditioning"
     ],
     "lang": "en-US",
-    "date-meta": "2021-07-19",
+    "date-meta": "2021-07-20",
     "author-meta": [
-      "John Doe",
-      "Jane Roe"
+      "Robin Ruede"
     ],
-    "header-includes": "<!--\nManubot generated metadata rendered from header-includes-template.html.\nSuggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html\n-->\n<meta name=\"dc.format\" content=\"text/html\" />\n<meta name=\"dc.title\" content=\"Manuscript Title\" />\n<meta name=\"citation_title\" content=\"Manuscript Title\" />\n<meta property=\"og:title\" content=\"Manuscript Title\" />\n<meta property=\"twitter:title\" content=\"Manuscript Title\" />\n<meta name=\"dc.date\" content=\"2021-07-19\" />\n<meta name=\"citation_publication_date\" content=\"2021-07-19\" />\n<meta name=\"dc.language\" content=\"en-US\" />\n<meta name=\"citation_language\" content=\"en-US\" />\n<meta name=\"dc.relation.ispartof\" content=\"Manubot\" />\n<meta name=\"dc.publisher\" content=\"Manubot\" />\n<meta name=\"citation_journal_title\" content=\"Manubot\" />\n<meta name=\"citation_technical_report_institution\" content=\"Manubot\" />\n<meta name=\"citation_author\" content=\"John Doe\" />\n<meta name=\"citation_author_institution\" content=\"Department of Something, University of Whatever\" />\n<meta name=\"citation_author_orcid\" content=\"XXXX-XXXX-XXXX-XXXX\" />\n<meta name=\"twitter:creator\" content=\"@johndoe\" />\n<meta name=\"citation_author\" content=\"Jane Roe\" />\n<meta name=\"citation_author_institution\" content=\"Department of Something, University of Whatever\" />\n<meta name=\"citation_author_institution\" content=\"Department of Whatever, University of Something\" />\n<meta name=\"citation_author_orcid\" content=\"XXXX-XXXX-XXXX-XXXX\" />\n<link rel=\"canonical\" href=\"https://phiresky.github.io/masters-thesis/\" />\n<meta property=\"og:url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta property=\"twitter:url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta name=\"citation_fulltext_html_url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta name=\"citation_pdf_url\" content=\"https://phiresky.github.io/masters-thesis/manuscript.pdf\" />\n<link rel=\"alternate\" type=\"application/pdf\" href=\"https://phiresky.github.io/masters-thesis/manuscript.pdf\" />\n<link rel=\"alternate\" type=\"text/html\" href=\"https://phiresky.github.io/masters-thesis/v/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/\" />\n<meta name=\"manubot_html_url_versioned\" content=\"https://phiresky.github.io/masters-thesis/v/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/\" />\n<meta name=\"manubot_pdf_url_versioned\" content=\"https://phiresky.github.io/masters-thesis/v/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/manuscript.pdf\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"twitter:card\" content=\"summary_large_image\" />\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"https://manubot.org/favicon-192x192.png\" />\n<link rel=\"mask-icon\" href=\"https://manubot.org/safari-pinned-tab.svg\" color=\"#ad1457\" />\n<meta name=\"theme-color\" content=\"#ad1457\" />\n<!-- end Manubot generated metadata -->",
+    "cref": true,
+    "header-includes": "<!--\nManubot generated metadata rendered from header-includes-template.html.\nSuggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html\n-->\n<meta name=\"dc.format\" content=\"text/html\" />\n<meta name=\"dc.title\" content=\"Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning\" />\n<meta name=\"citation_title\" content=\"Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning\" />\n<meta property=\"og:title\" content=\"Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning\" />\n<meta property=\"twitter:title\" content=\"Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning\" />\n<meta name=\"dc.date\" content=\"2021-07-20\" />\n<meta name=\"citation_publication_date\" content=\"2021-07-20\" />\n<meta name=\"dc.language\" content=\"en-US\" />\n<meta name=\"citation_language\" content=\"en-US\" />\n<meta name=\"dc.relation.ispartof\" content=\"Manubot\" />\n<meta name=\"dc.publisher\" content=\"Manubot\" />\n<meta name=\"citation_journal_title\" content=\"Manubot\" />\n<meta name=\"citation_technical_report_institution\" content=\"Manubot\" />\n<meta name=\"citation_author\" content=\"Robin Ruede\" />\n<meta name=\"citation_author_institution\" content=\"Autonomous Learning Robots Lab, Karlsruhe Institute of Technology\" />\n<link rel=\"canonical\" href=\"https://phiresky.github.io/masters-thesis/\" />\n<meta property=\"og:url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta property=\"twitter:url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta name=\"citation_fulltext_html_url\" content=\"https://phiresky.github.io/masters-thesis/\" />\n<meta name=\"citation_pdf_url\" content=\"https://phiresky.github.io/masters-thesis/manuscript.pdf\" />\n<link rel=\"alternate\" type=\"application/pdf\" href=\"https://phiresky.github.io/masters-thesis/manuscript.pdf\" />\n<link rel=\"alternate\" type=\"text/html\" href=\"https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/\" />\n<meta name=\"manubot_html_url_versioned\" content=\"https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/\" />\n<meta name=\"manubot_pdf_url_versioned\" content=\"https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/manuscript.pdf\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"twitter:card\" content=\"summary_large_image\" />\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"https://manubot.org/favicon-192x192.png\" />\n<link rel=\"mask-icon\" href=\"https://manubot.org/safari-pinned-tab.svg\" color=\"#ad1457\" />\n<meta name=\"theme-color\" content=\"#ad1457\" />\n<!-- end Manubot generated metadata -->",
     "bibliography": [
       "content/manual-references.json"
     ],
@@ -22,49 +23,25 @@
     "manubot-clear-requests-cache": false
   },
   "manubot": {
-    "date": "July 19, 2021",
+    "date": "July 20, 2021",
     "authors": [
       {
-        "github": "johndoe",
-        "name": "John Doe",
-        "initials": "JD",
-        "orcid": "XXXX-XXXX-XXXX-XXXX",
-        "twitter": "johndoe",
-        "email": "john.doe@something.com",
+        "github": "phiresky",
+        "name": "Robin Ruede",
+        "initials": "RR",
+        "email": "robin.ruede@student.kit.edu",
         "affiliations": [
-          "Department of Something, University of Whatever"
-        ],
-        "funders": [
-          "Grant XXXXXXXX"
+          "Autonomous Learning Robots Lab, Karlsruhe Institute of Technology"
         ],
         "affiliation_numbers": [
           1
-        ]
-      },
-      {
-        "github": "janeroe",
-        "name": "Jane Roe",
-        "initials": "JR",
-        "orcid": "XXXX-XXXX-XXXX-XXXX",
-        "email": "jane.roe@whatever.edu",
-        "affiliations": [
-          "Department of Something, University of Whatever",
-          "Department of Whatever, University of Something"
-        ],
-        "affiliation_numbers": [
-          1,
-          2
         ]
       }
     ],
     "affiliations": [
       {
-        "affiliation": "Department of Something, University of Whatever",
+        "affiliation": "Autonomous Learning Robots Lab, Karlsruhe Institute of Technology",
         "affiliation_number": 1
-      },
-      {
-        "affiliation": "Department of Whatever, University of Something",
-        "affiliation_number": 2
       }
     ],
     "ci_source": {
@@ -72,19 +49,19 @@
       "repo_slug": "phiresky/masters-thesis",
       "repo_owner": "phiresky",
       "repo_name": "masters-thesis",
-      "commit": "16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b",
-      "triggering_commit": "16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b",
-      "build_url": "https://github.com/phiresky/masters-thesis/commit/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/checks",
-      "job_url": "https://github.com/phiresky/masters-thesis/runs/__run_3"
+      "commit": "ae7eda64889d5fe9cbd20c8844bae490972f7fd8",
+      "triggering_commit": "ae7eda64889d5fe9cbd20c8844bae490972f7fd8",
+      "build_url": "https://github.com/phiresky/masters-thesis/commit/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/checks",
+      "job_url": "https://github.com/phiresky/masters-thesis/runs/__run_4"
     },
     "html_url": "https://phiresky.github.io/masters-thesis/",
     "pdf_url": "https://phiresky.github.io/masters-thesis/manuscript.pdf",
-    "html_url_versioned": "https://phiresky.github.io/masters-thesis/v/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/",
-    "pdf_url_versioned": "https://phiresky.github.io/masters-thesis/v/16eee40b11c98a7f7fc581f7b6dd08bdd8f78d0b/manuscript.pdf",
+    "html_url_versioned": "https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/",
+    "pdf_url_versioned": "https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/manuscript.pdf",
     "manubot_version": "0.5.1",
     "rootstock_commit": "defe787b0ad8a21a745cc82c3117770896caaf8b",
     "manuscript_stats": {
-      "word_count": 1404
+      "word_count": 8990
     }
   }
 }
