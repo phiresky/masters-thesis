@@ -50,6 +50,9 @@ jobs:
           if [ "${SPELLCHECK:-}" = "true" ]; then
             bash ci/install-spellcheck.sh
           fi
+      - name: Install url2cite
+        run: |
+          npm -g install pandoc-url2cite
       - name: Build Manuscript
         shell: bash --login {0}
         run: bash build/build.sh
