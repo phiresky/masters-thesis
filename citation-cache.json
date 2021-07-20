@@ -2696,6 +2696,719 @@
 				"title": "Counterfactual Multi-Agent Policy Gradients",
 				"type": "article-journal"
 			}
+		},
+		"https://link.springer.com/article/10.1007/s43154-021-00048-3": {
+			"fetched": "2021-07-20T18:24:04.599Z",
+			"bibtex": [
+				"",
+				"@article{drew_multi-agent_2021,",
+				"   title = {Multi-{Agent} {Systems} for {Search} and {Rescue} {Applications}},",
+				"   volume = {2},",
+				"   issn = {2662-4087},",
+				"   url = {https://doi.org/10.1007/s43154-021-00048-3},",
+				"   doi = {10.1007/s43154-021-00048-3},",
+				"   abstract = {The goal of this review is to evaluate the current status of multi-robot systems in the context of search and rescue. This includes an investigation of their current use in the field, what major technical challenge areas currently preclude more widespread use, and which key topics will drive future development and adoption.},",
+				"   language = {en},",
+				"   number = {2},",
+				"   urldate = {2021-07-20},",
+				"   journal = {Current Robotics Reports},",
+				"   author = {Drew, Daniel S.},",
+				"   month = jun,",
+				"   year = {2021},",
+				"   pages = {189--200},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1007/s43154-021-00048-3",
+				"ISSN": "2662-4087",
+				"URL": "https://doi.org/10.1007/s43154-021-00048-3",
+				"abstract": "The goal of this review is to evaluate the current status of multi-robot systems in the context of search and rescue. This includes an investigation of their current use in the field, what major technical challenge areas currently preclude more widespread use, and which key topics will drive future development and adoption.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Drew",
+						"given": "Daniel S."
+					}
+				],
+				"container-title": "Current Robotics Reports",
+				"id": "https://link.springer.com/article/10.1007/s43154-021-00048-3",
+				"issue": "2",
+				"issued": {
+					"date-parts": [
+						[
+							2021,
+							6
+						]
+					]
+				},
+				"page": "189-200",
+				"title": "Multi-Agent Systems for Search and Rescue Applications",
+				"type": "article-journal",
+				"volume": "2"
+			}
+		},
+		"https://doi.org/10.3929/ethz-a-010831954": {
+			"fetched": "2021-07-20T18:24:08.611Z",
+			"bibtex": [
+				"",
+				"@techreport{waibel_drone_2017,",
+				"   type = {Report},",
+				"   title = {Drone shows: {Creative} potential and best practices},",
+				"   copyright = {http://rightsstatements.org/page/InC-NC/1.0/},",
+				"   shorttitle = {Drone shows},",
+				"   url = {https://www.research-collection.ethz.ch/handle/20.500.11850/125498},",
+				"   language = {en},",
+				"   urldate = {2021-07-20},",
+				"   institution = {ETH Zurich},",
+				"   author = {Waibel, Markus and Keays, Bill and Augugliaro, Federico},",
+				"   year = {2017},",
+				"   doi = {10.3929/ethz-a-010831954},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.3929/ethz-a-010831954",
+				"URL": "https://www.research-collection.ethz.ch/handle/20.500.11850/125498",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Waibel",
+						"given": "Markus"
+					},
+					{
+						"family": "Keays",
+						"given": "Bill"
+					},
+					{
+						"family": "Augugliaro",
+						"given": "Federico"
+					}
+				],
+				"genre": "Report",
+				"id": "https://doi.org/10.3929/ethz-a-010831954",
+				"issued": {
+					"date-parts": [
+						[
+							2017
+						]
+					]
+				},
+				"publisher": "ETH Zurich",
+				"title": "Drone shows: Creative potential and best practices",
+				"title-short": "Drone shows",
+				"type": "report"
+			}
+		},
+		"https://doi.org/10.1117/12.830408": {
+			"fetched": "2021-07-20T18:24:12.806Z",
+			"bibtex": [
+				"",
+				"@inproceedings{burkle_collaborating_2009,",
+				"   title = {Collaborating miniature drones for surveillance and reconnaissance},",
+				"   volume = {7480},",
+				"   url = {https://www.spiedigitallibrary.org/conference-proceedings-of-spie/7480/74800H/Collaborating-miniature-drones-for-surveillance-and-reconnaissance/10.1117/12.830408.short},",
+				"   doi = {10.1117/12.830408},",
+				"   abstract = {The use of miniature Unmanned Aerial Vehicles (UAVs), e.g. quadrocopters, has gained great popularity over the last years. Some complex application scenarios for micro UAVs call for the formation of swarms of multiple drones. In this paper a platform for the creation of such swarms is presented. It consists of commercial quadrocopters enhanced with on-board processing and communication units enabling autonomy of individual drones. Furthermore, a generic ground control station has been realized. Different co-operation strategies for teams of UAVs are currently evaluated with an agent based simulation tool. Finally, complex application scenarios for multiple micro UAVs are presented.},",
+				"   urldate = {2021-07-20},",
+				"   booktitle = {Unmanned/{Unattended} {Sensors} and {Sensor} {Networks} {VI}},",
+				"   publisher = {International Society for Optics and Photonics},",
+				"   author = {Bürkle, Axel},",
+				"   month = sep,",
+				"   year = {2009},",
+				"   pages = {74800H},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1117/12.830408",
+				"URL": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/7480/74800H/Collaborating-miniature-drones-for-surveillance-and-reconnaissance/10.1117/12.830408.short",
+				"abstract": "The use of miniature Unmanned Aerial Vehicles (UAVs), e.g. quadrocopters, has gained great popularity over the last years. Some complex application scenarios for micro UAVs call for the formation of swarms of multiple drones. In this paper a platform for the creation of such swarms is presented. It consists of commercial quadrocopters enhanced with on-board processing and communication units enabling autonomy of individual drones. Furthermore, a generic ground control station has been realized. Different co-operation strategies for teams of UAVs are currently evaluated with an agent based simulation tool. Finally, complex application scenarios for multiple micro UAVs are presented.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Bürkle",
+						"given": "Axel"
+					}
+				],
+				"container-title": "Unmanned/Unattended Sensors and Sensor Networks VI",
+				"id": "https://doi.org/10.1117/12.830408",
+				"issued": {
+					"date-parts": [
+						[
+							2009,
+							9
+						]
+					]
+				},
+				"page": "74800H",
+				"publisher": "International Society for Optics; Photonics",
+				"title": "Collaborating miniature drones for surveillance and reconnaissance",
+				"type": "paper-conference",
+				"volume": "7480"
+			}
+		},
+		"https://apps.dtic.mil/sti/citations/AD1039921": {
+			"fetched": "2021-07-20T18:24:18.320Z",
+			"bibtex": [
+				"",
+				"@techreport{sanders_drone_2017,",
+				"   title = {Drone {Swarms}},",
+				"   url = {https://apps.dtic.mil/sti/citations/AD1039921},",
+				"   abstract = {Drone swarms are here. The United States, China, and Russia are on the forefront of drone swarm development and utilization. However, the low cost and easy accessibility to drones allow non-state actors to utilize drones in imaginative and creative ways, to include swarming. The aim of the monograph is to address the following question What utility do drone swarms provide the military Drone swarms provide numerous advantages, to include persistent intelligence, surveillance, reconnaissance, and targeting low-risk and low-cost to military personnel and organizations, and the potential to paralyze personal and organizational decision making. In contrast, drone swarms come with vulnerabilities and challenges. The vulnerabilities range from an adversary hacking to the existence of counter swarm weapons, and some challenges include organizational resistance and international law. Drone swarms are here and are coming to a battlefield soon, and it is time to address how best to employ them. After outlining the potential benefits and limitations of drone swarms, the monograph concludes with four recommendations the need for narrative, establishing a drone swarm doctrine, understanding human-drone interface, and an organizational transition for drone swarm employment.},",
+				"   language = {en},",
+				"   urldate = {2021-07-20},",
+				"   institution = {US Army School for Advanced Military Studies Fort Leavenworth United States},",
+				"   author = {Sanders, Andrew W.},",
+				"   month = may,",
+				"   year = {2017},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "https://apps.dtic.mil/sti/citations/AD1039921",
+				"abstract": "Drone swarms are here. The United States, China, and Russia are on the forefront of drone swarm development and utilization. However, the low cost and easy accessibility to drones allow non-state actors to utilize drones in imaginative and creative ways, to include swarming. The aim of the monograph is to address the following question What utility do drone swarms provide the military Drone swarms provide numerous advantages, to include persistent intelligence, surveillance, reconnaissance, and targeting low-risk and low-cost to military personnel and organizations, and the potential to paralyze personal and organizational decision making. In contrast, drone swarms come with vulnerabilities and challenges. The vulnerabilities range from an adversary hacking to the existence of counter swarm weapons, and some challenges include organizational resistance and international law. Drone swarms are here and are coming to a battlefield soon, and it is time to address how best to employ them. After outlining the potential benefits and limitations of drone swarms, the monograph concludes with four recommendations the need for narrative, establishing a drone swarm doctrine, understanding human-drone interface, and an organizational transition for drone swarm employment.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Sanders",
+						"given": "Andrew W."
+					}
+				],
+				"id": "https://apps.dtic.mil/sti/citations/AD1039921",
+				"issued": {
+					"date-parts": [
+						[
+							2017,
+							5
+						]
+					]
+				},
+				"publisher": "US Army School for Advanced Military Studies Fort Leavenworth United States",
+				"title": "Drone Swarms",
+				"type": "report"
+			}
+		},
+		"https://ieeexplore.ieee.org/document/7568316": {
+			"fetched": "2021-07-20T18:24:21.709Z",
+			"bibtex": [
+				"",
+				"@inproceedings{ceraso_controlling_2016,",
+				"   title = {Controlling swarms of medical nanorobots using {CPPSO} on a {GPU}},",
+				"   url = {https://ieeexplore.ieee.org/document/7568316},",
+				"   doi = {10.1109/HPCSim.2016.7568316},",
+				"   abstract = {Nanotechnology has the potential to revolutionize our lives and to provide technological solutions to our problems in energy, the environment and medicine. This paper describes a swarm intelligence-based control mechanism for medical nanorobots that operates as artificial platelets to search for wounds within the human body. We present a coloured perceptive particle swarm (CPPSO) algorithm to control the movement of nanorobots in self-assembly. To predict emergent nanorobot behaviors, we designed a parallel simulator that models how nanorobots interact with each other and the environment. We will show that due to their implicitly parallel structure, swarm intelligence algorithms can benefit from GPU-based implementations. The algorithm is implemented with CUDA. With the GPU-based implementation adopted here, we find that CPPSO is faster than a PPSO implementation.},",
+				"   urldate = {2021-07-20},",
+				"   booktitle = {2016 {International} {Conference} on {High} {Performance} {Computing} {Simulation} ({HPCS})},",
+				"   author = {Ceraso, Davide and Spezzano, Giandomenico},",
+				"   month = jul,",
+				"   year = {2016},",
+				"   keywords = {Particle swarm optimization, Graphics processing units, Blood, Algorithm design and analysis, Wounds, Nanoscale devices, Standards},",
+				"   pages = {58--65},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1109/HPCSim.2016.7568316",
+				"URL": "https://ieeexplore.ieee.org/document/7568316",
+				"abstract": "Nanotechnology has the potential to revolutionize our lives and to provide technological solutions to our problems in energy, the environment and medicine. This paper describes a swarm intelligence-based control mechanism for medical nanorobots that operates as artificial platelets to search for wounds within the human body. We present a coloured perceptive particle swarm (CPPSO) algorithm to control the movement of nanorobots in self-assembly. To predict emergent nanorobot behaviors, we designed a parallel simulator that models how nanorobots interact with each other and the environment. We will show that due to their implicitly parallel structure, swarm intelligence algorithms can benefit from GPU-based implementations. The algorithm is implemented with CUDA. With the GPU-based implementation adopted here, we find that CPPSO is faster than a PPSO implementation.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Ceraso",
+						"given": "Davide"
+					},
+					{
+						"family": "Spezzano",
+						"given": "Giandomenico"
+					}
+				],
+				"container-title": "2016 International Conference on High Performance Computing Simulation (HPCS)",
+				"id": "https://ieeexplore.ieee.org/document/7568316",
+				"issued": {
+					"date-parts": [
+						[
+							2016,
+							7
+						]
+					]
+				},
+				"keyword": "Particle swarm optimization, Graphics processing units, Blood, Algorithm design and analysis, Wounds, Nanoscale devices, Standards",
+				"page": "58-65",
+				"title": "Controlling swarms of medical nanorobots using CPPSO on a GPU",
+				"type": "paper-conference"
+			}
+		},
+		"https://link.springer.com/article/10.1007/s00146-018-0845-5": {
+			"fetched": "2021-07-20T18:24:24.638Z",
+			"bibtex": [
+				"",
+				"@article{turchin_classification_2020,",
+				"   title = {Classification of global catastrophic risks connected with artificial intelligence},",
+				"   volume = {35},",
+				"   issn = {1435-5655},",
+				"   url = {https://doi.org/10.1007/s00146-018-0845-5},",
+				"   doi = {10.1007/s00146-018-0845-5},",
+				"   abstract = {A classification of the global catastrophic risks of AI is presented, along with a comprehensive list of previously identified risks. This classification allows the identification of several new risks. We show that at each level of AI’s intelligence power, separate types of possible catastrophes dominate. Our classification demonstrates that the field of AI risks is diverse, and includes many scenarios beyond the commonly discussed cases of a paperclip maximizer or robot-caused unemployment. Global catastrophic failure could happen at various levels of AI development, namely, (1) before it starts self-improvement, (2) during its takeoff, when it uses various instruments to escape its initial confinement, or (3) after it successfully takes over the world and starts to implement its goal system, which could be plainly unaligned, or feature-flawed friendliness. AI could also halt at later stages of its development either due to technical glitches or ontological problems. Overall, we identified around several dozen scenarios of AI-driven global catastrophe. The extent of this list illustrates that there is no one simple solution to the problem of AI safety, and that AI safety theory is complex and must be customized for each AI development level.},",
+				"   language = {en},",
+				"   number = {1},",
+				"   urldate = {2021-07-20},",
+				"   journal = {AI \\& SOCIETY},",
+				"   author = {Turchin, Alexey and Denkenberger, David},",
+				"   month = mar,",
+				"   year = {2020},",
+				"   pages = {147--163},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1007/s00146-018-0845-5",
+				"ISSN": "1435-5655",
+				"URL": "https://doi.org/10.1007/s00146-018-0845-5",
+				"abstract": "A classification of the global catastrophic risks of AI is presented, along with a comprehensive list of previously identified risks. This classification allows the identification of several new risks. We show that at each level of AI’s intelligence power, separate types of possible catastrophes dominate. Our classification demonstrates that the field of AI risks is diverse, and includes many scenarios beyond the commonly discussed cases of a paperclip maximizer or robot-caused unemployment. Global catastrophic failure could happen at various levels of AI development, namely, (1) before it starts self-improvement, (2) during its takeoff, when it uses various instruments to escape its initial confinement, or (3) after it successfully takes over the world and starts to implement its goal system, which could be plainly unaligned, or feature-flawed friendliness. AI could also halt at later stages of its development either due to technical glitches or ontological problems. Overall, we identified around several dozen scenarios of AI-driven global catastrophe. The extent of this list illustrates that there is no one simple solution to the problem of AI safety, and that AI safety theory is complex and must be customized for each AI development level.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Turchin",
+						"given": "Alexey"
+					},
+					{
+						"family": "Denkenberger",
+						"given": "David"
+					}
+				],
+				"container-title": "AI & SOCIETY",
+				"id": "https://link.springer.com/article/10.1007/s00146-018-0845-5",
+				"issue": "1",
+				"issued": {
+					"date-parts": [
+						[
+							2020,
+							3
+						]
+					]
+				},
+				"page": "147-163",
+				"title": "Classification of global catastrophic risks connected with artificial intelligence",
+				"type": "article-journal",
+				"volume": "35"
+			}
+		},
+		"https://arxiv.org/abs/1808.00177": {
+			"fetched": "2021-07-20T18:24:27.782Z",
+			"bibtex": [
+				"",
+				"@article{openai_learning_2019,",
+				"   title = {Learning {Dexterous} {In}-{Hand} {Manipulation}},",
+				"   url = {http://arxiv.org/abs/1808.00177},",
+				"   abstract = {We use reinforcement learning (RL) to learn dexterous in-hand manipulation policies which can perform vision-based object reorientation on a physical Shadow Dexterous Hand. The training is performed in a simulated environment in which we randomize many of the physical properties of the system like friction coefficients and an object's appearance. Our policies transfer to the physical robot despite being trained entirely in simulation. Our method does not rely on any human demonstrations, but many behaviors found in human manipulation emerge naturally, including finger gaiting, multi-finger coordination, and the controlled use of gravity. Our results were obtained using the same distributed RL system that was used to train OpenAI Five. We also include a video of our results: https://youtu.be/jwSbzNHGflM},",
+				"   urldate = {2021-07-20},",
+				"   journal = {arXiv:1808.00177 [cs, stat]},",
+				"   author = {{OpenAI} and Andrychowicz, Marcin and Baker, Bowen and Chociej, Maciek and Jozefowicz, Rafal and McGrew, Bob and Pachocki, Jakub and Petron, Arthur and Plappert, Matthias and Powell, Glenn and Ray, Alex and Schneider, Jonas and Sidor, Szymon and Tobin, Josh and Welinder, Peter and Weng, Lilian and Zaremba, Wojciech},",
+				"   month = jan,",
+				"   year = {2019},",
+				"   note = {arXiv: 1808.00177},",
+				"   keywords = {Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Computer Science - Robotics, Statistics - Machine Learning},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "http://arxiv.org/abs/1808.00177",
+				"abstract": "We use reinforcement learning (RL) to learn dexterous in-hand manipulation policies which can perform vision-based object reorientation on a physical Shadow Dexterous Hand. The training is performed in a simulated environment in which we randomize many of the physical properties of the system like friction coefficients and an object’s appearance. Our policies transfer to the physical robot despite being trained entirely in simulation. Our method does not rely on any human demonstrations, but many behaviors found in human manipulation emerge naturally, including finger gaiting, multi-finger coordination, and the controlled use of gravity. Our results were obtained using the same distributed RL system that was used to train OpenAI Five. We also include a video of our results: https://youtu.be/jwSbzNHGflM",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"literal": "OpenAI"
+					},
+					{
+						"family": "Andrychowicz",
+						"given": "Marcin"
+					},
+					{
+						"family": "Baker",
+						"given": "Bowen"
+					},
+					{
+						"family": "Chociej",
+						"given": "Maciek"
+					},
+					{
+						"family": "Jozefowicz",
+						"given": "Rafal"
+					},
+					{
+						"family": "McGrew",
+						"given": "Bob"
+					},
+					{
+						"family": "Pachocki",
+						"given": "Jakub"
+					},
+					{
+						"family": "Petron",
+						"given": "Arthur"
+					},
+					{
+						"family": "Plappert",
+						"given": "Matthias"
+					},
+					{
+						"family": "Powell",
+						"given": "Glenn"
+					},
+					{
+						"family": "Ray",
+						"given": "Alex"
+					},
+					{
+						"family": "Schneider",
+						"given": "Jonas"
+					},
+					{
+						"family": "Sidor",
+						"given": "Szymon"
+					},
+					{
+						"family": "Tobin",
+						"given": "Josh"
+					},
+					{
+						"family": "Welinder",
+						"given": "Peter"
+					},
+					{
+						"family": "Weng",
+						"given": "Lilian"
+					},
+					{
+						"family": "Zaremba",
+						"given": "Wojciech"
+					}
+				],
+				"container-title": "arXiv:1808.00177 [cs, stat]",
+				"id": "https://arxiv.org/abs/1808.00177",
+				"issued": {
+					"date-parts": [
+						[
+							2019,
+							1
+						]
+					]
+				},
+				"keyword": "Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Computer Science - Robotics, Statistics - Machine Learning",
+				"note": "arXiv: 1808.00177",
+				"title": "Learning Dexterous In-Hand Manipulation",
+				"type": "article-journal"
+			}
+		},
+		"http://proceedings.mlr.press/v37/schulman15.html": {
+			"fetched": "2021-07-20T19:36:30.876Z",
+			"bibtex": [
+				"",
+				"@inproceedings{schulman_trust_2015,",
+				"   title = {Trust {Region} {Policy} {Optimization}},",
+				"   url = {http://proceedings.mlr.press/v37/schulman15.html},",
+				"   abstract = {In this article, we describe a method for optimizing control policies, with guaranteed monotonic improvement. By making several approximations to the theoretically-justified scheme, we develop a pr...},",
+				"   language = {en},",
+				"   urldate = {2021-07-20},",
+				"   booktitle = {International {Conference} on {Machine} {Learning}},",
+				"   publisher = {PMLR},",
+				"   author = {Schulman, John and Levine, Sergey and Abbeel, Pieter and Jordan, Michael and Moritz, Philipp},",
+				"   month = jun,",
+				"   year = {2015},",
+				"   pages = {1889--1897},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "http://proceedings.mlr.press/v37/schulman15.html",
+				"abstract": "In this article, we describe a method for optimizing control policies, with guaranteed monotonic improvement. By making several approximations to the theoretically-justified scheme, we develop a pr...",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Schulman",
+						"given": "John"
+					},
+					{
+						"family": "Levine",
+						"given": "Sergey"
+					},
+					{
+						"family": "Abbeel",
+						"given": "Pieter"
+					},
+					{
+						"family": "Jordan",
+						"given": "Michael"
+					},
+					{
+						"family": "Moritz",
+						"given": "Philipp"
+					}
+				],
+				"container-title": "International Conference on Machine Learning",
+				"id": "http://proceedings.mlr.press/v37/schulman15.html",
+				"issued": {
+					"date-parts": [
+						[
+							2015,
+							6
+						]
+					]
+				},
+				"page": "1889-1897",
+				"publisher": "PMLR",
+				"title": "Trust Region Policy Optimization",
+				"type": "paper-conference"
+			}
+		},
+		"https://arxiv.org/abs/1801.01290": {
+			"fetched": "2021-07-20T19:36:33.974Z",
+			"bibtex": [
+				"",
+				"@article{haarnoja_soft_2018,",
+				"   title = {Soft {Actor}-{Critic}: {Off}-{Policy} {Maximum} {Entropy} {Deep} {Reinforcement} {Learning} with a {Stochastic} {Actor}},",
+				"   shorttitle = {Soft {Actor}-{Critic}},",
+				"   url = {http://arxiv.org/abs/1801.01290},",
+				"   abstract = {Model-free deep reinforcement learning (RL) algorithms have been demonstrated on a range of challenging decision making and control tasks. However, these methods typically suffer from two major challenges: very high sample complexity and brittle convergence properties, which necessitate meticulous hyperparameter tuning. Both of these challenges severely limit the applicability of such methods to complex, real-world domains. In this paper, we propose soft actor-critic, an off-policy actor-critic deep RL algorithm based on the maximum entropy reinforcement learning framework. In this framework, the actor aims to maximize expected reward while also maximizing entropy. That is, to succeed at the task while acting as randomly as possible. Prior deep RL methods based on this framework have been formulated as Q-learning methods. By combining off-policy updates with a stable stochastic actor-critic formulation, our method achieves state-of-the-art performance on a range of continuous control benchmark tasks, outperforming prior on-policy and off-policy methods. Furthermore, we demonstrate that, in contrast to other off-policy algorithms, our approach is very stable, achieving very similar performance across different random seeds.},",
+				"   urldate = {2021-07-20},",
+				"   journal = {arXiv:1801.01290 [cs, stat]},",
+				"   author = {Haarnoja, Tuomas and Zhou, Aurick and Abbeel, Pieter and Levine, Sergey},",
+				"   month = aug,",
+				"   year = {2018},",
+				"   note = {arXiv: 1801.01290},",
+				"   keywords = {Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Statistics - Machine Learning},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "http://arxiv.org/abs/1801.01290",
+				"abstract": "Model-free deep reinforcement learning (RL) algorithms have been demonstrated on a range of challenging decision making and control tasks. However, these methods typically suffer from two major challenges: very high sample complexity and brittle convergence properties, which necessitate meticulous hyperparameter tuning. Both of these challenges severely limit the applicability of such methods to complex, real-world domains. In this paper, we propose soft actor-critic, an off-policy actor-critic deep RL algorithm based on the maximum entropy reinforcement learning framework. In this framework, the actor aims to maximize expected reward while also maximizing entropy. That is, to succeed at the task while acting as randomly as possible. Prior deep RL methods based on this framework have been formulated as Q-learning methods. By combining off-policy updates with a stable stochastic actor-critic formulation, our method achieves state-of-the-art performance on a range of continuous control benchmark tasks, outperforming prior on-policy and off-policy methods. Furthermore, we demonstrate that, in contrast to other off-policy algorithms, our approach is very stable, achieving very similar performance across different random seeds.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Haarnoja",
+						"given": "Tuomas"
+					},
+					{
+						"family": "Zhou",
+						"given": "Aurick"
+					},
+					{
+						"family": "Abbeel",
+						"given": "Pieter"
+					},
+					{
+						"family": "Levine",
+						"given": "Sergey"
+					}
+				],
+				"container-title": "arXiv:1801.01290 [cs, stat]",
+				"id": "https://arxiv.org/abs/1801.01290",
+				"issued": {
+					"date-parts": [
+						[
+							2018,
+							8
+						]
+					]
+				},
+				"keyword": "Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Statistics - Machine Learning",
+				"note": "arXiv: 1801.01290",
+				"title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+				"title-short": "Soft Actor-Critic",
+				"type": "article-journal"
+			}
+		},
+		"doi:10.1214/aoms/1177729694": {
+			"fetched": "2021-07-20T19:36:35.214Z",
+			"bibtex": [
+				"",
+				"@article{kullback_information_1951,",
+				"   title = {On {Information} and {Sufficiency}},",
+				"   volume = {22},",
+				"   issn = {0003-4851},",
+				"   url = {http://projecteuclid.org/euclid.aoms/1177729694},",
+				"   doi = {10.1214/aoms/1177729694},",
+				"   language = {en},",
+				"   number = {1},",
+				"   urldate = {2021-07-20},",
+				"   journal = {The Annals of Mathematical Statistics},",
+				"   author = {Kullback, S. and Leibler, R. A.},",
+				"   month = mar,",
+				"   year = {1951},",
+				"   pages = {79--86},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1214/aoms/1177729694",
+				"ISSN": "0003-4851",
+				"URL": "http://projecteuclid.org/euclid.aoms/1177729694",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Kullback",
+						"given": "S."
+					},
+					{
+						"family": "Leibler",
+						"given": "R. A."
+					}
+				],
+				"container-title": "The Annals of Mathematical Statistics",
+				"id": "doi:10.1214/aoms/1177729694",
+				"issue": "1",
+				"issued": {
+					"date-parts": [
+						[
+							1951,
+							3
+						]
+					]
+				},
+				"page": "79-86",
+				"title": "On Information and Sufficiency",
+				"type": "article-journal",
+				"volume": "22"
+			}
+		},
+		"https://www.springer.com/gp/book/9783540710493": {
+			"fetched": "2021-07-20T19:36:36.721Z",
+			"bibtex": [
+				"",
+				"@book{villani_optimal_2009,",
+				"   address = {Berlin Heidelberg},",
+				"   series = {Grundlehren der mathematischen {Wissenschaften}},",
+				"   title = {Optimal {Transport}: {Old} and {New}},",
+				"   isbn = {9783540710493},",
+				"   shorttitle = {Optimal {Transport}},",
+				"   url = {https://www.springer.com/gp/book/9783540710493},",
+				"   abstract = {At the close of the 1980s, the independent contributions of Yann Brenier, Mike Cullen and John Mather launched a revolution in the venerable field of optimal transport founded by G. Monge in the 18th century, which has made breathtaking forays into various other domains of mathematics ever since. The author presents a broad overview of this area, supplying complete and self-contained proofs of all the fundamental results of the theory of optimal transport at the appropriate level of generality. Thus, the book encompasses the broad spectrum ranging from basic theory to the most recent research results. PhD students or researchers can read the entire book without any prior knowledge of the field. A comprehensive bibliography with notes that extensively discuss the existing literature underlines the book’s value as a most welcome reference text on this subject.},",
+				"   language = {en},",
+				"   urldate = {2021-07-20},",
+				"   publisher = {Springer-Verlag},",
+				"   author = {Villani, Cédric},",
+				"   year = {2009},",
+				"   doi = {10.1007/978-3-540-71050-9},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1007/978-3-540-71050-9",
+				"ISBN": "9783540710493",
+				"URL": "https://www.springer.com/gp/book/9783540710493",
+				"abstract": "At the close of the 1980s, the independent contributions of Yann Brenier, Mike Cullen and John Mather launched a revolution in the venerable field of optimal transport founded by G. Monge in the 18th century, which has made breathtaking forays into various other domains of mathematics ever since. The author presents a broad overview of this area, supplying complete and self-contained proofs of all the fundamental results of the theory of optimal transport at the appropriate level of generality. Thus, the book encompasses the broad spectrum ranging from basic theory to the most recent research results. PhD students or researchers can read the entire book without any prior knowledge of the field. A comprehensive bibliography with notes that extensively discuss the existing literature underlines the book’s value as a most welcome reference text on this subject.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							20
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Villani",
+						"given": "Cédric"
+					}
+				],
+				"collection-title": "Grundlehren der mathematischen Wissenschaften",
+				"id": "https://www.springer.com/gp/book/9783540710493",
+				"issued": {
+					"date-parts": [
+						[
+							2009
+						]
+					]
+				},
+				"publisher": "Springer-Verlag",
+				"publisher-place": "Berlin Heidelberg",
+				"title": "Optimal Transport: Old and New",
+				"title-short": "Optimal Transport",
+				"type": "book"
+			}
 		}
 	}
 }
