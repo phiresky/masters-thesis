@@ -99,7 +99,7 @@ distribution:
 
 $$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
 
-This random variable is estimated using a diagonal Gaussian  prior as an a-priori
+This random variable is estimated using a diagonal Gaussian prior as an a-priori
 estimate:
 
 $$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$

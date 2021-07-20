@@ -141,8 +141,7 @@ An example of a successful episode of the task is in @fig:assembly.
 
 ![Example successful episode of the box assembly task (from [@gregor])](images/box-assembly.png){#fig:assembly}
 
-[@gregor]:
-  https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
+[@gregor]: https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
 
 The observation space for the box assembly task contains the following
 information:

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ln -s content/images
+
 # copy files to new dir but without the stuff we process separately
 rm -rf output/content-tex
 mkdir -p output/content-tex

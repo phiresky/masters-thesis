@@ -18,4 +18,3 @@ We optimize the hyperparameters to be able to show which parameters lead to the
 best results for each of the methods. In addition, we compare different variants
 of Bayesian aggregation and compare the recently introduced Trust Region Layers
 learning method to the commonly used Proximal Policy Optimization.
-

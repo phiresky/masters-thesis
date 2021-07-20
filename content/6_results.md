@@ -20,10 +20,10 @@ Unless mentioned otherwise, the following setup is used:
   percentile of runs
 - The activation function used after each layer is LeakyReLU
 - For the bayesian aggregation:
-   - We only use the mean value $μ_z$ as an output, not $μ_z$ and $σ_z^2$
-   - We use a single shared encoder for the value and confidence estimates
-   - The a-priori estimate $μ_z_0$ is learnable separately for each feature dimension
-   - The variance of both the a-priori estimate as well as the encoded estimates are rectified using $\text{softplus}$.
+  - We only use the mean value $μ_z$ as an output, not $μ_z$ and $σ_z^2$
+  - We use a single shared encoder for the value and confidence estimates
+  - The a-priori estimate $μ_{z_0}$ is learnable separately for each feature dimension
+  - The variance of both the a-priori estimate as well as the encoded estimates are rectified using $\text{softplus}$.
 - Multiple aggregatable groups are aggregated into separate latent spaces
 - The parameters of the policy and value function are not shared
 - The training algorithm used is PPO
@@ -76,7 +76,6 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-
 In addition two the three main aggregation methods we compare in this and the other tasks, we also show a comparison to between mean aggregation and max aggregation on the multi-evader pursuit task in @fig:resaggmax.
 
 ![Max aggregation results on the multi-evader pursuit task.](images/plots/2021-07-14_13.43.27-Multi-Evader
@@ -117,8 +116,6 @@ clusters, by agg method).svg){#fig:resclustering2}
 #### Clustering task with three clusters
 
 Doesn't work :(
-
-
 
 ### Learning algorithm comparison (PPO vs TRL)
 
