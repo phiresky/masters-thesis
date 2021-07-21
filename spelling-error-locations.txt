@@ -8,7 +8,8 @@ content/1_introduction.md:47:behaviour
 content/1_introduction.md:49:reinforcmeent
 content/1_introduction.md:50:pre
 content/1_introduction.md:52:openai
-content/1_introduction.md:66:relatedwork
+content/1_introduction.md:63:homogenous
+content/1_introduction.md:69:relatedwork
 content/2_preliminaries.md:6:RL
 content/2_preliminaries.md:14:iteratively
 content/2_preliminaries.md:20:MDP

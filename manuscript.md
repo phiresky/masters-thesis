@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/c6fd0f74c391ec3963776dd6248da7d6e7e4808d/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/c6fd0f74c391ec3963776dd6248da7d6e7e4808d/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/c6fd0f74c391ec3963776dd6248da7d6e7e4808d/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -74,9 +74,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/))
+([permalink](https://phiresky.github.io/masters-thesis/v/c6fd0f74c391ec3963776dd6248da7d6e7e4808d/))
 was automatically generated
-from [phiresky/masters-thesis@f02b6e1](https://github.com/phiresky/masters-thesis/tree/f02b6e1959c85617397c0d3473a5234c501ed125)
+from [phiresky/masters-thesis@c6fd0f7](https://github.com/phiresky/masters-thesis/tree/c6fd0f74c391ec3963776dd6248da7d6e7e4808d)
 on July 21, 2021.
 </em></small>
 
@@ -170,25 +170,28 @@ solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
 Controlling robot swarms using policies learned with deep reinforcement learning
 has promising results in recent literature such as [@openai].
 
-To apply deep reinforcement learning to multi-agent systems, we need to make a
+To apply deep reinforcement learning to multi-agent systems , we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
 varying amount of observations from the neighboring agents into the fixed size
 input of a dense neural network. In this work, we consider three aggregation
 methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
-methods with regards to their training performance and sample efficiency.
+methods with regards to their training performance and sample efficiency. We
+limit ourselves to a specific subset of MARL tasks that are fully cooperative
+with a team reward, with homogenous agents in a
+centralized-learning/decentralized-execution setup.
 
 We first give an overview over all the preliminaries we need for our work in
-@sec:preliminaries, including the background for the aggregation methods we use,
-and the reinforcement learning algorithms. Next we describe related work in
-@sec:relatedwork. Then, we describe the details of our contribution in
-@sec:contribution with details about the policy architecture and the different
-aggregation methods. Our experimental setup, including the specific environments
-we use to carry out our experiments are described in @sec:experiments. Finally,
-we show and interpret the results of our experiments in @sec:results and talk
-about the conclusions we can draw from the experiments as well as the potential
-for future work in @sec:conclusion.
+@sec:preliminaries, including reinforcement learning in general, multi-agent
+reinforcement learning, and the background for the aggregation methods we use.
+Next we describe related work in @sec:relatedwork. Then, we describe the details
+of our contribution in @sec:contribution with details about the policy
+architecture and the different aggregation methods. Our experimental setup,
+including the specific environments we use to carry out our experiments are
+described in @sec:experiments. Finally, we show and interpret the results of our
+experiments in @sec:results and talk about the conclusions we can draw from the
+experiments as well as the potential for future work in @sec:conclusion.
 
 
 ## Preliminaries {#sec:preliminaries}
