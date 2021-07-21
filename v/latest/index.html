@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Robin Ruede" />
-  <meta name="dcterms.date" content="2021-07-20" />
+  <meta name="dcterms.date" content="2021-07-21" />
   <meta name="keywords" content="MARL, multi-agent, mreinforcement learning, Bayesian conditioning" />
   <title>Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</title>
   <style>
@@ -47,8 +47,8 @@
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-20" />
-  <meta name="citation_publication_date" content="2021-07-20" />
+  <meta name="dc.date" content="2021-07-21" />
+  <meta name="citation_publication_date" content="2021-07-21" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -79,10 +79,10 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/">permalink</a>)
+(<a href="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/phiresky/masters-thesis/tree/ae7eda64889d5fe9cbd20c8844bae490972f7fd8">phiresky/masters-thesis@ae7eda6</a>
-on July 20, 2021.
+from <a href="https://github.com/phiresky/masters-thesis/tree/f02b6e1959c85617397c0d3473a5234c501ed125">phiresky/masters-thesis@f02b6e1</a>
+on July 21, 2021.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -154,10 +154,12 @@ planets into paperclips
 such that no one individual is a critical component of the swarm as a whole,
 individual failures do not necessarily result in a critical collapse of the
 whole swarm.</p>
-<p>Robots can be controlled by explicit algorithmic behaviour, but that can
-be complicated, inflexible and fragile, as is shown by the success in recent applications of reinforcmeent learning to control tasks that have not been solved by pre-programmed algorithms <span class="citation" data-cites="https://arxiv.org/abs/1808.00177">[<a href="#ref-https://arxiv.org/abs/1808.00177" role="doc-biblioref">ABC21</a>]</span>. Controlling robot swarms using policies
-learned with deep reinforcement learning has promising results in recent
-literature such as <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span>.</p>
+<p>Robots can be controlled by explicit algorithmic behaviour, but that can be
+complicated, inflexible and fragile, as is shown by the success in recent
+applications of reinforcmeent learning to control tasks that have not been
+solved by pre-programmed algorithms <span class="citation" data-cites="https://arxiv.org/abs/1808.00177">[<a href="#ref-https://arxiv.org/abs/1808.00177" role="doc-biblioref">ABC21</a>]</span>.
+Controlling robot swarms using policies learned with deep reinforcement learning
+has promising results in recent literature such as <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span>.</p>
 <p>To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
@@ -166,16 +168,16 @@ input of a dense neural network. In this work, we consider three aggregation
 methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
 methods with regards to their training performance and sample efficiency.</p>
-<p>We first give an overview over related literature of all the preliminaries we
-need for our work in sec. 1.4, including the environments / tasks we
-consider, the background for the aggregation methods we use, and the
-reinforcement learning algorithms. Then, we describe the details of our
-contribution in sec. 1.6 with details about the policy architecture and
-the different aggregation methods. Our experimental setup, including the
-specific environments we use to carry out our experiments are described in
-sec. 1.7. Finally, we show and interpret the results of our experiments
-in sec. 1.8 and talk about the conclusions we can draw from the experiments
-as well as the potential for future work in sec. 1.9.</p>
+<p>We first give an overview over all the preliminaries we need for our work in
+<a href="#sec:preliminaries">Section 1.4</a>, including the background for the aggregation methods we use,
+and the reinforcement learning algorithms. Next we describe related work in
+<a href="#sec:relatedwork">Section 1.5</a>. Then, we describe the details of our contribution in
+<a href="#sec:contribution">Section 1.6</a> with details about the policy architecture and the different
+aggregation methods. Our experimental setup, including the specific environments
+we use to carry out our experiments are described in <a href="#sec:experiments">Section 1.7</a>. Finally,
+we show and interpret the results of our experiments in <a href="#sec:results">Section 1.8</a> and talk
+about the conclusions we can draw from the experiments as well as the potential
+for future work in <a href="#sec:conclusion">Section 1.9</a>.</p>
 <h2 id="sec:preliminaries">Preliminaries</h2>
 <p>In this chapter, we introduce the preliminaries we need for our work. We
 describe reinforcement learning and two specific policy gradient training
@@ -202,17 +204,24 @@ An MDP thus consists of:</p>
 <li>A set of actions (the <em>action space</em>)</li>
 <li>The transition probability that a specific action in a specific state leads to
 specific second state</li>
-<li>The reward function that the specifies the immediate reward an agent receives
+<li>The reward function that specifies the immediate reward an agent receives
 depending on the previous state, the action, and the new state</li>
 </ul>
 <p>The MDP can either run for an infinite period or finish after a number of
 transitions.</p>
 <p>The method by which an agent chooses its actions based on the current state is
-called a <em>policy</em>.</p>
+called a <em>policy</em>. The policy defines a probability for taking each action based on a specific state.</p>
 <p>Based on a policy we can also define the <em>value function</em>, which is the sum of
 all future rewards that an agent gets based on an initial state and a specific
 policy. The value function can also include an exponential decay for weighing
 future rewards.</p>
+<p>Often we need to extend MDPs to allow for an observation model: A Partially
+observable Markov decision process (POMDP) is an extension to MDPs that
+introduces an indirection between the set of states and the input to the
+policy (called an <em>observation</em>). In the definition of a POMDP a set of
+observations is added with a probability of each state leading to a specific
+observation. The policy now depends on the observation and the
+action instead of the state and the action.</p>
 <p>To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward - we want to find the <em>optimal policy function</em>
 that has the highest value function on the initial states of our environment.
@@ -221,12 +230,12 @@ complicated tasks, we instead use optimization techniques.</p>
 <h3 id="actor-critic-training-methods">Actor-critic training methods</h3>
 <p>Policy gradient training methods are a reinforcement learning technique that
 optimize the parameters of a policy using gradient descent. Actor-critic methods
-also optimize an estimation of the value function at the same time, since</p>
+optimize both the policy and an estimation of the value function at the same time.</p>
 <p>There are multiple commonly used actor critic training methods such as Trust
 Region Policy Optimization (TRPO)
 <span class="citation" data-cites="http://proceedings.mlr.press/v37/schulman15.html">[<a href="#ref-http://proceedings.mlr.press/v37/schulman15.html" role="doc-biblioref">SLAJ21</a>]</span>, Proximal Policy
 Optimization (PPO) <span class="citation" data-cites="https://arxiv.org/abs/1707.06347">[<a href="#ref-https://arxiv.org/abs/1707.06347" role="doc-biblioref">SWDR21</a>]</span> and Soft Actor Critic
-<span class="citation" data-cites="https://arxiv.org/abs/1801.01290">[<a href="#ref-https://arxiv.org/abs/1801.01290" role="doc-biblioref">HZAL21</a>]</span>. We run most of our experiments with of
+<span class="citation" data-cites="https://arxiv.org/abs/1801.01290">[<a href="#ref-https://arxiv.org/abs/1801.01290" role="doc-biblioref">HZAL21</a>]</span>. We run most of our experiments with one of
 the most commonly used methods (PPO) and also explore a new method that promises
 stabler training (PG-TRL).</p>
 <h4 id="proximal-policy-optimization-ppo">Proximal Policy Optimization (PPO)</h4>
@@ -237,6 +246,11 @@ stochastic gradient descent. The surrogate objective function approximates the
 policy gradient while enforcing a trust region by clipping the update steps. PPO
 is a successor to Trust Region Policy Optimization (TRPO) with a simpler
 implementation and empirically better performance.</p>
+<p>PPO optimizes the policy using</p>
+<p><span class="math display">\[θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]\]</span></p>
+<p>Where <span class="math inline">\(π_{θ_k}\)</span> is a policy with parameters <span class="math inline">\(θ\)</span> in training step <span class="math inline">\(k\)</span>, <span class="math inline">\(s\)</span> is the state, <span class="math inline">\(a\sim π_{θ_k}\)</span> is the action distribution according to the the policy at step <span class="math inline">\(k\)</span>. L is given by</p>
+<p><span class="math display">\[L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).\]</span></p>
+<p><span class="math inline">\(A\)</span> is the advantage of taking a specific action in a specific state as opposed to the other actions as weighted by the current policy, estimated using Generalized Advantage Estimation <span class="citation" data-cites="https://arxiv.org/abs/1506.02438">[<a href="#ref-https://arxiv.org/abs/1506.02438" role="doc-biblioref">SMLJ21</a>]</span> based on the estimated value function.</p>
 <p>Since the performance of PPO depends on a number of implementation details and
 quirks, we use the stable-baselines3 <span class="citation" data-cites="https://github.com/DLR-RM/stable-baselines3">[<a href="#ref-https://github.com/DLR-RM/stable-baselines3" role="doc-biblioref">RHEG19</a>]</span> implementation of
 PPO-Clip, which has been shown to perform as well as the original OpenAI
@@ -254,16 +268,39 @@ region. The trust region and the projection is based on either the KL-divergence
 <span class="citation" data-cites="doi:10.1214/aoms/1177729694">[<a href="#ref-doi:10.1214/aoms/1177729694" role="doc-biblioref">KuLe21</a>]</span> or the Wasserstein <span class="math inline">\(W_2\)</span> distance
 <span class="citation" data-cites="https://www.springer.com/gp/book/9783540710493">[<a href="#ref-https://www.springer.com/gp/book/9783540710493" role="doc-biblioref">Vill21</a>]</span>.</p>
 <p>After each training step, the projected new policy depends on the previous
-policy. To prevent an infinite stacking of old policies, the explicitly projected
-policy is only used as a surrogate, while the real policy as based on a learned
-approximation. To prevent the real policy and the projected policy from
-diverging, the divergence between them is computed again in the form of the KL
-divergence or the Wasserstein <span class="math inline">\(W_2\)</span>. The computed divergence (<em>trust
-region regression loss</em>) is then added to the policy gradient loss function with
-a high factor.</p>
+policy. To prevent an infinite stacking of old policies, the explicitly
+projected policy is only used as a surrogate, while the real policy as based on
+a learned approximation. To prevent the real policy and the projected policy
+from diverging, the divergence between them is computed again in the form of the
+KL divergence or the Wasserstein <span class="math inline">\(W_2\)</span>. The computed divergence (<em>trust region
+regression loss</em>) is then added to the policy gradient loss function with a high
+factor.</p>
 <p>We explore PG-TRL as an alternative training method to PPO.</p>
-<h3 id="multi-agent-reinforcement-learning">Multi-agent reinforcement learning</h3>
+<h3 id="multi-agent-reinforcement-learning-marl">Multi-agent reinforcement learning (MARL)</h3>
 <p>DecPOMDP, SwarMDP definition and how to solve it using PPO</p>
+<h3 id="environment-model-and-learning-process">Environment model and learning process</h3>
+<p>In our experiments, we impose a set of restrictions on the environments and
+learning process. The restrictions we impose here are mostly based on
+<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>. here, we describe the major differing factors of both the learning
+process and the environments, as well as the variants we choose to consider.</p>
+<p>In general, the agents in a multi-agent environments can differ in their
+intrinsic properties. For example, they can have different control dynamics,
+maximum speeds, different observation systems, or different possible actions. We
+only consider environments with homogenous agents: All agents have the same
+physical properties, observation space, and action space. They only differ in
+their extrinsic properties, e.g., their current position, rotation, and speed.
+This also causes them to have a different perspective, different observations
+and thus different actions, resulting in differing behavior even when they are
+acting according to the same policy.</p>
+<p>We only consider cooperative environments, and we use the same reward function
+for all agents. Real-world multi-agent tasks are usually cooperative since in
+adversarial environments, one entity would not have control over multiple
+adversarial parties.</p>
+<p>We focus on global visibility since the additional noise introduced by local
+observability would be detrimental to the quality of our results.</p>
+<p>For training we use the centralized-learning/decentralized-execution (CLDE)
+approach - a shared common policy is learned for all agents, but the policy is
+executed by each agent separately.</p>
 <h3 id="aggregation-methods">Aggregation methods</h3>
 <p>The observations of each agent in a MARL task contains a varying number of
 observables. The observables can be clustered into groups where each observable
@@ -294,11 +331,10 @@ observations and actions.</p>
 <h4 id="mean-aggregation">Mean aggregation</h4>
 <p>Instead of concatenating each element <span class="math inline">\(o_i\)</span> in an observable group <span class="math inline">\(O\)</span>, we can
 also interpret each element as a sample of a distribution that describes the
-current system state. We encode each of these samples into a latent space that
-describes the relevant properties of the system, then use the empirical mean of
-the encoded samples to retrieve a representation of the system state <span class="math inline">\(ψ_O\)</span> based
-on all observed observables, as shown in eq. 1.</p>
-<p><span id="eq:meanagg"><span class="math display">\[ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} \text{encode}(o_i)\qquad(1)\]</span></span></p>
+current system state. We use the empirical mean of the samples to retrieve a
+representation of the system state <span class="math inline">\(ψ_O\)</span> based on all observed observables, as
+shown in <a href="#eq:meanagg">Equation 1</a>.</p>
+<p><span id="eq:meanagg"><span class="math display">\[ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i\qquad(1)\]</span></span></p>
 <p>The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
 observables in a observable group. <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span> used mean aggregation for deep
@@ -324,15 +360,31 @@ vehicles.</p>
 <p>Max-pooling is widely used in convolutional neural networks to reduce the image
 dimensionality where it consistently outperforms mean (average) pooling. Softmax
 aggregation was used by <span class="citation" data-cites="https://arxiv.org/abs/1703.04908">[<a href="#ref-https://arxiv.org/abs/1703.04908" role="doc-biblioref">MoAb21</a>]</span> for MARL.</p>
-<h4 id="bayesian-gaussian-conditioning">Bayesian Gaussian conditioning</h4>
+<h4 id="sec:bayesianagg1">Bayesian aggregation</h4>
 <p>Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
 seen observation. Gaussian conditioning is widely used in applications such as
 Gaussian process regression
-<span class="citation" data-cites="https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4">[<a href="#ref-https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4" role="doc-biblioref">Rasm21</a>]</span>. Bayesian
-aggregation was used by <span class="citation" data-cites="https://openreview.net/forum?id_x61_ufZN2-aehFa">[<a href="#ref-https://openreview.net/forum?id_x61_ufZN2-aehFa" role="doc-biblioref">VFGD21</a>]</span> for context aggregation in
-conditional latent variable (CLV) models. There is no related work using
-Bayesian aggregation for MARL.</p>
+<span class="citation" data-cites="https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4">[<a href="#ref-https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4" role="doc-biblioref">Rasm21</a>]</span>.</p>
+<p>We consider Bayesian aggregation as defined by <span class="citation" data-cites="https://openreview.net/forum?id_x61_ufZN2-aehFa">[<a href="#ref-https://openreview.net/forum?id_x61_ufZN2-aehFa" role="doc-biblioref">VFGD21</a>, sec
+7.1]</span>. We introduce <span class="math inline">\(z\)</span> as a random variable with a Gaussian distribution:</p>
+<p><span class="math display">\[z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))\]</span></p>
+<p>Initially, this random variable is estimated using a diagonal Gaussian prior as
+an a-priori estimate:</p>
+<p><span class="math display">\[p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))\]</span></p>
+<p>This prior is then updated with Bayesian conditioning using each of the observed
+elements <span class="math inline">\(r_i\)</span>. We interpret each observation as a new sample from the
+distribution <span class="math inline">\(p(z)\)</span>, each with a mean <span class="math inline">\(r_i\)</span> and a standard deviation <span class="math inline">\(σ_{r_i}\)</span>.
+We use the probabilistic observation model and consider the conditional
+probability <span class="math display">\[p(r_i|z) ≡ \mathcal{N}(r_n|z, σ_{r_i}^2).\]</span></p>
+<p>With standard Gaussian conditioning
+<span class="citation" data-cites="https://www.springer.com/gp/book/9780387310732">[<a href="#ref-https://www.springer.com/gp/book/9780387310732" role="doc-biblioref">Bish21</a>]</span> this leads to the closed
+form factorized posterior description of <span class="math inline">\(z\)</span>:</p>
+<p><span class="math display">\[\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}\]</span></p>
+<p><span class="math display">\[\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_i-\mu_{z_0})}{\sigma_{r_i}^2}}\]</span></p>
+<p>Bayesian aggregation was used by <span class="citation" data-cites="https://openreview.net/forum?id_x61_ufZN2-aehFa">[<a href="#ref-https://openreview.net/forum?id_x61_ufZN2-aehFa" role="doc-biblioref">VFGD21</a>]</span> for context
+aggregation in conditional latent variable (CLV) models. There is no related
+work using Bayesian aggregation for MARL.</p>
 <h4 id="attention-mechanisms">Attention mechanisms</h4>
 <p>Attention mechanisms are commonly used in other areas of machine learning. The
 multi-head attention mechanism was introduced by
@@ -362,7 +414,7 @@ a decentralized policy and a centralized critic. An attention mechanism is used
 to weigh the features from the other agents, then aggregates them to calculate
 the value function.</p>
 <p><span class="citation" data-cites="https://ieeexplore.ieee.org/document/9049415">[<a href="#ref-https://ieeexplore.ieee.org/document/9049415" role="doc-biblioref">LiTa21</a>]</span> first encode all aggregatable observations together with the proprioceptive
-observations with an “extrinsic encoder,” then compute attention weights using
+observations with an “extrinsic encoder”, then compute attention weights using
 another encoder from that and aggregate the features retrieved from a separate
 “intrinsic encoder” using those weights.</p>
 <h4 id="other-aggregation-methods">Other aggregation methods</h4>
@@ -374,17 +426,12 @@ by a neural network encoder with mean aggregation.</p>
 -
 
 -->
-<h2 id="related-work">Related work</h2>
-<h3 id="reinforcement-learning-in-multi-agent-systems-marl">Reinforcement Learning in multi-agent systems (MARL)</h3>
+<h2 id="sec:relatedwork">Related work</h2>
 <p>There are many variants of applying reinforcement learning to multi-agent
 systems.</p>
 <p>An overview over recent MARL work and some of the differing properties can be
 found in <span class="citation" data-cites="https://arxiv.org/abs/1911.10635">[<a href="#ref-https://arxiv.org/abs/1911.10635" role="doc-biblioref">ZhYaBa21</a>]</span> and
 <span class="citation" data-cites="https://www.mdpi.com/2076-3417/11/11/4948">[<a href="#ref-https://www.mdpi.com/2076-3417/11/11/4948" role="doc-biblioref">CCDF21</a>]</span>.</p>
-<p>In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose here are mostly based on
-<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>. Below, we describe the major differing factors of both the learning
-process and the environments, as well as the variants we choose to consider.</p>
 <!-- [@tocommunicate]:
   https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html
 
@@ -392,19 +439,9 @@ process and the environments, as well as the variants we choose to consider.</p>
   [@tocommunicate] -->
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
-<h4 id="homogenous-vs-heterogenous-agents">Homogenous vs heterogenous agents</h4>
-<p>In general, the agents in a multi-agent environments can differ in their
-intrinsic properties. For example, they can have different control dynamics,
-maximum speeds, different observation systems, or different possible actions. We
-only consider environments with homogenous agents: All agents have the same
-physical properties, observation space, and action space. They only differ in
-their extrinsic properties: Their current position, rotation, and speed. This
-also causes them to have a different perspective, different observations and
-thus different actions, resulting in differing behavior even when they are
-acting according to the same policy.</p>
-<h4 id="centralized-learning">Centralized learning</h4>
-<p>During training, we can either learn the agent policies in a centralized or a
-decentralized fasion.</p>
+<h4 id="centralized-vs-decentralized-learning">Centralized vs decentralized learning</h4>
+<p>During training, the agent policies car either be learned in a centralized or a
+decentralized fashion.</p>
 <p>In decentralized learning, each agent learns their own policy, while in
 centralized learning, the policy is shared between all agents. Decentralized
 learning has the advantage that the agents do not need to be homogenous, since
@@ -416,15 +453,14 @@ similar to each other. Decentralized learning is used in
 single policy. It has the advantage of only needing to train one policy network
 and the possibility of being more sample-efficient. Centralized learning
 requires homogenous agents since the policy network parameters are shared across
-all agents. It is used for example in <span class="citation" data-cites="https://arxiv.org/abs/1705.08926 https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5">[<a href="#ref-https://arxiv.org/abs/1705.08926" role="doc-biblioref">FFAN21</a>, <a href="#ref-https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5" role="doc-biblioref">GuEgKo21</a>]</span>. We only
-consider the CLDE case.</p>
-<h4 id="decentralized-execution">Decentralized execution</h4>
+all agents. It is used for example in <span class="citation" data-cites="https://arxiv.org/abs/1705.08926 https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5">[<a href="#ref-https://arxiv.org/abs/1705.08926" role="doc-biblioref">FFAN21</a>, <a href="#ref-https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5" role="doc-biblioref">GuEgKo21</a>]</span>.</p>
+<h4 id="centralized-vs-decentralized-execution">Centralized vs decentralized execution</h4>
 <p>When using centralized learning, it is possible to use a single policy to output
-actions for all agents at the same time. This is called “centralized execution.”
+actions for all agents at the same time. This is called “centralized execution”.
 The policy chooses the actions based on the global system state in a “birds-eye”
 view of the world. The disadvantage is that this means agents can’t act
 independently if the environment has restrictions such as partial observability,
-and it is less robust to communication failures and to agent “deaths.”</p>
+and it is less robust to communication failures and to agent “deaths”.</p>
 <p>The alternative is decentralized execution - the observation inputs and action
 outputs of the policy networks are local to a single agent. This can formally be
 described as a <em>Decentralized Partially Observable Markov Decision Process</em>
@@ -441,7 +477,7 @@ adversarial tasks each agent has their own independent goal that conflicts with
 the goal of the other agents. An example for a cooperative environment is the
 rendezvous task: All agents need to meet up at a single point, where the agents
 have to decide independently on the location. The reward here is the negative
-average pairwise distance of the agents, see sec. 1.7.2.1. Note that a
+average pairwise distance of the agents, see <a href="#sec:rendezvous">Section 1.7.2.1</a>. Note that a
 cooperative environments can also include other adversarial agents, as long as
 those agents are controlled by an explicit algorithm and not a learned policy.
 From the perspective of the policy, these agents are considered part of the
@@ -475,26 +511,20 @@ averaging a reward function of each team member.</p>
 world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.</p>
-<p>In our case, we only consider cooperative environments, and we use the same
-reward function for all agents. Real-world multi-agent tasks are usually
-cooperative since in adversarial environments, one entity would not have control
-over multiple adversarial parties.</p>
-<h4 id="local-observations-partial-visibility">Local observations, partial visibility</h4>
+<h4 id="partial-visibility">Partial visibility</h4>
 <p>The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent’s properties are observed
 relative to the current agent - the distance, relative bearing, and relative
 speed.</p>
 <p>In addition, each agent may only have local visibility, for example it can only
 observe the positions of agents and objects in the world within some radius or
-the visibility can be hindered by obstacles. In this work we focus on global
-visibility since the additional noise introduced by local observability would be
-detrimental to the quality of our results.</p>
-<!-- We consider both global visibility as well as local visibility cases. -->
+the visibility can be hindered by obstacles. In <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span> both the local
+and global visibility variants of the same tasks were considered.</p>
 <h4 id="simultaneous-vs-turn-based">Simultaneous vs turn-based</h4>
 <p>In general, multi-agent environments can be turn-based or simultaneous. In
 turn-based environments each agent acts in sequence, with the world state
 changing after each turn. In simultaneous environments, all agents act “at the
-same time,” i.e. the environment only changes after all agents have acted in one
+same time”, i.e. the environment only changes after all agents have acted in one
 time step.</p>
 <p>Simultaneous environments can be considered a subset of turn-based environments,
 since a simultaneous environment can be converted to a turn-based one by fixing
@@ -546,7 +576,7 @@ and they may be missing some information that may not be known to <span class="m
 addition, there can be additional sets of observations, for example for objects
 or scripted agents in the environment. The architecture can handle any amount of
 observation sets, but the observations in each set must have the same shape.</p>
-<p>We call each of the sets of observations “aggregation groups.”</p>
+<p>We call each of the sets of observations “aggregation groups”.</p>
 <p>First, we collect the observations for each instance <span class="math inline">\(1&lt;i&lt;n\)</span> of each aggregation
 group <span class="math inline">\(G\)</span>. These observations can be relative to the current agent. Each
 observation in the aggregation group <span class="math inline">\(G\)</span> is thus a function of the agent <span class="math inline">\(a_k\)</span>
@@ -572,7 +602,7 @@ action space or to <span class="math inline">\(1\)</span> to get the output of t
 the architecture for the policy and value function, we use a separate copy of
 the compute graph for the value function, so the weights and training are
 completely independent.</p>
-<p>Fig. 1 shows a schematic of the general model architecture described above.</p>
+<p><a href="#fig:model">Figure 1</a> shows a schematic of the general model architecture described above.</p>
 <figure>
 <img src="images/model.drawio.svg" id="fig:model" alt="Figure 1: A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed though an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function." /><figcaption aria-hidden="true">Figure 1: A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed though an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.</figcaption>
 </figure>
@@ -594,37 +624,32 @@ largest value:</p>
 aggregation operator is the sum:</p>
 <p><span class="math display">\[e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k→g_j})}\right) e_{k→g_i}\]</span></p>
 <h4 id="sec:bayesianagg">Bayesian Aggregation</h4>
-<p>For the bayesian aggregation, we introduce <span class="math inline">\(z\)</span> as the aggregated latent variable
-with <span class="math display">\[e_{k→G}=:μ_z.\]</span> <span class="math inline">\(z\)</span> is seen as a random variable with a Gaussian
-distribution:</p>
-<p><span class="math display">\[z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))\]</span></p>
-<p>This random variable is estimated using a diagonal Gaussian prior as an a-priori
-estimate:</p>
-<p><span class="math display">\[p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))\]</span></p>
-<p>This prior is then updated with Bayesian conditioning using each of the observed
-elements <span class="math inline">\(o_{k→g_i}\)</span> in the aggregation group. We interpret each observation as
-a new sample from the distribution <span class="math inline">\(p(z)\)</span>, each with a mean <span class="math inline">\(r_{k→g_i}\)</span> and a
-standard deviation <span class="math inline">\(σ_{r_{k→g_i}}\)</span>. We use the probabilistic observation model
-and consider the conditional probability
-<span class="math display">\[p(r_{k→g_i}|z) ≡ \mathcal{N}(r_{k→g}, σ_{r_{k→g}}^2).\]</span></p>
-<p>With Bayes’ rule, we can invert this conditional probability to get:
-<span class="math display">\[p(z|r_{k→g_i}) = \frac{p(r_{k→g_i}|z) p(z)}{p(r_{k→g_i})}\]</span></p>
-<p><span class="math display">\[p(z) = \frac{p(z|r_{k→g_i}) p(r_{k→g_i})}{p(r_{k→g_i}|z)}\]</span></p>
-<p>When considering the prior together with each observation in the observation
-group as an update we get the following closed form description of <span class="math inline">\(z\)</span>:</p>
-<p><span class="math display">\[\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}\]</span></p>
-<p><span class="math display">\[\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_n-\mu_{z_0})}{\sigma_{r_i}^2}}\]</span></p>
-<p>This derivation is based on <span class="citation" data-cites="https://openreview.net/forum?id_x61_ufZN2-aehFa">[<a href="#ref-https://openreview.net/forum?id_x61_ufZN2-aehFa" role="doc-biblioref">VFGD21</a>]</span>, which is
-based on <span class="citation" data-cites="https://www.springer.com/gp/book/9780387310732">[<a href="#ref-https://www.springer.com/gp/book/9780387310732" role="doc-biblioref">Bish21</a>]</span>.</p>
-<p>The values of <span class="math inline">\(μ_{z_0}\)</span> and <span class="math inline">\(σ_{z_0}^2\)</span> are learned as free-standing variables
-using the backpropagation during training:</p>
-<p><span class="math display">\[r_{k→g_i} = \text{enc}_r(o_{k→g_i}), \quad σ_{r_{k→g_i}} = \text{enc}_σ(o_{k→g_i})\]</span></p>
-<p><span class="math inline">\(enc_r\)</span> and <span class="math inline">\(enc_σ\)</span> are either separate dense neural networks or a single dense
-neural network with the output having two outputs per feature (one for the mean,
-one for the variance).</p>
-<p>A graphical overview of this method is shown in fig. 2.</p>
+<p>We use a separate latent space and thus a separate observation model <span class="math inline">\(p(z)\)</span> for
+each aggregation group.</p>
+<p>To make the Bayesian aggregation as described in <a href="#sec:bayesianagg1">Section 1.4.5.4</a> work in our
+policy network, we need an estimation describing the Gaussian prior (<span class="math inline">\(μ_{z_0}\)</span>
+and <span class="math inline">\(σ_{z_0}^2\)</span>) as well as the observed means <span class="math inline">\(r_i\)</span> and variances <span class="math inline">\(σ_{r_i}^2\)</span>.</p>
+<p>The mean and variance of the Gaussian prior are learned as free-standing
+variables using the backpropagation during training. Both the prior variance as
+well as the variance of the observations are rectified to enforce positivity
+using <span class="math inline">\(\text{softplus}\)</span>.</p>
+<p>To get the observed elements <span class="math inline">\(r_i\)</span>, we use the two encoder networks <span class="math inline">\(enc_r\)</span> and
+<span class="math inline">\(enc_σ\)</span> that consist of a set of dense layers:</p>
+<p><span class="math display">\[r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})\]</span></p>
+<p><span class="math inline">\(\text{enc}_r\)</span> and <span class="math inline">\(\text{enc}_σ\)</span> are either separate dense neural networks or a single dense
+neural network with the output having two scalars per feature (one for the mean,
+one for the variance). Finally we retrieve the value of <span class="math inline">\(e_{k→G}\)</span> from the
+aggregated latent variable, using either just the mean of <span class="math inline">\(z\)</span>:</p>
+<p><span class="math display">\[e_{k→G} = μ_z\]</span></p>
+<p>or by concatenating the mean and the variance:</p>
+<p><span class="math display">\[e_{k→G} = (μ_z, σ_z^2).\]</span></p>
+<p>The mean and variance are calculated from the conditioned Gaussian based on the
+encoded observations as described in <a href="#sec:bayesianagg1">Section 1.4.5.4</a>:</p>
+<p><span class="math display">\[\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\text{enc}_σ(o_{k→g_i})^2}}}\]</span></p>
+<p><span class="math display">\[\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(\text{enc}_r(o_{k→g_i})-\mu_{z_0})}{\text{enc}_σ(o_{k→g_i})^2}}\]</span></p>
+<p>A graphical overview of this method is shown in <a href="#fig:bayesianagg">Figure 2</a>.</p>
 <figure>
-<img src="images/bayesianagg.drawio.svg" id="fig:bayesianagg" alt="Figure 2: Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable z to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of z are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in fig. 1." /><figcaption aria-hidden="true">Figure 2: Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable <span class="math inline">\(z\)</span> to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of <span class="math inline">\(z\)</span> are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in fig. 1.</figcaption>
+<img src="images/bayesianagg.drawio.svg" id="fig:bayesianagg" alt="Figure 2: Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable z to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of z are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in Figure 1." /><figcaption aria-hidden="true">Figure 2: Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable <span class="math inline">\(z\)</span> to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of <span class="math inline">\(z\)</span> are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in <a href="#fig:model">Figure 1</a>.</figcaption>
 </figure>
 <h4 id="attentive-aggregation">Attentive Aggregation</h4>
 <p>When using residual self-attentive aggregation, we define the aggregated feature
@@ -637,9 +662,9 @@ and</p>
 <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">[<a href="#ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" role="doc-biblioref">VSPU21</a>]</span>.</p>
 <p>This method of attentive aggregation is similar to the method successfully used
 by <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span>. An overview over the model architecture used in <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span> can be
-seen in fig. 3.</p>
+seen in <a href="#fig:openai">Figure 3</a>.</p>
 <figure>
-<img src="images/model-openai.drawio.svg" id="fig:openai" alt="Figure 3: A schematic of the model architecture used by OpenAI [BKMW21] using masked residual self-attention. It is similar to our architecture (fig. 1) except for the LIDAR in the self-observations as well as the LSTM layer at the end." /><figcaption aria-hidden="true">Figure 3: A schematic of the model architecture used by OpenAI <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span> using masked residual self-attention. It is similar to our architecture (fig. 1) except for the LIDAR in the self-observations as well as the LSTM layer at the end.</figcaption>
+<img src="images/model-openai.drawio.svg" id="fig:openai" alt="Figure 3: A schematic of the model architecture used by OpenAI [BKMW21] using masked residual self-attention. It is similar to our architecture (Figure 1) except for the LIDAR in the self-observations as well as the LSTM layer at the end." /><figcaption aria-hidden="true">Figure 3: A schematic of the model architecture used by OpenAI <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">BKMW21</a>]</span> using masked residual self-attention. It is similar to our architecture (<a href="#fig:model">Figure 1</a>) except for the LIDAR in the self-observations as well as the LSTM layer at the end.</figcaption>
 </figure>
 <h3 id="multi-agent-learning-with-ppo">Multi-agent learning with PPO</h3>
 <p>PPO and other policy gradient methods are designed for single-agent
@@ -650,12 +675,13 @@ the same architecture as the policy. Since the stable-baselines3 implementation
 of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.</p>
-<p>Similarily to the setup used for TRPO by <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>, we collect the data of each agent as if that agent was the
-only agent in the world. For example, a batch of a single step of 10 agents each
-in 20 different environment becomes 200 separate training samples. Each agent
-still only has access to its own local observations, not the global system
-state. This means that during inference time, each agent has to act
-independently, based on the observations it makes locally.</p>
+<p>Similarily to the setup used for TRPO by <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>, we collect the data of each
+agent as if that agent was the only agent in the world. For example, a batch of
+a single step of 10 agents each in 20 different environment becomes 200 separate
+training samples. Each agent still only has access to its own local
+observations, not the global system state. This means that during inference
+time, each agent has to act independently, based on the observations it makes
+locally.</p>
 <h2 id="sec:experiments">Experiments</h2>
 <h3 id="experimental-setup">Experimental setup</h3>
 <p>All of our experiments were run using stable-baselines3 (sb3). <em>OpenAI
@@ -682,7 +708,7 @@ a single agent, we use custom built environments.</p>
 <p>The following shows which specific tasks we consider.</p>
 <h4 id="sec:rendezvous">Rendezvous task</h4>
 <p>In the rendezvous task, a set of <span class="math inline">\(n\)</span> agents try to meet up in a single point. An
-example is shown in fig. 4. Our implementation of the rendezvous task
+example is shown in <a href="#fig:rendezvous1">Figure 4</a>. Our implementation of the rendezvous task
 is modeled after <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>.</p>
 <figure>
 <img src="images/rendezvous1.png" id="fig:rendezvous1" alt="Figure 4: Visualization of one successful episode of the rendezvous task (from [HüŠoNe21])" /><figcaption aria-hidden="true">Figure 4: Visualization of one successful episode of the rendezvous task (from <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>)</figcaption>
@@ -720,7 +746,7 @@ able to catch it. The world is a two-dimensional torus (the position <span class
 are floating point numbers modulo 100). If the world was infinite, the evader
 could run away in one direction forever, and if it had walls, the pursuers could
 easily corner the evader. The pursuit tasks are modeled after <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>. An
-example episode of the pursuit task is in fig. 5.</p>
+example episode of the pursuit task is in <a href="#fig:pursuit1">Figure 5</a>.</p>
 <figure>
 <img src="images/pursuit1.png" id="fig:pursuit1" alt="Figure 5: Visualization of one successful episode of the pursuit task (from [HüŠoNe21]). The pursuers are in blue, the evader is in red." /><figcaption aria-hidden="true">Figure 5: Visualization of one successful episode of the pursuit task (from <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>). The pursuers are in blue, the evader is in red.</figcaption>
 </figure>
@@ -774,7 +800,7 @@ obstacles. For the box assembly task, the goal is to get all the boxes as close
 together as possible. Since they agents are much smaller than the boxes, moving
 a box is hard for a single agent. The reward is the negative sum of the pairwise
 distances between the boxes. We run this task with four boxes and 10 agents.</p>
-<p>An example of a successful episode of the task is in fig. 6.</p>
+<p>An example of a successful episode of the task is in <a href="#fig:assembly">Figure 6</a>.</p>
 <figure>
 <img src="images/box-assembly.png" id="fig:assembly" alt="Figure 6: Example successful episode of the box assembly task (from [GeHüNe21])" /><figcaption aria-hidden="true">Figure 6: Example successful episode of the box assembly task (from <span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">GeHüNe21</a>]</span>)</figcaption>
 </figure>
@@ -847,10 +873,10 @@ aggregation, mean aggregation, attentive aggregation) on multiple tasks.</p>
 network: The numbers before <code>agg</code> are the sequential layer sizes of the dense
 layers of the encoders of each aggregation group. The numbers after <code>agg</code> are
 the layer sizes in the decoder after the concatentation of the proprioceptive
-observations with the aggregated observations (compare fig. 1).</p>
+observations with the aggregated observations (compare <a href="#fig:model">Figure 1</a>).</p>
 <h4 id="multi-evader-pursuit-task">Multi-evader pursuit task</h4>
 <p>Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders on
-a torus. Fig. 7 shows the results of the multi-evader pursuit task with
+a torus. <a href="#fig:resmpsmall">Figure 7</a> shows the results of the multi-evader pursuit task with
 different aggregation methdos with the same architecture used in <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span> to
 be able to directly compare the results. The architecture is 64-agg-64 with the
 tanh activation function. With this architecture, the Bayesian aggregation
@@ -860,7 +886,7 @@ performs best.</p>
 <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>. The Bayesian aggregation performs
 best.</figcaption>
 </figure>
-<p>Fig. 8 shows the results with neural network architectures that were separately
+<p><a href="#fig:resmpopt">Figure 8</a> shows the results with neural network architectures that were separately
 hyper-parameter optimized for each aggregation method. The optimized architecture for the mean
 aggregation is <code>174-226-97-agg-96</code>. The
 optimized architecture for the Bayesian aggregation is <code>120-60-agg-160</code>. The optimized architecture for the attentive
@@ -880,33 +906,33 @@ relevancy / certainty that is given in the Bayesian aggregation.</p>
 <img src="images/plots/2021-07-10_16.06.20-Multi-Evader%20Pursuit%20(hpsopt).svg" id="fig:resmpopt" alt="Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best." /><figcaption aria-hidden="true">Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.</figcaption>
 </figure>
 <figure>
-<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 9: Like fig. 8 but only the top 1/3 of runs." /><figcaption aria-hidden="true">Figure 9: Like fig. 8 but only the top 1/3 of runs.</figcaption>
+<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 9: Like Figure 8 but only the top 1/3 of runs." /><figcaption aria-hidden="true">Figure 9: Like <a href="#fig:resmpopt">Figure 8</a> but only the top 1/3 of runs.</figcaption>
 </figure>
-<p>In addition two the three main aggregation methods we compare in this and the other tasks, we also show a comparison to between mean aggregation and max aggregation on the multi-evader pursuit task in fig. 10.</p>
+<p>In addition two the three main aggregation methods we compare in this and the other tasks, we also show a comparison to between mean aggregation and max aggregation on the multi-evader pursuit task in <a href="#fig:resaggmax">Figure 10</a>.</p>
 <figure>
 <img src="images/plots/2021-07-14_13.43.27-Multi-Evader%20Pursuit%20Max.svg" id="fig:resaggmax" alt="Figure 10: Max aggregation results on the multi-evader pursuit task." /><figcaption aria-hidden="true">Figure 10: Max aggregation results on the multi-evader pursuit task.</figcaption>
 </figure>
 <h4 id="single-evader-pursuit-task-1">Single-evader pursuit task</h4>
-<p>Fig. 11 shows the results on the single-evader pursuit task with 10 pursuers
+<p><a href="#fig:ressp">Figure 11</a> shows the results on the single-evader pursuit task with 10 pursuers
 and one evader.</p>
 <figure>
 <img src="images/plots/2021-07-14_13.55.20-Single-evader%20Pursuit.svg" id="fig:ressp" alt="Figure 11: Results on Single Pursuit task. Architecture: 120-60-agg-160." /><figcaption aria-hidden="true">Figure 11: Results on Single Pursuit task. Architecture: 120-60-agg-160.</figcaption>
 </figure>
 <h4 id="rendezvous-task">Rendezvous task</h4>
-<p>Fig. 12.</p>
+<p><a href="#fig:resrendezvous">Figure 12</a>.</p>
 <figure>
 <img src="images/plots/2021-07-18_12.34.40-Rendezvous.svg" id="fig:resrendezvous" alt="Figure 12: Results on the Rendezvous task. Large Architecture: 120-60-agg-160. Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162" /><figcaption aria-hidden="true">Figure 12: Results on the Rendezvous task. Large Architecture: 120-60-agg-160.
 Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162</figcaption>
 </figure>
 <h4 id="assembly-task">Assembly task</h4>
-<p>Fig. 13 shows the results on the assembly task with ten agents and four
+<p><a href="#fig:resassembly">Figure 13</a> shows the results on the assembly task with ten agents and four
 boxes. The three aggregation methods perform very similar, with the attentive
 aggregation learning the task slightly quicker.</p>
 <figure>
 <img src="images/plots/2021-07-07_15.07.38-assembly%20(by%20agg%20method).svg" id="fig:resassembly" alt="Figure 13: Results on the assembly task." /><figcaption aria-hidden="true">Figure 13: Results on the assembly task.</figcaption>
 </figure>
 <h4 id="clustering-task-with-two-clusters">Clustering task with two clusters</h4>
-<p>Fig. 14 shows the results on the clustering task with four boxes
+<p><a href="#fig:resclustering2">Figure 14</a> shows the results on the clustering task with four boxes
 split into two clusters.</p>
 <figure>
 <img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 14: Clustering2 results" /><figcaption aria-hidden="true">Figure 14: Clustering2 results</figcaption>
@@ -915,11 +941,11 @@ split into two clusters.</p>
 <p>Doesn’t work :(</p>
 <h3 id="learning-algorithm-comparison-ppo-vs-trl">Learning algorithm comparison (PPO vs TRL)</h3>
 <p>In the following, we show some results of the trust region layers training
-method (see sec. 1.4.2.2) compared to PPO.</p>
-<p>Fig. 15 shows the results on the multi-evader pursuit task. The
+method (see <a href="#sec:trl">Section 1.4.2.2</a>) compared to PPO.</p>
+<p><a href="#fig:resmptrl">Figure 15</a> shows the results on the multi-evader pursuit task. The
 architecture are the ones hyper-parameter optimized on PPO on each of the
 aggregation methods. TRL seems to show significantly improved training
-performance for both the mean and the Bayesian aggregation. Fig. 16
+performance for both the mean and the Bayesian aggregation. <a href="#fig:resmptrltop">Figure 16</a>
 shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
 fewer runs fail to achieve the optimal performance.</p>
@@ -942,9 +968,9 @@ instead of each aggregation space containing the information of those
 aggregatables, the single aggregation space must contain the information of all
 observables as it pertains to the current agent. The potential advantage is that
 the policy can share more parameters and thus be more sample efficient. It can also scale to a larger number of categories of objects (aggregation groups).
-Fig. 18 shows a schematic comparison between the two methods.</p>
-<p>In the other experiments we alwas use separate spaces. Fig. 19 and
-fig. 20 show the results of aggregating into a single space vs.
+<a href="#fig:sameseparate">Figure 18</a> shows a schematic comparison between the two methods.</p>
+<p>In the other experiments we alwas use separate spaces. <a href="#fig:ressameseparate">Figure 19</a> and
+<a href="#fig:ressameseparate2">Figure 20</a> show the results of aggregating into a single space vs.
 into separate spaces for the multi-evader pursuit and assembly tasks. The
 separate-space aggregation performs better.</p>
 <figure>
@@ -959,7 +985,7 @@ separate-space aggregation performs better.</p>
 <h3 id="bayesian-aggregation-variants">Bayesian aggregation variants</h3>
 <p>The following shows results for some variants of the Bayesian aggregation.</p>
 <h4 id="separate-vs-common-encoder">Separate vs common encoder</h4>
-<p>As described in sec. 1.6.1.2, we can either have a shared encoder to predict
+<p>As described in <a href="#sec:bayesianagg">Section 1.6.1.2</a>, we can either have a shared encoder to predict
 the mean and variance of each sample in each aggregation space by making the
 last layer of the encoder have two outputs for each feature, or have two fully
 separate networks (<span class="math inline">\(enc_r\)</span> and <span class="math inline">\(enc_σ\)</span>). In our experiments, using one common
@@ -976,7 +1002,7 @@ it with the mean predictions in the hope that the neural network is able to use
 this additional information:</p>
 <p><span class="math display">\[e_{k→G}=(μ_z, σ_z^2)\]</span></p>
 <p>The results of applying this method to the multi-evader pursuit are seen in
-fig. 21. The neural network architecture is the same as for the
+<a href="#fig:resoutputvariance">Figure 21</a>. The neural network architecture is the same as for the
 other experiments with Bayesian aggregation on multi-evader pursuit
 (<code>120-60-agg-160</code>). Including the variance in the decoder inputs decreases the
 performance.</p>
@@ -1067,6 +1093,9 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <div id="ref-https://arxiv.org/abs/1801.01290" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[HZAL21] </div><div class="csl-right-inline"><strong>Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</strong> <div class="csl-block">Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, Sergey Levine</div> <em>arXiv:1801.01290 [cs, stat]</em> (2018-08) <a href="http://arxiv.org/abs/1801.01290">http://arxiv.org/abs/1801.01290</a></div>
 </div>
+<div id="ref-https://arxiv.org/abs/1506.02438" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[SMLJ21] </div><div class="csl-right-inline"><strong>High-Dimensional Continuous Control Using Generalized Advantage Estimation</strong> <div class="csl-block">John Schulman, Philipp Moritz, Sergey Levine, Michael Jordan, Pieter Abbeel</div> <em>arXiv:1506.02438 [cs]</em> (2018-10) <a href="http://arxiv.org/abs/1506.02438">http://arxiv.org/abs/1506.02438</a></div>
+</div>
 <div id="ref-https://github.com/DLR-RM/stable-baselines3" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[RHEG19] </div><div class="csl-right-inline"><strong>Stable Baselines3</strong> <div class="csl-block">Antonin Raffin, Ashley Hill, Maximilian Ernestus, Adam Gleave, Anssi Kanervisto, Noah Dormann</div> <em>GitHub repository</em> (2019)</div>
 </div>
@@ -1082,11 +1111,11 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <div id="ref-https://www.springer.com/gp/book/9783540710493" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[Vill21] </div><div class="csl-right-inline"><strong>Optimal Transport: Old and New</strong> <div class="csl-block">Cédric Villani</div> <em>Springer-Verlag</em> (2009) <a href="https://www.springer.com/gp/book/9783540710493">https://www.springer.com/gp/book/9783540710493</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1007/978-3-540-71050-9">10.1007/978-3-540-71050-9</a> · ISBN: <a href="https://worldcat.org/isbn/9783540710493">9783540710493</a></div></div>
 </div>
-<div id="ref-https://dl.acm.org/doi/10.5555/3295222.3295385" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[LWTH21] </div><div class="csl-right-inline"><strong>Multi-agent actor-critic for mixed cooperative-competitive environments</strong> <div class="csl-block">Ryan Lowe, Yi Wu, Aviv Tamar, Jean Harb, Pieter Abbeel, Igor Mordatch</div> <em>Proceedings of the 31st International Conference on Neural Information Processing Systems</em> (2017-12) <a href="https://dl.acm.org/doi/10.5555/3295222.3295385">https://dl.acm.org/doi/10.5555/3295222.3295385</a> <div class="csl-block">ISBN: <a href="https://worldcat.org/isbn/9781510860964">9781510860964</a></div></div>
-</div>
 <div id="ref-https://jmlr.org/beta/papers/v20/18-476.html" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[HüŠoNe21] </div><div class="csl-right-inline"><strong>Deep Reinforcement Learning for Swarm Systems</strong> <div class="csl-block">Maximilian Hüttenrauch, Adrian Šošić, Gerhard Neumann</div> <em>Journal of Machine Learning Research</em> (2019) <a href="http://jmlr.org/papers/v20/18-476.html">http://jmlr.org/papers/v20/18-476.html</a></div>
+</div>
+<div id="ref-https://dl.acm.org/doi/10.5555/3295222.3295385" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[LWTH21] </div><div class="csl-right-inline"><strong>Multi-agent actor-critic for mixed cooperative-competitive environments</strong> <div class="csl-block">Ryan Lowe, Yi Wu, Aviv Tamar, Jean Harb, Pieter Abbeel, Igor Mordatch</div> <em>Proceedings of the 31st International Conference on Neural Information Processing Systems</em> (2017-12) <a href="https://dl.acm.org/doi/10.5555/3295222.3295385">https://dl.acm.org/doi/10.5555/3295222.3295385</a> <div class="csl-block">ISBN: <a href="https://worldcat.org/isbn/9781510860964">9781510860964</a></div></div>
 </div>
 <div id="ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[GeHüNe21] </div><div class="csl-right-inline"><strong>Using M-Embeddings to Learn Control Strategies for Robot Swarms</strong> <div class="csl-block">Gregor HW Gebhardt, Maximilian Hüttenrauch, G Neumann</div> <em>www.semanticscholar.org</em> (2019) <a href="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3</a></div>
@@ -1108,6 +1137,9 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 </div>
 <div id="ref-https://openreview.net/forum?id_x61_ufZN2-aehFa" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[VFGD21] </div><div class="csl-right-inline"><strong>Bayesian Context Aggregation for Neural Processes</strong> <div class="csl-block">Michael Volpp, Fabian Flürenbrock, Lukas Grossberger, Christian Daniel, Gerhard Neumann</div> (2020-09) <a href="https://openreview.net/forum?id=ufZN2-aehFa">https://openreview.net/forum?id=ufZN2-aehFa</a></div>
+</div>
+<div id="ref-https://www.springer.com/gp/book/9780387310732" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[Bish21] </div><div class="csl-right-inline"><strong>Pattern Recognition and Machine Learning</strong> <div class="csl-block">Christopher Bishop</div> <em>Springer-Verlag</em> (2006) <a href="https://www.springer.com/gp/book/9780387310732">https://www.springer.com/gp/book/9780387310732</a> <div class="csl-block">ISBN: <a href="https://worldcat.org/isbn/9780387310732">9780387310732</a></div></div>
 </div>
 <div id="ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[VSPU21] </div><div class="csl-right-inline"><strong>Attention is All you Need</strong> <div class="csl-block">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, Illia Polosukhin</div> <em>Advances in Neural Information Processing Systems</em> (2017) <a href="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html</a></div>
@@ -1159,9 +1191,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 </div>
 <div id="ref-https://arxiv.org/abs/2009.14471" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[TBGJ21] </div><div class="csl-right-inline"><strong>PettingZoo: Gym for Multi-Agent Reinforcement Learning</strong> <div class="csl-block">JK Terry, Benjamin Black, Nathaniel Grammel, Mario Jayakumar, Ananth Hari, Ryan Sullivan, Luis Santos, Rodrigo Perez, Caroline Horsch, Clemens Dieffendahl, … Praveen Ravi</div> <em>arXiv:2009.14471 [cs, stat]</em> (2021-06) <a href="http://arxiv.org/abs/2009.14471">http://arxiv.org/abs/2009.14471</a></div>
-</div>
-<div id="ref-https://www.springer.com/gp/book/9780387310732" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[Bish21] </div><div class="csl-right-inline"><strong>Pattern Recognition and Machine Learning</strong> <div class="csl-block">Christopher Bishop</div> <em>Springer-Verlag</em> (2006) <a href="https://www.springer.com/gp/book/9780387310732">https://www.springer.com/gp/book/9780387310732</a> <div class="csl-block">ISBN: <a href="https://worldcat.org/isbn/9780387310732">9780387310732</a></div></div>
 </div>
 <div id="ref-https://dl.acm.org/doi/10.1145/3292500.3330701" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[ASYO21] </div><div class="csl-right-inline"><strong>Optuna: A Next-generation Hyperparameter Optimization Framework</strong> <div class="csl-block">Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, Masanori Koyama</div> <em>Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</em> (2019-07) <a href="https://doi.org/10.1145/3292500.3330701">https://doi.org/10.1145/3292500.3330701</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1145/3292500.3330701">10.1145/3292500.3330701</a> · ISBN: <a href="https://worldcat.org/isbn/9781450362016">9781450362016</a></div></div>
