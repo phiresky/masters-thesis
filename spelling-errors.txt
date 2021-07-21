@@ -18,10 +18,8 @@ diagonalized
 dimensionality
 exchangeability
 exhibt
-fasion
 gregor
-heterogenous
-Homogenous
+homogenous
 hyperparameters
 Hysteretic
 iteratively
@@ -45,7 +43,7 @@ observables
 openai
 optimality
 Optuna
-PettingZoo
+pettingzoo
 phiresky
 POMDP
 positivity
@@ -56,6 +54,7 @@ priori
 proprioceptive
 reimplementation
 reinforcmeent
+relatedwork
 resaggmax
 resassembly
 resclustering

@@ -6,10 +6,24 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-20'
+date-meta: '2021-07-21'
 author-meta:
 - Robin Ruede
 cref: true
+figPrefix:
+- Figure
+- Figures
+eqnPrefix:
+- Equation
+- Equations
+tblPrefix:
+- Table
+- Tables
+secPrefix:
+- Section
+- Sections
+linkReferences: true
+nameInLink: true
 header-includes: |-
   <!--
   Manubot generated metadata rendered from header-includes-template.html.
@@ -20,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-20" />
-  <meta name="citation_publication_date" content="2021-07-20" />
+  <meta name="dc.date" content="2021-07-21" />
+  <meta name="citation_publication_date" content="2021-07-21" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -36,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -60,10 +74,10 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/ae7eda64889d5fe9cbd20c8844bae490972f7fd8/))
+([permalink](https://phiresky.github.io/masters-thesis/v/f02b6e1959c85617397c0d3473a5234c501ed125/))
 was automatically generated
-from [phiresky/masters-thesis@ae7eda6](https://github.com/phiresky/masters-thesis/tree/ae7eda64889d5fe9cbd20c8844bae490972f7fd8)
-on July 20, 2021.
+from [phiresky/masters-thesis@f02b6e1](https://github.com/phiresky/masters-thesis/tree/f02b6e1959c85617397c0d3473a5234c501ed125)
+on July 21, 2021.
 </em></small>
 
 ## Authors
@@ -149,10 +163,12 @@ such that no one individual is a critical component of the swarm as a whole,
 individual failures do not necessarily result in a critical collapse of the
 whole swarm.
 
-Robots can be controlled by explicit algorithmic behaviour, but that can
-be complicated, inflexible and fragile, as is shown by the success in recent applications of reinforcmeent learning to control tasks that have not been solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}]. Controlling robot swarms using policies
-learned with deep reinforcement learning has promising results in recent
-literature such as [@openai].
+Robots can be controlled by explicit algorithmic behaviour, but that can be
+complicated, inflexible and fragile, as is shown by the success in recent
+applications of reinforcmeent learning to control tasks that have not been
+solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
+Controlling robot swarms using policies learned with deep reinforcement learning
+has promising results in recent literature such as [@openai].
 
 To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
@@ -163,16 +179,16 @@ methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
 methods with regards to their training performance and sample efficiency.
 
-We first give an overview over related literature of all the preliminaries we
-need for our work in @sec:preliminaries, including the environments / tasks we
-consider, the background for the aggregation methods we use, and the
-reinforcement learning algorithms. Then, we describe the details of our
-contribution in @sec:contribution with details about the policy architecture and
-the different aggregation methods. Our experimental setup, including the
-specific environments we use to carry out our experiments are described in
-@sec:experiments. Finally, we show and interpret the results of our experiments
-in @sec:results and talk about the conclusions we can draw from the experiments
-as well as the potential for future work in @sec:conclusion.
+We first give an overview over all the preliminaries we need for our work in
+@sec:preliminaries, including the background for the aggregation methods we use,
+and the reinforcement learning algorithms. Next we describe related work in
+@sec:relatedwork. Then, we describe the details of our contribution in
+@sec:contribution with details about the policy architecture and the different
+aggregation methods. Our experimental setup, including the specific environments
+we use to carry out our experiments are described in @sec:experiments. Finally,
+we show and interpret the results of our experiments in @sec:results and talk
+about the conclusions we can draw from the experiments as well as the potential
+for future work in @sec:conclusion.
 
 
 ## Preliminaries {#sec:preliminaries}
@@ -206,19 +222,27 @@ An MDP thus consists of:
 - A set of actions (the _action space_)
 - The transition probability that a specific action in a specific state leads to
   specific second state
-- The reward function that the specifies the immediate reward an agent receives
+- The reward function that specifies the immediate reward an agent receives
   depending on the previous state, the action, and the new state
 
 The MDP can either run for an infinite period or finish after a number of
 transitions.
 
 The method by which an agent chooses its actions based on the current state is
-called a _policy_.
+called a _policy_. The policy defines a probability for taking each action based on a specific state.
 
 Based on a policy we can also define the _value function_, which is the sum of
 all future rewards that an agent gets based on an initial state and a specific
 policy. The value function can also include an exponential decay for weighing
 future rewards.
+
+Often we need to extend MDPs to allow for an observation model: A Partially
+observable Markov decision process (POMDP) is an extension to MDPs that
+introduces an indirection between the set of states and the input to the
+policy (called an _observation_). In the definition of a POMDP a set of
+observations is added with a probability of each state leading to a specific
+observation. The policy now depends on the observation and the
+action instead of the state and the action.
 
 To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward - we want to find the _optimal policy function_
@@ -230,13 +254,13 @@ complicated tasks, we instead use optimization techniques.
 
 Policy gradient training methods are a reinforcement learning technique that
 optimize the parameters of a policy using gradient descent. Actor-critic methods
-also optimize an estimation of the value function at the same time, since
+optimize both the policy and an estimation of the value function at the same time.
 
 There are multiple commonly used actor critic training methods such as Trust
 Region Policy Optimization (TRPO)
 [@{http://proceedings.mlr.press/v37/schulman15.html}], Proximal Policy
 Optimization (PPO) [@ppo] and Soft Actor Critic
-[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with of
+[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one of
 the most commonly used methods (PPO) and also explore a new method that promises
 stabler training (PG-TRL).
 
@@ -251,6 +275,17 @@ stochastic gradient descent. The surrogate objective function approximates the
 policy gradient while enforcing a trust region by clipping the update steps. PPO
 is a successor to Trust Region Policy Optimization (TRPO) with a simpler
 implementation and empirically better performance.
+
+PPO optimizes the policy using
+
+$$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
+
+Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the state, $a\sim π_{θ_k}$ is the action distribution according to the the policy at step $k$. L is given by 
+
+$$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
+
+$A$ is the advantage of taking a specific action in a specific state as opposed to the other actions as weighted by the current policy, estimated using Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on the estimated value function.
+
 
 Since the performance of PPO depends on a number of implementation details and
 quirks, we use the stable-baselines3 [@stable-baselines3] implementation of
@@ -273,19 +308,48 @@ region. The trust region and the projection is based on either the KL-divergence
 [@{https://www.springer.com/gp/book/9783540710493}].
 
 After each training step, the projected new policy depends on the previous
-policy. To prevent an infinite stacking of old policies, the explicitly projected
-policy is only used as a surrogate, while the real policy as based on a learned
-approximation. To prevent the real policy and the projected policy from
-diverging, the divergence between them is computed again in the form of the KL
-divergence or the Wasserstein $W_2$. The computed divergence (_trust
-region regression loss_) is then added to the policy gradient loss function with
-a high factor.
+policy. To prevent an infinite stacking of old policies, the explicitly
+projected policy is only used as a surrogate, while the real policy as based on
+a learned approximation. To prevent the real policy and the projected policy
+from diverging, the divergence between them is computed again in the form of the
+KL divergence or the Wasserstein $W_2$. The computed divergence (_trust region
+regression loss_) is then added to the policy gradient loss function with a high
+factor.
 
 We explore PG-TRL as an alternative training method to PPO.
 
-### Multi-agent reinforcement learning
+### Multi-agent reinforcement learning (MARL)
 
 DecPOMDP, SwarMDP definition and how to solve it using PPO
+
+### Environment model and learning process
+
+In our experiments, we impose a set of restrictions on the environments and
+learning process. The restrictions we impose here are mostly based on
+[@maxpaper]. here, we describe the major differing factors of both the learning
+process and the environments, as well as the variants we choose to consider.
+
+In general, the agents in a multi-agent environments can differ in their
+intrinsic properties. For example, they can have different control dynamics,
+maximum speeds, different observation systems, or different possible actions. We
+only consider environments with homogenous agents: All agents have the same
+physical properties, observation space, and action space. They only differ in
+their extrinsic properties, e.g., their current position, rotation, and speed.
+This also causes them to have a different perspective, different observations
+and thus different actions, resulting in differing behavior even when they are
+acting according to the same policy.
+
+We only consider cooperative environments, and we use the same reward function
+for all agents. Real-world multi-agent tasks are usually cooperative since in
+adversarial environments, one entity would not have control over multiple
+adversarial parties.
+
+We focus on global visibility since the additional noise introduced by local
+observability would be detrimental to the quality of our results.
+
+For training we use the centralized-learning/decentralized-execution (CLDE)
+approach - a shared common policy is learned for all agents, but the policy is
+executed by each agent separately.
 
 ### Aggregation methods
 
@@ -325,12 +389,11 @@ observations and actions.
 
 Instead of concatenating each element $o_i$ in an observable group $O$, we can
 also interpret each element as a sample of a distribution that describes the
-current system state. We encode each of these samples into a latent space that
-describes the relevant properties of the system, then use the empirical mean of
-the encoded samples to retrieve a representation of the system state $ψ_O$ based
-on all observed observables, as shown in @eq:meanagg.
+current system state. We use the empirical mean of the samples to retrieve a
+representation of the system state $ψ_O$ based on all observed observables, as
+shown in @eq:meanagg.
 
-$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} \text{encode}(o_i)$$ {#eq:meanagg}
+$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i$$ {#eq:meanagg}
 
 The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
@@ -370,16 +433,41 @@ Max-pooling is widely used in convolutional neural networks to reduce the image
 dimensionality where it consistently outperforms mean (average) pooling. Softmax
 aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
 
-#### Bayesian Gaussian conditioning
+#### Bayesian aggregation {#sec:bayesianagg1}
 
 Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
 seen observation. Gaussian conditioning is widely used in applications such as
 Gaussian process regression
-[@{https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4}]. Bayesian
-aggregation was used by @bayesiancontextaggregation for context aggregation in
-conditional latent variable (CLV) models. There is no related work using
-Bayesian aggregation for MARL.
+[@{https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4}].
+
+We consider Bayesian aggregation as defined by [@bayesiancontextaggregation, sec
+7.1]. We introduce $z$ as a random variable with a Gaussian distribution:
+
+$$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
+
+Initially, this random variable is estimated using a diagonal Gaussian prior as
+an a-priori estimate:
+
+$$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$
+
+This prior is then updated with Bayesian conditioning using each of the observed
+elements $r_i$. We interpret each observation as a new sample from the
+distribution $p(z)$, each with a mean $r_i$ and a standard deviation $σ_{r_i}$.
+We use the probabilistic observation model and consider the conditional
+probability $$p(r_i|z) ≡ \mathcal{N}(r_n|z, σ_{r_i}^2).$$
+
+With standard Gaussian conditioning
+[@{https://www.springer.com/gp/book/9780387310732}] this leads to the closed
+form factorized posterior description of $z$:
+
+$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}$$
+
+$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_i-\mu_{z_0})}{\sigma_{r_i}^2}}$$
+
+Bayesian aggregation was used by @bayesiancontextaggregation for context
+aggregation in conditional latent variable (CLV) models. There is no related
+work using Bayesian aggregation for MARL.
 
 #### Attention mechanisms
 
@@ -436,9 +524,7 @@ by a neural network encoder with mean aggregation.
 -->
 
 
-## Related work
-
-### Reinforcement Learning in multi-agent systems (MARL)
+## Related work {#sec:relatedwork}
 
 There are many variants of applying reinforcement learning to multi-agent
 systems.
@@ -446,11 +532,6 @@ systems.
 An overview over recent MARL work and some of the differing properties can be
 found in [@{https://arxiv.org/abs/1911.10635}] and
 [@{https://www.mdpi.com/2076-3417/11/11/4948}].
-
-In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose here are mostly based on
-[@maxpaper]. Below, we describe the major differing factors of both the learning
-process and the environments, as well as the variants we choose to consider.
 
 <!-- [@tocommunicate]:
   https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html
@@ -461,22 +542,10 @@ process and the environments, as well as the variants we choose to consider.
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
 
-#### Homogenous vs heterogenous agents
+#### Centralized vs decentralized learning
 
-In general, the agents in a multi-agent environments can differ in their
-intrinsic properties. For example, they can have different control dynamics,
-maximum speeds, different observation systems, or different possible actions. We
-only consider environments with homogenous agents: All agents have the same
-physical properties, observation space, and action space. They only differ in
-their extrinsic properties: Their current position, rotation, and speed. This
-also causes them to have a different perspective, different observations and
-thus different actions, resulting in differing behavior even when they are
-acting according to the same policy.
-
-#### Centralized learning
-
-During training, we can either learn the agent policies in a centralized or a
-decentralized fasion.
+During training, the agent policies car either be learned in a centralized or a
+decentralized fashion.
 
 In decentralized learning, each agent learns their own policy, while in
 centralized learning, the policy is shared between all agents. Decentralized
@@ -493,10 +562,9 @@ single policy. It has the advantage of only needing to train one policy network
 and the possibility of being more sample-efficient. Centralized learning
 requires homogenous agents since the policy network parameters are shared across
 all agents. It is used for example in [@{https://arxiv.org/abs/1705.08926};
-@{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}]. We only
-consider the CLDE case.
+@{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}].
 
-#### Decentralized execution
+#### Centralized vs decentralized execution
 
 When using centralized learning, it is possible to use a single policy to output
 actions for all agents at the same time. This is called "centralized execution".
@@ -567,12 +635,7 @@ world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
 
-In our case, we only consider cooperative environments, and we use the same
-reward function for all agents. Real-world multi-agent tasks are usually
-cooperative since in adversarial environments, one entity would not have control
-over multiple adversarial parties.
-
-#### Local observations, partial visibility
+#### Partial visibility
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
@@ -581,11 +644,8 @@ speed.
 
 In addition, each agent may only have local visibility, for example it can only
 observe the positions of agents and objects in the world within some radius or
-the visibility can be hindered by obstacles. In this work we focus on global
-visibility since the additional noise introduced by local observability would be
-detrimental to the quality of our results.
-
-<!-- We consider both global visibility as well as local visibility cases. -->
+the visibility can be hindered by obstacles. In [@maxpaper] both the local
+and global visibility variants of the same tasks were considered.
 
 #### Simultaneous vs turn-based
 
@@ -731,47 +791,40 @@ $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k
 
 #### Bayesian Aggregation {#sec:bayesianagg}
 
-For the bayesian aggregation, we introduce $z$ as the aggregated latent variable
-with $$e_{k→G}=:μ_z.$$ $z$ is seen as a random variable with a Gaussian
-distribution:
+We use a separate latent space and thus a separate observation model $p(z)$ for
+each aggregation group.
 
-$$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
+To make the Bayesian aggregation as described in [@sec:bayesianagg1] work in our
+policy network, we need an estimation describing the Gaussian prior ($μ_{z_0}$
+and $σ_{z_0}^2$) as well as the observed means $r_i$ and variances $σ_{r_i}^2$.
 
-This random variable is estimated using a diagonal Gaussian prior as an a-priori
-estimate:
+The mean and variance of the Gaussian prior are learned as free-standing
+variables using the backpropagation during training. Both the prior variance as
+well as the variance of the observations are rectified to enforce positivity
+using $\text{softplus}$.
 
-$$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$
+To get the observed elements $r_i$, we use the two encoder networks $enc_r$ and
+$enc_σ$ that consist of a set of dense layers:
 
-This prior is then updated with Bayesian conditioning using each of the observed
-elements $o_{k→g_i}$ in the aggregation group. We interpret each observation as
-a new sample from the distribution $p(z)$, each with a mean $r_{k→g_i}$ and a
-standard deviation $σ_{r_{k→g_i}}$. We use the probabilistic observation model
-and consider the conditional probability
-$$p(r_{k→g_i}|z) ≡ \mathcal{N}(r_{k→g}, σ_{r_{k→g}}^2).$$
+$$r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})$$
 
-With Bayes' rule, we can invert this conditional probability to get:
-$$p(z|r_{k→g_i}) = \frac{p(r_{k→g_i}|z) p(z)}{p(r_{k→g_i})}$$
+$\text{enc}_r$ and $\text{enc}_σ$ are either separate dense neural networks or a single dense
+neural network with the output having two scalars per feature (one for the mean,
+one for the variance). Finally we retrieve the value of $e_{k→G}$ from the
+aggregated latent variable, using either just the mean of $z$:
 
-$$p(z) = \frac{p(z|r_{k→g_i}) p(r_{k→g_i})}{p(r_{k→g_i}|z)}$$
+$$e_{k→G} = μ_z$$
 
-When considering the prior together with each observation in the observation
-group as an update we get the following closed form description of $z$:
+or by concatenating the mean and the variance:
 
-$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}$$
+$$e_{k→G} = (μ_z, σ_z^2).$$
 
-$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_n-\mu_{z_0})}{\sigma_{r_i}^2}}$$
+The mean and variance are calculated from the conditioned Gaussian based on the
+encoded observations as described in [@sec:bayesianagg1]:
 
-This derivation is based on [@bayesiancontextaggregation, sec. 7.1], which is
-based on [@{https://www.springer.com/gp/book/9780387310732}, sec. 2.3.3].
+$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\text{enc}_σ(o_{k→g_i})^2}}}$$
 
-The values of $μ_{z_0}$ and $σ_{z_0}^2$ are learned as free-standing variables
-using the backpropagation during training:
-
-$$r_{k→g_i} = \text{enc}_r(o_{k→g_i}), \quad σ_{r_{k→g_i}} = \text{enc}_σ(o_{k→g_i})$$
-
-$enc_r$ and $enc_σ$ are either separate dense neural networks or a single dense
-neural network with the output having two outputs per feature (one for the mean,
-one for the variance).
+$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(\text{enc}_r(o_{k→g_i})-\mu_{z_0})}{\text{enc}_σ(o_{k→g_i})^2}}$$
 
 A graphical overview of this method is shown in [@fig:bayesianagg].
 
@@ -810,12 +863,13 @@ of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.
 
-Similarily to the setup used for TRPO by @maxpaper, we collect the data of each agent as if that agent was the
-only agent in the world. For example, a batch of a single step of 10 agents each
-in 20 different environment becomes 200 separate training samples. Each agent
-still only has access to its own local observations, not the global system
-state. This means that during inference time, each agent has to act
-independently, based on the observations it makes locally.
+Similarily to the setup used for TRPO by @maxpaper, we collect the data of each
+agent as if that agent was the only agent in the world. For example, a batch of
+a single step of 10 agents each in 20 different environment becomes 200 separate
+training samples. Each agent still only has access to its own local
+observations, not the global system state. This means that during inference
+time, each agent has to act independently, based on the observations it makes
+locally.
 
 
 ## Experiments {#sec:experiments}
