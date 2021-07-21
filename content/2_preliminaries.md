@@ -29,19 +29,27 @@ An MDP thus consists of:
 - A set of actions (the _action space_)
 - The transition probability that a specific action in a specific state leads to
   specific second state
-- The reward function that the specifies the immediate reward an agent receives
+- The reward function that specifies the immediate reward an agent receives
   depending on the previous state, the action, and the new state
 
 The MDP can either run for an infinite period or finish after a number of
 transitions.
 
 The method by which an agent chooses its actions based on the current state is
-called a _policy_.
+called a _policy_. The policy defines a probability for taking each action based on a specific state.
 
 Based on a policy we can also define the _value function_, which is the sum of
 all future rewards that an agent gets based on an initial state and a specific
 policy. The value function can also include an exponential decay for weighing
 future rewards.
+
+Often we need to extend MDPs to allow for an observation model: A Partially
+observable Markov decision process (POMDP) is an extension to MDPs that
+introduces an indirection between the set of states and the input to the
+policy (called an _observation_). In the definition of a POMDP a set of
+observations is added with a probability of each state leading to a specific
+observation. The policy now depends on the observation and the
+action instead of the state and the action.
 
 To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward - we want to find the _optimal policy function_
@@ -53,13 +61,13 @@ complicated tasks, we instead use optimization techniques.
 
 Policy gradient training methods are a reinforcement learning technique that
 optimize the parameters of a policy using gradient descent. Actor-critic methods
-also optimize an estimation of the value function at the same time, since
+optimize both the policy and an estimation of the value function at the same time.
 
 There are multiple commonly used actor critic training methods such as Trust
 Region Policy Optimization (TRPO)
 [@{http://proceedings.mlr.press/v37/schulman15.html}], Proximal Policy
 Optimization (PPO) [@ppo] and Soft Actor Critic
-[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with of
+[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one of
 the most commonly used methods (PPO) and also explore a new method that promises
 stabler training (PG-TRL).
 
@@ -74,6 +82,17 @@ stochastic gradient descent. The surrogate objective function approximates the
 policy gradient while enforcing a trust region by clipping the update steps. PPO
 is a successor to Trust Region Policy Optimization (TRPO) with a simpler
 implementation and empirically better performance.
+
+PPO optimizes the policy using
+
+$$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
+
+Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the state, $a\sim π_{θ_k}$ is the action distribution according to the the policy at step $k$. L is given by 
+
+$$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
+
+$A$ is the advantage of taking a specific action in a specific state as opposed to the other actions as weighted by the current policy, estimated using Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on the estimated value function.
+
 
 Since the performance of PPO depends on a number of implementation details and
 quirks, we use the stable-baselines3 [@stable-baselines3] implementation of
@@ -96,19 +115,48 @@ region. The trust region and the projection is based on either the KL-divergence
 [@{https://www.springer.com/gp/book/9783540710493}].
 
 After each training step, the projected new policy depends on the previous
-policy. To prevent an infinite stacking of old policies, the explicitly projected
-policy is only used as a surrogate, while the real policy as based on a learned
-approximation. To prevent the real policy and the projected policy from
-diverging, the divergence between them is computed again in the form of the KL
-divergence or the Wasserstein $W_2$. The computed divergence (_trust
-region regression loss_) is then added to the policy gradient loss function with
-a high factor.
+policy. To prevent an infinite stacking of old policies, the explicitly
+projected policy is only used as a surrogate, while the real policy as based on
+a learned approximation. To prevent the real policy and the projected policy
+from diverging, the divergence between them is computed again in the form of the
+KL divergence or the Wasserstein $W_2$. The computed divergence (_trust region
+regression loss_) is then added to the policy gradient loss function with a high
+factor.
 
 We explore PG-TRL as an alternative training method to PPO.
 
-### Multi-agent reinforcement learning
+### Multi-agent reinforcement learning (MARL)
 
 DecPOMDP, SwarMDP definition and how to solve it using PPO
+
+### Environment model and learning process
+
+In our experiments, we impose a set of restrictions on the environments and
+learning process. The restrictions we impose here are mostly based on
+[@maxpaper]. here, we describe the major differing factors of both the learning
+process and the environments, as well as the variants we choose to consider.
+
+In general, the agents in a multi-agent environments can differ in their
+intrinsic properties. For example, they can have different control dynamics,
+maximum speeds, different observation systems, or different possible actions. We
+only consider environments with homogenous agents: All agents have the same
+physical properties, observation space, and action space. They only differ in
+their extrinsic properties, e.g., their current position, rotation, and speed.
+This also causes them to have a different perspective, different observations
+and thus different actions, resulting in differing behavior even when they are
+acting according to the same policy.
+
+We only consider cooperative environments, and we use the same reward function
+for all agents. Real-world multi-agent tasks are usually cooperative since in
+adversarial environments, one entity would not have control over multiple
+adversarial parties.
+
+We focus on global visibility since the additional noise introduced by local
+observability would be detrimental to the quality of our results.
+
+For training we use the centralized-learning/decentralized-execution (CLDE)
+approach - a shared common policy is learned for all agents, but the policy is
+executed by each agent separately.
 
 ### Aggregation methods
 
@@ -148,12 +196,11 @@ observations and actions.
 
 Instead of concatenating each element $o_i$ in an observable group $O$, we can
 also interpret each element as a sample of a distribution that describes the
-current system state. We encode each of these samples into a latent space that
-describes the relevant properties of the system, then use the empirical mean of
-the encoded samples to retrieve a representation of the system state $ψ_O$ based
-on all observed observables, as shown in @eq:meanagg.
+current system state. We use the empirical mean of the samples to retrieve a
+representation of the system state $ψ_O$ based on all observed observables, as
+shown in @eq:meanagg.
 
-$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} \text{encode}(o_i)$$ {#eq:meanagg}
+$$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i$$ {#eq:meanagg}
 
 The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
@@ -193,16 +240,41 @@ Max-pooling is widely used in convolutional neural networks to reduce the image
 dimensionality where it consistently outperforms mean (average) pooling. Softmax
 aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
 
-#### Bayesian Gaussian conditioning
+#### Bayesian aggregation {#sec:bayesianagg1}
 
 Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
 seen observation. Gaussian conditioning is widely used in applications such as
 Gaussian process regression
-[@{https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4}]. Bayesian
-aggregation was used by @bayesiancontextaggregation for context aggregation in
-conditional latent variable (CLV) models. There is no related work using
-Bayesian aggregation for MARL.
+[@{https://link.springer.com/chapter/10.1007/978-3-540-28650-9_4}].
+
+We consider Bayesian aggregation as defined by [@bayesiancontextaggregation, sec
+7.1]. We introduce $z$ as a random variable with a Gaussian distribution:
+
+$$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
+
+Initially, this random variable is estimated using a diagonal Gaussian prior as
+an a-priori estimate:
+
+$$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$
+
+This prior is then updated with Bayesian conditioning using each of the observed
+elements $r_i$. We interpret each observation as a new sample from the
+distribution $p(z)$, each with a mean $r_i$ and a standard deviation $σ_{r_i}$.
+We use the probabilistic observation model and consider the conditional
+probability $$p(r_i|z) ≡ \mathcal{N}(r_n|z, σ_{r_i}^2).$$
+
+With standard Gaussian conditioning
+[@{https://www.springer.com/gp/book/9780387310732}] this leads to the closed
+form factorized posterior description of $z$:
+
+$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}$$
+
+$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_i-\mu_{z_0})}{\sigma_{r_i}^2}}$$
+
+Bayesian aggregation was used by @bayesiancontextaggregation for context
+aggregation in conditional latent variable (CLV) models. There is no related
+work using Bayesian aggregation for MARL.
 
 #### Attention mechanisms
 

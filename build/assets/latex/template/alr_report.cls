@@ -70,7 +70,7 @@ parskip,numbers=endperiod]{scrreprt} % scrartcl
 %citebordercolor={0 0.61 0.50},
 %pdfcreator={LaTeX with ALR thesis template v0.0.0}]{hyperref}  %{0.57 0.74 0.57}
 \usepackage[hidelinks]{hyperref}
-\usepackage[noabbrev,nameinlink]{cleveref}  % Cleveref must be loaded after hyperref.
+\usepackage[noabbrev,nameinlink,capitalise]{cleveref}  % Cleveref must be loaded after hyperref.
 
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 

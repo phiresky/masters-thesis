@@ -44,10 +44,12 @@ such that no one individual is a critical component of the swarm as a whole,
 individual failures do not necessarily result in a critical collapse of the
 whole swarm.
 
-Robots can be controlled by explicit algorithmic behaviour, but that can
-be complicated, inflexible and fragile, as is shown by the success in recent applications of reinforcmeent learning to control tasks that have not been solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}]. Controlling robot swarms using policies
-learned with deep reinforcement learning has promising results in recent
-literature such as [@openai].
+Robots can be controlled by explicit algorithmic behaviour, but that can be
+complicated, inflexible and fragile, as is shown by the success in recent
+applications of reinforcmeent learning to control tasks that have not been
+solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
+Controlling robot swarms using policies learned with deep reinforcement learning
+has promising results in recent literature such as [@openai].
 
 To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
@@ -58,13 +60,13 @@ methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
 aggregation, and attentive aggregation. Our main goal is to compare these
 methods with regards to their training performance and sample efficiency.
 
-We first give an overview over related literature of all the preliminaries we
-need for our work in @sec:preliminaries, including the environments / tasks we
-consider, the background for the aggregation methods we use, and the
-reinforcement learning algorithms. Then, we describe the details of our
-contribution in @sec:contribution with details about the policy architecture and
-the different aggregation methods. Our experimental setup, including the
-specific environments we use to carry out our experiments are described in
-@sec:experiments. Finally, we show and interpret the results of our experiments
-in @sec:results and talk about the conclusions we can draw from the experiments
-as well as the potential for future work in @sec:conclusion.
+We first give an overview over all the preliminaries we need for our work in
+@sec:preliminaries, including the background for the aggregation methods we use,
+and the reinforcement learning algorithms. Next we describe related work in
+@sec:relatedwork. Then, we describe the details of our contribution in
+@sec:contribution with details about the policy architecture and the different
+aggregation methods. Our experimental setup, including the specific environments
+we use to carry out our experiments are described in @sec:experiments. Finally,
+we show and interpret the results of our experiments in @sec:results and talk
+about the conclusions we can draw from the experiments as well as the potential
+for future work in @sec:conclusion.

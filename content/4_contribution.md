@@ -93,47 +93,40 @@ $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k
 
 #### Bayesian Aggregation {#sec:bayesianagg}
 
-For the bayesian aggregation, we introduce $z$ as the aggregated latent variable
-with $$e_{k→G}=:μ_z.$$ $z$ is seen as a random variable with a Gaussian
-distribution:
+We use a separate latent space and thus a separate observation model $p(z)$ for
+each aggregation group.
 
-$$z \sim \mathcal{N}(μ_z,σ_z^2)\quad (p(z) ≡ \mathcal{N}(μ_z,σ_z^2))$$
+To make the Bayesian aggregation as described in [@sec:bayesianagg1] work in our
+policy network, we need an estimation describing the Gaussian prior ($μ_{z_0}$
+and $σ_{z_0}^2$) as well as the observed means $r_i$ and variances $σ_{r_i}^2$.
 
-This random variable is estimated using a diagonal Gaussian prior as an a-priori
-estimate:
+The mean and variance of the Gaussian prior are learned as free-standing
+variables using the backpropagation during training. Both the prior variance as
+well as the variance of the observations are rectified to enforce positivity
+using $\text{softplus}$.
 
-$$p_0(z)≡\mathcal{N}(μ_{z_0}, diag(σ_{z_0}^2))$$
+To get the observed elements $r_i$, we use the two encoder networks $enc_r$ and
+$enc_σ$ that consist of a set of dense layers:
 
-This prior is then updated with Bayesian conditioning using each of the observed
-elements $o_{k→g_i}$ in the aggregation group. We interpret each observation as
-a new sample from the distribution $p(z)$, each with a mean $r_{k→g_i}$ and a
-standard deviation $σ_{r_{k→g_i}}$. We use the probabilistic observation model
-and consider the conditional probability
-$$p(r_{k→g_i}|z) ≡ \mathcal{N}(r_{k→g}, σ_{r_{k→g}}^2).$$
+$$r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})$$
 
-With Bayes' rule, we can invert this conditional probability to get:
-$$p(z|r_{k→g_i}) = \frac{p(r_{k→g_i}|z) p(z)}{p(r_{k→g_i})}$$
+$\text{enc}_r$ and $\text{enc}_σ$ are either separate dense neural networks or a single dense
+neural network with the output having two scalars per feature (one for the mean,
+one for the variance). Finally we retrieve the value of $e_{k→G}$ from the
+aggregated latent variable, using either just the mean of $z$:
 
-$$p(z) = \frac{p(z|r_{k→g_i}) p(r_{k→g_i})}{p(r_{k→g_i}|z)}$$
+$$e_{k→G} = μ_z$$
 
-When considering the prior together with each observation in the observation
-group as an update we get the following closed form description of $z$:
+or by concatenating the mean and the variance:
 
-$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\sigma_{r_i}^2}}}$$
+$$e_{k→G} = (μ_z, σ_z^2).$$
 
-$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(r_n-\mu_{z_0})}{\sigma_{r_i}^2}}$$
+The mean and variance are calculated from the conditioned Gaussian based on the
+encoded observations as described in [@sec:bayesianagg1]:
 
-This derivation is based on [@bayesiancontextaggregation, sec. 7.1], which is
-based on [@{https://www.springer.com/gp/book/9780387310732}, sec. 2.3.3].
+$$\sigma_z^2 = \frac{1}{\frac{1}{\sigma_{z_0}^2} + \sum_{i=1}^n{\frac{1}{\text{enc}_σ(o_{k→g_i})^2}}}$$
 
-The values of $μ_{z_0}$ and $σ_{z_0}^2$ are learned as free-standing variables
-using the backpropagation during training:
-
-$$r_{k→g_i} = \text{enc}_r(o_{k→g_i}), \quad σ_{r_{k→g_i}} = \text{enc}_σ(o_{k→g_i})$$
-
-$enc_r$ and $enc_σ$ are either separate dense neural networks or a single dense
-neural network with the output having two outputs per feature (one for the mean,
-one for the variance).
+$$\mu_z = \mu_{z_0} + \sigma_z^2 \cdot \sum_{i=1}^{n}{\frac{(\text{enc}_r(o_{k→g_i})-\mu_{z_0})}{\text{enc}_σ(o_{k→g_i})^2}}$$
 
 A graphical overview of this method is shown in [@fig:bayesianagg].
 
@@ -172,9 +165,10 @@ of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.
 
-Similarily to the setup used for TRPO by @maxpaper, we collect the data of each agent as if that agent was the
-only agent in the world. For example, a batch of a single step of 10 agents each
-in 20 different environment becomes 200 separate training samples. Each agent
-still only has access to its own local observations, not the global system
-state. This means that during inference time, each agent has to act
-independently, based on the observations it makes locally.
+Similarily to the setup used for TRPO by @maxpaper, we collect the data of each
+agent as if that agent was the only agent in the world. For example, a batch of
+a single step of 10 agents each in 20 different environment becomes 200 separate
+training samples. Each agent still only has access to its own local
+observations, not the global system state. This means that during inference
+time, each agent has to act independently, based on the observations it makes
+locally.

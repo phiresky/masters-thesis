@@ -1,6 +1,4 @@
-## Related work
-
-### Reinforcement Learning in multi-agent systems (MARL)
+## Related work {#sec:relatedwork}
 
 There are many variants of applying reinforcement learning to multi-agent
 systems.
@@ -8,11 +6,6 @@ systems.
 An overview over recent MARL work and some of the differing properties can be
 found in [@{https://arxiv.org/abs/1911.10635}] and
 [@{https://www.mdpi.com/2076-3417/11/11/4948}].
-
-In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose here are mostly based on
-[@maxpaper]. Below, we describe the major differing factors of both the learning
-process and the environments, as well as the variants we choose to consider.
 
 <!-- [@tocommunicate]:
   https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html
@@ -23,22 +16,10 @@ process and the environments, as well as the variants we choose to consider.
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
 
-#### Homogenous vs heterogenous agents
+#### Centralized vs decentralized learning
 
-In general, the agents in a multi-agent environments can differ in their
-intrinsic properties. For example, they can have different control dynamics,
-maximum speeds, different observation systems, or different possible actions. We
-only consider environments with homogenous agents: All agents have the same
-physical properties, observation space, and action space. They only differ in
-their extrinsic properties: Their current position, rotation, and speed. This
-also causes them to have a different perspective, different observations and
-thus different actions, resulting in differing behavior even when they are
-acting according to the same policy.
-
-#### Centralized learning
-
-During training, we can either learn the agent policies in a centralized or a
-decentralized fasion.
+During training, the agent policies car either be learned in a centralized or a
+decentralized fashion.
 
 In decentralized learning, each agent learns their own policy, while in
 centralized learning, the policy is shared between all agents. Decentralized
@@ -55,10 +36,9 @@ single policy. It has the advantage of only needing to train one policy network
 and the possibility of being more sample-efficient. Centralized learning
 requires homogenous agents since the policy network parameters are shared across
 all agents. It is used for example in [@{https://arxiv.org/abs/1705.08926};
-@{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}]. We only
-consider the CLDE case.
+@{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}].
 
-#### Decentralized execution
+#### Centralized vs decentralized execution
 
 When using centralized learning, it is possible to use a single policy to output
 actions for all agents at the same time. This is called "centralized execution".
@@ -129,12 +109,7 @@ world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
 
-In our case, we only consider cooperative environments, and we use the same
-reward function for all agents. Real-world multi-agent tasks are usually
-cooperative since in adversarial environments, one entity would not have control
-over multiple adversarial parties.
-
-#### Local observations, partial visibility
+#### Partial visibility
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
@@ -143,11 +118,8 @@ speed.
 
 In addition, each agent may only have local visibility, for example it can only
 observe the positions of agents and objects in the world within some radius or
-the visibility can be hindered by obstacles. In this work we focus on global
-visibility since the additional noise introduced by local observability would be
-detrimental to the quality of our results.
-
-<!-- We consider both global visibility as well as local visibility cases. -->
+the visibility can be hindered by obstacles. In [@maxpaper] both the local
+and global visibility variants of the same tasks were considered.
 
 #### Simultaneous vs turn-based
 

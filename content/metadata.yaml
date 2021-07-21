@@ -9,6 +9,12 @@ lang: en-US
 pandoc: 
   # chapter: true # pandoc-crossref name figures per chapter
   cref: true
+  figPrefix: [Figure, Figures]
+  eqnPrefix: [Equation, Equations]
+  tblPrefix: [Table, Tables]
+  secPrefix: [Section, Sections]
+  linkReferences: true
+  nameInLink: true
 authors:
   - github: phiresky
     name: Robin Ruede
