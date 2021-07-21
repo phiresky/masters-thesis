@@ -1,7 +1,7 @@
 # Output directory containing the formatted manuscript
 
 The [`gh-pages`](https://github.com/phiresky/masters-thesis/tree/gh-pages) branch hosts the contents of this directory at <https://phiresky.github.io/masters-thesis/>.
-The permalink for this webpage version is <https://phiresky.github.io/masters-thesis/v/c6fd0f74c391ec3963776dd6248da7d6e7e4808d/>.
+The permalink for this webpage version is <https://phiresky.github.io/masters-thesis/v/687409182f25e31e81f1479326a1510bc48dc709/>.
 To redirect to the permalink for the latest manuscript version at anytime, use the link <https://phiresky.github.io/masters-thesis/v/freeze/>.
 
 ## Files
@@ -35,4 +35,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`c6fd0f74c391ec3963776dd6248da7d6e7e4808d`](https://github.com/phiresky/masters-thesis/commit/c6fd0f74c391ec3963776dd6248da7d6e7e4808d).
+[`687409182f25e31e81f1479326a1510bc48dc709`](https://github.com/phiresky/masters-thesis/commit/687409182f25e31e81f1479326a1510bc48dc709).
