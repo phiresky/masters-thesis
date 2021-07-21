@@ -16,7 +16,7 @@ found in [@{https://arxiv.org/abs/1911.10635}] and
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
 
-#### Centralized vs decentralized learning
+### Centralized vs decentralized learning
 
 During training, the agent policies car either be learned in a centralized or a
 decentralized fashion.
@@ -38,7 +38,7 @@ requires homogenous agents since the policy network parameters are shared across
 all agents. It is used for example in [@{https://arxiv.org/abs/1705.08926};
 @{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}].
 
-#### Centralized vs decentralized execution
+### Centralized vs decentralized execution
 
 When using centralized learning, it is possible to use a single policy to output
 actions for all agents at the same time. This is called "centralized execution".
@@ -58,10 +58,10 @@ of the policy are separate.
 Centralized-learning with decentralized-execution is thus a compromise between
 performance, robustness, and sample efficiency. CLDE is used e.g. by [@mpe;
 @maxpaper; @{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5};
-@{https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/17193};
+@{https://arxiv.org/abs/1705.08926};
 @{https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html}].
 
-#### Cooperative, adversarial, team-based
+### Cooperative, adversarial, team-based
 
 Multi-agent environments can be cooperative, adversarial, or team-based.
 Cooperative environments are those where all the agents have one common goal. In
@@ -83,7 +83,7 @@ impossible for an agent to gain an egoistic advantage over the other agents,
 enforcing the learned policy to become Pareto optimal. Another approach was
 introduced by @{https://ieeexplore.ieee.org/document/4399095}, who create a
 compromise between the sample-efficiency of individual rewards and the
-pareto-optimality of a common reward for cooperative MARL settings with their
+Pareto-optimality of a common reward for cooperative MARL settings with their
 _Hysteretic Q-Learning_ algorithm that jointly optimizes both an individual as
 well as a common reward.
 
@@ -109,7 +109,7 @@ world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
 
-#### Partial visibility
+### Partial visibility
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
@@ -121,7 +121,7 @@ observe the positions of agents and objects in the world within some radius or
 the visibility can be hindered by obstacles. In [@maxpaper] both the local
 and global visibility variants of the same tasks were considered.
 
-#### Simultaneous vs turn-based
+### Simultaneous vs turn-based
 
 In general, multi-agent environments can be turn-based or simultaneous. In
 turn-based environments each agent acts in sequence, with the world state

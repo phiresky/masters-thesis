@@ -3477,6 +3477,133 @@
 				"title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
 				"type": "article-journal"
 			}
+		},
+		"https://www.springer.com/gp/book/9783319289274": {
+			"fetched": "2021-07-21T13:59:18.312Z",
+			"bibtex": [
+				"",
+				"@book{oliehoek_concise_2016,",
+				"   series = {{SpringerBriefs} in {Intelligent} {Systems}},",
+				"   title = {A {Concise} {Introduction} to {Decentralized} {POMDPs}},",
+				"   isbn = {9783319289274},",
+				"   url = {https://www.springer.com/gp/book/9783319289274},",
+				"   abstract = {This book introduces multiagent planning under uncertainty as formalized by decentralized partially observable Markov decision processes (Dec-POMDPs). The intended audience is researchers and graduate students working in the fields of artificial intelligence related to sequential decision making: reinforcement learning, decision-theoretic planning for single agents, classical multiagent planning, decentralized control, and operations research.},",
+				"   language = {en},",
+				"   urldate = {2021-07-21},",
+				"   publisher = {Springer International Publishing},",
+				"   author = {Oliehoek, Frans A. and Amato, Christopher},",
+				"   year = {2016},",
+				"   doi = {10.1007/978-3-319-28929-8},",
+				"}",
+				""
+			],
+			"csl": {
+				"DOI": "10.1007/978-3-319-28929-8",
+				"ISBN": "9783319289274",
+				"URL": "https://www.springer.com/gp/book/9783319289274",
+				"abstract": "This book introduces multiagent planning under uncertainty as formalized by decentralized partially observable Markov decision processes (Dec-POMDPs). The intended audience is researchers and graduate students working in the fields of artificial intelligence related to sequential decision making: reinforcement learning, decision-theoretic planning for single agents, classical multiagent planning, decentralized control, and operations research.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							21
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Oliehoek",
+						"given": "Frans A."
+					},
+					{
+						"family": "Amato",
+						"given": "Christopher"
+					}
+				],
+				"collection-title": "SpringerBriefs in Intelligent Systems",
+				"id": "https://www.springer.com/gp/book/9783319289274",
+				"issued": {
+					"date-parts": [
+						[
+							2016
+						]
+					]
+				},
+				"publisher": "Springer International Publishing",
+				"title": "A Concise Introduction to Decentralized POMDPs",
+				"type": "book"
+			}
+		},
+		"https://dl.acm.org/doi/10.5555/3091125.3091320": {
+			"fetched": "2021-07-21T13:59:23.517Z",
+			"bibtex": [
+				"",
+				"@inproceedings{sosic_inverse_2017,",
+				"   address = {São Paulo, Brazil},",
+				"   series = {{AAMAS} '17},",
+				"   title = {Inverse {Reinforcement} {Learning} in {Swarm} {Systems}},",
+				"   url = {https://dl.acm.org/doi/10.5555/3091125.3091320},",
+				"   abstract = {Inverse reinforcement learning (IRL) has become a useful tool for learning behavioral models from demonstration data. However, IRL remains mostly unexplored for multi-agent systems. In this paper, we show how the principle of IRL can be extended to homogeneous large-scale problems, inspired by the collective swarming behavior of natural systems. In particular, we make the following contributions to the field: 1) We introduce the swarMDP framework, a sub-class of decentralized partially observable Markov decision processes endowed with a swarm characterization. 2) Exploiting the inherent homogeneity of this framework, we reduce the resulting multi-agent IRL problem to a single-agent one by proving that the agent-specific value functions in this model coincide. 3) To solve the corresponding control problem, we propose a novel heterogeneous learning scheme that is particularly tailored to the swarm setting. Results on two example systems demonstrate that our framework is able to produce meaningful local reward models from which we can replicate the observed global system dynamics.},",
+				"   urldate = {2021-07-21},",
+				"   booktitle = {Proceedings of the 16th {Conference} on {Autonomous} {Agents} and {MultiAgent} {Systems}},",
+				"   publisher = {International Foundation for Autonomous Agents and Multiagent Systems},",
+				"   author = {Šošić, Adrian and KhudaBukhsh, Wasiur R. and Zoubir, Abdelhak M. and Koeppl, Heinz},",
+				"   month = may,",
+				"   year = {2017},",
+				"   keywords = {multi-agent systems, swarms, inverse reinforcement learning},",
+				"   pages = {1413--1421},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "https://dl.acm.org/doi/10.5555/3091125.3091320",
+				"abstract": "Inverse reinforcement learning (IRL) has become a useful tool for learning behavioral models from demonstration data. However, IRL remains mostly unexplored for multi-agent systems. In this paper, we show how the principle of IRL can be extended to homogeneous large-scale problems, inspired by the collective swarming behavior of natural systems. In particular, we make the following contributions to the field: 1) We introduce the swarMDP framework, a sub-class of decentralized partially observable Markov decision processes endowed with a swarm characterization. 2) Exploiting the inherent homogeneity of this framework, we reduce the resulting multi-agent IRL problem to a single-agent one by proving that the agent-specific value functions in this model coincide. 3) To solve the corresponding control problem, we propose a novel heterogeneous learning scheme that is particularly tailored to the swarm setting. Results on two example systems demonstrate that our framework is able to produce meaningful local reward models from which we can replicate the observed global system dynamics.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							21
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Šošić",
+						"given": "Adrian"
+					},
+					{
+						"family": "KhudaBukhsh",
+						"given": "Wasiur R."
+					},
+					{
+						"family": "Zoubir",
+						"given": "Abdelhak M."
+					},
+					{
+						"family": "Koeppl",
+						"given": "Heinz"
+					}
+				],
+				"collection-title": "AAMAS ’17",
+				"container-title": "Proceedings of the 16th Conference on Autonomous Agents and MultiAgent Systems",
+				"id": "https://dl.acm.org/doi/10.5555/3091125.3091320",
+				"issued": {
+					"date-parts": [
+						[
+							2017,
+							5
+						]
+					]
+				},
+				"keyword": "multi-agent systems, swarms, inverse reinforcement learning",
+				"page": "1413-1421",
+				"publisher": "International Foundation for Autonomous Agents; Multiagent Systems",
+				"publisher-place": "São Paulo, Brazil",
+				"title": "Inverse Reinforcement Learning in Swarm Systems",
+				"type": "paper-conference"
+			}
 		}
 	}
 }

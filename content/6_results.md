@@ -137,7 +137,7 @@ Pursuit TRL.svg){#fig:resmptrl}
 Pursuit TRL Top.33.svg){#fig:resmptrltop}
 
 ![TRL vs PPO on the assembly task](images/plots/2021-07-11_13.13.37-assembly (by
-train algo and agg method).svg)
+train algo and agg method).svg){#fig:resasstrl}
 
 ![TRL vs PPO on single pursuit task](images/plots/2021-07-15_12.57.59-Single-evader
 Pursuit TRL vs PPO.svg){#fig:ressptrl}

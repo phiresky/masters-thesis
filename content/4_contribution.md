@@ -137,38 +137,23 @@ A graphical overview of this method is shown in [@fig:bayesianagg].
 When using residual self-attentive aggregation, we define the aggregated feature
 as
 
-$$e_{k→g} = \frac{1}{n} \sum_{i=1}^n \text{att}(\text{enc}(o_i))$$
+$$e_{k→g} = \frac{1}{n} \sum_{i=1}^n \text{resatt}(\text{enc}(o_i))$$
 
 with $\text{enc}$ being a dense neural network with zero or more hidden layers,
 and
 
-$$\text{att}(o_i) = o_i + \text{dense}(\text{MHA}(o_i, o_i, o_i)).$$
+$$\text{resatt}(o_i) = o_i + \text{dense}(\text{MHA}(o_i, o_i, o_i)).$$
+
+_Residual_ means that the input is added to the output of the
+attention mechanism, so the attention mechanism only has to learn a _residual_
+value that modifies the input features. 
 
 The $\text{MHA}$ module is the multi-head attention module from
 [@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
-sec. 3.2.2].
+sec. 3.2.2] as described in @sec:mha.
 
 This method of attentive aggregation is similar to the method successfully used
 by @openai. An overview over the model architecture used in [@openai] can be
 seen in [@fig:openai].
 
 ![A schematic of the model architecture used by OpenAI [@openai] using masked residual self-attention. It is similar to our architecture ([@fig:model]) except for the LIDAR in the self-observations as well as the LSTM layer at the end.](images/model-openai.drawio.svg){#fig:openai}
-
-### Multi-agent learning with PPO
-
-PPO and other policy gradient methods are designed for single-agent
-environments. We adapt PPO to the multi-agent setting without making any major
-changes: The policy parameters are shared for all agents, and each agent gets
-the same global reward. The value function for advantage estimation is based on
-the same architecture as the policy. Since the stable-baselines3 implementation
-of PPO is already written for vectorized environments (collecting trajectories
-from many environments running in parallel), we create a new VecEnv
-implementation that flattens multiple agents in multiple environments.
-
-Similarily to the setup used for TRPO by @maxpaper, we collect the data of each
-agent as if that agent was the only agent in the world. For example, a batch of
-a single step of 10 agents each in 20 different environment becomes 200 separate
-training samples. Each agent still only has access to its own local
-observations, not the global system state. This means that during inference
-time, each agent has to act independently, based on the observations it makes
-locally.

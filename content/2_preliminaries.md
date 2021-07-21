@@ -36,7 +36,8 @@ The MDP can either run for an infinite period or finish after a number of
 transitions.
 
 The method by which an agent chooses its actions based on the current state is
-called a _policy_. The policy defines a probability for taking each action based on a specific state.
+called a _policy_. The policy defines a probability for taking each action based
+on a specific state.
 
 Based on a policy we can also define the _value function_, which is the sum of
 all future rewards that an agent gets based on an initial state and a specific
@@ -45,11 +46,11 @@ future rewards.
 
 Often we need to extend MDPs to allow for an observation model: A Partially
 observable Markov decision process (POMDP) is an extension to MDPs that
-introduces an indirection between the set of states and the input to the
-policy (called an _observation_). In the definition of a POMDP a set of
-observations is added with a probability of each state leading to a specific
-observation. The policy now depends on the observation and the
-action instead of the state and the action.
+introduces an indirection between the set of states and the input to the policy
+(called an _observation_). In the definition of a POMDP a set of observations is
+added with a probability of each state leading to a specific observation. The
+policy now depends on the observation and the action instead of the state and
+the action.
 
 To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward - we want to find the _optimal policy function_
@@ -61,15 +62,16 @@ complicated tasks, we instead use optimization techniques.
 
 Policy gradient training methods are a reinforcement learning technique that
 optimize the parameters of a policy using gradient descent. Actor-critic methods
-optimize both the policy and an estimation of the value function at the same time.
+optimize both the policy and an estimation of the value function at the same
+time.
 
 There are multiple commonly used actor critic training methods such as Trust
 Region Policy Optimization (TRPO)
 [@{http://proceedings.mlr.press/v37/schulman15.html}], Proximal Policy
 Optimization (PPO) [@ppo] and Soft Actor Critic
-[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one of
-the most commonly used methods (PPO) and also explore a new method that promises
-stabler training (PG-TRL).
+[@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one
+of the most commonly used methods (PPO) and also explore a new method that
+promises stabler training (PG-TRL).
 
 #### Proximal Policy Optimization (PPO)
 
@@ -87,12 +89,16 @@ PPO optimizes the policy using
 
 $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
-Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the state, $a\sim π_{θ_k}$ is the action distribution according to the the policy at step $k$. L is given by 
+Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
+state, $a\sim π_{θ_k}$ is the action distribution according to the the policy at
+step $k$. L is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
-$A$ is the advantage of taking a specific action in a specific state as opposed to the other actions as weighted by the current policy, estimated using Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on the estimated value function.
-
+$A$ is the advantage of taking a specific action in a specific state as opposed
+to the other actions as weighted by the current policy, estimated using
+Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on
+the estimated value function.
 
 Since the performance of PPO depends on a number of implementation details and
 quirks, we use the stable-baselines3 [@stable-baselines3] implementation of
@@ -127,13 +133,31 @@ We explore PG-TRL as an alternative training method to PPO.
 
 ### Multi-agent reinforcement learning (MARL)
 
-DecPOMDP, SwarMDP definition and how to solve it using PPO
+Usually, reinforcement learning algorithms operate on POMDPs. POMDPs only have a
+single agent interacting with the environment, so for multi-agent settings, we
+need a different system that can model multiple agents interacting with the
+world. There's different ways of extending POMDPs to work for multi-agent tasks. Decentralized POMDPs (Dec-POMDP)
+[@{https://www.springer.com/gp/book/9783319289274}] are a generalization of
+POMDPs that split the action and observation spaces
+
+- A set of $n$ agents $D={1,\dots,n}$
+- A set of states $S$
+- A set of joint actions $A$
+- A set of transition probabilities between states $T(s,a,s') = P(s'|s,a)$
+- A set of joint observations $O$
+- An immediate reward function $R: S × A → \mathbb{R}$
+
+Note that this definition is very similar to a normal POMDP. The difference is
+that the set of joint observations and joint actions consists of a tuple of the
+observations/actions of each individual agent
+(i.e. $a\in A = \langle a_i,\dots,a_n \rangle$). In Dec-POMDPs every agent can have
+differing observations and actions.
 
 ### Environment model and learning process
 
 In our experiments, we impose a set of restrictions on the environments and
 learning process. The restrictions we impose here are mostly based on
-[@maxpaper]. here, we describe the major differing factors of both the learning
+[@maxpaper]. Here, we describe the major differing factors of both the learning
 process and the environments, as well as the variants we choose to consider.
 
 In general, the agents in a multi-agent environments can differ in their
@@ -146,6 +170,11 @@ This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
 acting according to the same policy.
 
+We thus only consider a subset of Dec-POMDPs, namely those where the agents are
+homogenous - each agent has the same possible observations and actions. This has
+also been described as a SwarMDP by
+@{https://dl.acm.org/doi/10.5555/3091125.3091320}.
+
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
 adversarial environments, one entity would not have control over multiple
@@ -157,6 +186,23 @@ observability would be detrimental to the quality of our results.
 For training we use the centralized-learning/decentralized-execution (CLDE)
 approach - a shared common policy is learned for all agents, but the policy is
 executed by each agent separately.
+
+PPO and other policy gradient methods are designed for single-agent
+environments. We adapt PPO to the multi-agent setting without making any major
+changes: The policy parameters are shared for all agents, and each agent gets
+the same global reward. The value function for advantage estimation is based on
+the same architecture as the policy. Since the stable-baselines3 implementation
+of PPO is already written for vectorized environments (collecting trajectories
+from many environments running in parallel), we create a new VecEnv
+implementation that flattens multiple agents in multiple environments.
+
+Similarily to the setup used for TRPO by @maxpaper, we collect the data of each
+agent as if that agent was the only agent in the world. For example, a batch of
+a single step of 10 agents each in 20 different environment becomes 200 separate
+training samples. Each agent still only has access to its own local
+observations, not the global system state. This means that during inference
+time, each agent has to act independently, based on the observations it makes
+locally.
 
 ### Aggregation methods
 
@@ -276,34 +322,45 @@ Bayesian aggregation was used by @bayesiancontextaggregation for context
 aggregation in conditional latent variable (CLV) models. There is no related
 work using Bayesian aggregation for MARL.
 
-#### Attention mechanisms
+#### Attention mechanisms {#sec:mha}
 
-Attention mechanisms are commonly used in other areas of machine learning. The
-multi-head attention mechanism was introduced by
-@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html}
-and is the core of the state-of-the-art model for many natural language
-processing tasks.
+Attention mechanisms are commonly used in other areas of machine learning. 
 
-For attentive aggregation, the observations from the different agents are first
-attented to by some attention mechanism, then the resulting new feature vector
-is aggregated using some aggregation mechanism.
+An attention function computes some compatibility between a _query_ $Q$ and a _key_ $K$, and uses this compatibility as the weight to compute a weighted sum of the _values_ $V$. The query, key, and value are all vectors. 
+
+[@att]: https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
+
+<!-- For attentive aggregation, the observations from the different agents are first
+attended to by some attention mechanism, then the resulting new feature vector
+is aggregated using some aggregation mechanism. -->
 
 <!-- {attention: 30,31,32,33 (from ARE paper)} -->
 
-We only consider the specific multi-head residual masked self attention variant
-of attention mechanisms used by @openai. The general multi-head attention
-($\text{MHA}$) mechanism was introduced by
-@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html}.
-It uses multiple independent attention heads to compute weights for a query, a
-key, and a value.
+The
+multi-head attention mechanism was introduced by @att
+and is the core of the state-of-the-art model for many natural language
+processing tasks.
+
+We only consider the specific multi-head residual masked self attention  variant
+of attention mechanisms for observation aggregation used by @openai.
+
+The attention function is a scaled dot-product attention as described by [@att]:
+
+$$\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$$
+
+$d_k$ is the dimensionality of the key $K$.
+
+Instead of using only a single attention function, [@att] uses multiple independent attention heads. The inputs ($Q, K, V$) of each of the heads $1,\dots,n$ as well as the concatenated output is transformed with a separately learned dense layers (described as weight matrices $W_i^Q, W_i^K, W_i^V, W^O$). The full multi-head attention module $MHA()$ thus looks like this:
+
+$$\text{head}_i = \text{Attention}(QW_i^Q,KW_i^K,VW_i^V)$$
+
+$$\text{MHA}(Q,K,V)=\text{concat}(\text{head}_1,\dots,\text{head}_n)W^O$$
 
 For self-attention, the query $Q$, the key $K$ and the value $V$ are all set to
-the input value. _Residual_ means that the input is added to the output of the
-attention mechanism, so the attention mechanism only has to learn a _residual_
-value that modifies the input features. In [@openai], the authors combine the
+the same input value. In [@openai], the authors combine the
 multi-head attention with a mean aggregation. Note that they only use the
 attention mechanism to individually transform the information from each separate
-observable into a new feature set instead of using it as a weighing function for
+observable into a new feature set instead of directly using it as a weighing function for
 the aggregation.
 
 @{http://proceedings.mlr.press/v97/iqbal19a.html} use a different approach with

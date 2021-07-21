@@ -66,8 +66,7 @@ centralized-learning/decentralized-execution setup.
 We first give an overview over all the preliminaries we need for our work in
 @sec:preliminaries, including reinforcement learning in general, multi-agent
 reinforcement learning, and the background for the aggregation methods we use.
-Next we describe related work in @sec:relatedwork. Then, we describe the details
-of our contribution in @sec:contribution with details about the policy
+Next we describe related work in @sec:relatedwork. Then, we describe our contribution in @sec:contribution with details about the policy
 architecture and the different aggregation methods. Our experimental setup,
 including the specific environments we use to carry out our experiments are
 described in @sec:experiments. Finally, we show and interpret the results of our
