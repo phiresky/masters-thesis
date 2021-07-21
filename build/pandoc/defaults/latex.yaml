@@ -2,6 +2,7 @@ from: markdown
 filters:
 - pandoc-crossref
 - pandoc-url2cite
+- build/pandoc-capitalizeheadings.py
 - build/pandoc-svg2pdf.py
 wrap: preserve
 metadata:

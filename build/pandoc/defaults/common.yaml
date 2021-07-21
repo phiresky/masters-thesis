@@ -5,6 +5,7 @@ filters:
 - pandoc-crossref
 - pandoc-url2cite
 - citeproc
+- build/pandoc-capitalizeheadings.py
 wrap: preserve
 metadata:
   csl: build/assets/style.csl

@@ -8,6 +8,7 @@ authors = ["phiresky <phireskyde+git@gmail.com>"]
 python = "^3.9"
 manubot = "^0.5.1"
 pandoc-xnos = "^2.5.0"
+titlecase = "^2.3"
 
 [tool.poetry.dev-dependencies]
 
