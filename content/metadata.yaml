@@ -1,12 +1,14 @@
 ---
-title: "Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning"
+title:
+  "Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep
+  Reinforcement Learning"
 keywords:
   - MARL
   - multi-agent
   - mreinforcement learning
   - Bayesian conditioning
 lang: en-US
-pandoc: 
+pandoc:
   # chapter: true # pandoc-crossref name figures per chapter
   cref: true
   figPrefix: [Figure, Figures]
@@ -15,6 +17,7 @@ pandoc:
   secPrefix: [Section, Sections]
   linkReferences: true
   nameInLink: true
+html_url: https://phiresky.github.io/masters-thesis/
 authors:
   - github: phiresky
     name: Robin Ruede
