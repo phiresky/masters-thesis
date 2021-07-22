@@ -39,11 +39,11 @@ mpe
 NN
 observability
 observables
-openai
+OpenAI
 optimality
 Optuna
 performane
-pettingzoo
+PettingZoo
 phiresky
 POMDP
 POMDPs
