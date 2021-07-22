@@ -5,8 +5,9 @@
 We have made a comprehensive comparison between the performance of mean
 aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
-tasks. We have observed that there is no clear advantage of one of the methods over
-the others, with the results differing strongly between the different tasks.
+tasks. We have observed that there is no clear advantage of one of the methods
+over the others, with the results differing strongly between the different
+tasks.
 
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->
 
@@ -30,6 +31,13 @@ local visibility case also increases the uncertainty of each observation though,
 it might be a case where Bayesian aggregation performs better. Future work
 should include experiments that have a larger environment with observability
 limited by range or by obstacles.
+
+Even though we show in our experiments that Bayesian aggregation into the same
+latent space is worse than aggregating into separate spaces, there might be
+potential there to be able to scale the number of aggregation groups with more
+hyperparameter tuning or by introducing a two-stage encoder where the first
+encoder is separate by aggregation group and the second encoder is shared, then
+aggregating the output of the second encoder into the same space.
 
 We also only considered tasks with implicit communication - the agents had to
 infer the intent of the other agents purely by their actions. There is related

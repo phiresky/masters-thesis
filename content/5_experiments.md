@@ -43,7 +43,8 @@ The agents are modeled as infinitesimal dots without collisions. They use
 double-integrator unicycle dynamics
 [@{https://ieeexplore.ieee.org/document/976029}], so the action outputs are the
 acceleration of the linear velocity ($\dot{v}$) and the angular velocity
-($\dot{ω}$).
+($\dot{ω}$). The agents move around in a square world that either has walls at
+the edge or is on a torus (the position is calculated modulo $100$).
 
 The observation space of agent $a_i$ comprises the following information:
 
@@ -141,7 +142,8 @@ An example of a successful episode of the task is in @fig:assembly.
 
 ![Example successful episode of the box assembly task (from [@gregor])](images/box-assembly.png){#fig:assembly}
 
-[@gregor]: https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
+[@gregor]:
+  https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
 
 The observation space for the box assembly task contains the following
 information:
