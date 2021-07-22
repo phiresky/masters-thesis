@@ -77,7 +77,7 @@ sameseparate
 scalable
 Similarily
 SISL
-Softmax
+softmax
 StarCraft
 SwarMDP
 tanh
