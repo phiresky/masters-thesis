@@ -1,11 +1,11 @@
-## Scalable information aggregation for deep MARL policies {#sec:contribution}
+# Scalable information aggregation for deep MARL policies {#sec:contribution}
 
 We introduce a policy architecture for deep reinforcement learning that projects
 observations from one or more different kinds of observables into samples of
 latent spaces, then aggregates them into a single latent value. This makes the
 architecture scale to any number as well as a varying number of observables.
 
-### Policy Architecture
+## Policy Architecture
 
 In general, our policy architecture is based on [@maxpaper] and [@openai].
 
@@ -69,7 +69,7 @@ Gaussian distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
-#### Mean/Max/Softmax Aggregation
+### Mean/Max/Softmax Aggregation
 
 Each sample in the latent space is weighted by a function $\text{weigh}()$ and
 aggregated using an aggregation operator $\bigoplus$:
@@ -91,7 +91,7 @@ aggregation operator is the sum:
 
 $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k→g_j})}\right) e_{k→g_i}$$
 
-#### Bayesian Aggregation {#sec:bayesianagg}
+### Bayesian Aggregation {#sec:bayesianagg}
 
 We use a separate latent space and thus a separate observation model $p(z)$ for
 each aggregation group.
@@ -110,10 +110,10 @@ $enc_σ$ that consist of a set of dense layers:
 
 $$r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})$$
 
-$\text{enc}_r$ and $\text{enc}_σ$ are either separate dense neural networks or a single dense
-neural network with the output having two scalars per feature (one for the mean,
-one for the variance). Finally we retrieve the value of $e_{k→G}$ from the
-aggregated latent variable, using either just the mean of $z$:
+$\text{enc}_r$ and $\text{enc}_σ$ are either separate dense neural networks or a
+single dense neural network with the output having two scalars per feature (one
+for the mean, one for the variance). Finally we retrieve the value of $e_{k→G}$
+from the aggregated latent variable, using either just the mean of $z$:
 
 $$e_{k→G} = μ_z$$
 
@@ -132,7 +132,7 @@ A graphical overview of this method is shown in [@fig:bayesianagg].
 
 ![Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable $z$ to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of $z$ are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in @fig:model.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
 
-#### Attentive Aggregation
+### Attentive Aggregation
 
 When using residual self-attentive aggregation, we define the aggregated feature
 as
@@ -144,9 +144,9 @@ and
 
 $$\text{resatt}(o_i) = o_i + \text{dense}(\text{MHA}(o_i, o_i, o_i)).$$
 
-_Residual_ means that the input is added to the output of the
-attention mechanism, so the attention mechanism only has to learn a _residual_
-value that modifies the input features. 
+_Residual_ means that the input is added to the output of the attention
+mechanism, so the attention mechanism only has to learn a _residual_ value that
+modifies the input features.
 
 The $\text{MHA}$ module is the multi-head attention module from
 [@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},

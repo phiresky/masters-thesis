@@ -1,4 +1,4 @@
-## Related work {#sec:relatedwork}
+# Related work {#sec:relatedwork}
 
 There are many variants of applying reinforcement learning to multi-agent
 systems.
@@ -16,7 +16,7 @@ found in [@{https://arxiv.org/abs/1911.10635}] and
 <!-- - Multi-agent Reinforcement Learning as a Rehearsal for Decentralized Planning
   https://www.sciencedirect.com/science/article/abs/pii/S0925231216000783 -->
 
-### Centralized vs decentralized learning
+## Centralized vs decentralized learning
 
 During training, the agent policies car either be learned in a centralized or a
 decentralized fashion.
@@ -38,7 +38,7 @@ requires homogenous agents since the policy network parameters are shared across
 all agents. It is used for example in [@{https://arxiv.org/abs/1705.08926};
 @{https://link.springer.com/chapter/10.1007/978-3-319-71682-4_5}].
 
-### Centralized vs decentralized execution
+## Centralized vs decentralized execution
 
 When using centralized learning, it is possible to use a single policy to output
 actions for all agents at the same time. This is called "centralized execution".
@@ -61,7 +61,7 @@ performance, robustness, and sample efficiency. CLDE is used e.g. by [@mpe;
 @{https://arxiv.org/abs/1705.08926};
 @{https://proceedings.neurips.cc/paper/2016/hash/c7635bfd99248a2cdef8249ef7bfbef4-Abstract.html}].
 
-### Cooperative, adversarial, team-based
+## Cooperative, adversarial, team-based
 
 Multi-agent environments can be cooperative, adversarial, or team-based.
 Cooperative environments are those where all the agents have one common goal. In
@@ -109,7 +109,7 @@ world with obstacles, and members of one team try to find the members of the
 other team. The Hide-team is rewarded +1 if none of the team members is seen by
 any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
 
-### Partial visibility
+## Partial visibility
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
@@ -118,10 +118,10 @@ speed.
 
 In addition, each agent may only have local visibility, for example it can only
 observe the positions of agents and objects in the world within some radius or
-the visibility can be hindered by obstacles. In [@maxpaper] both the local
-and global visibility variants of the same tasks were considered.
+the visibility can be hindered by obstacles. In [@maxpaper] both the local and
+global visibility variants of the same tasks were considered.
 
-### Simultaneous vs turn-based
+## Simultaneous vs turn-based
 
 In general, multi-agent environments can be turn-based or simultaneous. In
 turn-based environments each agent acts in sequence, with the world state
@@ -137,7 +137,7 @@ is based around turn-based environments. Examples of turn-based environments
 include most board games and many video games. Most real world scenarios are
 simultaneous though, so we only consider environments with simultaneous actions.
 
-### MARL tasks in related work
+## MARL tasks in related work
 
 @openai create a team-based multi-agent environment with one team of agents
 trying to find and "catch" the agents of the other team.

@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 Ant colonies, bee swarms, fish colonies, and migrating birds all exhibit
 swarming behaviour to achieve a common goal or to gain an advantage over what's
@@ -51,7 +51,7 @@ solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
 Controlling robot swarms using policies learned with deep reinforcement learning
 has promising results in recent literature such as [@openai].
 
-To apply deep reinforcement learning to multi-agent systems , we need to make a
+To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
 varying amount of observations from the neighboring agents into the fixed size
@@ -64,11 +64,13 @@ with a team reward, with homogenous agents in a
 centralized-learning/decentralized-execution setup.
 
 We first give an overview over all the preliminaries we need for our work in
-@sec:preliminaries, including reinforcement learning in general, multi-agent
-reinforcement learning, and the background for the aggregation methods we use.
-Next we describe related work in @sec:relatedwork. Then, we describe our contribution in @sec:contribution with details about the policy
-architecture and the different aggregation methods. Our experimental setup,
-including the specific environments we use to carry out our experiments are
-described in @sec:experiments. Finally, we show and interpret the results of our
-experiments in @sec:results and talk about the conclusions we can draw from the
-experiments as well as the potential for future work in @sec:conclusion.
+@sec:preliminaries, including reinforcement learning in general, the multi-agent
+extensions for reinforcement learning, and the background for the aggregation
+methods we use. Next, we describe some related work in @sec:relatedwork. Then,
+we describe our contribution in @sec:contribution with details about the policy
+architecture and the specifics for the different aggregation methods. Our
+experimental setup, including the specific environments we use to carry out our
+experiments are described in @sec:experiments. Finally, we show and interpret
+the results of our experiments in @sec:results and talk about the conclusions we
+can draw from the experiments as well as the potential for future work in
+@sec:conclusion.

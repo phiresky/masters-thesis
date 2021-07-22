@@ -5,22 +5,17 @@
     <title>Manubot</title>
     <id>http://www.zotero.org/styles/manubot</id>
     <link href="http://www.zotero.org/styles/manubot" rel="self"/>
-    <link href="https://github.com/manubot/rootstock" rel="documentation"/>
+    <link href="https://github.com/greenelab/manubot-rootstock" rel="documentation"/>
     <author>
       <name>Daniel Himmelstein</name>
       <email>daniel.himmelstein@gmail.com</email>
     </author>
-    <updated>2018-08-22T19:08:46+00:00</updated>
+    <updated>2017-09-04T20:54:02+00:00</updated>
     <rights license="https://creativecommons.org/publicdomain/zero/1.0/legalcode">This work is dedicated to the public domain via CC0 1.0</rights>
   </info>
   <macro name="author">
     <names variable="author">
       <name initialize="false" initialize-with="" et-al-min="12" et-al-use-first="10" et-al-use-last="true"/>
-      <label form="long" prefix=" (" suffix=")"/>
-      <substitute>
-        <names variable="editor"/>
-        <text macro="venue"/>
-      </substitute>
     </names>
   </macro>
   <macro name="venue">
@@ -39,39 +34,31 @@
       </else-if>
     </choose>
   </macro>
-  <citation>
+  <citation collapse="citation-number">
     <sort>
-      <key variable="citation-label"/>
+      <key variable="citation-number"/>
     </sort>
-    <layout prefix="[" suffix="]" delimiter=", ">
-      <text variable="citation-label"/>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
     </layout>
   </citation>
-  <bibliography second-field-align="flush">
+  <bibliography hanging-indent="true" second-field-align="margin">
     <layout>
-      <text variable="citation-label" prefix="[" suffix="] " />
+      <text variable="citation-number" suffix=". "/>
+      <group>
+        <text variable="title" font-weight="bold"/>
+      </group>
+      <group display="block">
+        <text macro="author"/>
+      </group>
       <group delimiter=" ">
-        <group>
-          <text variable="title" font-weight="bold"/>
-        </group>
-        <group display="block">
-          <text macro="author"/>
-        </group>
-        <group delimiter=" ">
-          <text macro="venue" font-style="italic"/>
-          <date variable="issued" prefix="(" suffix=")">
-            <date-part name="year"/>
-            <date-part name="month" form="numeric-leading-zeros" prefix="-"/>
-            <date-part name="day" form="numeric-leading-zeros" prefix="-"/>
-          </date>
-          <text variable="URL"/>
-        </group>
-        <group display="block" delimiter=" · ">
-          <text variable="DOI" text-case="lowercase" prefix="DOI: "/>
-          <text variable="PMID" prefix="PMID: "/>
-          <text variable="PMCID" prefix="PMCID: "/>
-          <text variable="ISBN" prefix="ISBN: "/>
-        </group>
+        <text macro="venue" font-style="italic"/>
+        <date variable="issued" prefix="(" suffix=")">
+          <date-part name="year"/>
+          <date-part name="month" form="numeric-leading-zeros" prefix="-"/>
+          <date-part name="day" form="numeric-leading-zeros" prefix="-"/>
+        </date>
+        <text variable="URL"/>
       </group>
     </layout>
   </bibliography>

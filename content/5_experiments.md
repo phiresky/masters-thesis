@@ -1,6 +1,6 @@
-## Experiments {#sec:experiments}
+# Experiments {#sec:experiments}
 
-### Experimental setup
+## Experimental setup
 
 All of our experiments were run using stable-baselines3 (sb3). _OpenAI
 Baselines_ is a deep reinforcement learning framework that provides
@@ -22,7 +22,7 @@ We optimized the hyper parameters using Optuna
 
 {describe batch size, other meta settings}
 
-### Considered tasks
+## Considered tasks
 
 To evaluate the different aggregation methods we need simulated environments
 where multiple agents can cooperatively solve a task. Since most of the commonly
@@ -31,7 +31,7 @@ a single agent, we use custom built environments.
 
 The following shows which specific tasks we consider.
 
-#### Rendezvous task {#sec:rendezvous}
+### Rendezvous task {#sec:rendezvous}
 
 In the rendezvous task, a set of $n$ agents try to meet up in a single point. An
 example is shown in @fig:rendezvous1. Our implementation of the rendezvous task
@@ -68,7 +68,7 @@ $$r = \frac{1}{n} \sum_{i=0}^n \sum_{j=i+1}^n ||p_i-p_j||$$
 
 The episode ends after 1024 time steps.
 
-#### Single-Evader Pursuit task
+### Single-Evader Pursuit task
 
 In the pursuit task, multiple pursuers try to catch an evader. The evader agent
 has a higher speed than the pursuers, so the pursuers need to cooperate to be
@@ -111,7 +111,7 @@ The episode ends once the evader is caught or 1024 timesteps have passed. The
 evader is declared as caught if the distance is minimum distance between an
 agent and the evader is less than $1%$ of the world width.
 
-##### Multi-evader pursuit
+#### Multi-evader pursuit
 
 The multi-evader pursuit task is the same as the normal pursuit task, except
 there are multiple hard-coded evaders.
@@ -123,7 +123,7 @@ $\frac{2}{100}$ of the world width. Contrary to the single-evader task, the
 episode does not end when an evader is caught and instead always runs for 1024
 timesteps.
 
-##### Box assembly task
+#### Box assembly task
 
 In the box assembly task, the agents are modeled similar to Kilobots, as
 described by @gregor. The agents are two-dimensional circles with collision.
@@ -159,7 +159,7 @@ information:
    2. The sin and cos of the bearing angle to the box
    3. The sin and cos of the box's rotation relative to our rotation
 
-##### Box clustering task
+#### Box clustering task
 
 The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an
