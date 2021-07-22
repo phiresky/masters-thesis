@@ -73,16 +73,19 @@
     button.append(counter);
   }
 
-  // when button is clicked
-  function onButtonClick(event, button) {
+  function activate() {
     const script = document.createElement("script");
     script.src = embed;
     document.body.append(script);
+  }
+  // when button is clicked
+  function onButtonClick(event, button) {
+    activate();
     button.remove();
   }
 
   // start script when document is finished loading
-  window.addEventListener("load", start);
+  window.addEventListener("load", activate); // start);
 </script>
 
 <!-- hypothesis icon -->

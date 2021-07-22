@@ -47,7 +47,7 @@ view of the world. The disadvantage is that this means agents can't act
 independently if the environment has restrictions such as partial observability,
 and it is less robust to communication failures and to agent "deaths".
 
-The alternative is decentralized execution - the observation inputs and action
+The alternative is decentralized execution — the observation inputs and action
 outputs of the policy networks are local to a single agent. This can formally be
 described as a _Decentralized Partially Observable Markov Decision Process_
 (Dec-POMDP) [@{https://link.springer.com/chapter/10.1007/978-3-642-27645-3_15}].
@@ -77,15 +77,14 @@ environment.
 
 Cooperative learning can be done with separate agent rewards or a single common
 reward. Cooperative learning with a single reward means the reward must be
-somewhat sparse, since each agent cannot easily judge what the impact of it's
-own actions were on the reward in any given time step. This also makes it
-impossible for an agent to gain an egoistic advantage over the other agents,
-enforcing the learned policy to become Pareto optimal. Another approach was
-introduced by @{https://ieeexplore.ieee.org/document/4399095}, who create a
-compromise between the sample-efficiency of individual rewards and the
-Pareto-optimality of a common reward for cooperative MARL settings with their
-_Hysteretic Q-Learning_ algorithm that jointly optimizes both an individual as
-well as a common reward.
+somewhat sparse, since each agent cannot easily judge what the impact of its own
+actions were on the reward in any given time step. This also makes it impossible
+for an agent to gain an egoistic advantage over the other agents, enforcing the
+learned policy to become Pareto optimal. Another approach was introduced by
+@{https://ieeexplore.ieee.org/document/4399095}, who create a compromise between
+the sample-efficiency of individual rewards and the Pareto-optimality of a
+common reward for cooperative MARL settings with their _Hysteretic Q-Learning_
+algorithm that jointly optimizes an individual as well as a common reward.
 
 Adversarial environments are usually zero-sum, that is the average reward over
 all agents is zero. An example for an adversarial environment is the _Gather_
@@ -113,7 +112,7 @@ any seeker, and -1 otherwise. The Seek-team is given the opposite reward.
 
 The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent's properties are observed
-relative to the current agent - the distance, relative bearing, and relative
+relative to the current agent — the distance, relative bearing, and relative
 speed.
 
 In addition, each agent may only have local visibility, for example it can only
@@ -146,7 +145,7 @@ trying to find and "catch" the agents of the other team.
 catching game in a discrete 2D world, where multiple paddles moving in one
 dimension try to catch multiple balls that fall down the top of the screen. (2)
 A spreading game, where N agents try to cover N landmarks. The world is
-continous, but the action space is discrete. This game is similar to the
+continuous, but the action space is discrete. This game is similar to the
 spreading game defined in [@mpe]. (3) StarCraft micromanagement: Two groups of
 units in the StarCraft game battle each other, each unit controlled by an agent.
 
@@ -167,4 +166,4 @@ these tasks.
 @gregor define a set of environments based on Kilobots, simple small round
 robots in a virtual environment together with boxes. The Kilobots are tasked
 with moving the boxes around or arranging them based on their color. We compare
-our method on both the box assembly as well as the box clustering task.
+our method on the box assembly as well as the box clustering task.

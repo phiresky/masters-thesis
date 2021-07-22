@@ -1,9 +1,10 @@
 # Scalable information aggregation for deep MARL policies {#sec:contribution}
 
-We introduce a policy architecture for deep reinforcement learning that projects
-observations from one or more different kinds of observables into samples of
-latent spaces, then aggregates them into a single latent value. This makes the
-architecture scale to any number as well as a varying number of observables.
+We introduce a policy architecture for deep multi-agent reinforcement learning
+that projects observations from one or more different kinds of observables into
+samples of latent spaces, then aggregates them into a single latent value. This
+makes the architecture scale to any number as well as a varying number of
+observables.
 
 ## Policy Architecture
 
@@ -48,7 +49,7 @@ latent space value for each aggregation group:
 
 $$e_{k→G} = \text{agg}_{i=0}^n(e_{k→g_i})$$
 
-We then concatenate all of the latent spaces as well as the proprioceptive
+We then concatenate all the latent spaces as well as the proprioceptive
 observations $p$ to get a single encoded value $e_k$:
 
 $$e_k = (p, G_1, G_2, ...)$$
@@ -101,9 +102,9 @@ policy network, we need an estimation describing the Gaussian prior ($μ_{z_0}$
 and $σ_{z_0}^2$) as well as the observed means $r_i$ and variances $σ_{r_i}^2$.
 
 The mean and variance of the Gaussian prior are learned as free-standing
-variables using the backpropagation during training. Both the prior variance as
-well as the variance of the observations are rectified to enforce positivity
-using $\text{softplus}$.
+variables using the backpropagation during training. The prior variance as well
+as the variance of the observations are rectified to enforce positivity using
+$\text{softplus}$.
 
 To get the observed elements $r_i$, we use the two encoder networks $enc_r$ and
 $enc_σ$ that consist of a set of dense layers:
@@ -112,7 +113,7 @@ $$r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})$$
 
 $\text{enc}_r$ and $\text{enc}_σ$ are either separate dense neural networks or a
 single dense neural network with the output having two scalars per feature (one
-for the mean, one for the variance). Finally we retrieve the value of $e_{k→G}$
+for the mean, one for the variance). Finally, we retrieve the value of $e_{k→G}$
 from the aggregated latent variable, using either just the mean of $z$:
 
 $$e_{k→G} = μ_z$$

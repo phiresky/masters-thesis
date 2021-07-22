@@ -55,7 +55,7 @@ the action. An observation does not necessarily include all the information from
 the corresponding state.
 
 To successfully solve a reinforcement learning task, we need to find a policy
-that has a high expected reward - we want to find the _optimal policy function_
+that has a high expected reward — we want to find the _optimal policy function_
 that has the highest value function on the initial states of our environment.
 Since finding the optimal policy directly is impossible for even slightly
 complicated tasks, we instead use optimization techniques.
@@ -79,12 +79,12 @@ promises stabler training (PG-TRL).
 
 [@ppo]: https://arxiv.org/abs/1707.06347
 
-Proximal Policy Optimization [@ppo] is a actor-critic policy gradient method for
-reinforcement learning. In PPO, each training step consists of collecting a set
-of trajectory rollouts, then optimizing a "surrogate" objective function using
-stochastic gradient descent. The surrogate objective function approximates the
-policy gradient while enforcing a trust region by clipping the update steps. PPO
-is a successor to Trust Region Policy Optimization (TRPO) with a simpler
+Proximal Policy Optimization [@ppo] is an actor-critic policy gradient method
+for reinforcement learning. In PPO, each training step consists of collecting a
+set of trajectory rollouts, then optimizing a "surrogate" objective function
+using stochastic gradient descent. The surrogate objective function approximates
+the policy gradient while enforcing a trust region by clipping the update steps.
+PPO is a successor to Trust Region Policy Optimization (TRPO) with a simpler
 implementation and empirically better performance.
 
 PPO optimizes the policy using
@@ -92,7 +92,7 @@ PPO optimizes the policy using
 $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
 Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
-state, $a\sim π_{θ_k}$ is the action distribution according to the the policy at
+state, $a\sim π_{θ_k}$ is the action distribution according to the policy at
 step $k$. L is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
@@ -138,8 +138,8 @@ We explore PG-TRL as an alternative training method to PPO.
 Usually, reinforcement learning algorithms operate on POMDPs. POMDPs only have a
 single agent interacting with the environment, so for multi-agent settings, we
 need a different system that can model multiple agents interacting with the
-world. There's different ways of extending POMDPs to work for multi-agent tasks.
-Decentralized POMDPs (Dec-POMDP)
+world. There are different ways of extending POMDPs to work for multi-agent
+tasks. Decentralized POMDPs (Dec-POMDP)
 [@{https://www.springer.com/gp/book/9783319289274}] are a generalization of
 POMDPs that split the action and observation spaces
 
@@ -153,17 +153,17 @@ POMDPs that split the action and observation spaces
 Note that this definition is very similar to a normal POMDP. The difference is
 that the set of joint observations and joint actions consists of a tuple of the
 observations/actions of each individual agent (i.e.
-$a\in A = \langle a_i,\dots,a_n \rangle$). In Dec-POMDPs every agent can have
-differing observations and actions.
+$a\in A = \langle a_1,\dots,a_n \rangle$, where $a_i$ is the action of agent
+$i$). In Dec-POMDPs every agent can have differing observations and actions.
 
 ## Environment model and learning process
 
 In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose here are mostly based on
-[@maxpaper]. Here, we describe the major differing factors of both the learning
-process and the environments, as well as the variants we choose to consider.
+learning process. The restrictions we impose are mostly based on [@maxpaper].
+Here, we describe the major differing factors of both the learning process and
+the environments, as well as the variants we choose to consider.
 
-In general, the agents in a multi-agent environments can differ in their
+In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
 maximum speeds, different observation systems, or different possible actions. We
 only consider environments with homogenous agents: All agents have the same
@@ -174,20 +174,20 @@ and thus different actions, resulting in differing behavior even when they are
 acting according to the same policy.
 
 We thus only consider a subset of Dec-POMDPs, namely those where the agents are
-homogenous - each agent has the same possible observations and actions. This has
+homogenous — each agent has the same possible observations and actions. This has
 also been described as a SwarMDP by
 @{https://dl.acm.org/doi/10.5555/3091125.3091320}.
 
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
-adversarial environments, one entity would not have control over multiple
-adversarial parties.
+adversarial environments, where different agents have different goals, one
+entity would not have control over multiple adversarial parties.
 
 We focus on global visibility since the additional noise introduced by local
 observability would be detrimental to the quality of our results.
 
-For training we use the centralized-learning/decentralized-execution (CLDE)
-approach - a shared common policy is learned for all agents, but the policy is
+For training, we use the centralized-learning/decentralized-execution (CLDE)
+approach — a shared common policy is learned for all agents, but the policy is
 executed by each agent separately.
 
 PPO and other policy gradient methods are designed for single-agent
@@ -199,7 +199,7 @@ of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.
 
-Similarily to the setup used for TRPO by @maxpaper, we collect the data of each
+Similarly to the setup used for TRPO by @maxpaper, we collect the data of each
 agent as if that agent was the only agent in the world. For example, a batch of
 a single step of 10 agents each in 20 different environment becomes 200 separate
 training samples. Each agent still only has access to its own local
@@ -209,7 +209,7 @@ locally.
 
 ## Aggregation methods
 
-The observations of each agent in a MARL task contains a varying number of
+The observations of each agent in an MARL task contains a varying number of
 observables. The observables can be clustered into groups where each observable
 is of the same kind and shape. For example, one observable group would contain
 all the neighboring agents, while another would contain, e.g., a specific type
@@ -236,9 +236,7 @@ observables is either meaningless or variable).
 
 Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
-observables.
-
-Concatenation is used for example by @mpe to aggregate the neighboring agents'
+observables. It is used for example by @mpe to aggregate the neighboring agents'
 observations and actions.
 
 ### Mean aggregation
@@ -253,21 +251,20 @@ $$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i$$ {#eq:meanagg}
 
 The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
-observables in a observable group. @maxpaper used mean aggregation for deep
+observables in an observable group. @maxpaper used mean aggregation for deep
 multi-agent reinforcement learning and compared it to other aggregation methods.
 @gregor applied mean aggregation to more complex tasks in more realistic
 simulated environments.
 
 Mean aggregation is strongly related to mean field theory. Mean field theory is
-a general principle of modeling the effect that a large number of particles have
-by averaging them into a single field, ignoring the individual variances of each
-particle. The application of mean field theory for multi-agent systems were
-formally defined by
-@{https://link.springer.com/article/10.1007/s11537-007-0657-8} as _Mean Field
-Games_. In MARL, mean field Q-learning and mean field actor-critic was defined
-and evaluated by @{http://proceedings.mlr.press/v80/yang18d.html}. @meanfielduav
-use mean fields productively for control of a large number of unmanned aerial
-vehicles.
+a general principle of modeling the effect that many particles have by averaging
+them into a single field, ignoring the individual variances of each particle.
+The application of mean field theory for multi-agent systems were formally
+defined by @{https://link.springer.com/article/10.1007/s11537-007-0657-8} as
+_Mean Field Games_. In MARL, mean field Q-learning and mean field actor-critic
+was defined and evaluated by @{http://proceedings.mlr.press/v80/yang18d.html}.
+@meanfielduav use mean fields productively for control of numerous unmanned
+aerial vehicles.
 
 [@gregor]:
   https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H%C3%BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3
@@ -348,7 +345,8 @@ state-of-the-art model for many natural language processing tasks.
 We only consider the specific multi-head residual masked self attention variant
 of attention mechanisms for observation aggregation used by @openai.
 
-The attention function is a scaled dot-product attention as described by [@att]:
+There, the attention function in is a scaled dot-product attention as described
+by [@att]:
 
 $$\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$$
 
@@ -358,7 +356,7 @@ Instead of using only a single attention function, [@att] uses multiple
 independent attention heads. The inputs ($Q, K, V$) of each of the heads
 $1,\dots,n$ as well as the concatenated output is transformed with a separately
 learned dense layers (described as weight matrices $W_i^Q, W_i^K, W_i^V, W^O$).
-The full multi-head attention module $MHA()$ thus looks like this:
+The full multi-head attention module $\text{MHA}()$ thus looks like this:
 
 $$\text{head}_i = \text{Attention}(QW_i^Q,KW_i^K,VW_i^V)$$
 

@@ -1,17 +1,17 @@
 # Introduction
 
 Ant colonies, bee swarms, fish colonies, and migrating birds all exhibit
-swarming behaviour to achieve a common goal or to gain an advantage over what's
+swarming behavior to achieve a common goal or to gain an advantage over what's
 possible alone. Each individual within a swarm usually only has limited
 perception, and often there is no central control that enforces a common goal or
-gives instructions. Swarms of animals can self-organize and exhibt complex
-emergent behaviour in spite of the limited intelligence, limited perception, and
+gives instructions. Swarms of animals can self-organize and exhibit complex
+emergent behavior in spite of the limited intelligence, limited perception, and
 limited strength of every individual.
 
 In recent years and with the advent of deep reinforcement learning, it has
-become possible to create artificial agents that solve fairly complex tasks both
-in simulated environments as well as the real world, even when the path to the
-goal is difficult to identify and the reward is sparse. Most of the research,
+become possible to create artificial agents that solve fairly complex tasks in
+simulated environments as well as the real world, even when the path to the goal
+is difficult to identify and the reward is sparse. Most of the research,
 however, is focused on a single agent interacting with a world, and giving the
 single agent as much power and flexibility as it needs to solve the task. Akin
 to animal swarms, which often consist of fairly simple and limited individuals,
