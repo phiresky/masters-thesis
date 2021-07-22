@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/d2b8bef5764c333361024631e18227eed248c1c6/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/d2b8bef5764c333361024631e18227eed248c1c6/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/d2b8bef5764c333361024631e18227eed248c1c6/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/0d56060fcc1b00d3f8ae6ff9158112299f632c3b/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/0d56060fcc1b00d3f8ae6ff9158112299f632c3b/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/0d56060fcc1b00d3f8ae6ff9158112299f632c3b/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -78,9 +78,9 @@
 <h1 class="title">Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</h1>
 </header>
 <p><small><em> This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/d2b8bef5764c333361024631e18227eed248c1c6/">permalink</a>) was automatically
+(<a href="https://phiresky.github.io/masters-thesis/v/0d56060fcc1b00d3f8ae6ff9158112299f632c3b/">permalink</a>) was automatically
 built from
-<a href="https://github.com/phiresky/masters-thesis/tree/d2b8bef5764c333361024631e18227eed248c1c6">phiresky/masters-thesis@d2b8bef</a>
+<a href="https://github.com/phiresky/masters-thesis/tree/0d56060fcc1b00d3f8ae6ff9158112299f632c3b">phiresky/masters-thesis@0d56060</a>
 on July 22, 2021. </em></small></p>
 <h1 class="unnumbered" id="authors">Authors</h1>
 <ul>
@@ -112,16 +112,16 @@ of Bayesian aggregation and compare the recently introduced Trust Region Layers
 learning method to the commonly used Proximal Policy Optimization.</p>
 <h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
 <p>Ant colonies, bee swarms, fish colonies, and migrating birds all exhibit
-swarming behaviour to achieve a common goal or to gain an advantage over what’s
+swarming behavior to achieve a common goal or to gain an advantage over what’s
 possible alone. Each individual within a swarm usually only has limited
 perception, and often there is no central control that enforces a common goal or
-gives instructions. Swarms of animals can self-organize and exhibt complex
-emergent behaviour in spite of the limited intelligence, limited perception, and
+gives instructions. Swarms of animals can self-organize and exhibit complex
+emergent behavior in spite of the limited intelligence, limited perception, and
 limited strength of every individual.</p>
 <p>In recent years and with the advent of deep reinforcement learning, it has
-become possible to create artificial agents that solve fairly complex tasks both
-in simulated environments as well as the real world, even when the path to the
-goal is difficult to identify and the reward is sparse. Most of the research,
+become possible to create artificial agents that solve fairly complex tasks in
+simulated environments as well as the real world, even when the path to the goal
+is difficult to identify and the reward is sparse. Most of the research,
 however, is focused on a single agent interacting with a world, and giving the
 single agent as much power and flexibility as it needs to solve the task. Akin
 to animal swarms, which often consist of fairly simple and limited individuals,
@@ -227,7 +227,7 @@ policy now depends on the observation and the action instead of the state and
 the action. An observation does not necessarily include all the information from
 the corresponding state.</p>
 <p>To successfully solve a reinforcement learning task, we need to find a policy
-that has a high expected reward - we want to find the <em>optimal policy function</em>
+that has a high expected reward — we want to find the <em>optimal policy function</em>
 that has the highest value function on the initial states of our environment.
 Since finding the optimal policy directly is impossible for even slightly
 complicated tasks, we instead use optimization techniques.</p>
@@ -244,17 +244,17 @@ Optimization (PPO) <span class="citation" data-cites="https://arxiv.org/abs/1707
 of the most commonly used methods (PPO) and also explore a new method that
 promises stabler training (PG-TRL).</p>
 <h3 data-number="2.2.1" id="proximal-policy-optimization-ppo"><span class="header-section-number">2.2.1</span> Proximal Policy Optimization (PPO)</h3>
-<p>Proximal Policy Optimization <span class="citation" data-cites="https://arxiv.org/abs/1707.06347">[<a href="#ref-https://arxiv.org/abs/1707.06347" role="doc-biblioref">11</a>]</span> is a actor-critic policy gradient method for
-reinforcement learning. In PPO, each training step consists of collecting a set
-of trajectory rollouts, then optimizing a “surrogate” objective function using
-stochastic gradient descent. The surrogate objective function approximates the
-policy gradient while enforcing a trust region by clipping the update steps. PPO
-is a successor to Trust Region Policy Optimization (TRPO) with a simpler
+<p>Proximal Policy Optimization <span class="citation" data-cites="https://arxiv.org/abs/1707.06347">[<a href="#ref-https://arxiv.org/abs/1707.06347" role="doc-biblioref">11</a>]</span> is an actor-critic policy gradient method
+for reinforcement learning. In PPO, each training step consists of collecting a
+set of trajectory rollouts, then optimizing a “surrogate” objective function
+using stochastic gradient descent. The surrogate objective function approximates
+the policy gradient while enforcing a trust region by clipping the update steps.
+PPO is a successor to Trust Region Policy Optimization (TRPO) with a simpler
 implementation and empirically better performance.</p>
 <p>PPO optimizes the policy using</p>
 <p><span class="math display">\[θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]\]</span></p>
 <p>Where <span class="math inline">\(π_{θ_k}\)</span> is a policy with parameters <span class="math inline">\(θ\)</span> in training step <span class="math inline">\(k\)</span>, <span class="math inline">\(s\)</span> is the
-state, <span class="math inline">\(a\sim π_{θ_k}\)</span> is the action distribution according to the the policy at
+state, <span class="math inline">\(a\sim π_{θ_k}\)</span> is the action distribution according to the policy at
 step <span class="math inline">\(k\)</span>. L is given by</p>
 <p><span class="math display">\[L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).\]</span></p>
 <p><span class="math inline">\(A\)</span> is the advantage of taking a specific action in a specific state as opposed
@@ -290,8 +290,8 @@ factor.</p>
 <p>Usually, reinforcement learning algorithms operate on POMDPs. POMDPs only have a
 single agent interacting with the environment, so for multi-agent settings, we
 need a different system that can model multiple agents interacting with the
-world. There’s different ways of extending POMDPs to work for multi-agent tasks.
-Decentralized POMDPs (Dec-POMDP)
+world. There are different ways of extending POMDPs to work for multi-agent
+tasks. Decentralized POMDPs (Dec-POMDP)
 <span class="citation" data-cites="https://www.springer.com/gp/book/9783319289274">[<a href="#ref-https://www.springer.com/gp/book/9783319289274" role="doc-biblioref">19</a>]</span> are a generalization of
 POMDPs that split the action and observation spaces</p>
 <ul>
@@ -305,14 +305,14 @@ POMDPs that split the action and observation spaces</p>
 <p>Note that this definition is very similar to a normal POMDP. The difference is
 that the set of joint observations and joint actions consists of a tuple of the
 observations/actions of each individual agent (i.e.
-<span class="math inline">\(a\in A = \langle a_i,\dots,a_n \rangle\)</span>). In Dec-POMDPs every agent can have
-differing observations and actions.</p>
+<span class="math inline">\(a\in A = \langle a_1,\dots,a_n \rangle\)</span>, where <span class="math inline">\(a_i\)</span> is the action of agent
+<span class="math inline">\(i\)</span>). In Dec-POMDPs every agent can have differing observations and actions.</p>
 <h2 data-number="2.4" id="environment-model-and-learning-process"><span class="header-section-number">2.4</span> Environment Model and Learning Process</h2>
 <p>In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose here are mostly based on
-<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span>. Here, we describe the major differing factors of both the learning
-process and the environments, as well as the variants we choose to consider.</p>
-<p>In general, the agents in a multi-agent environments can differ in their
+learning process. The restrictions we impose are mostly based on <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span>.
+Here, we describe the major differing factors of both the learning process and
+the environments, as well as the variants we choose to consider.</p>
+<p>In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
 maximum speeds, different observation systems, or different possible actions. We
 only consider environments with homogenous agents: All agents have the same
@@ -322,17 +322,17 @@ This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
 acting according to the same policy.</p>
 <p>We thus only consider a subset of Dec-POMDPs, namely those where the agents are
-homogenous - each agent has the same possible observations and actions. This has
+homogenous — each agent has the same possible observations and actions. This has
 also been described as a SwarMDP by
 <span class="citation" data-cites="https://dl.acm.org/doi/10.5555/3091125.3091320">[<a href="#ref-https://dl.acm.org/doi/10.5555/3091125.3091320" role="doc-biblioref">21</a>]</span>.</p>
 <p>We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
-adversarial environments, one entity would not have control over multiple
-adversarial parties.</p>
+adversarial environments, where different agents have different goals, one
+entity would not have control over multiple adversarial parties.</p>
 <p>We focus on global visibility since the additional noise introduced by local
 observability would be detrimental to the quality of our results.</p>
-<p>For training we use the centralized-learning/decentralized-execution (CLDE)
-approach - a shared common policy is learned for all agents, but the policy is
+<p>For training, we use the centralized-learning/decentralized-execution (CLDE)
+approach — a shared common policy is learned for all agents, but the policy is
 executed by each agent separately.</p>
 <p>PPO and other policy gradient methods are designed for single-agent
 environments. We adapt PPO to the multi-agent setting without making any major
@@ -342,7 +342,7 @@ the same architecture as the policy. Since the stable-baselines3 implementation
 of PPO is already written for vectorized environments (collecting trajectories
 from many environments running in parallel), we create a new VecEnv
 implementation that flattens multiple agents in multiple environments.</p>
-<p>Similarily to the setup used for TRPO by <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span>, we collect the data of each
+<p>Similarly to the setup used for TRPO by <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span>, we collect the data of each
 agent as if that agent was the only agent in the world. For example, a batch of
 a single step of 10 agents each in 20 different environment becomes 200 separate
 training samples. Each agent still only has access to its own local
@@ -350,7 +350,7 @@ observations, not the global system state. This means that during inference
 time, each agent has to act independently, based on the observations it makes
 locally.</p>
 <h2 data-number="2.5" id="aggregation-methods"><span class="header-section-number">2.5</span> Aggregation Methods</h2>
-<p>The observations of each agent in a MARL task contains a varying number of
+<p>The observations of each agent in an MARL task contains a varying number of
 observables. The observables can be clustered into groups where each observable
 is of the same kind and shape. For example, one observable group would contain
 all the neighboring agents, while another would contain, e.g., a specific type
@@ -373,8 +373,7 @@ every other observable in a group) and the exchangeability (the order of the
 observables is either meaningless or variable).</p>
 <p>Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
-observables.</p>
-<p>Concatenation is used for example by <span class="citation" data-cites="https://dl.acm.org/doi/10.5555/3295222.3295385">[<a href="#ref-https://dl.acm.org/doi/10.5555/3295222.3295385" role="doc-biblioref">22</a>]</span> to aggregate the neighboring agents’
+observables. It is used for example by <span class="citation" data-cites="https://dl.acm.org/doi/10.5555/3295222.3295385">[<a href="#ref-https://dl.acm.org/doi/10.5555/3295222.3295385" role="doc-biblioref">22</a>]</span> to aggregate the neighboring agents’
 observations and actions.</p>
 <h3 data-number="2.5.2" id="mean-aggregation"><span class="header-section-number">2.5.2</span> Mean Aggregation</h3>
 <p>Instead of concatenating each element <span class="math inline">\(o_i\)</span> in an observable group <span class="math inline">\(O\)</span>, we can
@@ -385,20 +384,19 @@ shown in <a href="#eq:meanagg">Equation 1</a>.</p>
 <p><span id="eq:meanagg"><span class="math display">\[ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i\qquad(1)\]</span></span></p>
 <p>The encoder is an arbitrary function that maps the observation into a latent
 space, and can be represented by a neural network with shared weights across the
-observables in a observable group. <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span> used mean aggregation for deep
+observables in an observable group. <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span> used mean aggregation for deep
 multi-agent reinforcement learning and compared it to other aggregation methods.
 <span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">23</a>]</span> applied mean aggregation to more complex tasks in more realistic
 simulated environments.</p>
 <p>Mean aggregation is strongly related to mean field theory. Mean field theory is
-a general principle of modeling the effect that a large number of particles have
-by averaging them into a single field, ignoring the individual variances of each
-particle. The application of mean field theory for multi-agent systems were
-formally defined by
-<span class="citation" data-cites="https://link.springer.com/article/10.1007/s11537-007-0657-8">[<a href="#ref-https://link.springer.com/article/10.1007/s11537-007-0657-8" role="doc-biblioref">24</a>]</span> as <em>Mean Field
-Games</em>. In MARL, mean field Q-learning and mean field actor-critic was defined
-and evaluated by <span class="citation" data-cites="http://proceedings.mlr.press/v80/yang18d.html">[<a href="#ref-http://proceedings.mlr.press/v80/yang18d.html" role="doc-biblioref">25</a>]</span>. <span class="citation" data-cites="https://ieeexplore.ieee.org/abstract/document/9137257">[<a href="#ref-https://ieeexplore.ieee.org/abstract/document/9137257" role="doc-biblioref">26</a>]</span>
-use mean fields productively for control of a large number of unmanned aerial
-vehicles.</p>
+a general principle of modeling the effect that many particles have by averaging
+them into a single field, ignoring the individual variances of each particle.
+The application of mean field theory for multi-agent systems were formally
+defined by <span class="citation" data-cites="https://link.springer.com/article/10.1007/s11537-007-0657-8">[<a href="#ref-https://link.springer.com/article/10.1007/s11537-007-0657-8" role="doc-biblioref">24</a>]</span> as
+<em>Mean Field Games</em>. In MARL, mean field Q-learning and mean field actor-critic
+was defined and evaluated by <span class="citation" data-cites="http://proceedings.mlr.press/v80/yang18d.html">[<a href="#ref-http://proceedings.mlr.press/v80/yang18d.html" role="doc-biblioref">25</a>]</span>.
+<span class="citation" data-cites="https://ieeexplore.ieee.org/abstract/document/9137257">[<a href="#ref-https://ieeexplore.ieee.org/abstract/document/9137257" role="doc-biblioref">26</a>]</span> use mean fields productively for control of numerous unmanned
+aerial vehicles.</p>
 <h3 data-number="2.5.3" id="aggregation-with-other-pooling-functions"><span class="header-section-number">2.5.3</span> Aggregation With Other Pooling Functions</h3>
 <p>Instead of using the empirical mean, other aggregation methods can also be used:</p>
 <p>Max pooling:</p>
@@ -446,14 +444,15 @@ is aggregated using some aggregation mechanism. -->
 state-of-the-art model for many natural language processing tasks.</p>
 <p>We only consider the specific multi-head residual masked self attention variant
 of attention mechanisms for observation aggregation used by <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">9</a>]</span>.</p>
-<p>The attention function is a scaled dot-product attention as described by <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">[<a href="#ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" role="doc-biblioref">31</a>]</span>:</p>
+<p>There, the attention function in is a scaled dot-product attention as described
+by <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">[<a href="#ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" role="doc-biblioref">31</a>]</span>:</p>
 <p><span class="math display">\[\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V\]</span></p>
 <p><span class="math inline">\(d_k\)</span> is the dimensionality of the key <span class="math inline">\(K\)</span>.</p>
 <p>Instead of using only a single attention function, <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">[<a href="#ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" role="doc-biblioref">31</a>]</span> uses multiple
 independent attention heads. The inputs (<span class="math inline">\(Q, K, V\)</span>) of each of the heads
 <span class="math inline">\(1,\dots,n\)</span> as well as the concatenated output is transformed with a separately
 learned dense layers (described as weight matrices <span class="math inline">\(W_i^Q, W_i^K, W_i^V, W^O\)</span>).
-The full multi-head attention module <span class="math inline">\(MHA()\)</span> thus looks like this:</p>
+The full multi-head attention module <span class="math inline">\(\text{MHA}()\)</span> thus looks like this:</p>
 <p><span class="math display">\[\text{head}_i = \text{Attention}(QW_i^Q,KW_i^K,VW_i^V)\]</span></p>
 <p><span class="math display">\[\text{MHA}(Q,K,V)=\text{concat}(\text{head}_1,\dots,\text{head}_n)W^O\]</span></p>
 <p>For self-attention, the query <span class="math inline">\(Q\)</span>, the key <span class="math inline">\(K\)</span> and the value <span class="math inline">\(V\)</span> are all set to
@@ -514,7 +513,7 @@ The policy chooses the actions based on the global system state in a “birds-ey
 view of the world. The disadvantage is that this means agents can’t act
 independently if the environment has restrictions such as partial observability,
 and it is less robust to communication failures and to agent “deaths”.</p>
-<p>The alternative is decentralized execution - the observation inputs and action
+<p>The alternative is decentralized execution — the observation inputs and action
 outputs of the policy networks are local to a single agent. This can formally be
 described as a <em>Decentralized Partially Observable Markov Decision Process</em>
 (Dec-POMDP) <span class="citation" data-cites="https://link.springer.com/chapter/10.1007/978-3-642-27645-3_15">[<a href="#ref-https://link.springer.com/chapter/10.1007/978-3-642-27645-3_15" role="doc-biblioref">41</a>]</span>.
@@ -537,15 +536,14 @@ From the perspective of the policy, these agents are considered part of the
 environment.</p>
 <p>Cooperative learning can be done with separate agent rewards or a single common
 reward. Cooperative learning with a single reward means the reward must be
-somewhat sparse, since each agent cannot easily judge what the impact of it’s
-own actions were on the reward in any given time step. This also makes it
-impossible for an agent to gain an egoistic advantage over the other agents,
-enforcing the learned policy to become Pareto optimal. Another approach was
-introduced by <span class="citation" data-cites="https://ieeexplore.ieee.org/document/4399095">[<a href="#ref-https://ieeexplore.ieee.org/document/4399095" role="doc-biblioref">43</a>]</span>, who create a
-compromise between the sample-efficiency of individual rewards and the
-Pareto-optimality of a common reward for cooperative MARL settings with their
-<em>Hysteretic Q-Learning</em> algorithm that jointly optimizes both an individual as
-well as a common reward.</p>
+somewhat sparse, since each agent cannot easily judge what the impact of its own
+actions were on the reward in any given time step. This also makes it impossible
+for an agent to gain an egoistic advantage over the other agents, enforcing the
+learned policy to become Pareto optimal. Another approach was introduced by
+<span class="citation" data-cites="https://ieeexplore.ieee.org/document/4399095">[<a href="#ref-https://ieeexplore.ieee.org/document/4399095" role="doc-biblioref">43</a>]</span>, who create a compromise between
+the sample-efficiency of individual rewards and the Pareto-optimality of a
+common reward for cooperative MARL settings with their <em>Hysteretic Q-Learning</em>
+algorithm that jointly optimizes an individual as well as a common reward.</p>
 <p>Adversarial environments are usually zero-sum, that is the average reward over
 all agents is zero. An example for an adversarial environment is the <em>Gather</em>
 task described by <span class="citation" data-cites="https://ojs.aaai.org/index.php/AAAI/article/view/11371">[<a href="#ref-https://ojs.aaai.org/index.php/AAAI/article/view/11371" role="doc-biblioref">44</a>]</span>: In
@@ -567,7 +565,7 @@ any seeker, and -1 otherwise. The Seek-team is given the opposite reward.</p>
 <h2 data-number="3.4" id="partial-visibility"><span class="header-section-number">3.4</span> Partial Visibility</h2>
 <p>The observations that each agent receives in our experiments are local. For
 example, if one agent sees another, that agent’s properties are observed
-relative to the current agent - the distance, relative bearing, and relative
+relative to the current agent — the distance, relative bearing, and relative
 speed.</p>
 <p>In addition, each agent may only have local visibility, for example it can only
 observe the positions of agents and objects in the world within some radius or
@@ -593,7 +591,7 @@ trying to find and “catch” the agents of the other team.</p>
 catching game in a discrete 2D world, where multiple paddles moving in one
 dimension try to catch multiple balls that fall down the top of the screen. (2)
 A spreading game, where N agents try to cover N landmarks. The world is
-continous, but the action space is discrete. This game is similar to the
+continuous, but the action space is discrete. This game is similar to the
 spreading game defined in <span class="citation" data-cites="https://dl.acm.org/doi/10.5555/3295222.3295385">[<a href="#ref-https://dl.acm.org/doi/10.5555/3295222.3295385" role="doc-biblioref">22</a>]</span>. (3) StarCraft micromanagement: Two groups of
 units in the StarCraft game battle each other, each unit controlled by an agent.</p>
 <p><span class="citation" data-cites="https://arxiv.org/abs/2009.14471">[<a href="#ref-https://arxiv.org/abs/2009.14471" role="doc-biblioref">46</a>]</span> create an infrastructure for multi-task environments similar to the
@@ -609,12 +607,13 @@ these tasks.</p>
 <p><span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">23</a>]</span> define a set of environments based on Kilobots, simple small round
 robots in a virtual environment together with boxes. The Kilobots are tasked
 with moving the boxes around or arranging them based on their color. We compare
-our method on both the box assembly as well as the box clustering task.</p>
+our method on the box assembly as well as the box clustering task.</p>
 <h1 data-number="4" id="sec:contribution"><span class="header-section-number">4</span> Scalable Information Aggregation for Deep MARL Policies</h1>
-<p>We introduce a policy architecture for deep reinforcement learning that projects
-observations from one or more different kinds of observables into samples of
-latent spaces, then aggregates them into a single latent value. This makes the
-architecture scale to any number as well as a varying number of observables.</p>
+<p>We introduce a policy architecture for deep multi-agent reinforcement learning
+that projects observations from one or more different kinds of observables into
+samples of latent spaces, then aggregates them into a single latent value. This
+makes the architecture scale to any number as well as a varying number of
+observables.</p>
 <h2 data-number="4.1" id="policy-architecture"><span class="header-section-number">4.1</span> Policy Architecture</h2>
 <p>In general, our policy architecture is based on <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">20</a>]</span> and <span class="citation" data-cites="https://arxiv.org/abs/1909.07528">[<a href="#ref-https://arxiv.org/abs/1909.07528" role="doc-biblioref">9</a>]</span>.</p>
 <p>While the policy architecture and weights are shared for all agents, the inputs
@@ -646,7 +645,7 @@ aggregation group that is relevant to the agent. These samples are then
 aggregated using one of the aggregation methods described below to get a single
 latent space value for each aggregation group:</p>
 <p><span class="math display">\[e_{k→G} = \text{agg}_{i=0}^n(e_{k→g_i})\]</span></p>
-<p>We then concatenate all of the latent spaces as well as the proprioceptive
+<p>We then concatenate all the latent spaces as well as the proprioceptive
 observations <span class="math inline">\(p\)</span> to get a single encoded value <span class="math inline">\(e_k\)</span>:</p>
 <p><span class="math display">\[e_k = (p, G_1, G_2, ...)\]</span></p>
 <p>This value is then passed through a decoder that consists of one or more dense
@@ -683,15 +682,15 @@ each aggregation group.</p>
 policy network, we need an estimation describing the Gaussian prior (<span class="math inline">\(μ_{z_0}\)</span>
 and <span class="math inline">\(σ_{z_0}^2\)</span>) as well as the observed means <span class="math inline">\(r_i\)</span> and variances <span class="math inline">\(σ_{r_i}^2\)</span>.</p>
 <p>The mean and variance of the Gaussian prior are learned as free-standing
-variables using the backpropagation during training. Both the prior variance as
-well as the variance of the observations are rectified to enforce positivity
-using <span class="math inline">\(\text{softplus}\)</span>.</p>
+variables using the backpropagation during training. The prior variance as well
+as the variance of the observations are rectified to enforce positivity using
+<span class="math inline">\(\text{softplus}\)</span>.</p>
 <p>To get the observed elements <span class="math inline">\(r_i\)</span>, we use the two encoder networks <span class="math inline">\(enc_r\)</span> and
 <span class="math inline">\(enc_σ\)</span> that consist of a set of dense layers:</p>
 <p><span class="math display">\[r_i = \text{enc}_r(o_{k→g_i}), \quad σ_{r_i} = \text{enc}_σ(o_{k→g_i})\]</span></p>
 <p><span class="math inline">\(\text{enc}_r\)</span> and <span class="math inline">\(\text{enc}_σ\)</span> are either separate dense neural networks or a
 single dense neural network with the output having two scalars per feature (one
-for the mean, one for the variance). Finally we retrieve the value of <span class="math inline">\(e_{k→G}\)</span>
+for the mean, one for the variance). Finally, we retrieve the value of <span class="math inline">\(e_{k→G}\)</span>
 from the aggregated latent variable, using either just the mean of <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[e_{k→G} = μ_z\]</span></p>
 <p>or by concatenating the mean and the variance:</p>
@@ -4394,16 +4393,19 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
     button.append(counter);
   }
 
-  // when button is clicked
-  function onButtonClick(event, button) {
+  function activate() {
     const script = document.createElement("script");
     script.src = embed;
     document.body.append(script);
+  }
+  // when button is clicked
+  function onButtonClick(event, button) {
+    activate();
     button.remove();
   }
 
   // start script when document is finished loading
-  window.addEventListener("load", start);
+  window.addEventListener("load", activate); // start);
 </script>
 
 <!-- hypothesis icon -->
