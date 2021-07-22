@@ -11,12 +11,10 @@ behaviour
 CLDE
 CLV
 concatentation
-continous
 convolutional
 diagonalized
 dimensionality
 exchangeability
-exhibt
 gregor
 homogenous
 hyperparameter
@@ -45,7 +43,7 @@ openai
 optimality
 Optuna
 performane
-PettingZoo
+pettingzoo
 phiresky
 POMDP
 POMDPs
@@ -75,9 +73,8 @@ rollouts
 Ruede
 sameseparate
 scalable
-Similarily
 SISL
-softmax
+Softmax
 StarCraft
 SwarMDP
 tanh
