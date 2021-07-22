@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Robin Ruede" />
-  <meta name="dcterms.date" content="2021-07-21" />
+  <meta name="dcterms.date" content="2021-07-22" />
   <meta name="keywords" content="MARL, multi-agent, mreinforcement learning, Bayesian conditioning" />
   <title>Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</title>
   <style>
@@ -47,8 +47,8 @@
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-21" />
-  <meta name="citation_publication_date" content="2021-07-21" />
+  <meta name="dc.date" content="2021-07-22" />
+  <meta name="citation_publication_date" content="2021-07-22" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/687409182f25e31e81f1479326a1510bc48dc709/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/687409182f25e31e81f1479326a1510bc48dc709/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/687409182f25e31e81f1479326a1510bc48dc709/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/83b6bb6e859b2ecf140a0ff1b6cf045eef49ccdb/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/83b6bb6e859b2ecf140a0ff1b6cf045eef49ccdb/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/83b6bb6e859b2ecf140a0ff1b6cf045eef49ccdb/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -79,10 +79,10 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/687409182f25e31e81f1479326a1510bc48dc709/">permalink</a>)
+(<a href="https://phiresky.github.io/masters-thesis/v/83b6bb6e859b2ecf140a0ff1b6cf045eef49ccdb/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/phiresky/masters-thesis/tree/687409182f25e31e81f1479326a1510bc48dc709">phiresky/masters-thesis@6874091</a>
-on July 21, 2021.
+from <a href="https://github.com/phiresky/masters-thesis/tree/83b6bb6e859b2ecf140a0ff1b6cf045eef49ccdb">phiresky/masters-thesis@83b6bb6</a>
+on July 22, 2021.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -751,7 +751,8 @@ is modeled after <span class="citation" data-cites="https://jmlr.org/beta/papers
 double-integrator unicycle dynamics
 <span class="citation" data-cites="https://ieeexplore.ieee.org/document/976029">[<a href="#ref-https://ieeexplore.ieee.org/document/976029" role="doc-biblioref">EgHu21</a>]</span>, so the action outputs are the
 acceleration of the linear velocity (<span class="math inline">\(\dot{v}\)</span>) and the angular velocity
-(<span class="math inline">\(\dot{ω}\)</span>).</p>
+(<span class="math inline">\(\dot{ω}\)</span>). The agents move around in a square world that either has walls at
+the edge or is on a torus (the position is calculated modulo <span class="math inline">\(100\)</span>).</p>
 <p>The observation space of agent <span class="math inline">\(a_i\)</span> comprises the following information:</p>
 <ol type="1">
 <li>The own linear velocity <span class="math inline">\(v_{a_i}\)</span></li>
@@ -876,30 +877,37 @@ PettingZoo tasks (without results?)
 <p>In this section, we present the results of our experiments. We compare (1) the
 training performance of the different aggregation methods on various tasks, (2)
 aggregating different observation sets into a single vs multiple latent spaces
-(3) various variants of Bayesian aggregation (4) PPO with TRL.</p>
+(3) various variants of Bayesian aggregation (4) the training algorithms PPO and
+TRL.</p>
 <p>In order to compare the performance of different variants, we consider the
 average reward per episode over the agent steps used during training. This way
 we can evaluate and compare the overall best results as well as the sample
 efficiency.</p>
-<p>Each policy gradient training step consists of a set of batches of trajectory
-rollouts generated using the previous policy. We evaluate the performance after
-each training step on a separate set of evaluation environments.</p>
+<p>Each policy gradient training step consists of multiple gradient descent steps
+with a set of batches of trajectory rollouts generated using the previous
+policy. We evaluate the performance after each training step on a separate set
+of evaluation environments.</p>
 <p>Unless mentioned otherwise, the following setup is used:</p>
 <ul>
-<li>Plotted is the median reward of the n runs at a specific training step, the error band is the 25th and 75th
-percentile of runs</li>
+<li>Plotted is the median reward of the n runs at a specific training step, the
+error band is the 25th and 75th percentile of runs</li>
 <li>The activation function used after each layer is LeakyReLU</li>
-<li>For the bayesian aggregation:
+<li>For the Bayesian aggregation:
 <ul>
 <li>We only use the mean value <span class="math inline">\(μ_z\)</span> as an output, not <span class="math inline">\(μ_z\)</span> and <span class="math inline">\(σ_z^2\)</span></li>
 <li>We use a single shared encoder for the value and confidence estimates</li>
-<li>The a-priori estimate <span class="math inline">\(μ_{z_0}\)</span> is learnable separately for each feature dimension</li>
-<li>The variance of both the a-priori estimate as well as the encoded estimates are rectified using <span class="math inline">\(\text{softplus}\)</span>.</li>
+<li>The a-priori estimate <span class="math inline">\(μ_{z_0}\)</span> is learnable separately for each feature
+dimension</li>
+<li>The variance of both the a-priori estimate as well as the encoded estimates
+are rectified using <span class="math inline">\(\text{softplus}\)</span>.</li>
 </ul></li>
 <li>Multiple aggregatable groups are aggregated into separate latent spaces</li>
 <li>The parameters of the policy and value function are not shared</li>
 <li>The training algorithm used is PPO</li>
 </ul>
+<p>Due to time and resource constraints, we only use individually hyper-parameter
+optimized architectures on the multi-evader pursuit and rendezvous tasks, and
+use the same architecture for all aggregation methods on the other tasks.</p>
 <h3 id="aggregation-method-results">Aggregation Method Results</h3>
 <p>We compare the performance of the different aggregation methods (Bayesian
 aggregation, mean aggregation, attentive aggregation) on multiple tasks.</p>
@@ -909,113 +917,166 @@ layers of the encoders of each aggregation group. The numbers after <code>agg</c
 the layer sizes in the decoder after the concatentation of the proprioceptive
 observations with the aggregated observations (compare <a href="#fig:model">Figure 1</a>).</p>
 <h4 id="multi-evader-pursuit-task">Multi-Evader Pursuit Task</h4>
-<p>Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders on
-a torus. <a href="#fig:resmpsmall">Figure 7</a> shows the results of the multi-evader pursuit task with
-different aggregation methdos with the same architecture used in <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span> to
-be able to directly compare the results. The architecture is 64-agg-64 with the
-tanh activation function. With this architecture, the Bayesian aggregation
-performs best.</p>
+<p>Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
+on a torus. <a href="#fig:resmpsmall">Figure 7</a> shows the results of the multi-evader pursuit task
+with different aggregation methdos with the same architecture used in
+<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span> to be able to directly compare the results. The architecture is
+64-agg-64 with the tanh activation function. With this architecture, the
+Bayesian aggregation performs best.</p>
 <figure>
 <img src="images/plots/2021-07-10_13.30.06-Multi-Evader%20Pursuit%20(smallarch).svg" id="fig:resmpsmall" alt="Figure 7: Results on the multi-evader pursuit task with the NN architecture adapted from [HüŠoNe21]. The Bayesian aggregation performs best." /><figcaption aria-hidden="true">Figure 7: Results on the multi-evader pursuit task with the NN architecture adapted from
 <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>. The Bayesian aggregation performs
 best.</figcaption>
 </figure>
-<p><a href="#fig:resmpopt">Figure 8</a> shows the results with neural network architectures that were separately
-hyper-parameter optimized for each aggregation method. The optimized architecture for the mean
-aggregation is <code>174-226-97-agg-96</code>. The
-optimized architecture for the Bayesian aggregation is <code>120-60-agg-160</code>. The optimized architecture for the attentive
-aggregation is <code>72-agg-132-200</code>. All optimized architectures use the LeakyReLU activation functions. Note that the architecture optimized on the
-mean aggregation is the deepest with three hidden layers before the aggregation,
-while the optimized architecture on the attentive aggregation has multiple
-layers after the aggregation instead. With the hyper-parameter optimized
-architecture, the mean aggregation performs best. The results are still similar
-when using the <code>120-60-agg-160</code> architecture for every aggregation method. These
-results indicate that the Bayesian aggregation outperforms the mean aggregation
-when the neural network is limited in size, but has no advantage when the
-neural network is sufficiently large and deep. The neural network seems to be
-able to implicitly learn to transform and weigh the information from the
-different observables, compensating the advantage of the additional structure of
-relevancy / certainty that is given in the Bayesian aggregation.</p>
+<p><a href="#fig:resmpopt">Figure 8</a> shows the results with neural network architectures that were
+separately hyper-parameter optimized for each aggregation method except max
+aggregation. The optimized architecture for the mean aggregation is
+<code>174-226-97-agg-96</code>, the same architecture is used for the max aggregation. The
+optimized architecture for the Bayesian aggregation is <code>120-60-agg-160</code>. The
+optimized architecture for the attentive aggregation is <code>72-agg-132-200</code>. All
+optimized architectures use the LeakyReLU activation functions. Note that the
+architecture optimized on the mean aggregation is the deepest with three hidden
+layers before the aggregation, while the optimized architecture on the attentive
+aggregation has multiple layers after the aggregation instead. With the
+hyper-parameter optimized architecture, the mean aggregation performs best. The
+results are still similar when using the same <code>120-60-agg-160</code> architecture for
+every aggregation method. These results of Figures <a href="#fig:resmpsmall">7</a>, <a href="#fig:resmpopt">8</a>
+indicate that the Bayesian aggregation outperforms the mean aggregation when the
+neural network is limited in size, but has no advantage when the neural network
+is sufficiently large and deep. The neural network seems to be able to
+implicitly learn to transform and weigh the information from the different
+observables, compensating the advantage of the additional structure of relevancy
+/ certainty that is given in the Bayesian aggregation.</p>
+<p><a href="#fig:resmpopttop">Figure 9</a> shows the results of the top third of runs. The performane of
+the mean and Bayesian aggregation is similar, indicating that the best runs are
+similar, but that the Bayesian aggregation has more runs that fail to achieve
+the peak performance.</p>
 <figure>
-<img src="images/plots/2021-07-10_16.06.20-Multi-Evader%20Pursuit%20(hpsopt).svg" id="fig:resmpopt" alt="Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best." /><figcaption aria-hidden="true">Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.</figcaption>
+<img src="images/plots/2021-07-22_15.16.03-Multi-Evader%20Pursuit%20(hpsopt).svg" id="fig:resmpopt" alt="Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best." /><figcaption aria-hidden="true">Figure 8: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.</figcaption>
 </figure>
 <figure>
-<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 9: Like Figure 8 but only the top 1/3 of runs." /><figcaption aria-hidden="true">Figure 9: Like <a href="#fig:resmpopt">Figure 8</a> but only the top 1/3 of runs.</figcaption>
-</figure>
-<p>In addition two the three main aggregation methods we compare in this and the other tasks, we also show a comparison to between mean aggregation and max aggregation on the multi-evader pursuit task in <a href="#fig:resaggmax">Figure 10</a>.</p>
-<figure>
-<img src="images/plots/2021-07-14_13.43.27-Multi-Evader%20Pursuit%20Max.svg" id="fig:resaggmax" alt="Figure 10: Max aggregation results on the multi-evader pursuit task." /><figcaption aria-hidden="true">Figure 10: Max aggregation results on the multi-evader pursuit task.</figcaption>
+<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 9: Like Figure 8 but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar." /><figcaption aria-hidden="true">Figure 9: Like <a href="#fig:resmpopt">Figure 8</a> but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.</figcaption>
 </figure>
 <h4 id="single-evader-pursuit-task-1">Single-Evader Pursuit Task</h4>
-<p><a href="#fig:ressp">Figure 11</a> shows the results on the single-evader pursuit task with 10 pursuers
-and one evader.</p>
+<p><a href="#fig:ressp">Figure 10</a> shows the results on the single-evader pursuit task with 10 pursuers
+and one evader. The neural network architecture is fixed at <code>120-60-agg-160</code> for
+all methods. All methods learn the task quickly, with the mean aggregation
+achieving the maximum performance slightly faster. This shows that the task is
+simpler than the multi-evader pursuit task, which is both due to the fact that
+there are fewer evaders and that the reward is more sparse (minimum-distance for
+single-evader vs count-catches for multi-evader).</p>
 <figure>
-<img src="images/plots/2021-07-14_13.55.20-Single-evader%20Pursuit.svg" id="fig:ressp" alt="Figure 11: Results on Single Pursuit task. Architecture: 120-60-agg-160." /><figcaption aria-hidden="true">Figure 11: Results on Single Pursuit task. Architecture: 120-60-agg-160.</figcaption>
+<img src="images/plots/2021-07-14_13.55.20-Single-evader%20Pursuit.svg" id="fig:ressp" alt="Figure 10: Results on Single Pursuit task. Architecture: 120-60-agg-160." /><figcaption aria-hidden="true">Figure 10: Results on Single Pursuit task. Architecture: 120-60-agg-160.</figcaption>
 </figure>
 <h4 id="rendezvous-task">Rendezvous Task</h4>
-<p><a href="#fig:resrendezvous">Figure 12</a>.</p>
+<p><a href="#fig:resrendezvous">Figure 11</a> shows a comparison between mean and Bayesian aggregation on
+the rendezvous task with twenty agents in a two dimensional square world with
+walls. The medium architecture is the one optimized on the pursuit task
+(<code>120-60-agg-160</code>). The small architecture is the one used in <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">HüŠoNe21</a>]</span>
+(<code>64-agg-64</code>). The optimized architecture was optimized on the rendezvous task
+directly: <code>146-120-agg-19-177-162</code>. All architectures and aggregation methods
+successfully solve the task. The aggregation method does not make any difference
+in the performance, but both the small and the medium architecture have a “drop”
+in training speed at around 2 million steps, while the optimized architecture
+smoothly learns the problem. The logarithmic scale graph to the right shows that
+while the small and optimized architecture both reach the same final score, the
+medium architecture never reaches the same score. This might be because both the
+small and the optimized architecture have a bottleneck layer after the
+aggregation, forcing the neural network to simplify the strategy.</p>
 <figure>
-<img src="images/plots/2021-07-18_12.34.40-Rendezvous.svg" id="fig:resrendezvous" alt="Figure 12: Results on the Rendezvous task. Large Architecture: 120-60-agg-160. Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162" /><figcaption aria-hidden="true">Figure 12: Results on the Rendezvous task. Large Architecture: 120-60-agg-160.
-Small Architecture: 64-agg-64. Opt Architecture: 146-120-agg-19-177-162</figcaption>
+<img src="images/plots/2021-07-22_15.51.34-Rendezvous.svg" id="fig:resrendezvous" alt="Figure 11: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures." /><figcaption aria-hidden="true">Figure 11: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.</figcaption>
 </figure>
+<!--
+![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
+Log.svg){#fig:resrendezvouslog}
+
+-->
 <h4 id="assembly-task">Assembly Task</h4>
-<p><a href="#fig:resassembly">Figure 13</a> shows the results on the assembly task with ten agents and four
+<p><a href="#fig:resassembly">Figure 12</a> shows the results on the assembly task with ten agents and four
 boxes. The three aggregation methods perform very similar, with the attentive
 aggregation learning the task slightly quicker.</p>
 <figure>
-<img src="images/plots/2021-07-07_15.07.38-assembly%20(by%20agg%20method).svg" id="fig:resassembly" alt="Figure 13: Results on the assembly task." /><figcaption aria-hidden="true">Figure 13: Results on the assembly task.</figcaption>
+<img src="images/plots/2021-07-22_17.44.09-assembly%20(by%20agg%20method).svg" id="fig:resassembly" alt="Figure 12: Results on the assembly task." /><figcaption aria-hidden="true">Figure 12: Results on the assembly task.</figcaption>
 </figure>
 <h4 id="clustering-task-with-two-clusters">Clustering Task With Two Clusters</h4>
-<p><a href="#fig:resclustering2">Figure 14</a> shows the results on the clustering task with four boxes
+<p><a href="#fig:resclustering2">Figure 13</a> shows the results on the clustering task with four boxes
 split into two clusters.</p>
 <figure>
-<img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 14: Clustering2 results" /><figcaption aria-hidden="true">Figure 14: Clustering2 results</figcaption>
+<img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 13: Clustering2 results" /><figcaption aria-hidden="true">Figure 13: Clustering2 results</figcaption>
 </figure>
 <h4 id="clustering-task-with-three-clusters">Clustering Task With Three Clusters</h4>
 <p>Doesn’t work :(</p>
-<h3 id="learning-algorithm-comparison-ppo-vs-trl">Learning Algorithm Comparison (PPO vs TRL)</h3>
-<p>In the following, we show some results of the trust region layers training
-method (see <a href="#sec:trl">Section 1.4.2.2</a>) compared to PPO.</p>
-<p><a href="#fig:resmptrl">Figure 15</a> shows the results on the multi-evader pursuit task. The
-architecture are the ones hyper-parameter optimized on PPO on each of the
-aggregation methods. TRL seems to show significantly improved training
-performance for both the mean and the Bayesian aggregation. <a href="#fig:resmptrltop">Figure 16</a>
+<h3 id="learning-algorithm-comparison-ppo-vs-pg-trl">Learning Algorithm Comparison (PPO vs PG-TRL)</h3>
+<p>In the following, we show some results of the trust region layers policy
+gradient (TRL) training method (see <a href="#sec:trl">Section 1.4.2.2</a>) compared to PPO.</p>
+<p><a href="#fig:resmptrl">Figure 14</a> shows the learning algorithm comparison on the multi-evader
+pursuit task. The architecture are the ones hyper-parameter optimized on PPO on
+each of the aggregation methods. TRL seems to show significantly improved
+training performance for the Bayesian aggregation and similar performance for
+the mean aggregation.</p>
+<!-- @Fig:resmptrltop
 shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
-fewer runs fail to achieve the optimal performance.</p>
+fewer runs fail to achieve the optimal performance. -->
 <figure>
-<img src="images/plots/2021-07-11_11.57.49-Multi-Evader%20Pursuit%20TRL.svg" id="fig:resmptrl" alt="Figure 15: TRL vs PPO (multi-evader pursuit)" /><figcaption aria-hidden="true">Figure 15: TRL vs PPO (multi-evader pursuit)</figcaption>
+<img src="images/plots/2021-07-22_16.26.13-Multi-Evader%20Pursuit%20TRL.svg" id="fig:resmptrl" alt="Figure 14: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster and the end result better. For mean aggregation, the results are fairly similar." /><figcaption aria-hidden="true">Figure 14: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster and the end result better. For mean aggregation, the results are fairly similar.</figcaption>
 </figure>
+<!--
+![TRL vs PPO (multi-evader pursuit). Top 1/3 of runs](images/plots/2021-07-11_13.23.22-Multi-Evader
+Pursuit TRL Top.33.svg){#fig:resmptrltop}
+-->
+<p><a href="#fig:ressptrl">Figure 15</a> shows the comparison on the single-evader pursuit task. Here, the
+performance of TRL is better than PPO on both the mean and the Bayesian
+aggregation.</p>
 <figure>
-<img src="images/plots/2021-07-11_13.23.22-Multi-Evader%20Pursuit%20TRL%20Top.33.svg" id="fig:resmptrltop" alt="Figure 16: TRL vs PPO (multi-evader pursuit). Top 1/3 of runs" /><figcaption aria-hidden="true">Figure 16: TRL vs PPO (multi-evader pursuit). Top 1/3 of runs</figcaption>
+<img src="images/plots/2021-07-15_12.57.59-Single-evader%20Pursuit%20TRL%20vs%20PPO.svg" id="fig:ressptrl" alt="Figure 15: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation." /><figcaption aria-hidden="true">Figure 15: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation.</figcaption>
 </figure>
+<p><a href="#fig:resasstrl">Figure 16</a> shows the comparison on the assembly task. All aggregation
+methods perform the same, except the Bayesian aggregation with TRL, which is
+worse.</p>
 <figure>
-<img src="images/plots/2021-07-11_13.13.37-assembly%20(by%20train%20algo%20and%20agg%20method).svg" id="fig:resasstrl" alt="Figure 17: TRL vs PPO on the assembly task" /><figcaption aria-hidden="true">Figure 17: TRL vs PPO on the assembly task</figcaption>
+<img src="images/plots/2021-07-11_13.13.37-assembly%20(by%20train%20algo%20and%20agg%20method).svg" id="fig:resasstrl" alt="Figure 16: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL." /><figcaption aria-hidden="true">Figure 16: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL.</figcaption>
 </figure>
-<figure>
-<img src="images/plots/2021-07-15_12.57.59-Single-evader%20Pursuit%20TRL%20vs%20PPO.svg" id="fig:ressptrl" alt="Figure 18: TRL vs PPO on single pursuit task" /><figcaption aria-hidden="true">Figure 18: TRL vs PPO on single pursuit task</figcaption>
-</figure>
+<p>In summary, TRL seems to perform the same or better in most cases, with the
+Bayesian aggregation on the assembly task being an outlier.</p>
 <h3 id="same-space-vs-separate-space-aggregation">Same Space vs Separate Space Aggregation</h3>
 <p>For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
 instead of each aggregation space containing the information of those
 aggregatables, the single aggregation space must contain the information of all
 observables as it pertains to the current agent. The potential advantage is that
-the policy can share more parameters and thus be more sample efficient. It can also scale to a larger number of categories of objects (aggregation groups).
-<a href="#fig:sameseparate">Figure 19</a> shows a schematic comparison between the two methods.</p>
-<p>In the other experiments we alwas use separate spaces. <a href="#fig:ressameseparate">Figure 20</a> and
-<a href="#fig:ressameseparate2">Figure 21</a> show the results of aggregating into a single space vs.
-into separate spaces for the multi-evader pursuit and assembly tasks. The
-separate-space aggregation performs better.</p>
+the policy can share more parameters and thus be more sample efficient. It can
+also scale to a larger number of categories of objects (aggregation groups).
+<a href="#fig:sameseparate">Figure 17</a> shows a schematic comparison between the two methods.</p>
+<p>In the other experiments we alwas use separate spaces. <a href="#fig:ressameseparate">Figure 18</a>
+shows the results of aggregating into a single space vs. into separate spaces
+for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
+pursuit task same-space aggregation means that both the neighboring pursuers as
+well as all the evaders are aggregated into one space. For the assembly task,
+both the neighboring agents as well as the boxes are aggregated into one space.
+The separate-space aggregation performs better in both tasks, with a higher
+margin in the multi-evader task.</p>
+<p>In summary, while the same-space aggregation is promising by in theory being
+able to scale to more complex environment, it performs worse for our tasks. This
+might be due to the fact that learning different encoder networks to output
+information into the same latent space is hard. An alternative explanation might
+be that our experiments only having few aggregation groups so the value of
+parameter sharing is low, or due to the lack of experiments with more different
+hyper-parameters.</p>
 <figure>
-<img src="images/model-sameseparate.drawio.svg" id="fig:sameseparate" alt="Figure 19: Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups." /><figcaption aria-hidden="true">Figure 19: Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups.</figcaption>
+<img src="images/model-sameseparate.drawio.svg" id="fig:sameseparate" alt="Figure 17: Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups." /><figcaption aria-hidden="true">Figure 17: Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups.</figcaption>
 </figure>
 <figure>
-<img src="images/plots/2021-07-14_13.37.01-Multi-Evader%20Pursuit%20samespace.svg" id="fig:ressameseparate" alt="Figure 20: Multi-pursuit same space comparison" /><figcaption aria-hidden="true">Figure 20: Multi-pursuit same space comparison</figcaption>
+<img src="images/plots/2021-07-22_16.05.47-samespace.svg" id="fig:ressameseparate" alt="Figure 18: Separate vs same-space aggregation on the multi-evader pursuit and assembly tasks. The same-space aggregation performs worse in both tasks." /><figcaption aria-hidden="true">Figure 18: Separate vs same-space aggregation on the multi-evader pursuit and assembly tasks. The same-space aggregation performs worse in both tasks.</figcaption>
 </figure>
-<figure>
-<img src="images/plots/2021-07-14_13.19.13-Assembly%20samespace.svg" id="fig:ressameseparate2" alt="Figure 21: Assembly task same space comparison" /><figcaption aria-hidden="true">Figure 21: Assembly task same space comparison</figcaption>
-</figure>
+<!--
+![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
+Pursuit samespace.svg){#fig:ressameseparate}
+
+![Assembly task same space comparison](images/plots/2021-07-14_13.19.13-Assembly
+samespace.svg){#fig:ressameseparate2}
+
+-->
 <h3 id="bayesian-aggregation-variants">Bayesian Aggregation Variants</h3>
 <p>The following shows results for some variants of the Bayesian aggregation.</p>
 <h4 id="separate-vs-common-encoder">Separate vs Common Encoder</h4>
@@ -1036,13 +1097,20 @@ it with the mean predictions in the hope that the neural network is able to use
 this additional information:</p>
 <p><span class="math display">\[e_{k→G}=(μ_z, σ_z^2)\]</span></p>
 <p>The results of applying this method to the multi-evader pursuit are seen in
-<a href="#fig:resoutputvariance">Figure 22</a>. The neural network architecture is the same as for the
+<a href="#fig:resoutputvariance">Figure 19</a>. The neural network architecture is the same as for the
 other experiments with Bayesian aggregation on multi-evader pursuit
 (<code>120-60-agg-160</code>). Including the variance in the decoder inputs decreases the
 performance.</p>
-<p>The decreasing performance could be a result of the increased dimension of the decoder inputs. Adding the variance inputs doubles the number of values the decoder has to process and learn from. Since the structure of the encoded values and variances can not known beforehand to the decoder, it has to learn to interpret more information than when receiving just the mean values. The added variance inputs should give the decoder the ability to understand the confidence of each of the value predictions and weigh them accordingly, but the added complexity seems to make it not worth it.</p>
+<p>The decreasing performance could be a result of the increased dimension of the
+decoder inputs. Adding the variance inputs doubles the number of values the
+decoder has to process and learn from. Since the structure of the encoded values
+and variances can not known beforehand to the decoder, it has to learn to
+interpret more information than when receiving just the mean values. The added
+variance inputs should give the decoder the ability to understand the confidence
+of each of the value predictions and weigh them accordingly, but the added
+complexity seems to make it not worth it.</p>
 <figure>
-<img src="images/plots/2021-07-11_12.27.17-Pursuit%20(bayes%20outputvariance).svg" id="fig:resoutputvariance" alt="Figure 22: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean." /><figcaption aria-hidden="true">Figure 22: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.</figcaption>
+<img src="images/plots/2021-07-11_12.27.17-Pursuit%20(bayes%20outputvariance).svg" id="fig:resoutputvariance" alt="Figure 19: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean." /><figcaption aria-hidden="true">Figure 19: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.</figcaption>
 </figure>
 <!-- ### Local obs aggregation space -->
 <!-- ### Activation functions
@@ -1056,8 +1124,9 @@ performance.</p>
 <p>We have made a comprehensive comparison between the performance of mean
 aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
-tasks. We have observed that there is no clear advantage of one of the methods over
-the others, with the results differing strongly between the different tasks.</p>
+tasks. We have observed that there is no clear advantage of one of the methods
+over the others, with the results differing strongly between the different
+tasks.</p>
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->
 <p>We have also shown the results of a few variants of the Bayesian aggregation and
 concluded that encoding the variance with the same encoder as the estimate,
@@ -1075,6 +1144,12 @@ local visibility case also increases the uncertainty of each observation though,
 it might be a case where Bayesian aggregation performs better. Future work
 should include experiments that have a larger environment with observability
 limited by range or by obstacles.</p>
+<p>Even though we show in our experiments that Bayesian aggregation into the same
+latent space is worse than aggregating into separate spaces, there might be
+potential there to be able to scale the number of aggregation groups with more
+hyperparameter tuning or by introducing a two-stage encoder where the first
+encoder is separate by aggregation group and the second encoder is shared, then
+aggregating the output of the second encoder into the same space.</p>
 <p>We also only considered tasks with implicit communication - the agents had to
 infer the intent of the other agents purely by their actions. There is related
 work that adds explicit communication between agents that is learned together
