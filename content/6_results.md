@@ -102,8 +102,8 @@ simpler than the multi-evader pursuit task, which is both due to the fact that
 there are fewer evaders and that the reward is more sparse (minimum-distance for
 single-evader vs count-catches for multi-evader).
 
-![Results on Single Pursuit task. Architecture: 120-60-agg-160.](images/plots/2021-07-14_13.55.20-Single-evader
-Pursuit.svg){#fig:ressp}
+![Results on Single Pursuit task. Architecture: 120-60-agg-160.](images/plots/2021-07-22_17.59.15-Single-evader
+Pursuit TRL vs PPO.svg){#fig:ressp}
 
 \FloatBarrier
 
@@ -278,7 +278,7 @@ variance inputs should give the decoder the ability to understand the confidence
 of each of the value predictions and weigh them accordingly, but the added
 complexity seems to make it not worth it.
 
-![Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.](images/plots/2021-07-11_12.27.17-Pursuit
+![Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.](images/plots/2021-07-22_18.16.40-Pursuit
 (bayes outputvariance).svg){#fig:resoutputvariance}
 
 <!-- ### Local obs aggregation space -->

@@ -50,4 +50,5 @@ applicable to environments with exactly two agents. For more agents, the
 performance of explicit communication architectures may be affected by the
 aggregation methods used and thus might be a use case for Bayesian aggregation.
 
-- recurrent architecture
+<!--
+- recurrent architecture -->
