@@ -38,4 +38,4 @@ pandoc "${args[@]}" content/abstract_de.md -o output/output-tex/abstract_de.tex
 
 TEXINPUTS=.::build/assets/latex::output/output-tex latexmk -silent -outdir=output/latex-intermediaries -xelatex build/assets/latex/thesis.tex
 rubber-info --into=output/latex-intermediaries build/assets/latex/thesis.tex
-cp output/latex-intermediaries/thesis.pdf output
+cp output/latex-intermediaries/thesis.pdf output/manuscript.pdf
