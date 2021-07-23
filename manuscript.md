@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-22'
+date-meta: '2021-07-23'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-22" />
-  <meta name="citation_publication_date" content="2021-07-22" />
+  <meta name="dc.date" content="2021-07-23" />
+  <meta name="citation_publication_date" content="2021-07-23" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4754703f9cefa9f3c3a272aac5888f6e2dd14c3d/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4754703f9cefa9f3c3a272aac5888f6e2dd14c3d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4754703f9cefa9f3c3a272aac5888f6e2dd14c3d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/4754703f9cefa9f3c3a272aac5888f6e2dd14c3d/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/)) was automatically
 built from
-[phiresky/masters-thesis@4754703](https://github.com/phiresky/masters-thesis/tree/4754703f9cefa9f3c3a272aac5888f6e2dd14c3d)
-on July 22, 2021. </em></small>
+[phiresky/masters-thesis@a5ccba4](https://github.com/phiresky/masters-thesis/tree/a5ccba426ee1cac488c00d042dce86365a5450f3)
+on July 23, 2021. </em></small>
 
 # Authors {.unnumbered}
 
