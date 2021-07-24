@@ -102,8 +102,8 @@ simpler than the multi-evader pursuit task, which is both due to the fact that
 there are fewer evaders and that the reward is more sparse (minimum-distance for
 single-evader vs count-catches for multi-evader).
 
-![Results on Single Pursuit task. Architecture: 120-60-agg-160.](images/plots/2021-07-22_17.59.15-Single-evader
-Pursuit TRL vs PPO.svg){#fig:ressp}
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+Pursuit.svg){#fig:ressp}
 
 \FloatBarrier
 
