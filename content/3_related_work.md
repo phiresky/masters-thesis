@@ -18,7 +18,7 @@ found in [@{https://arxiv.org/abs/1911.10635}] and
 
 ## Centralized vs decentralized learning
 
-During training, the agent policies car either be learned in a centralized or a
+During training, the agent policies can either be learned in a centralized or a
 decentralized fashion.
 
 In decentralized learning, each agent learns their own policy, while in
@@ -51,9 +51,11 @@ The alternative is decentralized execution — the observation inputs and action
 outputs of the policy networks are local to a single agent. This can formally be
 described as a _Decentralized Partially Observable Markov Decision Process_
 (Dec-POMDP) [@{https://link.springer.com/chapter/10.1007/978-3-642-27645-3_15}].
-When combining centralized learning with decentralized execution, there is only
-one policy network that is shared between all agents but the inputs and outputs
-of the policy are separate.
+Decentralized learning with decentralized execution is needed for heterogenous
+agents (e.g. [@{http://proceedings.mlr.press/v80/zhang18n.html};
+@{https://ieeexplore.ieee.org/document/6415291}]). When combining centralized
+learning with decentralized execution, there is only one policy network that is
+shared between all agents but the inputs and outputs of the policy are separate.
 
 Centralized-learning with decentralized-execution is thus a compromise between
 performance, robustness, and sample efficiency. CLDE is used e.g. by [@mpe;

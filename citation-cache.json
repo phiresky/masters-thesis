@@ -3604,6 +3604,68 @@
 				"title": "Inverse Reinforcement Learning in Swarm Systems",
 				"type": "paper-conference"
 			}
+		},
+		"https://dl.acm.org/doi/10.5555/1642194.1642231": {
+			"fetched": "2021-07-24T12:55:08.109Z",
+			"bibtex": [
+				"",
+				"@inproceedings{bowling_rational_2001,",
+				"   address = {Seattle, WA, USA},",
+				"   series = {{IJCAI}'01},",
+				"   title = {Rational and convergent learning in stochastic games},",
+				"   isbn = {9781558608122},",
+				"   url = {https://dl.acm.org/doi/10.5555/1642194.1642231},",
+				"   abstract = {This paper investigates the problem of policy learning in multiagent environments using the stochastic game framework, which we briefly overview. We introduce two properties as desirable for a learning agent when in the presence of other learning agents, namely rationality and convergence. We examine existing reinforcement learning algorithms according to these two properties and notice that they fail to simultaneously meet both criteria. We then contribute a new learning algorithm,WoLF policy hillclimbing, that is based on a simple principle: \"learn quickly while losing, slowly while winning.\" The algorithm is proven to be rational and we present empirical results for a number of stochastic games showing the algorithm converges.},",
+				"   urldate = {2021-07-24},",
+				"   booktitle = {Proceedings of the 17th international joint conference on {Artificial} intelligence - {Volume} 2},",
+				"   publisher = {Morgan Kaufmann Publishers Inc.},",
+				"   author = {Bowling, Michael and Veloso, Manuela},",
+				"   month = aug,",
+				"   year = {2001},",
+				"   pages = {1021--1026},",
+				"}",
+				""
+			],
+			"csl": {
+				"ISBN": "9781558608122",
+				"URL": "https://dl.acm.org/doi/10.5555/1642194.1642231",
+				"abstract": "This paper investigates the problem of policy learning in multiagent environments using the stochastic game framework, which we briefly overview. We introduce two properties as desirable for a learning agent when in the presence of other learning agents, namely rationality and convergence. We examine existing reinforcement learning algorithms according to these two properties and notice that they fail to simultaneously meet both criteria. We then contribute a new learning algorithm,WoLF policy hillclimbing, that is based on a simple principle: \"learn quickly while losing, slowly while winning.\" The algorithm is proven to be rational and we present empirical results for a number of stochastic games showing the algorithm converges.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							24
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Bowling",
+						"given": "Michael"
+					},
+					{
+						"family": "Veloso",
+						"given": "Manuela"
+					}
+				],
+				"collection-title": "IJCAI’01",
+				"container-title": "Proceedings of the 17th international joint conference on Artificial intelligence - Volume 2",
+				"id": "https://dl.acm.org/doi/10.5555/1642194.1642231",
+				"issued": {
+					"date-parts": [
+						[
+							2001,
+							8
+						]
+					]
+				},
+				"page": "1021-1026",
+				"publisher": "Morgan Kaufmann Publishers Inc.",
+				"publisher-place": "Seattle, WA, USA",
+				"title": "Rational and convergent learning in stochastic games",
+				"type": "paper-conference"
+			}
 		}
 	}
 }

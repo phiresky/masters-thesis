@@ -4,11 +4,10 @@ We introduce a policy architecture for deep multi-agent reinforcement learning
 that projects observations from one or more different kinds of observables into
 samples of latent spaces, then aggregates them into a single latent value. This
 makes the architecture scale to any number as well as a varying number of
-observables.
+observables. We use the same encode-aggregate-concatenate structure as
+[@maxpaper] and a similar method of attentive aggregation as [@openai].
 
 ## Policy Architecture
-
-In general, our policy architecture is based on [@maxpaper] and [@openai].
 
 While the policy architecture and weights are shared for all agents, the inputs
 are dependent on the current agent $a_k$, thus leading to different outputs for
@@ -24,7 +23,12 @@ addition, there can be additional sets of observations, for example for objects
 or scripted agents in the environment. The architecture can handle any amount of
 observation sets, but the observations in each set must have the same shape.
 
-We call each of the sets of observations "aggregation groups".
+We call each of the sets of observations "aggregation groups" $G$:
+
+$$G = \{ g_1, \dots, g_n \}$$
+
+Since the $g_i$ are later aggregated with a permutation-invariant aggregation
+function, their order does not matter.
 
 First, we collect the observations for each instance $1<i<n$ of each aggregation
 group $G$. These observations can be relative to the current agent. Each

@@ -109,9 +109,9 @@ $$r = min_{i=0}^n ||p_{a_i} - p_{e}||$$
 
 The episode ends once the evader is caught or 1024 timesteps have passed. The
 evader is declared as caught if the distance is minimum distance between an
-agent and the evader is less than $1%$ of the world width.
+agent and the evader is less than $1\%$ of the world width.
 
-#### Multi-evader pursuit
+### Multi-evader pursuit
 
 The multi-evader pursuit task is the same as the normal pursuit task, except
 there are multiple hard-coded evaders.
@@ -123,7 +123,7 @@ $\frac{2}{100}$ of the world width. Contrary to the single-evader task, the
 episode does not end when an evader is caught and instead always runs for 1024
 timesteps.
 
-#### Box assembly task
+### Box assembly task
 
 In the box assembly task, the agents are modeled similar to Kilobots, as
 described by @gregor. The agents are two-dimensional circles with collision.
@@ -134,8 +134,8 @@ specific dynamics of real Kilobots.
 
 The world is a square and contains a few two-dimensional boxes (squares) as
 obstacles. For the box assembly task, the goal is to get all the boxes as close
-together as possible. Since they agents are much smaller than the boxes, moving
-a box is hard for a single agent. The reward is the negative sum of the pairwise
+together as possible. Since the agents are much smaller than the boxes, moving a
+box is hard for a single agent. The reward is the negative sum of the pairwise
 distances between the boxes. We run this task with four boxes and 10 agents.
 
 An example of a successful episode of the task is in @fig:assembly.
@@ -148,7 +148,7 @@ An example of a successful episode of the task is in @fig:assembly.
 The observation space for the box assembly task contains the following
 information:
 
-1. The absolute position (x,y) of the current agent
+1. The absolute position $(x, y)$ of the current agent
 2. The sin, cos of the absolute rotation of the current agent
 3. For every neighboring agent:
    1. The distance between the current agent and the neighbor
@@ -159,7 +159,7 @@ information:
    2. The sin and cos of the bearing angle to the box
    3. The sin and cos of the box's rotation relative to our rotation
 
-#### Box clustering task
+### Box clustering task
 
 The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an

@@ -73,7 +73,7 @@ Region Policy Optimization (TRPO)
 Optimization (PPO) [@ppo] and Soft Actor Critic
 [@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one
 of the most commonly used methods (PPO) and also explore a new method that
-promises stabler training (PG-TRL).
+promises stabler training (PG-TRL [@trl]).
 
 ### Proximal Policy Optimization (PPO)
 
@@ -111,7 +111,7 @@ implementation
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
 
-### Trust Region Layers (PG-TRL) {#sec:trl}
+### Trust Region Layers (PG-TRL [@trl]) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
 region during policy updates introduced by @trl. PPO uses a fixed clipping ratio
@@ -124,24 +124,26 @@ region. The trust region and the projection is based on either the KL-divergence
 
 After each training step, the projected new policy depends on the previous
 policy. To prevent an infinite stacking of old policies, the explicitly
-projected policy is only used as a surrogate, while the real policy as based on
+projected policy is only used as a surrogate, while the real policy is based on
 a learned approximation. To prevent the real policy and the projected policy
 from diverging, the divergence between them is computed again in the form of the
-KL divergence or the Wasserstein $W_2$. The computed divergence (_trust region
-regression loss_) is then added to the policy gradient loss function with a high
-factor.
+KL divergence or the Wasserstein $W_2$ distance. The computed divergence (_trust
+region regression loss_) is then added to the policy gradient loss function with
+a high factor.
 
 We explore PG-TRL as an alternative training method to PPO.
 
 ## Multi-agent reinforcement learning (MARL)
 
-Usually, reinforcement learning algorithms operate on POMDPs. POMDPs only have a
-single agent interacting with the environment, so for multi-agent settings, we
-need a different system that can model multiple agents interacting with the
-world. There are different ways of extending POMDPs to work for multi-agent
-tasks. Decentralized POMDPs (Dec-POMDP)
+Usually, reinforcement learning environments are modeled as POMDPs. POMDPs only
+have a single agent interacting with the environment, so for multi-agent
+settings, we need a different system that can model multiple agents interacting
+with the world. There are different ways of extending POMDPs to work for
+multi-agent tasks. Decentralized POMDPs (Dec-POMDP)
 [@{https://www.springer.com/gp/book/9783319289274}] are a generalization of
-POMDPs that split the action and observation spaces
+POMDPs that split the action and observation spaces into those of each agent.
+
+A Dec-POMDP consists of:
 
 - A set of $n$ agents $D=\{1,\dots,n\}$
 - A set of states $S$
@@ -154,7 +156,14 @@ Note that this definition is very similar to a normal POMDP. The difference is
 that the set of joint observations and joint actions consists of a tuple of the
 observations/actions of each individual agent (i.e.
 $a\in A = \langle a_1,\dots,a_n \rangle$, where $a_i$ is the action of agent
-$i$). In Dec-POMDPs every agent can have differing observations and actions.
+$i$).
+
+In Dec-POMDPs every agent can have differing observations and actions. The
+subset of Dec-POMDPs where the agents are homogenous has been described as a
+SwarMDP by @{https://dl.acm.org/doi/10.5555/3091125.3091320}. The joint
+observation and action spaces thus become $O = \hat{O^n}$ and $A = \hat{A^n}$,
+where $\hat{O}$ and $\hat{A}$ are the observation and action space of each
+agent.
 
 ## Environment model and learning process
 
@@ -171,12 +180,8 @@ physical properties, observation space, and action space. They only differ in
 their extrinsic properties, e.g., their current position, rotation, and speed.
 This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
-acting according to the same policy.
-
-We thus only consider a subset of Dec-POMDPs, namely those where the agents are
-homogenous — each agent has the same possible observations and actions. This has
-also been described as a SwarMDP by
-@{https://dl.acm.org/doi/10.5555/3091125.3091320}.
+acting according to the same policy. We thus only environments where the agents
+are homogenous — each agent has the same possible observations and actions.
 
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in

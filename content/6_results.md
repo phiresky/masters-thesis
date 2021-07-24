@@ -26,8 +26,8 @@ Unless mentioned otherwise, the following setup is used:
   - We use a single shared encoder for the value and confidence estimates
   - The a-priori estimate $μ_{z_0}$ is learnable separately for each feature
     dimension
-  - The variance of both the a-priori estimate as well as the encoded estimates
-    are rectified using $\text{softplus}$.
+  - The variance of the a-priori estimate as well as the encoded estimates are
+    rectified using $\text{softplus}$.
 - Multiple aggregatable groups are aggregated into separate latent spaces
 - The parameters of the policy and value function are not shared
 - The training algorithm used is PPO
@@ -44,14 +44,14 @@ aggregation, mean aggregation, attentive aggregation) on multiple tasks.
 We use the notation `64-agg-64` to describe the layer sizes of the neural
 network: The numbers before `agg` are the sequential layer sizes of the dense
 layers of the encoders of each aggregation group. The numbers after `agg` are
-the layer sizes in the decoder after the concatentation of the proprioceptive
+the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
 ### Multi-evader pursuit task
 
 Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
 on a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task
-with different aggregation methdos with the same architecture used in
+with different aggregation methods with the same architecture used in
 [@maxpaper] to be able to directly compare the results. The architecture is
 64-agg-64 with the tanh activation function. With this architecture, the
 Bayesian aggregation performs best.
@@ -73,7 +73,7 @@ layers before the aggregation, while the optimized architecture on the attentive
 aggregation has multiple layers after the aggregation instead. With the
 hyper-parameter optimized architecture, the mean aggregation performs best. The
 results are still similar when using the same `120-60-agg-160` architecture for
-every aggregation method. These results of [@fig:resmpsmall; @fig:resmpopt]
+every aggregation method. These results of [@fig:resmpsmall; @fig:reimport]
 indicate that the Bayesian aggregation outperforms the mean aggregation when the
 neural network is limited in size, but has no advantage when the neural network
 is sufficiently large and deep. The neural network seems to be able to
@@ -81,7 +81,7 @@ implicitly learn to transform and weigh the information from the different
 observables, compensating the advantage of the additional structure of relevancy
 / certainty that is given in the Bayesian aggregation.
 
-@Fig:resmpopttop shows the results of the top third of runs. The performane of
+@Fig:resmpopttop shows the results of the top third of runs. The performance of
 the mean and Bayesian aggregation is similar, indicating that the best runs are
 similar, but that the Bayesian aggregation has more runs that fail to achieve
 the peak performance.
@@ -110,19 +110,19 @@ Pursuit TRL vs PPO.svg){#fig:ressp}
 ### Rendezvous task
 
 @Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
-the rendezvous task with twenty agents in a two dimensional square world with
+the rendezvous task with twenty agents in a two-dimensional square world with
 walls. The medium architecture is the one optimized on the pursuit task
-(`120-60-agg-160`). The small architecture is the one used in [@maxpaper]
+(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
 (`64-agg-64`). The optimized architecture was optimized on the rendezvous task
 directly: `146-120-agg-19-177-162`. All architectures and aggregation methods
 successfully solve the task. The aggregation method does not make any difference
-in the performance, but both the small and the medium architecture have a "drop"
-in training speed at around 2 million steps, while the optimized architecture
-smoothly learns the problem. The logarithmic scale graph to the right shows that
-while the small and optimized architecture both reach the same final score, the
-medium architecture never reaches the same score. This might be because both the
-small and the optimized architecture have a bottleneck layer after the
-aggregation, forcing the neural network to simplify the strategy.
+in the performance, but both the simple and the medium architecture have a
+"drop" in training speed at around 2 million steps, while the optimized
+architecture smoothly learns the problem. The logarithmic scale graph to the
+right shows that while the simple and optimized architecture both reach the same
+final score, the medium architecture never reaches the same score. This might be
+because both the simple and the optimized architecture have a bottleneck layer
+after the aggregation, forcing the neural network to simplify the strategy.
 
 ![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
 
@@ -159,7 +159,7 @@ In the following, we show some results of the trust region layers policy
 gradient (TRL) training method (see [@sec:trl]) compared to PPO.
 
 @Fig:resmptrl shows the learning algorithm comparison on the multi-evader
-pursuit task. The architecture are the ones hyper-parameter optimized on PPO on
+pursuit task. The architectures are the ones hyper-parameter optimized on PPO on
 each of the aggregation methods. TRL seems to show significantly improved
 training performance for the Bayesian aggregation and similar performance for
 the mean aggregation.
@@ -169,7 +169,7 @@ shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
 fewer runs fail to achieve the optimal performance. -->
 
-![TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster and the end result better. For mean aggregation, the results are fairly similar.](images/plots/2021-07-22_16.26.13-Multi-Evader
+![TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar.](images/plots/2021-07-22_16.26.13-Multi-Evader
 Pursuit TRL.svg){#fig:resmptrl}
 
 <!--
@@ -205,20 +205,20 @@ the policy can share more parameters and thus be more sample efficient. It can
 also scale to a larger number of categories of objects (aggregation groups).
 @Fig:sameseparate shows a schematic comparison between the two methods.
 
-In the other experiments we alwas use separate spaces. @Fig:ressameseparate
+In the other experiments we always use separate spaces. @Fig:ressameseparate
 shows the results of aggregating into a single space vs. into separate spaces
 for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
-pursuit task same-space aggregation means that both the neighboring pursuers as
-well as all the evaders are aggregated into one space. For the assembly task,
-both the neighboring agents as well as the boxes are aggregated into one space.
-The separate-space aggregation performs better in both tasks, with a higher
-margin in the multi-evader task.
+pursuit task same-space aggregation means that both the neighboring pursuers and
+all the evaders are aggregated into one space. For the assembly task, both the
+neighboring agents and the boxes are aggregated into one space. The
+separate-space aggregation performs better in both tasks, with a higher margin
+in the multi-evader task.
 
 In summary, while the same-space aggregation is promising by in theory being
 able to scale to more complex environment, it performs worse for our tasks. This
 might be due to the fact that learning different encoder networks to output
 information into the same latent space is hard. An alternative explanation might
-be that our experiments only having few aggregation groups so the value of
+be that our experiments only having few aggregation groups, so the value of
 parameter sharing is low, or due to the lack of experiments with more different
 hyper-parameters.
 
@@ -237,7 +237,7 @@ samespace.svg){#fig:ressameseparate2}
 
 ## Bayesian aggregation variants
 
-The following shows results for some variants of the Bayesian aggregation.
+The following shows the results for some variants of the Bayesian aggregation.
 
 ### Separate vs common encoder
 
