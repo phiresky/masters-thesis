@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/)) was automatically
 built from
-[phiresky/masters-thesis@96f4076](https://github.com/phiresky/masters-thesis/tree/96f4076315a569e3ff81e3f296e30254668e32eb)
+[phiresky/masters-thesis@4e954a1](https://github.com/phiresky/masters-thesis/tree/4e954a14a2289eb4aff95b766004042934640b4e)
 on July 24, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -1067,8 +1067,9 @@ specific dynamics of real Kilobots.
 The world is a square and contains a few two-dimensional boxes (squares) as
 obstacles. For the box assembly task, the goal is to get all the boxes as close
 together as possible. Since the agents are much smaller than the boxes, moving a
-box is hard for a single agent. The reward is the negative sum of the pairwise
-distances between the boxes. We run this task with four boxes and 10 agents.
+box is hard for a single agent. The reward is the derivation of the negative sum
+of the pairwise distances between the boxes. We run this task with four boxes
+and 10 agents.
 
 An example of a successful episode of the task is in @fig:assembly.
 
@@ -1096,15 +1097,17 @@ information:
 The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an
 arrangement such that boxes of the same color are as close together as possible,
-while boxes of different colors are far away. The reward is the negative sum of
-pairwise distances between the boxes of each cluster plus the sum of pairwise
-distances of the center of mass of each cluster.
+while boxes of different colors are far away. Each color of box has an explicit
+target one corner of the world. The reward is calculated by taking the sum of
+negative distances between each box and its cluster target, then taking the
+difference of this after the step and before the step.
 
 The observation space is the same as the observation space of the box assembly
 task, except that each cluster of objects is aggregated into a separate
-aggregation space.
+aggregation space, and that there is an additional one-hot encoded cluster ID in
+the object observation space.
 
-{example clustering episode}
+![Example episode of the clustering task with two clusters.](images/clustering2-episode.drawio.svg){#fig:clustering2}
 
 <!-- ### Other considered tasks
 
@@ -1259,10 +1262,11 @@ agg method).svg){#fig:resassembly}
 ### Clustering task with two clusters
 
 @Fig:resclustering2 shows the results on the clustering task with four boxes
-split into two clusters.
+split into two clusters. The results are similar in all cases. An example of a
+successful episode with mean aggregation is shown in @fig:clustering2.
 
-![Clustering2 results](images/plots/2021-07-10_18.56.32-Clustering task (2
-clusters, by agg method).svg){#fig:resclustering2}
+![Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.](images/plots/2021-07-10_18.56.32-Clustering
+task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
@@ -1449,7 +1453,7 @@ hyperparameter tuning or by introducing a two-stage encoder where the first
 encoder is separate by aggregation group and the second encoder is shared, then
 aggregating the output of the second encoder into the same space.
 
-We also only considered tasks with implicit communication - the agents had to
+We also only considered tasks with implicit communication — the agents had to
 infer the intent of the other agents purely by their actions. There is related
 work that adds explicit communication between agents that is learned together
 with the policy. This is usually implemented as another action output that is
