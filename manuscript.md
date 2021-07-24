@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/96f4076315a569e3ff81e3f296e30254668e32eb/)) was automatically
 built from
-[phiresky/masters-thesis@f3c3d2c](https://github.com/phiresky/masters-thesis/tree/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae)
+[phiresky/masters-thesis@96f4076](https://github.com/phiresky/masters-thesis/tree/96f4076315a569e3ff81e3f296e30254668e32eb)
 on July 24, 2021. </em></small>
 
 # Authors {.unnumbered}
