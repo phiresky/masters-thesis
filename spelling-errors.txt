@@ -1,7 +1,6 @@
 agg
 aggregatable
 aggregatables
-alwas
 apriori
 att
 backpropagation
@@ -10,12 +9,12 @@ bayesiancontextaggregation
 behaviour
 CLDE
 CLV
-concatentation
 convolutional
 diagonalized
 dimensionality
 exchangeability
 gregor
+heterogenous
 homogenous
 hyperparameter
 hyperparameters
@@ -33,7 +32,6 @@ MDP
 MDPs
 meanagg
 meanfielduav
-methdos
 mha
 mpe
 NN
@@ -42,7 +40,6 @@ observables
 openai
 optimality
 Optuna
-performane
 pettingzoo
 phiresky
 POMDP
@@ -54,6 +51,7 @@ pre
 priori
 proprioceptive
 reimplementation
+reimport
 reinforcmeent
 relatedwork
 resassembly

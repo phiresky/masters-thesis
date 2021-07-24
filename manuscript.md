@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-23'
+date-meta: '2021-07-24'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-23" />
-  <meta name="citation_publication_date" content="2021-07-23" />
+  <meta name="dc.date" content="2021-07-24" />
+  <meta name="citation_publication_date" content="2021-07-24" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/a5ccba426ee1cac488c00d042dce86365a5450f3/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/)) was automatically
 built from
-[phiresky/masters-thesis@a5ccba4](https://github.com/phiresky/masters-thesis/tree/a5ccba426ee1cac488c00d042dce86365a5450f3)
-on July 23, 2021. </em></small>
+[phiresky/masters-thesis@ea2ae5d](https://github.com/phiresky/masters-thesis/tree/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc)
+on July 24, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -265,7 +265,7 @@ Region Policy Optimization (TRPO)
 Optimization (PPO) [@ppo] and Soft Actor Critic
 [@{https://arxiv.org/abs/1801.01290}]. We run most of our experiments with one
 of the most commonly used methods (PPO) and also explore a new method that
-promises stabler training (PG-TRL).
+promises stabler training (PG-TRL [@trl]).
 
 ### Proximal Policy Optimization (PPO)
 
@@ -303,7 +303,7 @@ implementation
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
 
-### Trust Region Layers (PG-TRL) {#sec:trl}
+### Trust Region Layers (PG-TRL [@trl]) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
 region during policy updates introduced by @trl. PPO uses a fixed clipping ratio
@@ -316,24 +316,26 @@ region. The trust region and the projection is based on either the KL-divergence
 
 After each training step, the projected new policy depends on the previous
 policy. To prevent an infinite stacking of old policies, the explicitly
-projected policy is only used as a surrogate, while the real policy as based on
+projected policy is only used as a surrogate, while the real policy is based on
 a learned approximation. To prevent the real policy and the projected policy
 from diverging, the divergence between them is computed again in the form of the
-KL divergence or the Wasserstein $W_2$. The computed divergence (_trust region
-regression loss_) is then added to the policy gradient loss function with a high
-factor.
+KL divergence or the Wasserstein $W_2$ distance. The computed divergence (_trust
+region regression loss_) is then added to the policy gradient loss function with
+a high factor.
 
 We explore PG-TRL as an alternative training method to PPO.
 
 ## Multi-agent reinforcement learning (MARL)
 
-Usually, reinforcement learning algorithms operate on POMDPs. POMDPs only have a
-single agent interacting with the environment, so for multi-agent settings, we
-need a different system that can model multiple agents interacting with the
-world. There are different ways of extending POMDPs to work for multi-agent
-tasks. Decentralized POMDPs (Dec-POMDP)
+Usually, reinforcement learning environments are modeled as POMDPs. POMDPs only
+have a single agent interacting with the environment, so for multi-agent
+settings, we need a different system that can model multiple agents interacting
+with the world. There are different ways of extending POMDPs to work for
+multi-agent tasks. Decentralized POMDPs (Dec-POMDP)
 [@{https://www.springer.com/gp/book/9783319289274}] are a generalization of
-POMDPs that split the action and observation spaces
+POMDPs that split the action and observation spaces into those of each agent.
+
+A Dec-POMDP consists of:
 
 - A set of $n$ agents $D=\{1,\dots,n\}$
 - A set of states $S$
@@ -346,7 +348,14 @@ Note that this definition is very similar to a normal POMDP. The difference is
 that the set of joint observations and joint actions consists of a tuple of the
 observations/actions of each individual agent (i.e.
 $a\in A = \langle a_1,\dots,a_n \rangle$, where $a_i$ is the action of agent
-$i$). In Dec-POMDPs every agent can have differing observations and actions.
+$i$).
+
+In Dec-POMDPs every agent can have differing observations and actions. The
+subset of Dec-POMDPs where the agents are homogenous has been described as a
+SwarMDP by @{https://dl.acm.org/doi/10.5555/3091125.3091320}. The joint
+observation and action spaces thus become $O = \hat{O^n}$ and $A = \hat{A^n}$,
+where $\hat{O}$ and $\hat{A}$ are the observation and action space of each
+agent.
 
 ## Environment model and learning process
 
@@ -363,12 +372,8 @@ physical properties, observation space, and action space. They only differ in
 their extrinsic properties, e.g., their current position, rotation, and speed.
 This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
-acting according to the same policy.
-
-We thus only consider a subset of Dec-POMDPs, namely those where the agents are
-homogenous — each agent has the same possible observations and actions. This has
-also been described as a SwarMDP by
-@{https://dl.acm.org/doi/10.5555/3091125.3091320}.
+acting according to the same policy. We thus only environments where the agents
+are homogenous — each agent has the same possible observations and actions.
 
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
@@ -606,7 +611,7 @@ found in [@{https://arxiv.org/abs/1911.10635}] and
 
 ## Centralized vs decentralized learning
 
-During training, the agent policies car either be learned in a centralized or a
+During training, the agent policies can either be learned in a centralized or a
 decentralized fashion.
 
 In decentralized learning, each agent learns their own policy, while in
@@ -639,9 +644,11 @@ The alternative is decentralized execution — the observation inputs and action
 outputs of the policy networks are local to a single agent. This can formally be
 described as a _Decentralized Partially Observable Markov Decision Process_
 (Dec-POMDP) [@{https://link.springer.com/chapter/10.1007/978-3-642-27645-3_15}].
-When combining centralized learning with decentralized execution, there is only
-one policy network that is shared between all agents but the inputs and outputs
-of the policy are separate.
+Decentralized learning with decentralized execution is needed for heterogenous
+agents (e.g. [@{http://proceedings.mlr.press/v80/zhang18n.html};
+@{https://ieeexplore.ieee.org/document/6415291}]). When combining centralized
+learning with decentralized execution, there is only one policy network that is
+shared between all agents but the inputs and outputs of the policy are separate.
 
 Centralized-learning with decentralized-execution is thus a compromise between
 performance, robustness, and sample efficiency. CLDE is used e.g. by [@mpe;
@@ -763,11 +770,10 @@ We introduce a policy architecture for deep multi-agent reinforcement learning
 that projects observations from one or more different kinds of observables into
 samples of latent spaces, then aggregates them into a single latent value. This
 makes the architecture scale to any number as well as a varying number of
-observables.
+observables. We use the same encode-aggregate-concatenate structure as
+[@maxpaper] and a similar method of attentive aggregation as [@openai].
 
 ## Policy Architecture
-
-In general, our policy architecture is based on [@maxpaper] and [@openai].
 
 While the policy architecture and weights are shared for all agents, the inputs
 are dependent on the current agent $a_k$, thus leading to different outputs for
@@ -783,7 +789,12 @@ addition, there can be additional sets of observations, for example for objects
 or scripted agents in the environment. The architecture can handle any amount of
 observation sets, but the observations in each set must have the same shape.
 
-We call each of the sets of observations "aggregation groups".
+We call each of the sets of observations "aggregation groups" $G$:
+
+$$G = \{ g_1, \dots, g_n \}$$
+
+Since the $g_i$ are later aggregated with a permutation-invariant aggregation
+function, their order does not matter.
 
 First, we collect the observations for each instance $1<i<n$ of each aggregation
 group $G$. These observations can be relative to the current agent. Each
@@ -1030,9 +1041,9 @@ $$r = min_{i=0}^n ||p_{a_i} - p_{e}||$$
 
 The episode ends once the evader is caught or 1024 timesteps have passed. The
 evader is declared as caught if the distance is minimum distance between an
-agent and the evader is less than $1%$ of the world width.
+agent and the evader is less than $1\%$ of the world width.
 
-#### Multi-evader pursuit
+### Multi-evader pursuit
 
 The multi-evader pursuit task is the same as the normal pursuit task, except
 there are multiple hard-coded evaders.
@@ -1044,7 +1055,7 @@ $\frac{2}{100}$ of the world width. Contrary to the single-evader task, the
 episode does not end when an evader is caught and instead always runs for 1024
 timesteps.
 
-#### Box assembly task
+### Box assembly task
 
 In the box assembly task, the agents are modeled similar to Kilobots, as
 described by @gregor. The agents are two-dimensional circles with collision.
@@ -1055,8 +1066,8 @@ specific dynamics of real Kilobots.
 
 The world is a square and contains a few two-dimensional boxes (squares) as
 obstacles. For the box assembly task, the goal is to get all the boxes as close
-together as possible. Since they agents are much smaller than the boxes, moving
-a box is hard for a single agent. The reward is the negative sum of the pairwise
+together as possible. Since the agents are much smaller than the boxes, moving a
+box is hard for a single agent. The reward is the negative sum of the pairwise
 distances between the boxes. We run this task with four boxes and 10 agents.
 
 An example of a successful episode of the task is in @fig:assembly.
@@ -1069,7 +1080,7 @@ An example of a successful episode of the task is in @fig:assembly.
 The observation space for the box assembly task contains the following
 information:
 
-1. The absolute position (x,y) of the current agent
+1. The absolute position $(x, y)$ of the current agent
 2. The sin, cos of the absolute rotation of the current agent
 3. For every neighboring agent:
    1. The distance between the current agent and the neighbor
@@ -1080,7 +1091,7 @@ information:
    2. The sin and cos of the bearing angle to the box
    3. The sin and cos of the box's rotation relative to our rotation
 
-#### Box clustering task
+### Box clustering task
 
 The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an
@@ -1130,8 +1141,8 @@ Unless mentioned otherwise, the following setup is used:
   - We use a single shared encoder for the value and confidence estimates
   - The a-priori estimate $μ_{z_0}$ is learnable separately for each feature
     dimension
-  - The variance of both the a-priori estimate as well as the encoded estimates
-    are rectified using $\text{softplus}$.
+  - The variance of the a-priori estimate as well as the encoded estimates are
+    rectified using $\text{softplus}$.
 - Multiple aggregatable groups are aggregated into separate latent spaces
 - The parameters of the policy and value function are not shared
 - The training algorithm used is PPO
@@ -1148,14 +1159,14 @@ aggregation, mean aggregation, attentive aggregation) on multiple tasks.
 We use the notation `64-agg-64` to describe the layer sizes of the neural
 network: The numbers before `agg` are the sequential layer sizes of the dense
 layers of the encoders of each aggregation group. The numbers after `agg` are
-the layer sizes in the decoder after the concatentation of the proprioceptive
+the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
 ### Multi-evader pursuit task
 
 Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
 on a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task
-with different aggregation methdos with the same architecture used in
+with different aggregation methods with the same architecture used in
 [@maxpaper] to be able to directly compare the results. The architecture is
 64-agg-64 with the tanh activation function. With this architecture, the
 Bayesian aggregation performs best.
@@ -1177,7 +1188,7 @@ layers before the aggregation, while the optimized architecture on the attentive
 aggregation has multiple layers after the aggregation instead. With the
 hyper-parameter optimized architecture, the mean aggregation performs best. The
 results are still similar when using the same `120-60-agg-160` architecture for
-every aggregation method. These results of [@fig:resmpsmall; @fig:resmpopt]
+every aggregation method. These results of [@fig:resmpsmall; @fig:reimport]
 indicate that the Bayesian aggregation outperforms the mean aggregation when the
 neural network is limited in size, but has no advantage when the neural network
 is sufficiently large and deep. The neural network seems to be able to
@@ -1185,7 +1196,7 @@ implicitly learn to transform and weigh the information from the different
 observables, compensating the advantage of the additional structure of relevancy
 / certainty that is given in the Bayesian aggregation.
 
-@Fig:resmpopttop shows the results of the top third of runs. The performane of
+@Fig:resmpopttop shows the results of the top third of runs. The performance of
 the mean and Bayesian aggregation is similar, indicating that the best runs are
 similar, but that the Bayesian aggregation has more runs that fail to achieve
 the peak performance.
@@ -1214,19 +1225,19 @@ Pursuit TRL vs PPO.svg){#fig:ressp}
 ### Rendezvous task
 
 @Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
-the rendezvous task with twenty agents in a two dimensional square world with
+the rendezvous task with twenty agents in a two-dimensional square world with
 walls. The medium architecture is the one optimized on the pursuit task
-(`120-60-agg-160`). The small architecture is the one used in [@maxpaper]
+(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
 (`64-agg-64`). The optimized architecture was optimized on the rendezvous task
 directly: `146-120-agg-19-177-162`. All architectures and aggregation methods
 successfully solve the task. The aggregation method does not make any difference
-in the performance, but both the small and the medium architecture have a "drop"
-in training speed at around 2 million steps, while the optimized architecture
-smoothly learns the problem. The logarithmic scale graph to the right shows that
-while the small and optimized architecture both reach the same final score, the
-medium architecture never reaches the same score. This might be because both the
-small and the optimized architecture have a bottleneck layer after the
-aggregation, forcing the neural network to simplify the strategy.
+in the performance, but both the simple and the medium architecture have a
+"drop" in training speed at around 2 million steps, while the optimized
+architecture smoothly learns the problem. The logarithmic scale graph to the
+right shows that while the simple and optimized architecture both reach the same
+final score, the medium architecture never reaches the same score. This might be
+because both the simple and the optimized architecture have a bottleneck layer
+after the aggregation, forcing the neural network to simplify the strategy.
 
 ![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
 
@@ -1263,7 +1274,7 @@ In the following, we show some results of the trust region layers policy
 gradient (TRL) training method (see [@sec:trl]) compared to PPO.
 
 @Fig:resmptrl shows the learning algorithm comparison on the multi-evader
-pursuit task. The architecture are the ones hyper-parameter optimized on PPO on
+pursuit task. The architectures are the ones hyper-parameter optimized on PPO on
 each of the aggregation methods. TRL seems to show significantly improved
 training performance for the Bayesian aggregation and similar performance for
 the mean aggregation.
@@ -1273,7 +1284,7 @@ shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
 fewer runs fail to achieve the optimal performance. -->
 
-![TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster and the end result better. For mean aggregation, the results are fairly similar.](images/plots/2021-07-22_16.26.13-Multi-Evader
+![TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar.](images/plots/2021-07-22_16.26.13-Multi-Evader
 Pursuit TRL.svg){#fig:resmptrl}
 
 <!--
@@ -1309,20 +1320,20 @@ the policy can share more parameters and thus be more sample efficient. It can
 also scale to a larger number of categories of objects (aggregation groups).
 @Fig:sameseparate shows a schematic comparison between the two methods.
 
-In the other experiments we alwas use separate spaces. @Fig:ressameseparate
+In the other experiments we always use separate spaces. @Fig:ressameseparate
 shows the results of aggregating into a single space vs. into separate spaces
 for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
-pursuit task same-space aggregation means that both the neighboring pursuers as
-well as all the evaders are aggregated into one space. For the assembly task,
-both the neighboring agents as well as the boxes are aggregated into one space.
-The separate-space aggregation performs better in both tasks, with a higher
-margin in the multi-evader task.
+pursuit task same-space aggregation means that both the neighboring pursuers and
+all the evaders are aggregated into one space. For the assembly task, both the
+neighboring agents and the boxes are aggregated into one space. The
+separate-space aggregation performs better in both tasks, with a higher margin
+in the multi-evader task.
 
 In summary, while the same-space aggregation is promising by in theory being
 able to scale to more complex environment, it performs worse for our tasks. This
 might be due to the fact that learning different encoder networks to output
 information into the same latent space is hard. An alternative explanation might
-be that our experiments only having few aggregation groups so the value of
+be that our experiments only having few aggregation groups, so the value of
 parameter sharing is low, or due to the lack of experiments with more different
 hyper-parameters.
 
@@ -1341,7 +1352,7 @@ samespace.svg){#fig:ressameseparate2}
 
 ## Bayesian aggregation variants
 
-The following shows results for some variants of the Bayesian aggregation.
+The following shows the results for some variants of the Bayesian aggregation.
 
 ### Separate vs common encoder
 
