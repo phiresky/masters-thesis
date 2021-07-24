@@ -39,7 +39,7 @@ hyperparameter tuning or by introducing a two-stage encoder where the first
 encoder is separate by aggregation group and the second encoder is shared, then
 aggregating the output of the second encoder into the same space.
 
-We also only considered tasks with implicit communication - the agents had to
+We also only considered tasks with implicit communication — the agents had to
 infer the intent of the other agents purely by their actions. There is related
 work that adds explicit communication between agents that is learned together
 with the policy. This is usually implemented as another action output that is

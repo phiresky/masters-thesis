@@ -144,10 +144,11 @@ agg method).svg){#fig:resassembly}
 ### Clustering task with two clusters
 
 @Fig:resclustering2 shows the results on the clustering task with four boxes
-split into two clusters.
+split into two clusters. The results are similar in all cases. An example of a
+successful episode with mean aggregation is shown in @fig:clustering2.
 
-![Clustering2 results](images/plots/2021-07-10_18.56.32-Clustering task (2
-clusters, by agg method).svg){#fig:resclustering2}
+![Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.](images/plots/2021-07-10_18.56.32-Clustering
+task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
