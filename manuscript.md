@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae/)) was automatically
 built from
-[phiresky/masters-thesis@ea2ae5d](https://github.com/phiresky/masters-thesis/tree/ea2ae5d0483f70ccee8d8cd88e9c595e7c1cd3bc)
+[phiresky/masters-thesis@f3c3d2c](https://github.com/phiresky/masters-thesis/tree/f3c3d2c8647f8228cf171f3ae27bc5442ac6dcae)
 on July 24, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -1217,8 +1217,8 @@ simpler than the multi-evader pursuit task, which is both due to the fact that
 there are fewer evaders and that the reward is more sparse (minimum-distance for
 single-evader vs count-catches for multi-evader).
 
-![Results on Single Pursuit task. Architecture: 120-60-agg-160.](images/plots/2021-07-22_17.59.15-Single-evader
-Pursuit TRL vs PPO.svg){#fig:ressp}
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+Pursuit.svg){#fig:ressp}
 
 \FloatBarrier
 

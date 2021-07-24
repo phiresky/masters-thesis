@@ -238,10 +238,9 @@ content/6_results.md:92:resmpopt
 content/6_results.md:93:resmpopttop
 content/6_results.md:97:ressp
 content/6_results.md:98:agg
-content/6_results.md:105:agg
-content/6_results.md:106:PPO
+content/6_results.md:105:acheiving
+content/6_results.md:105:performacne
 content/6_results.md:106:ressp
-content/6_results.md:106:TRL
 content/6_results.md:112:resrendezvous
 content/6_results.md:115:agg
 content/6_results.md:115:maxpaper
