@@ -47,6 +47,19 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+### Single-evader pursuit task
+
+@Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
+and one evader. The neural network architecture is fixed at `120-60-agg-160` for
+all methods. All methods learn the task quickly, with the mean aggregation
+achieving the maximum performance slightly faster. This shows that the task is
+simpler than the multi-evader pursuit task, which is both due to the fact that
+there are fewer evaders and that the reward is more sparse (minimum-distance for
+single-evader vs count-catches for multi-evader).
+
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+Pursuit.svg){#fig:ressp}
+
 ### Multi-evader pursuit task
 
 Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
@@ -92,19 +105,6 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-### Single-evader pursuit task
-
-@Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
-and one evader. The neural network architecture is fixed at `120-60-agg-160` for
-all methods. All methods learn the task quickly, with the mean aggregation
-achieving the maximum performance slightly faster. This shows that the task is
-simpler than the multi-evader pursuit task, which is both due to the fact that
-there are fewer evaders and that the reward is more sparse (minimum-distance for
-single-evader vs count-catches for multi-evader).
-
-![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
-Pursuit.svg){#fig:ressp}
-
 \FloatBarrier
 
 ### Rendezvous task
@@ -114,15 +114,16 @@ the rendezvous task with twenty agents in a two-dimensional square world with
 walls. The medium architecture is the one optimized on the pursuit task
 (`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
 (`64-agg-64`). The optimized architecture was optimized on the rendezvous task
-directly: `146-120-agg-19-177-162`. All architectures and aggregation methods
-successfully solve the task. The aggregation method does not make any difference
-in the performance, but both the simple and the medium architecture have a
-"drop" in training speed at around 2 million steps, while the optimized
-architecture smoothly learns the problem. The logarithmic scale graph to the
-right shows that while the simple and optimized architecture both reach the same
-final score, the medium architecture never reaches the same score. This might be
-because both the simple and the optimized architecture have a bottleneck layer
-after the aggregation, forcing the neural network to simplify the strategy.
+with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
+and aggregation methods successfully solve the task. The aggregation method does
+not make any difference in the performance, but both the simple and the medium
+architecture have a "drop" in training speed at around 2 million steps, while
+the optimized architecture smoothly learns the problem. The logarithmic scale
+graph to the right shows that while the simple and optimized architecture both
+reach the same final score, the medium architecture never reaches the same
+score. This might be because both the simple and the optimized architecture have
+a bottleneck layer after the aggregation, forcing the neural network to simplify
+the strategy.
 
 ![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
 
