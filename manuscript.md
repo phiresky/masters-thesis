@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-24'
+date-meta: '2021-07-26'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-24" />
-  <meta name="citation_publication_date" content="2021-07-24" />
+  <meta name="dc.date" content="2021-07-26" />
+  <meta name="citation_publication_date" content="2021-07-26" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/4e954a14a2289eb4aff95b766004042934640b4e/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/)) was automatically
 built from
-[phiresky/masters-thesis@4e954a1](https://github.com/phiresky/masters-thesis/tree/4e954a14a2289eb4aff95b766004042934640b4e)
-on July 24, 2021. </em></small>
+[phiresky/masters-thesis@68b7763](https://github.com/phiresky/masters-thesis/tree/68b776350f864a6186fc1fcba011dcf69849e15c)
+on July 26, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -1165,6 +1165,19 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+### Single-evader pursuit task
+
+@Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
+and one evader. The neural network architecture is fixed at `120-60-agg-160` for
+all methods. All methods learn the task quickly, with the mean aggregation
+achieving the maximum performance slightly faster. This shows that the task is
+simpler than the multi-evader pursuit task, which is both due to the fact that
+there are fewer evaders and that the reward is more sparse (minimum-distance for
+single-evader vs count-catches for multi-evader).
+
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+Pursuit.svg){#fig:ressp}
+
 ### Multi-evader pursuit task
 
 Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
@@ -1191,7 +1204,7 @@ layers before the aggregation, while the optimized architecture on the attentive
 aggregation has multiple layers after the aggregation instead. With the
 hyper-parameter optimized architecture, the mean aggregation performs best. The
 results are still similar when using the same `120-60-agg-160` architecture for
-every aggregation method. These results of [@fig:resmpsmall; @fig:reimport]
+every aggregation method. The results of [@fig:resmpsmall; @fig:resmpopt]
 indicate that the Bayesian aggregation outperforms the mean aggregation when the
 neural network is limited in size, but has no advantage when the neural network
 is sufficiently large and deep. The neural network seems to be able to
@@ -1210,19 +1223,6 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-### Single-evader pursuit task
-
-@Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
-and one evader. The neural network architecture is fixed at `120-60-agg-160` for
-all methods. All methods learn the task quickly, with the mean aggregation
-achieving the maximum performance slightly faster. This shows that the task is
-simpler than the multi-evader pursuit task, which is both due to the fact that
-there are fewer evaders and that the reward is more sparse (minimum-distance for
-single-evader vs count-catches for multi-evader).
-
-![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
-Pursuit.svg){#fig:ressp}
-
 \FloatBarrier
 
 ### Rendezvous task
@@ -1232,17 +1232,31 @@ the rendezvous task with twenty agents in a two-dimensional square world with
 walls. The medium architecture is the one optimized on the pursuit task
 (`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
 (`64-agg-64`). The optimized architecture was optimized on the rendezvous task
-directly: `146-120-agg-19-177-162`. All architectures and aggregation methods
-successfully solve the task. The aggregation method does not make any difference
-in the performance, but both the simple and the medium architecture have a
-"drop" in training speed at around 2 million steps, while the optimized
-architecture smoothly learns the problem. The logarithmic scale graph to the
-right shows that while the simple and optimized architecture both reach the same
-final score, the medium architecture never reaches the same score. This might be
-because both the simple and the optimized architecture have a bottleneck layer
-after the aggregation, forcing the neural network to simplify the strategy.
+with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
+and aggregation methods successfully solve the task. The aggregation method does
+not make any difference in the performance, but both the simple and the medium
+architecture have a "drop" in training speed at around 2 million steps, while
+the optimized architecture smoothly learns the problem. The logarithmic scale
+graph to the right shows that while the simple and optimized architecture both
+reach the same final score, the medium architecture never reaches the same
+score. This might be because both the simple and the optimized architecture have
+a bottleneck layer after the aggregation, forcing the neural network to simplify
+the strategy.
+
+We show a random exemplary episode of each a policy with median performance for
+the medium and optimized architectures in @fig:rendezvouseg. For the medium
+architecture case with the Bayesian aggregation, we notice that the consensus
+location does not stay the same and instead drifts even after all agents are at
+the same spot. In addition, sometimes there is one or more stragglers that take
+significantly longer to get to the consensus location. For the medium
+architecture with the mean aggregation, the agents do not converge on a single
+point, but instead continue to circle a small area. For the optimized
+architecture, the consensus is reached quickly (after 100 of 1000 time steps)
+and stays at the same spot.
 
 ![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+
+![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
 
 <!--
 ![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous

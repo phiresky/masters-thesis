@@ -53,9 +53,9 @@ pre
 priori
 proprioceptive
 reimplementation
-reimport
 reinforcmeent
 relatedwork
+rendezvouseg
 resassembly
 resasstrl
 resclustering
@@ -74,13 +74,13 @@ Ruede
 sameseparate
 Scalable
 SISL
-Softmax
+softmax
 StarCraft
 SwarMDP
 tanh
 terraform
 timesteps
-trl
+TRL
 TRPO
 unclipped
 VecEnv
