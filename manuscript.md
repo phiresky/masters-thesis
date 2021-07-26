@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/68b776350f864a6186fc1fcba011dcf69849e15c/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/)) was automatically
 built from
-[phiresky/masters-thesis@68b7763](https://github.com/phiresky/masters-thesis/tree/68b776350f864a6186fc1fcba011dcf69849e15c)
+[phiresky/masters-thesis@08c0237](https://github.com/phiresky/masters-thesis/tree/08c023711043a7e1cae573172b4720e70b5b9a48)
 on July 26, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -1217,11 +1217,17 @@ the mean and Bayesian aggregation is similar, indicating that the best runs are
 similar, but that the Bayesian aggregation has more runs that fail to achieve
 the peak performance.
 
+@Fig:pursuiteg shows the first 500 steps of a random episode with the
+medium-performing policy and the best-performing policy of each of the
+aggregation methods.
+
 ![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-22_15.16.03-Multi-Evader
 Pursuit (hpsopt).svg){#fig:resmpopt}
 
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
+
+![Random episode with the median and best performing policy of each aggregation method.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
 
 \FloatBarrier
 

@@ -52,6 +52,7 @@ PPO
 pre
 priori
 proprioceptive
+pursuiteg
 reimplementation
 reinforcmeent
 relatedwork
@@ -72,7 +73,7 @@ RL
 rollouts
 Ruede
 sameseparate
-Scalable
+scalable
 SISL
 softmax
 StarCraft
