@@ -86,7 +86,7 @@ layers before the aggregation, while the optimized architecture on the attentive
 aggregation has multiple layers after the aggregation instead. With the
 hyper-parameter optimized architecture, the mean aggregation performs best. The
 results are still similar when using the same `120-60-agg-160` architecture for
-every aggregation method. These results of [@fig:resmpsmall; @fig:reimport]
+every aggregation method. The results of [@fig:resmpsmall; @fig:resmpopt]
 indicate that the Bayesian aggregation outperforms the mean aggregation when the
 neural network is limited in size, but has no advantage when the neural network
 is sufficiently large and deep. The neural network seems to be able to
@@ -125,7 +125,20 @@ score. This might be because both the simple and the optimized architecture have
 a bottleneck layer after the aggregation, forcing the neural network to simplify
 the strategy.
 
+We show a random exemplary episode of each a policy with median performance for
+the medium and optimized architectures in @fig:rendezvouseg. For the medium
+architecture case with the Bayesian aggregation, we notice that the consensus
+location does not stay the same and instead drifts even after all agents are at
+the same spot. In addition, sometimes there is one or more stragglers that take
+significantly longer to get to the consensus location. For the medium
+architecture with the mean aggregation, the agents do not converge on a single
+point, but instead continue to circle a small area. For the optimized
+architecture, the consensus is reached quickly (after 100 of 1000 time steps)
+and stays at the same spot.
+
 ![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+
+![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
 
 <!--
 ![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
