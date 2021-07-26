@@ -12,6 +12,9 @@ INPUT=$1
 OUTPUT=$2
 
 if [[ "$INPUT" == *.drawio.svg ]]; then
+    # draw.io images have integrated inline HTML that then again contains SVG for math.
+    # In theory this should render just fine with the method below, but I've had
+    # issues with math rendering that way sometimes, so use the draw.io app instead
     draw.io "$INPUT" --transparent --crop --export --output "$OUTPUT"
     exit 0
 fi

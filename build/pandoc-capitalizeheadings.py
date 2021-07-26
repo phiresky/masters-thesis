@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 """
-Pandoc filter to convert svg files to pdf as suggested at:
-https://github.com/jgm/pandoc/issues/265#issuecomment-27317316
+Pandoc filter to convert all headings to title case. Basically uppercase all words except stopwords (a, an, and, ...)
 """
 
 from pandocfilters import toJSONFilter, Header, Str, stringify
