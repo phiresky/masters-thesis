@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-26'
+date-meta: '2021-07-27'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-26" />
-  <meta name="citation_publication_date" content="2021-07-26" />
+  <meta name="dc.date" content="2021-07-27" />
+  <meta name="citation_publication_date" content="2021-07-27" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/)) was automatically
 built from
-[phiresky/masters-thesis@08c0237](https://github.com/phiresky/masters-thesis/tree/08c023711043a7e1cae573172b4720e70b5b9a48)
-on July 26, 2021. </em></small>
+[phiresky/masters-thesis@98cc053](https://github.com/phiresky/masters-thesis/tree/98cc0538714e97498418b50c85468f0d6752c1e2)
+on July 27, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -226,7 +226,7 @@ agent). An MDP thus consists of:
   $R: S × A × S → \mathbb{R}$
 
 The MDP can either run for an infinite period or finish after a number of
-transitions (the transition function then always returns the same state).
+transitions. The transition function then always returns the same state.
 
 The method by which an agent chooses its actions based on the current state is
 called a _policy_. The policy defines a probability for taking each action based
@@ -244,13 +244,13 @@ introduces an indirection between the set of states and the input to the policy
 added with a probability of each state leading to a specific observation. The
 policy now depends on the observation and the action instead of the state and
 the action. An observation does not necessarily include all the information from
-the corresponding state.
+the corresponding state, which leads to naming "partially observable".
 
 To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward — we want to find the _optimal policy function_
-that has the highest value function on the initial states of our environment.
-Since finding the optimal policy directly is impossible for even slightly
-complicated tasks, we instead use optimization techniques.
+that has the highest _value_ on the initial states of our environment. Since
+finding the optimal policy directly is impossible for even slightly complicated
+tasks, we instead use optimization techniques.
 
 ## Actor-critic training methods
 
@@ -285,7 +285,7 @@ $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
 Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
 state, $a\sim π_{θ_k}$ is the action distribution according to the policy at
-step $k$. L is given by
+step $k$. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
@@ -360,9 +360,9 @@ agent.
 ## Environment model and learning process
 
 In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose are mostly based on [@maxpaper].
-Here, we describe the major differing factors of both the learning process and
-the environments, as well as the variants we choose to consider.
+learning process. The restrictions we impose are mostly based on [@maxpaper]. A
+more detailed description of these restrictions, as well as related work using
+other variants is described in @sec:relatedwork.
 
 In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
@@ -372,8 +372,9 @@ physical properties, observation space, and action space. They only differ in
 their extrinsic properties, e.g., their current position, rotation, and speed.
 This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
-acting according to the same policy. We thus only environments where the agents
-are homogenous — each agent has the same possible observations and actions.
+acting according to the same policy. We thus only consider environments where
+the agents are homogenous — each agent has the same possible observations and
+actions.
 
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
@@ -416,7 +417,7 @@ We need a method to aggregate the observations in one observable group into a
 format that can be used as the input of a neural network. Specifically, this
 means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
-their properties.
+their properties, including related work that uses those aggregation methods.
 
 ### Concatenation
 
@@ -429,7 +430,11 @@ architecture proportional to that maximum. Concatenation also ignores the other
 useful properties of the observables, namely the uniformity (the feature at
 index $i$ of one observable has the same meaning as the feature at index $i$ of
 every other observable in a group) and the exchangeability (the order of the
-observables is either meaningless or variable).
+observables is either meaningless or variable). For concatenation, we have to
+choose an ordering of the observables. This ordering is either stable but
+meaningless (since the observables are by definition permutation-invariant), or
+meaningfull but unstable (ordering by an extrinsic property, for example
+ordering by distance to the current agent).
 
 Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
@@ -446,12 +451,9 @@ shown in @eq:meanagg.
 
 $$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i$$ {#eq:meanagg}
 
-The encoder is an arbitrary function that maps the observation into a latent
-space, and can be represented by a neural network with shared weights across the
-observables in an observable group. @maxpaper used mean aggregation for deep
-multi-agent reinforcement learning and compared it to other aggregation methods.
-@gregor applied mean aggregation to more complex tasks in more realistic
-simulated environments.
+@maxpaper used mean aggregation for deep multi-agent reinforcement learning and
+compared it to other aggregation methods. @gregor applied mean aggregation to
+more complex tasks in more realistic simulated environments.
 
 Mean aggregation is strongly related to mean field theory. Mean field theory is
 a general principle of modeling the effect that many particles have by averaging
@@ -479,9 +481,10 @@ Softmax pooling:
 
 $$ψ_O = \sum_{o_i ∈ O} o_i \frac{e^{o_i}}{\sum_{o_j ∈ O} e^{o_j}}$$
 
-Max-pooling is widely used in convolutional neural networks to reduce the image
-dimensionality where it consistently outperforms mean (average) pooling. Softmax
-aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
+Max-pooling is widely used in convolutional neural networks to reduce the
+feature map dimensionality, and it was used as an alternative to mean pooling in
+MARL by [@gregor]. Softmax aggregation was used by
+@{https://arxiv.org/abs/1703.04908} for MARL.
 
 ### Bayesian aggregation {#sec:bayesianagg1}
 
@@ -551,7 +554,7 @@ $d_k$ is the dimensionality of the key $K$.
 
 Instead of using only a single attention function, [@att] uses multiple
 independent attention heads. The inputs ($Q, K, V$) of each of the heads
-$1,\dots,n$ as well as the concatenated output is transformed with a separately
+$1,\dots,n$ as well as the concatenated output is transformed with separately
 learned dense layers (described as weight matrices $W_i^Q, W_i^K, W_i^V, W^O$).
 The full multi-head attention module $\text{MHA}()$ thus looks like this:
 
@@ -808,8 +811,10 @@ are each encoded separately into a latent embedding space:
 
 $$e_{k→g_i} = \text{enc}(o_{k→g_i})$$
 
-The Encoder $\text{enc()}$ is a dense neural network with zero or more hidden
-layers.
+In general, the encoder $\text{enc}()$ could be an arbitrary differentiable
+function that maps the observation into a latent space. In our case,
+$\text{enc}()$ is a dense neural network with zero or more hidden layers, with
+shared weights across the observables in an observable group.
 
 After being encoded, we interpret each instance of an aggregation group as one
 sample of a latent space that represents some form of the information of the
@@ -934,13 +939,13 @@ seen in [@fig:openai].
 
 ## Experimental setup
 
-All of our experiments were run using stable-baselines3 (sb3). _OpenAI
-Baselines_ is a deep reinforcement learning framework that provides
-implementations of various reinforcement learning algorithms for TensorFlow.
-Stable-baselines is an extension of the original code base with better
-documentation and more flexibility for custom architectures and environments.
-sb3 is the continuation of the stable-baselines project, rewritten using
-PyTorch.
+All of our experiments were run using stable-baselines3 (sb3)
+[@{https://github.com/DLR-RM/stable-baselines3}]. _OpenAI Baselines_ is a deep
+reinforcement learning framework that provides implementations of various
+reinforcement learning algorithms for TensorFlow. Stable-baselines is an
+extension of the original code base with better documentation and more
+flexibility for custom architectures and environments. Sb3 is the continuation
+of the stable-baselines project, rewritten using PyTorch.
 
 We extended sb3 for the multi-agent use case by adapting the vectorized
 environment implementation to support multiple agents in a single environment,
@@ -949,17 +954,17 @@ handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
 order to be able to directly compare PPO and TRL.
 
-We optimized the hyper parameters using Optuna
-[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+When mentioned in the results section, we optimized the hyperparameters using
+Optuna [@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
 
-{describe batch size, other meta settings}
+<!-- {describe batch size, other meta settings} -->
 
 ## Considered tasks
 
 To evaluate the different aggregation methods we need simulated environments
 where multiple agents can cooperatively solve a task. Since most of the commonly
 used tasks used to benchmark reinforcement learning algorithms are designed for
-a single agent, we use custom built environments.
+a single agent, we use custom-built environments.
 
 The following shows which specific tasks we consider.
 
@@ -1165,6 +1170,45 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+### Rendezvous task
+
+@Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
+the rendezvous task with twenty agents in a two-dimensional square world with
+walls. The medium architecture is the one optimized on the pursuit task
+(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
+(`64-agg-64`). The optimized architecture was optimized on the rendezvous task
+with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
+and aggregation methods successfully solve the task. The aggregation method does
+not make any difference in the performance, but both the simple and the medium
+architecture have a "drop" in training speed at around 2 million steps, while
+the optimized architecture smoothly learns the problem. The logarithmic scale
+graph to the right shows that while the simple and optimized architecture both
+reach the same final score, the medium architecture never reaches the same
+score. This might be because both the simple and the optimized architecture have
+a bottleneck layer after the aggregation, forcing the neural network to simplify
+the strategy.
+
+We show a random exemplary episode of each a policy with median performance for
+the medium and optimized architectures in @fig:rendezvouseg. For the medium
+architecture case with the Bayesian aggregation, we notice that the consensus
+location does not stay the same and instead drifts even after all agents are at
+the same spot. In addition, sometimes there is one or more stragglers that take
+significantly longer to get to the consensus location. For the medium
+architecture with the mean aggregation, the agents do not converge on a single
+point, but instead continue to circle a small area. For the optimized
+architecture, the consensus is reached quickly (after 100 of 1000 time steps)
+and stays at the same spot.
+
+![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+
+![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
+
+<!--
+![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
+Log.svg){#fig:resrendezvouslog}
+
+-->
+
 ### Single-evader pursuit task
 
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
@@ -1219,7 +1263,15 @@ the peak performance.
 
 @Fig:pursuiteg shows the first 500 steps of a random episode with the
 medium-performing policy and the best-performing policy of each of the
-aggregation methods.
+aggregation methods. The mean aggregation tends to learn policies where first
+all the evaders are forced to go to one location, then they are circled and
+caught all at once. Since the evaders are algorithmically controlled and always
+go to the largest free Voronoi region, the evaders naturally go to the same
+location if they have enough space, so this strategy works well. The strategy of
+the Bayesian aggregation policy seems to be more flexible, where different
+groups of pursuers catch different groups of evaders at the same time instead of
+all concentrating on a single cluster of evaders. This strategy does not lead to
+better over-all performance, however.
 
 ![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-22_15.16.03-Multi-Evader
 Pursuit (hpsopt).svg){#fig:resmpopt}
@@ -1227,48 +1279,9 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-![Random episode with the median and best performing policy of each aggregation method.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
+![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
 
 \FloatBarrier
-
-### Rendezvous task
-
-@Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
-the rendezvous task with twenty agents in a two-dimensional square world with
-walls. The medium architecture is the one optimized on the pursuit task
-(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
-(`64-agg-64`). The optimized architecture was optimized on the rendezvous task
-with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
-and aggregation methods successfully solve the task. The aggregation method does
-not make any difference in the performance, but both the simple and the medium
-architecture have a "drop" in training speed at around 2 million steps, while
-the optimized architecture smoothly learns the problem. The logarithmic scale
-graph to the right shows that while the simple and optimized architecture both
-reach the same final score, the medium architecture never reaches the same
-score. This might be because both the simple and the optimized architecture have
-a bottleneck layer after the aggregation, forcing the neural network to simplify
-the strategy.
-
-We show a random exemplary episode of each a policy with median performance for
-the medium and optimized architectures in @fig:rendezvouseg. For the medium
-architecture case with the Bayesian aggregation, we notice that the consensus
-location does not stay the same and instead drifts even after all agents are at
-the same spot. In addition, sometimes there is one or more stragglers that take
-significantly longer to get to the consensus location. For the medium
-architecture with the mean aggregation, the agents do not converge on a single
-point, but instead continue to circle a small area. For the optimized
-architecture, the consensus is reached quickly (after 100 of 1000 time steps)
-and stays at the same spot.
-
-![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
-
-![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
-
-<!--
-![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
-Log.svg){#fig:resrendezvouslog}
-
--->
 
 ### Assembly task
 
@@ -1389,7 +1402,8 @@ encoder with two outputs generally performs better.
 ### Using the aggregated variance or only the mean
 
 In the other experiments with Bayesian aggregation, we only use the predicted
-mean of the Gaussian distribution as an input to the decoder:
+mean of the Gaussian distribution of each latent space feature as an input to
+the decoder:
 
 $$e_{k→G}=μ_z$$
 
