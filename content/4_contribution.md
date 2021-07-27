@@ -42,8 +42,10 @@ are each encoded separately into a latent embedding space:
 
 $$e_{k→g_i} = \text{enc}(o_{k→g_i})$$
 
-The Encoder $\text{enc()}$ is a dense neural network with zero or more hidden
-layers.
+In general, the encoder $\text{enc}()$ could be an arbitrary differentiable
+function that maps the observation into a latent space. In our case,
+$\text{enc}()$ is a dense neural network with zero or more hidden layers, with
+shared weights across the observables in an observable group.
 
 After being encoded, we interpret each instance of an aggregation group as one
 sample of a latent space that represents some form of the information of the

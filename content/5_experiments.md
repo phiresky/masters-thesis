@@ -2,13 +2,13 @@
 
 ## Experimental setup
 
-All of our experiments were run using stable-baselines3 (sb3). _OpenAI
-Baselines_ is a deep reinforcement learning framework that provides
-implementations of various reinforcement learning algorithms for TensorFlow.
-Stable-baselines is an extension of the original code base with better
-documentation and more flexibility for custom architectures and environments.
-sb3 is the continuation of the stable-baselines project, rewritten using
-PyTorch.
+All of our experiments were run using stable-baselines3 (sb3)
+[@{https://github.com/DLR-RM/stable-baselines3}]. _OpenAI Baselines_ is a deep
+reinforcement learning framework that provides implementations of various
+reinforcement learning algorithms for TensorFlow. Stable-baselines is an
+extension of the original code base with better documentation and more
+flexibility for custom architectures and environments. Sb3 is the continuation
+of the stable-baselines project, rewritten using PyTorch.
 
 We extended sb3 for the multi-agent use case by adapting the vectorized
 environment implementation to support multiple agents in a single environment,
@@ -17,17 +17,17 @@ handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
 order to be able to directly compare PPO and TRL.
 
-We optimized the hyper parameters using Optuna
-[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+When mentioned in the results section, we optimized the hyperparameters using
+Optuna [@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
 
-{describe batch size, other meta settings}
+<!-- {describe batch size, other meta settings} -->
 
 ## Considered tasks
 
 To evaluate the different aggregation methods we need simulated environments
 where multiple agents can cooperatively solve a task. Since most of the commonly
 used tasks used to benchmark reinforcement learning algorithms are designed for
-a single agent, we use custom built environments.
+a single agent, we use custom-built environments.
 
 The following shows which specific tasks we consider.
 

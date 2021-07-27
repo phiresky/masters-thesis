@@ -47,6 +47,45 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+### Rendezvous task
+
+@Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
+the rendezvous task with twenty agents in a two-dimensional square world with
+walls. The medium architecture is the one optimized on the pursuit task
+(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
+(`64-agg-64`). The optimized architecture was optimized on the rendezvous task
+with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
+and aggregation methods successfully solve the task. The aggregation method does
+not make any difference in the performance, but both the simple and the medium
+architecture have a "drop" in training speed at around 2 million steps, while
+the optimized architecture smoothly learns the problem. The logarithmic scale
+graph to the right shows that while the simple and optimized architecture both
+reach the same final score, the medium architecture never reaches the same
+score. This might be because both the simple and the optimized architecture have
+a bottleneck layer after the aggregation, forcing the neural network to simplify
+the strategy.
+
+We show a random exemplary episode of each a policy with median performance for
+the medium and optimized architectures in @fig:rendezvouseg. For the medium
+architecture case with the Bayesian aggregation, we notice that the consensus
+location does not stay the same and instead drifts even after all agents are at
+the same spot. In addition, sometimes there is one or more stragglers that take
+significantly longer to get to the consensus location. For the medium
+architecture with the mean aggregation, the agents do not converge on a single
+point, but instead continue to circle a small area. For the optimized
+architecture, the consensus is reached quickly (after 100 of 1000 time steps)
+and stays at the same spot.
+
+![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+
+![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
+
+<!--
+![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
+Log.svg){#fig:resrendezvouslog}
+
+-->
+
 ### Single-evader pursuit task
 
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
@@ -101,7 +140,15 @@ the peak performance.
 
 @Fig:pursuiteg shows the first 500 steps of a random episode with the
 medium-performing policy and the best-performing policy of each of the
-aggregation methods.
+aggregation methods. The mean aggregation tends to learn policies where first
+all the evaders are forced to go to one location, then they are circled and
+caught all at once. Since the evaders are algorithmically controlled and always
+go to the largest free Voronoi region, the evaders naturally go to the same
+location if they have enough space, so this strategy works well. The strategy of
+the Bayesian aggregation policy seems to be more flexible, where different
+groups of pursuers catch different groups of evaders at the same time instead of
+all concentrating on a single cluster of evaders. This strategy does not lead to
+better over-all performance, however.
 
 ![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-22_15.16.03-Multi-Evader
 Pursuit (hpsopt).svg){#fig:resmpopt}
@@ -109,48 +156,9 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-![Random episode with the median and best performing policy of each aggregation method.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
+![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
 
 \FloatBarrier
-
-### Rendezvous task
-
-@Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
-the rendezvous task with twenty agents in a two-dimensional square world with
-walls. The medium architecture is the one optimized on the pursuit task
-(`120-60-agg-160`). The simple architecture is the one used in [@maxpaper]
-(`64-agg-64`). The optimized architecture was optimized on the rendezvous task
-with Bayesian aggregation directly: `146-120-agg-19-177-162`. All architectures
-and aggregation methods successfully solve the task. The aggregation method does
-not make any difference in the performance, but both the simple and the medium
-architecture have a "drop" in training speed at around 2 million steps, while
-the optimized architecture smoothly learns the problem. The logarithmic scale
-graph to the right shows that while the simple and optimized architecture both
-reach the same final score, the medium architecture never reaches the same
-score. This might be because both the simple and the optimized architecture have
-a bottleneck layer after the aggregation, forcing the neural network to simplify
-the strategy.
-
-We show a random exemplary episode of each a policy with median performance for
-the medium and optimized architectures in @fig:rendezvouseg. For the medium
-architecture case with the Bayesian aggregation, we notice that the consensus
-location does not stay the same and instead drifts even after all agents are at
-the same spot. In addition, sometimes there is one or more stragglers that take
-significantly longer to get to the consensus location. For the medium
-architecture with the mean aggregation, the agents do not converge on a single
-point, but instead continue to circle a small area. For the optimized
-architecture, the consensus is reached quickly (after 100 of 1000 time steps)
-and stays at the same spot.
-
-![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
-
-![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
-
-<!--
-![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
-Log.svg){#fig:resrendezvouslog}
-
--->
 
 ### Assembly task
 
@@ -271,7 +279,8 @@ encoder with two outputs generally performs better.
 ### Using the aggregated variance or only the mean
 
 In the other experiments with Bayesian aggregation, we only use the predicted
-mean of the Gaussian distribution as an input to the decoder:
+mean of the Gaussian distribution of each latent space feature as an input to
+the decoder:
 
 $$e_{k→G}=μ_z$$
 

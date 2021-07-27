@@ -34,7 +34,7 @@ agent). An MDP thus consists of:
   $R: S × A × S → \mathbb{R}$
 
 The MDP can either run for an infinite period or finish after a number of
-transitions (the transition function then always returns the same state).
+transitions. The transition function then always returns the same state.
 
 The method by which an agent chooses its actions based on the current state is
 called a _policy_. The policy defines a probability for taking each action based
@@ -52,13 +52,13 @@ introduces an indirection between the set of states and the input to the policy
 added with a probability of each state leading to a specific observation. The
 policy now depends on the observation and the action instead of the state and
 the action. An observation does not necessarily include all the information from
-the corresponding state.
+the corresponding state, which leads to naming "partially observable".
 
 To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward — we want to find the _optimal policy function_
-that has the highest value function on the initial states of our environment.
-Since finding the optimal policy directly is impossible for even slightly
-complicated tasks, we instead use optimization techniques.
+that has the highest _value_ on the initial states of our environment. Since
+finding the optimal policy directly is impossible for even slightly complicated
+tasks, we instead use optimization techniques.
 
 ## Actor-critic training methods
 
@@ -93,7 +93,7 @@ $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
 Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
 state, $a\sim π_{θ_k}$ is the action distribution according to the policy at
-step $k$. L is given by
+step $k$. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
@@ -168,9 +168,9 @@ agent.
 ## Environment model and learning process
 
 In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose are mostly based on [@maxpaper].
-Here, we describe the major differing factors of both the learning process and
-the environments, as well as the variants we choose to consider.
+learning process. The restrictions we impose are mostly based on [@maxpaper]. A
+more detailed description of these restrictions, as well as related work using
+other variants is described in @sec:relatedwork.
 
 In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
@@ -180,8 +180,9 @@ physical properties, observation space, and action space. They only differ in
 their extrinsic properties, e.g., their current position, rotation, and speed.
 This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
-acting according to the same policy. We thus only environments where the agents
-are homogenous — each agent has the same possible observations and actions.
+acting according to the same policy. We thus only consider environments where
+the agents are homogenous — each agent has the same possible observations and
+actions.
 
 We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
@@ -224,7 +225,7 @@ We need a method to aggregate the observations in one observable group into a
 format that can be used as the input of a neural network. Specifically, this
 means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
-their properties.
+their properties, including related work that uses those aggregation methods.
 
 ### Concatenation
 
@@ -237,7 +238,11 @@ architecture proportional to that maximum. Concatenation also ignores the other
 useful properties of the observables, namely the uniformity (the feature at
 index $i$ of one observable has the same meaning as the feature at index $i$ of
 every other observable in a group) and the exchangeability (the order of the
-observables is either meaningless or variable).
+observables is either meaningless or variable). For concatenation, we have to
+choose an ordering of the observables. This ordering is either stable but
+meaningless (since the observables are by definition permutation-invariant), or
+meaningfull but unstable (ordering by an extrinsic property, for example
+ordering by distance to the current agent).
 
 Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
@@ -254,12 +259,9 @@ shown in @eq:meanagg.
 
 $$ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i$$ {#eq:meanagg}
 
-The encoder is an arbitrary function that maps the observation into a latent
-space, and can be represented by a neural network with shared weights across the
-observables in an observable group. @maxpaper used mean aggregation for deep
-multi-agent reinforcement learning and compared it to other aggregation methods.
-@gregor applied mean aggregation to more complex tasks in more realistic
-simulated environments.
+@maxpaper used mean aggregation for deep multi-agent reinforcement learning and
+compared it to other aggregation methods. @gregor applied mean aggregation to
+more complex tasks in more realistic simulated environments.
 
 Mean aggregation is strongly related to mean field theory. Mean field theory is
 a general principle of modeling the effect that many particles have by averaging
@@ -287,9 +289,10 @@ Softmax pooling:
 
 $$ψ_O = \sum_{o_i ∈ O} o_i \frac{e^{o_i}}{\sum_{o_j ∈ O} e^{o_j}}$$
 
-Max-pooling is widely used in convolutional neural networks to reduce the image
-dimensionality where it consistently outperforms mean (average) pooling. Softmax
-aggregation was used by @{https://arxiv.org/abs/1703.04908} for MARL.
+Max-pooling is widely used in convolutional neural networks to reduce the
+feature map dimensionality, and it was used as an alternative to mean pooling in
+MARL by [@gregor]. Softmax aggregation was used by
+@{https://arxiv.org/abs/1703.04908} for MARL.
 
 ### Bayesian aggregation {#sec:bayesianagg1}
 
@@ -359,7 +362,7 @@ $d_k$ is the dimensionality of the key $K$.
 
 Instead of using only a single attention function, [@att] uses multiple
 independent attention heads. The inputs ($Q, K, V$) of each of the heads
-$1,\dots,n$ as well as the concatenated output is transformed with a separately
+$1,\dots,n$ as well as the concatenated output is transformed with separately
 learned dense layers (described as weight matrices $W_i^Q, W_i^K, W_i^V, W^O$).
 The full multi-head attention module $\text{MHA}()$ thus looks like this:
 
