@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Robin Ruede" />
-  <meta name="dcterms.date" content="2021-07-26" />
+  <meta name="dcterms.date" content="2021-07-27" />
   <meta name="keywords" content="MARL, multi-agent, mreinforcement learning, Bayesian conditioning" />
   <title>Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</title>
   <style>
@@ -47,8 +47,8 @@
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-26" />
-  <meta name="citation_publication_date" content="2021-07-26" />
+  <meta name="dc.date" content="2021-07-27" />
+  <meta name="citation_publication_date" content="2021-07-27" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -78,10 +78,10 @@
 <h1 class="title">Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</h1>
 </header>
 <p><small><em> This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/08c023711043a7e1cae573172b4720e70b5b9a48/">permalink</a>) was automatically
+(<a href="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/">permalink</a>) was automatically
 built from
-<a href="https://github.com/phiresky/masters-thesis/tree/08c023711043a7e1cae573172b4720e70b5b9a48">phiresky/masters-thesis@08c0237</a>
-on July 26, 2021. </em></small></p>
+<a href="https://github.com/phiresky/masters-thesis/tree/98cc0538714e97498418b50c85468f0d6752c1e2">phiresky/masters-thesis@98cc053</a>
+on July 27, 2021. </em></small></p>
 <h1 class="unnumbered" id="authors">Authors</h1>
 <ul>
 <li><strong>Robin Ruede</strong><br> ·
@@ -210,7 +210,7 @@ depending on the previous state, the action, and the new state
 <span class="math inline">\(R: S × A × S → \mathbb{R}\)</span></li>
 </ul>
 <p>The MDP can either run for an infinite period or finish after a number of
-transitions (the transition function then always returns the same state).</p>
+transitions. The transition function then always returns the same state.</p>
 <p>The method by which an agent chooses its actions based on the current state is
 called a <em>policy</em>. The policy defines a probability for taking each action based
 on a specific state.</p>
@@ -225,12 +225,12 @@ introduces an indirection between the set of states and the input to the policy
 added with a probability of each state leading to a specific observation. The
 policy now depends on the observation and the action instead of the state and
 the action. An observation does not necessarily include all the information from
-the corresponding state.</p>
+the corresponding state, which leads to naming “partially observable”.</p>
 <p>To successfully solve a reinforcement learning task, we need to find a policy
 that has a high expected reward — we want to find the <em>optimal policy function</em>
-that has the highest value function on the initial states of our environment.
-Since finding the optimal policy directly is impossible for even slightly
-complicated tasks, we instead use optimization techniques.</p>
+that has the highest <em>value</em> on the initial states of our environment. Since
+finding the optimal policy directly is impossible for even slightly complicated
+tasks, we instead use optimization techniques.</p>
 <h2 data-number="2.2" id="actor-critic-training-methods"><span class="header-section-number">2.2</span> Actor-Critic Training Methods</h2>
 <p>Policy gradient training methods are a reinforcement learning technique that
 optimize the parameters of a policy using gradient descent. Actor-critic methods
@@ -255,7 +255,7 @@ implementation and empirically better performance.</p>
 <p><span class="math display">\[θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]\]</span></p>
 <p>Where <span class="math inline">\(π_{θ_k}\)</span> is a policy with parameters <span class="math inline">\(θ\)</span> in training step <span class="math inline">\(k\)</span>, <span class="math inline">\(s\)</span> is the
 state, <span class="math inline">\(a\sim π_{θ_k}\)</span> is the action distribution according to the policy at
-step <span class="math inline">\(k\)</span>. L is given by</p>
+step <span class="math inline">\(k\)</span>. <span class="math inline">\(L\)</span> is given by</p>
 <p><span class="math display">\[L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).\]</span></p>
 <p><span class="math inline">\(A\)</span> is the advantage of taking a specific action in a specific state as opposed
 to the other actions as weighted by the current policy, estimated using
@@ -316,9 +316,9 @@ where <span class="math inline">\(\hat{O}\)</span> and <span class="math inline"
 agent.</p>
 <h2 data-number="2.4" id="environment-model-and-learning-process"><span class="header-section-number">2.4</span> Environment Model and Learning Process</h2>
 <p>In our experiments, we impose a set of restrictions on the environments and
-learning process. The restrictions we impose are mostly based on <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span>.
-Here, we describe the major differing factors of both the learning process and
-the environments, as well as the variants we choose to consider.</p>
+learning process. The restrictions we impose are mostly based on <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span>. A
+more detailed description of these restrictions, as well as related work using
+other variants is described in <a href="#sec:relatedwork">Section 3</a>.</p>
 <p>In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
 maximum speeds, different observation systems, or different possible actions. We
@@ -327,8 +327,9 @@ physical properties, observation space, and action space. They only differ in
 their extrinsic properties, e.g., their current position, rotation, and speed.
 This also causes them to have a different perspective, different observations
 and thus different actions, resulting in differing behavior even when they are
-acting according to the same policy. We thus only environments where the agents
-are homogenous — each agent has the same possible observations and actions.</p>
+acting according to the same policy. We thus only consider environments where
+the agents are homogenous — each agent has the same possible observations and
+actions.</p>
 <p>We only consider cooperative environments, and we use the same reward function
 for all agents. Real-world multi-agent tasks are usually cooperative since in
 adversarial environments, where different agents have different goals, one
@@ -363,7 +364,7 @@ of other observed objects in the world.</p>
 format that can be used as the input of a neural network. Specifically, this
 means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
-their properties.</p>
+their properties, including related work that uses those aggregation methods.</p>
 <h3 data-number="2.5.1" id="concatenation"><span class="header-section-number">2.5.1</span> Concatenation</h3>
 <p>The simplest aggregation method is concatenation, where each observable is
 concatenated along the feature dimension into a single observation vector. This
@@ -374,7 +375,11 @@ architecture proportional to that maximum. Concatenation also ignores the other
 useful properties of the observables, namely the uniformity (the feature at
 index <span class="math inline">\(i\)</span> of one observable has the same meaning as the feature at index <span class="math inline">\(i\)</span> of
 every other observable in a group) and the exchangeability (the order of the
-observables is either meaningless or variable).</p>
+observables is either meaningless or variable). For concatenation, we have to
+choose an ordering of the observables. This ordering is either stable but
+meaningless (since the observables are by definition permutation-invariant), or
+meaningfull but unstable (ordering by an extrinsic property, for example
+ordering by distance to the current agent).</p>
 <p>Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
 observables. It is used for example by <span class="citation" data-cites="https://dl.acm.org/doi/10.5555/3295222.3295385">[<a href="#ref-https://dl.acm.org/doi/10.5555/3295222.3295385" role="doc-biblioref">22</a>]</span> to aggregate the neighboring agents’
@@ -386,12 +391,9 @@ current system state. We use the empirical mean of the samples to retrieve a
 representation of the system state <span class="math inline">\(ψ_O\)</span> based on all observed observables, as
 shown in <a href="#eq:meanagg">Equation 1</a>.</p>
 <p><span id="eq:meanagg"><span class="math display">\[ψ_O = μ_O = \frac{1}{|O|} \sum_{o_i ∈ O} o_i\qquad(1)\]</span></span></p>
-<p>The encoder is an arbitrary function that maps the observation into a latent
-space, and can be represented by a neural network with shared weights across the
-observables in an observable group. <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span> used mean aggregation for deep
-multi-agent reinforcement learning and compared it to other aggregation methods.
-<span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">23</a>]</span> applied mean aggregation to more complex tasks in more realistic
-simulated environments.</p>
+<p><span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span> used mean aggregation for deep multi-agent reinforcement learning and
+compared it to other aggregation methods. <span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">23</a>]</span> applied mean aggregation to
+more complex tasks in more realistic simulated environments.</p>
 <p>Mean aggregation is strongly related to mean field theory. Mean field theory is
 a general principle of modeling the effect that many particles have by averaging
 them into a single field, ignoring the individual variances of each particle.
@@ -407,9 +409,10 @@ aerial vehicles.</p>
 <p><span class="math display">\[ψ_O = \max_{o_i ∈ O} o_i\]</span></p>
 <p>Softmax pooling:</p>
 <p><span class="math display">\[ψ_O = \sum_{o_i ∈ O} o_i \frac{e^{o_i}}{\sum_{o_j ∈ O} e^{o_j}}\]</span></p>
-<p>Max-pooling is widely used in convolutional neural networks to reduce the image
-dimensionality where it consistently outperforms mean (average) pooling. Softmax
-aggregation was used by <span class="citation" data-cites="https://arxiv.org/abs/1703.04908">[<a href="#ref-https://arxiv.org/abs/1703.04908" role="doc-biblioref">27</a>]</span> for MARL.</p>
+<p>Max-pooling is widely used in convolutional neural networks to reduce the
+feature map dimensionality, and it was used as an alternative to mean pooling in
+MARL by <span class="citation" data-cites="https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3">[<a href="#ref-https://www.semanticscholar.org/paper/Using-M-Embeddings-to-Learn-Control-Strategies-for-Gebhardt-H_x37_C3_x37_BCttenrauch/9f550815f8858e7c4c8aef23665fa5817884f1b3" role="doc-biblioref">23</a>]</span>. Softmax aggregation was used by
+<span class="citation" data-cites="https://arxiv.org/abs/1703.04908">[<a href="#ref-https://arxiv.org/abs/1703.04908" role="doc-biblioref">27</a>]</span> for MARL.</p>
 <h3 data-number="2.5.4" id="sec:bayesianagg1"><span class="header-section-number">2.5.4</span> Bayesian Aggregation</h3>
 <p>Aggregation with Gaussian conditioning works by starting from a Gaussian prior
 distribution and updating it using a probabilistic observation model for every
@@ -454,7 +457,7 @@ by <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5
 <p><span class="math inline">\(d_k\)</span> is the dimensionality of the key <span class="math inline">\(K\)</span>.</p>
 <p>Instead of using only a single attention function, <span class="citation" data-cites="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">[<a href="#ref-https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" role="doc-biblioref">31</a>]</span> uses multiple
 independent attention heads. The inputs (<span class="math inline">\(Q, K, V\)</span>) of each of the heads
-<span class="math inline">\(1,\dots,n\)</span> as well as the concatenated output is transformed with a separately
+<span class="math inline">\(1,\dots,n\)</span> as well as the concatenated output is transformed with separately
 learned dense layers (described as weight matrices <span class="math inline">\(W_i^Q, W_i^K, W_i^V, W^O\)</span>).
 The full multi-head attention module <span class="math inline">\(\text{MHA}()\)</span> thus looks like this:</p>
 <p><span class="math display">\[\text{head}_i = \text{Attention}(QW_i^Q,KW_i^K,VW_i^V)\]</span></p>
@@ -645,8 +648,10 @@ and the instance <span class="math inline">\(g_i\)</span>:</p>
 <p>After collecting the observations for aggregation group <span class="math inline">\(g\)</span>, the observations
 are each encoded separately into a latent embedding space:</p>
 <p><span class="math display">\[e_{k→g_i} = \text{enc}(o_{k→g_i})\]</span></p>
-<p>The Encoder <span class="math inline">\(\text{enc()}\)</span> is a dense neural network with zero or more hidden
-layers.</p>
+<p>In general, the encoder <span class="math inline">\(\text{enc}()\)</span> could be an arbitrary differentiable
+function that maps the observation into a latent space. In our case,
+<span class="math inline">\(\text{enc}()\)</span> is a dense neural network with zero or more hidden layers, with
+shared weights across the observables in an observable group.</p>
 <p>After being encoded, we interpret each instance of an aggregation group as one
 sample of a latent space that represents some form of the information of the
 aggregation group that is relevant to the agent. These samples are then
@@ -731,27 +736,27 @@ seen in <a href="#fig:openai">Figure 3</a>.</p>
 </figure>
 <h1 data-number="5" id="sec:experiments"><span class="header-section-number">5</span> Experiments</h1>
 <h2 data-number="5.1" id="experimental-setup"><span class="header-section-number">5.1</span> Experimental Setup</h2>
-<p>All of our experiments were run using stable-baselines3 (sb3). <em>OpenAI
-Baselines</em> is a deep reinforcement learning framework that provides
-implementations of various reinforcement learning algorithms for TensorFlow.
-Stable-baselines is an extension of the original code base with better
-documentation and more flexibility for custom architectures and environments.
-sb3 is the continuation of the stable-baselines project, rewritten using
-PyTorch.</p>
+<p>All of our experiments were run using stable-baselines3 (sb3)
+<span class="citation" data-cites="https://github.com/DLR-RM/stable-baselines3">[<a href="#ref-https://github.com/DLR-RM/stable-baselines3" role="doc-biblioref">15</a>]</span>. <em>OpenAI Baselines</em> is a deep
+reinforcement learning framework that provides implementations of various
+reinforcement learning algorithms for TensorFlow. Stable-baselines is an
+extension of the original code base with better documentation and more
+flexibility for custom architectures and environments. Sb3 is the continuation
+of the stable-baselines project, rewritten using PyTorch.</p>
 <p>We extended sb3 for the multi-agent use case by adapting the vectorized
 environment implementation to support multiple agents in a single environment,
 as well as adapting the training and evaluation functionality to correctly
 handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers <span class="citation" data-cites="https://openreview.net/forum?id_x61_qYZD-AO1Vn">[<a href="#ref-https://openreview.net/forum?id_x61_qYZD-AO1Vn" role="doc-biblioref">13</a>]</span> as a new training algorithm for sb3 in
 order to be able to directly compare PPO and TRL.</p>
-<p>We optimized the hyper parameters using Optuna
-<span class="citation" data-cites="https://dl.acm.org/doi/10.1145/3292500.3330701">[<a href="#ref-https://dl.acm.org/doi/10.1145/3292500.3330701" role="doc-biblioref">47</a>]</span>.</p>
-<p>{describe batch size, other meta settings}</p>
+<p>When mentioned in the results section, we optimized the hyperparameters using
+Optuna <span class="citation" data-cites="https://dl.acm.org/doi/10.1145/3292500.3330701">[<a href="#ref-https://dl.acm.org/doi/10.1145/3292500.3330701" role="doc-biblioref">47</a>]</span>.</p>
+<!-- {describe batch size, other meta settings} -->
 <h2 data-number="5.2" id="considered-tasks"><span class="header-section-number">5.2</span> Considered Tasks</h2>
 <p>To evaluate the different aggregation methods we need simulated environments
 where multiple agents can cooperatively solve a task. Since most of the commonly
 used tasks used to benchmark reinforcement learning algorithms are designed for
-a single agent, we use custom built environments.</p>
+a single agent, we use custom-built environments.</p>
 <p>The following shows which specific tasks we consider.</p>
 <h3 data-number="5.2.1" id="sec:rendezvous"><span class="header-section-number">5.2.1</span> Rendezvous Task</h3>
 <p>In the rendezvous task, a set of <span class="math inline">\(n\)</span> agents try to meet up in a single point. An
@@ -934,66 +939,8 @@ network: The numbers before <code>agg</code> are the sequential layer sizes of t
 layers of the encoders of each aggregation group. The numbers after <code>agg</code> are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare <a href="#fig:model">Figure 1</a>).</p>
-<h3 data-number="6.1.1" id="single-evader-pursuit-task-1"><span class="header-section-number">6.1.1</span> Single-Evader Pursuit Task</h3>
-<p><a href="#fig:ressp">Figure 8</a> shows the results on the single-evader pursuit task with 10 pursuers
-and one evader. The neural network architecture is fixed at <code>120-60-agg-160</code> for
-all methods. All methods learn the task quickly, with the mean aggregation
-achieving the maximum performance slightly faster. This shows that the task is
-simpler than the multi-evader pursuit task, which is both due to the fact that
-there are fewer evaders and that the reward is more sparse (minimum-distance for
-single-evader vs count-catches for multi-evader).</p>
-<figure>
-<img src="images/plots/2021-07-14_13.55.20-Single-evader%20Pursuit.svg" id="fig:ressp" alt="Figure 8: Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster." /><figcaption aria-hidden="true">Figure 8: Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.</figcaption>
-</figure>
-<h3 data-number="6.1.2" id="multi-evader-pursuit-task"><span class="header-section-number">6.1.2</span> Multi-Evader Pursuit Task</h3>
-<p>Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
-on a torus. <a href="#fig:resmpsmall">Figure 9</a> shows the results of the multi-evader pursuit task
-with different aggregation methods with the same architecture used in
-<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span> to be able to directly compare the results. The architecture is
-64-agg-64 with the tanh activation function. With this architecture, the
-Bayesian aggregation performs best.</p>
-<figure>
-<img src="images/plots/2021-07-10_13.30.06-Multi-Evader%20Pursuit%20(smallarch).svg" id="fig:resmpsmall" alt="Figure 9: Results on the multi-evader pursuit task with the NN architecture adapted from [21]. The Bayesian aggregation performs best." /><figcaption aria-hidden="true">Figure 9: Results on the multi-evader pursuit task with the NN architecture adapted from
-<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span>. The Bayesian aggregation performs
-best.</figcaption>
-</figure>
-<p><a href="#fig:resmpopt">Figure 10</a> shows the results with neural network architectures that were
-separately hyper-parameter optimized for each aggregation method except max
-aggregation. The optimized architecture for the mean aggregation is
-<code>174-226-97-agg-96</code>, the same architecture is used for the max aggregation. The
-optimized architecture for the Bayesian aggregation is <code>120-60-agg-160</code>. The
-optimized architecture for the attentive aggregation is <code>72-agg-132-200</code>. All
-optimized architectures use the LeakyReLU activation functions. Note that the
-architecture optimized on the mean aggregation is the deepest with three hidden
-layers before the aggregation, while the optimized architecture on the attentive
-aggregation has multiple layers after the aggregation instead. With the
-hyper-parameter optimized architecture, the mean aggregation performs best. The
-results are still similar when using the same <code>120-60-agg-160</code> architecture for
-every aggregation method. The results of Figures <a href="#fig:resmpsmall">9</a>, <a href="#fig:resmpopt">10</a>
-indicate that the Bayesian aggregation outperforms the mean aggregation when the
-neural network is limited in size, but has no advantage when the neural network
-is sufficiently large and deep. The neural network seems to be able to
-implicitly learn to transform and weigh the information from the different
-observables, compensating the advantage of the additional structure of relevancy
-/ certainty that is given in the Bayesian aggregation.</p>
-<p><a href="#fig:resmpopttop">Figure 11</a> shows the results of the top third of runs. The performance of
-the mean and Bayesian aggregation is similar, indicating that the best runs are
-similar, but that the Bayesian aggregation has more runs that fail to achieve
-the peak performance.</p>
-<p><a href="#fig:pursuiteg">Figure 12</a> shows the first 500 steps of a random episode with the
-medium-performing policy and the best-performing policy of each of the
-aggregation methods.</p>
-<figure>
-<img src="images/plots/2021-07-22_15.16.03-Multi-Evader%20Pursuit%20(hpsopt).svg" id="fig:resmpopt" alt="Figure 10: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best." /><figcaption aria-hidden="true">Figure 10: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.</figcaption>
-</figure>
-<figure>
-<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 11: Like Figure 10 but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar." /><figcaption aria-hidden="true">Figure 11: Like <a href="#fig:resmpopt">Figure 10</a> but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.</figcaption>
-</figure>
-<figure>
-<img src="images/pursuit-eg.drawio.svg" id="fig:pursuiteg" alt="Figure 12: Random episode with the median and best performing policy of each aggregation method." /><figcaption aria-hidden="true">Figure 12: Random episode with the median and best performing policy of each aggregation method.</figcaption>
-</figure>
-<h3 data-number="6.1.3" id="rendezvous-task"><span class="header-section-number">6.1.3</span> Rendezvous Task</h3>
-<p><a href="#fig:resrendezvous">Figure 13</a> shows a comparison between mean and Bayesian aggregation on
+<h3 data-number="6.1.1" id="rendezvous-task"><span class="header-section-number">6.1.1</span> Rendezvous Task</h3>
+<p><a href="#fig:resrendezvous">Figure 8</a> shows a comparison between mean and Bayesian aggregation on
 the rendezvous task with twenty agents in a two-dimensional square world with
 walls. The medium architecture is the one optimized on the pursuit task
 (<code>120-60-agg-160</code>). The simple architecture is the one used in <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span>
@@ -1009,7 +956,7 @@ score. This might be because both the simple and the optimized architecture have
 a bottleneck layer after the aggregation, forcing the neural network to simplify
 the strategy.</p>
 <p>We show a random exemplary episode of each a policy with median performance for
-the medium and optimized architectures in <a href="#fig:rendezvouseg">Figure 14</a>. For the medium
+the medium and optimized architectures in <a href="#fig:rendezvouseg">Figure 9</a>. For the medium
 architecture case with the Bayesian aggregation, we notice that the consensus
 location does not stay the same and instead drifts even after all agents are at
 the same spot. In addition, sometimes there is one or more stragglers that take
@@ -1019,16 +966,82 @@ point, but instead continue to circle a small area. For the optimized
 architecture, the consensus is reached quickly (after 100 of 1000 time steps)
 and stays at the same spot.</p>
 <figure>
-<img src="images/plots/2021-07-22_15.51.34-Rendezvous.svg" id="fig:resrendezvous" alt="Figure 13: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures." /><figcaption aria-hidden="true">Figure 13: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.</figcaption>
+<img src="images/plots/2021-07-22_15.51.34-Rendezvous.svg" id="fig:resrendezvous" alt="Figure 8: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures." /><figcaption aria-hidden="true">Figure 8: Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.</figcaption>
 </figure>
 <figure>
-<img src="images/rendezvous-eg.drawio.svg" id="fig:rendezvouseg" alt="Figure 14: View of a random episode of the rendezvous task with the medium and optimized architectures. Bayesian agg. (medium) tends to drift and have stragglers even after a consensus seems to have been reached. Mean agg. (medium) does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the opt architecture converge quickly to a single point and stay in one place." /><figcaption aria-hidden="true">Figure 14: View of a random episode of the rendezvous task with the medium and optimized architectures. <em>Bayesian agg. (medium)</em> tends to drift and have stragglers even after a consensus seems to have been reached. <em>Mean agg. (medium)</em> does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the <em>opt</em> architecture converge quickly to a single point and stay in one place.</figcaption>
+<img src="images/rendezvous-eg.drawio.svg" id="fig:rendezvouseg" alt="Figure 9: View of a random episode of the rendezvous task with the medium and optimized architectures. Bayesian agg. (medium) tends to drift and have stragglers even after a consensus seems to have been reached. Mean agg. (medium) does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the opt architecture converge quickly to a single point and stay in one place." /><figcaption aria-hidden="true">Figure 9: View of a random episode of the rendezvous task with the medium and optimized architectures. <em>Bayesian agg. (medium)</em> tends to drift and have stragglers even after a consensus seems to have been reached. <em>Mean agg. (medium)</em> does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the <em>opt</em> architecture converge quickly to a single point and stay in one place.</figcaption>
 </figure>
 <!--
 ![Detail of the results on the rendezvous task in a logarithmic scale. The medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.54.43-Rendezvous
 Log.svg){#fig:resrendezvouslog}
 
 -->
+<h3 data-number="6.1.2" id="single-evader-pursuit-task-1"><span class="header-section-number">6.1.2</span> Single-Evader Pursuit Task</h3>
+<p><a href="#fig:ressp">Figure 10</a> shows the results on the single-evader pursuit task with 10 pursuers
+and one evader. The neural network architecture is fixed at <code>120-60-agg-160</code> for
+all methods. All methods learn the task quickly, with the mean aggregation
+achieving the maximum performance slightly faster. This shows that the task is
+simpler than the multi-evader pursuit task, which is both due to the fact that
+there are fewer evaders and that the reward is more sparse (minimum-distance for
+single-evader vs count-catches for multi-evader).</p>
+<figure>
+<img src="images/plots/2021-07-14_13.55.20-Single-evader%20Pursuit.svg" id="fig:ressp" alt="Figure 10: Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster." /><figcaption aria-hidden="true">Figure 10: Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.</figcaption>
+</figure>
+<h3 data-number="6.1.3" id="multi-evader-pursuit-task"><span class="header-section-number">6.1.3</span> Multi-Evader Pursuit Task</h3>
+<p>Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
+on a torus. <a href="#fig:resmpsmall">Figure 11</a> shows the results of the multi-evader pursuit task
+with different aggregation methods with the same architecture used in
+<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span> to be able to directly compare the results. The architecture is
+64-agg-64 with the tanh activation function. With this architecture, the
+Bayesian aggregation performs best.</p>
+<figure>
+<img src="images/plots/2021-07-10_13.30.06-Multi-Evader%20Pursuit%20(smallarch).svg" id="fig:resmpsmall" alt="Figure 11: Results on the multi-evader pursuit task with the NN architecture adapted from [21]. The Bayesian aggregation performs best." /><figcaption aria-hidden="true">Figure 11: Results on the multi-evader pursuit task with the NN architecture adapted from
+<span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">21</a>]</span>. The Bayesian aggregation performs
+best.</figcaption>
+</figure>
+<p><a href="#fig:resmpopt">Figure 12</a> shows the results with neural network architectures that were
+separately hyper-parameter optimized for each aggregation method except max
+aggregation. The optimized architecture for the mean aggregation is
+<code>174-226-97-agg-96</code>, the same architecture is used for the max aggregation. The
+optimized architecture for the Bayesian aggregation is <code>120-60-agg-160</code>. The
+optimized architecture for the attentive aggregation is <code>72-agg-132-200</code>. All
+optimized architectures use the LeakyReLU activation functions. Note that the
+architecture optimized on the mean aggregation is the deepest with three hidden
+layers before the aggregation, while the optimized architecture on the attentive
+aggregation has multiple layers after the aggregation instead. With the
+hyper-parameter optimized architecture, the mean aggregation performs best. The
+results are still similar when using the same <code>120-60-agg-160</code> architecture for
+every aggregation method. The results of Figures <a href="#fig:resmpsmall">11</a>, <a href="#fig:resmpopt">12</a>
+indicate that the Bayesian aggregation outperforms the mean aggregation when the
+neural network is limited in size, but has no advantage when the neural network
+is sufficiently large and deep. The neural network seems to be able to
+implicitly learn to transform and weigh the information from the different
+observables, compensating the advantage of the additional structure of relevancy
+/ certainty that is given in the Bayesian aggregation.</p>
+<p><a href="#fig:resmpopttop">Figure 13</a> shows the results of the top third of runs. The performance of
+the mean and Bayesian aggregation is similar, indicating that the best runs are
+similar, but that the Bayesian aggregation has more runs that fail to achieve
+the peak performance.</p>
+<p><a href="#fig:pursuiteg">Figure 14</a> shows the first 500 steps of a random episode with the
+medium-performing policy and the best-performing policy of each of the
+aggregation methods. The mean aggregation tends to learn policies where first
+all the evaders are forced to go to one location, then they are circled and
+caught all at once. Since the evaders are algorithmically controlled and always
+go to the largest free Voronoi region, the evaders naturally go to the same
+location if they have enough space, so this strategy works well. The strategy of
+the Bayesian aggregation policy seems to be more flexible, where different
+groups of pursuers catch different groups of evaders at the same time instead of
+all concentrating on a single cluster of evaders. This strategy does not lead to
+better over-all performance, however.</p>
+<figure>
+<img src="images/plots/2021-07-22_15.16.03-Multi-Evader%20Pursuit%20(hpsopt).svg" id="fig:resmpopt" alt="Figure 12: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best." /><figcaption aria-hidden="true">Figure 12: Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.</figcaption>
+</figure>
+<figure>
+<img src="images/plots/2021-07-10_16.07.12-Multi-Evader%20Pursuit%20(hpsopt%20top.33).svg" id="fig:resmpopttop" alt="Figure 13: Like Figure 12 but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar." /><figcaption aria-hidden="true">Figure 13: Like <a href="#fig:resmpopt">Figure 12</a> but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.</figcaption>
+</figure>
+<figure>
+<img src="images/pursuit-eg.drawio.svg" id="fig:pursuiteg" alt="Figure 14: Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies." /><figcaption aria-hidden="true">Figure 14: Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies.</figcaption>
+</figure>
 <h3 data-number="6.1.4" id="assembly-task"><span class="header-section-number">6.1.4</span> Assembly Task</h3>
 <p><a href="#fig:resassembly">Figure 15</a> shows the results on the assembly task with ten agents and four
 boxes. The three aggregation methods perform very similar, with the attentive
@@ -1126,7 +1139,8 @@ separate networks (<span class="math inline">\(enc_r\)</span> and <span class="m
 encoder with two outputs generally performs better.</p>
 <h3 data-number="6.4.2" id="using-the-aggregated-variance-or-only-the-mean"><span class="header-section-number">6.4.2</span> Using the Aggregated Variance or Only the Mean</h3>
 <p>In the other experiments with Bayesian aggregation, we only use the predicted
-mean of the Gaussian distribution as an input to the decoder:</p>
+mean of the Gaussian distribution of each latent space feature as an input to
+the decoder:</p>
 <p><span class="math display">\[e_{k→G}=μ_z\]</span></p>
 <p>Since the Bayesian aggregation also gives us a full a-posteriori Gaussian
 distribution, we also have an estimate of the variance for each feature in the
