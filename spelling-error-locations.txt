@@ -38,7 +38,6 @@ content/2_preliminaries.md:107:PPO
 content/2_preliminaries.md:109:ppo
 content/2_preliminaries.md:111:PPO
 content/2_preliminaries.md:114:trl
-content/2_preliminaries.md:114:trl
 content/2_preliminaries.md:114:TRL
 content/2_preliminaries.md:117:PPO
 content/2_preliminaries.md:117:trl

@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-27'
+date-meta: '2021-07-28'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-27" />
-  <meta name="citation_publication_date" content="2021-07-27" />
+  <meta name="dc.date" content="2021-07-28" />
+  <meta name="citation_publication_date" content="2021-07-28" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/98cc0538714e97498418b50c85468f0d6752c1e2/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/)) was automatically
 built from
-[phiresky/masters-thesis@98cc053](https://github.com/phiresky/masters-thesis/tree/98cc0538714e97498418b50c85468f0d6752c1e2)
-on July 27, 2021. </em></small>
+[phiresky/masters-thesis@1ee255f](https://github.com/phiresky/masters-thesis/tree/1ee255fe5354d711b6ed5129b4a867dffda3465d)
+on July 28, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -303,7 +303,7 @@ implementation
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
 
-### Trust Region Layers (PG-TRL [@trl]) {#sec:trl}
+### Trust Region Layers (PG-TRL) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
 region during policy updates introduced by @trl. PPO uses a fixed clipping ratio

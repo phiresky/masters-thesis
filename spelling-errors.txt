@@ -44,7 +44,7 @@ openai
 optimality
 Optuna
 performacne
-pettingzoo
+PettingZoo
 phiresky
 POMDP
 POMDPs
@@ -78,7 +78,7 @@ Ruede
 sameseparate
 Scalable
 SISL
-Softmax
+softmax
 StarCraft
 SwarMDP
 tanh
