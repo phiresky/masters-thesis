@@ -111,7 +111,7 @@ implementation
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
 
-### Trust Region Layers (PG-TRL [@trl]) {#sec:trl}
+### Trust Region Layers (PG-TRL) {#sec:trl}
 
 Differentiable trust region layers are an alternative method to enforce a trust
 region during policy updates introduced by @trl. PPO uses a fixed clipping ratio
