@@ -1,4 +1,3 @@
-acheiving
 agg
 aggregatable
 aggregatables
@@ -40,10 +39,9 @@ mpe
 NN
 observability
 observables
-openai
+OpenAI
 optimality
 Optuna
-performacne
 PettingZoo
 phiresky
 POMDP
@@ -76,9 +74,9 @@ RL
 rollouts
 Ruede
 sameseparate
-Scalable
+scalable
 SISL
-softmax
+Softmax
 StarCraft
 SwarMDP
 tanh

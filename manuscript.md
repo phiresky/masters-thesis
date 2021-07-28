@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/1ee255fe5354d711b6ed5129b4a867dffda3465d/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/)) was automatically
 built from
-[phiresky/masters-thesis@1ee255f](https://github.com/phiresky/masters-thesis/tree/1ee255fe5354d711b6ed5129b4a867dffda3465d)
+[phiresky/masters-thesis@5ee2d6a](https://github.com/phiresky/masters-thesis/tree/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9)
 on July 28, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -229,13 +229,23 @@ The MDP can either run for an infinite period or finish after a number of
 transitions. The transition function then always returns the same state.
 
 The method by which an agent chooses its actions based on the current state is
-called a _policy_. The policy defines a probability for taking each action based
-on a specific state.
+called a _policy_ $π$. The policy defines a probability for taking each action
+based on a specific state.
 
-Based on a policy we can also define the _value function_, which is the sum of
-all future rewards that an agent gets based on an initial state and a specific
-policy. The value function can also include an exponential decay for weighing
-future rewards, which is especially useful if the horizon is infinite.
+Based on a policy we can also define the _Q-value function_ and the _value
+function_. The value function $V^π$ is the sum of all future expected rewards
+that an agent gets based on an initial state $s_t$ and a specific policy π that
+leads to expected rewards $r$ in each future time step $t+i$ when sampling
+actions according to the policy:
+
+$$V^π(s_t) = \mathop{\mathbb{E}}\left[\sum_{i=0}^\infty γ^i r_{t+i} \right]$$
+
+The value function can include an exponential decay $γ$ for weighing future
+rewards, which is especially useful if the horizon is infinite. The Q-value
+function is the same except that the action at step $t$ is fixed to $a_t$
+instead of chosen by the policy:
+
+$$Q^π(s_t,a_t) = \mathop{\mathbb{E}}\left[\sum_{i=0}^∞ γ^i r_{t+i} \right]$$
 
 Often we need to extend MDPs to allow for an observation model: A _partially
 observable Markov decision process_ (POMDP) is an extension to MDPs that
@@ -289,16 +299,9 @@ step $k$. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
-$A$ is the advantage of taking a specific action in a specific state as opposed
-to the other actions as weighted by the current policy, estimated using
-Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on
-the estimated value function.
-
-Since the performance of PPO depends on a number of implementation details and
-quirks, we use the stable-baselines3 [@stable-baselines3] implementation of
-PPO-Clip, which has been shown to perform as well as the original OpenAI
-implementation
-[@{https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#results}].
+The advantage $A$ is defined as $A^{π}(s,a) = Q^π(s,a) - V^π(s)$ and is
+estimated using Generalized Advantage Estimation
+[@{https://arxiv.org/abs/1506.02438}] based on the estimated value function.
 
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
@@ -593,6 +596,9 @@ by a neural network encoder with mean aggregation.
 
 -->
 
+$$
+$$
+
 
 # Related work {#sec:relatedwork}
 
@@ -738,6 +744,11 @@ simultaneous though, so we only consider environments with simultaneous actions.
 
 @openai create a team-based multi-agent environment with one team of agents
 trying to find and "catch" the agents of the other team.
+@{https://arxiv.org/abs/2107.12808} create a generic physics-based world and a
+system to automatically generate cooperative and adversarial tasks like _Hide
+and Seek_ and _Capture the Flag_ within this world then train agents to be able
+to solve multiple tasks in this world. They then show their agents generalize to
+be able to solve unseen tasks.
 
 @are test their attention-based architecture on three environments: (1) A
 catching game in a discrete 2D world, where multiple paddles moving in one
@@ -790,19 +801,24 @@ they can include other information like the distance between $a_k$ and $a_i$,
 and they may be missing some information that may not be known to $a_k$. In
 addition, there can be additional sets of observations, for example for objects
 or scripted agents in the environment. The architecture can handle any amount of
-observation sets, but the observations in each set must have the same shape.
+observation sets.
 
-We call each of the sets of observations "aggregation groups" $G$:
+Since we aggregate each set of observables of the same kind and shape into one
+aggregate, we call each of the sets of observations an "aggregation group" $G$:
 
 $$G = \{ g_1, \dots, g_n \}$$
 
-Since the $g_i$ are later aggregated with a permutation-invariant aggregation
-function, their order does not matter.
+$G$ is a single aggregation group with each of the $n$ aggregatables in the
+group called $g_i$. There can also be multiple aggregation groups that we call
+($G^{(a)}, G^{(b)}$), each with their own number of observables. Since the $g_i$
+are later aggregated with a permutation-invariant aggregation function, their
+order does not matter.
 
 First, we collect the observations for each instance $1<i<n$ of each aggregation
 group $G$. These observations can be relative to the current agent. Each
 observation in the aggregation group $G$ is thus a function of the agent $a_k$
-and the instance $g_i$:
+and the instance $g_i$. We call this observation $o_{k→g_i}$, since agent $k$ is
+observing the $i$th observable in group $G$:
 
 $$o_{k→g_i} = \text{observe}(a_k, g_i)$$
 
@@ -825,9 +841,9 @@ latent space value for each aggregation group:
 $$e_{k→G} = \text{agg}_{i=0}^n(e_{k→g_i})$$
 
 We then concatenate all the latent spaces as well as the proprioceptive
-observations $p$ to get a single encoded value $e_k$:
+observations $p_k$ of the agent $k$ to get a single encoded value $e_k$:
 
-$$e_k = (p, G_1, G_2, ...)$$
+$$e_k = (p_k || e_{k→G^{(a)}} || e_{k→G^{(b)}} || ...)$$
 
 This value is then passed through a decoder that consists of one or more dense
 layers. Finally, the decoded value is transformed to the dimensionality of the
@@ -845,7 +861,7 @@ Gaussian distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
-### Mean/Max/Softmax Aggregation
+## Mean/Max/Softmax Aggregation
 
 Each sample in the latent space is weighted by a function $\text{weigh}()$ and
 aggregated using an aggregation operator $\bigoplus$:
@@ -867,7 +883,7 @@ aggregation operator is the sum:
 
 $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k→g_j})}\right) e_{k→g_i}$$
 
-### Bayesian Aggregation {#sec:bayesianagg}
+## Bayesian Aggregation {#sec:bayesianagg}
 
 We use a separate latent space and thus a separate observation model $p(z)$ for
 each aggregation group.
@@ -908,7 +924,7 @@ A graphical overview of this method is shown in [@fig:bayesianagg].
 
 ![Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable $z$ to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of $z$ are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in @fig:model.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
 
-### Attentive Aggregation
+## Attentive Aggregation
 
 When using residual self-attentive aggregation, we define the aggregated feature
 as
@@ -945,17 +961,20 @@ reinforcement learning framework that provides implementations of various
 reinforcement learning algorithms for TensorFlow. Stable-baselines is an
 extension of the original code base with better documentation and more
 flexibility for custom architectures and environments. Sb3 is the continuation
-of the stable-baselines project, rewritten using PyTorch.
+of the stable-baselines project, rewritten using PyTorch. We rely on sb3 since
+the performance of PPO is known to depend on a number of implementation details
+[@{https://openreview.net/forum?id=r1etN1rtPB}] and the sb3 implementation of
+PPO-Clip has been shown to perform as well as the original OpenAI implementation
+[@{https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#results}].
 
 We extended sb3 for the multi-agent use case by adapting the vectorized
 environment implementation to support multiple agents in a single environment,
 as well as adapting the training and evaluation functionality to correctly
 handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
-order to be able to directly compare PPO and TRL.
-
-When mentioned in the results section, we optimized the hyperparameters using
-Optuna [@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+order to be able to directly compare PPO and TRL. When mentioned in the results
+section, we optimized the hyperparameters using Optuna
+[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
 
 <!-- {describe batch size, other meta settings} -->
 
@@ -966,7 +985,9 @@ where multiple agents can cooperatively solve a task. Since most of the commonly
 used tasks used to benchmark reinforcement learning algorithms are designed for
 a single agent, we use custom-built environments.
 
-The following shows which specific tasks we consider.
+The following shows which specific tasks we consider. We start with a simple
+task and continue with progressively harder tasks that have more complex
+information in the environment that the policy needs to process.
 
 ### Rendezvous task {#sec:rendezvous}
 
@@ -1035,7 +1056,7 @@ information:
    2. The cos and sin of the relative bearing (the angle between the direction
       the agent is going and the position of the neighbor)
    3. The cos and sin of the neighbor's bearing to us
-3. For each evader:
+3. For the evader:
    1. The distance between the current agent and the evader
    2. The cos and sin of the relative bearing
 
@@ -1044,9 +1065,13 @@ the evader:
 
 $$r = min_{i=0}^n ||p_{a_i} - p_{e}||$$
 
-The episode ends once the evader is caught or 1024 timesteps have passed. The
+The episode ends once the evader is caught or 1024 time steps have passed. The
 evader is declared as caught if the distance is minimum distance between an
 agent and the evader is less than $1\%$ of the world width.
+
+The observation of the evader is handled as a single observable in a second
+aggregation group to be able to scale the policy architecture to multiple
+evaders without modifications.
 
 ### Multi-evader pursuit
 
@@ -1110,7 +1135,8 @@ difference of this after the step and before the step.
 The observation space is the same as the observation space of the box assembly
 task, except that each cluster of objects is aggregated into a separate
 aggregation space, and that there is an additional one-hot encoded cluster ID in
-the object observation space.
+the object observation space. @Fig:clustering2 shows an example successful
+episode of the clustering task with two four boxes split into two clusters.
 
 ![Example episode of the clustering task with two clusters.](images/clustering2-episode.drawio.svg){#fig:clustering2}
 
@@ -1170,7 +1196,14 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+We start with a very simple task (rendezvous), then look at progressively more
+difficult tasks with more complex information that needs to be aggregated.
+
 ### Rendezvous task
+
+The rendezvous task is very simple and thus gives a good baseline to show
+whether our model works in general. It only has one simple aggregation group
+(the agents).
 
 @Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
 the rendezvous task with twenty agents in a two-dimensional square world with
@@ -1211,23 +1244,33 @@ Log.svg){#fig:resrendezvouslog}
 
 ### Single-evader pursuit task
 
+The pursuit task is a slightly more complex task with the single evader being in
+a second aggregation group with one observable. The results here show that the
+learned policies can handle a moving object in the world and that the
+architecture works with multiple observation groups.
+
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
 and one evader. The neural network architecture is fixed at `120-60-agg-160` for
-all methods. All methods learn the task quickly, with the mean aggregation
-achieving the maximum performance slightly faster. This shows that the task is
-simpler than the multi-evader pursuit task, which is both due to the fact that
+all methods. All methods learn the task quickly with the same best performance,
+with the mean aggregation achieving the maximum performance slightly faster.
+This shows that the task is simpler than the multi-evader pursuit task, even
+though the policy architecture is the same. This is both due to the fact that
 there are fewer evaders and that the reward is more sparse (minimum-distance for
 single-evader vs count-catches for multi-evader).
 
-![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation achieving the best performance slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
 Pursuit.svg){#fig:ressp}
 
 ### Multi-evader pursuit task
 
-Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
-on a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task
-with different aggregation methods with the same architecture used in
-[@maxpaper] to be able to directly compare the results. The architecture is
+The multi-evader pursuit task adds complexity by having multiple evaders that
+need to be caught. In addition, the reward is sparser due to the fact that each
+catch only gives a binary reward signal. The results here show whether our
+policy is able to process multiple aggregation groups with multiple moving
+entities. Here, we consider the multi-evader pursuit task with 20 pursuers and 5
+evaders on a torus. @Fig:resmpsmall shows the results of the multi-evader
+pursuit task with different aggregation methods with the same architecture used
+in [@maxpaper] to be able to directly compare the results. The architecture is
 64-agg-64 with the tanh activation function. With this architecture, the
 Bayesian aggregation performs best.
 
@@ -1285,17 +1328,27 @@ Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
 ### Assembly task
 
-@Fig:resassembly shows the results on the assembly task with ten agents and four
-boxes. The three aggregation methods perform very similar, with the attentive
-aggregation learning the task slightly quicker.
+The assembly task is different from the previous tasks in that the agents have
+to manipulate the environment in order reach their goal. In order to solve the
+task, the agents need to show collaborative skills in deciding on the final
+destination of the assembled cluster of objects as well as succeed in moving the
+objects to that location. They also need to understand when the goal has been
+reached in order to not move the boxes apart again. @Fig:resassembly shows the
+results on the assembly task with ten agents and four boxes. The three
+aggregation methods perform very similar, with the attentive aggregation
+learning the task slightly quicker.
 
 ![Results on the assembly task.](images/plots/2021-07-22_17.44.09-assembly (by
 agg method).svg){#fig:resassembly}
 
 ### Clustering task with two clusters
 
-@Fig:resclustering2 shows the results on the clustering task with four boxes
-split into two clusters. The results are similar in all cases. An example of a
+The clustering task is an extension of the assembly task with a _third_
+aggregation group for the second cluster of objects. To successfully solve this
+task, the agents need to be able to distinguish between the two object types and
+split the work of moving them. @Fig:resclustering2 shows the results on the
+clustering task with four boxes split into two clusters. The results are similar
+in all cases, with all policies solving the task for most runs. An example of a
 successful episode with mean aggregation is shown in @fig:clustering2.
 
 ![Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.](images/plots/2021-07-10_18.56.32-Clustering
@@ -1307,14 +1360,21 @@ Doesn't work :(
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 
-In the following, we show some results of the trust region layers policy
-gradient (TRL) training method (see [@sec:trl]) compared to PPO.
+In multi-agent fully cooperative tasks, the reward can be even more sparse than
+it is for single-agent tasks, since the same reward is used for all agents. One
+agent can thus not know whether its own actions or the actions of a different
+agent lead to a specific reward signal. Trust region layers policy gradient
+(TRL) (see [@sec:trl]) was published for single-agent reinforcement learning,
+but since TRL promises to improve the exploration over PPO and possibly find a
+better optimal solution, we apply it to our multi-agent experiments in a direct
+comparison to PPO.
 
-@Fig:resmptrl shows the learning algorithm comparison on the multi-evader
-pursuit task. The architectures are the ones hyper-parameter optimized on PPO on
-each of the aggregation methods. TRL seems to show significantly improved
-training performance for the Bayesian aggregation and similar performance for
-the mean aggregation.
+In the following, we show some training graphs of the TRL training method
+compared to PPO. @Fig:resmptrl shows the learning algorithm comparison on the
+multi-evader pursuit task. The architectures are the ones hyper-parameter
+optimized on PPO on each of the aggregation methods. TRL seems to show
+significantly improved training performance for the Bayesian aggregation and
+similar performance for the mean aggregation.
 
 <!-- @Fig:resmptrltop
 shows the same result for only the top one third of runs. The results are very
@@ -1343,10 +1403,21 @@ worse.
 ![TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL.](images/plots/2021-07-11_13.13.37-assembly
 (by train algo and agg method).svg){#fig:resasstrl}
 
-In summary, TRL seems to perform the same or better in most cases, with the
-Bayesian aggregation on the assembly task being an outlier.
+In summary, TRL seems to perform the same or better than PPO in most cases, with
+the Bayesian aggregation on the assembly task being an outlier. Since we did not
+do extensive testing with different hyper-parameters for TRL, we can conclude
+that TRL may have good potential of performing better, in general, than PPO on
+multi-task environments with sparse rewards.
 
-## Same space vs separate space aggregation
+\FloatBarrier
+
+## Bayesian aggregation variants
+
+In the results comparing the different aggregation methods above, we always use
+the same setup for the Bayesian aggregation. The following shows the results for
+some variants of the Bayesian aggregation on selected tasks.
+
+### Same space vs separate space aggregation
 
 For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
@@ -1386,10 +1457,6 @@ Pursuit samespace.svg){#fig:ressameseparate}
 samespace.svg){#fig:ressameseparate2}
 
 -->
-
-## Bayesian aggregation variants
-
-The following shows the results for some variants of the Bayesian aggregation.
 
 ### Separate vs common encoder
 
@@ -1455,19 +1522,24 @@ aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
 tasks. We have observed that there is no clear advantage of one of the methods
 over the others, with the results differing strongly between the different
-tasks.
+tasks. In addition, the signal to noise ratio of the comparisons was fairly low,
+since other hyperparameters like the sizes of the neural networks or the
+training step size changed the results more than did the chosen aggregation
+method.
 
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->
 
 We have also shown the results of a few variants of the Bayesian aggregation and
-concluded that encoding the variance with the same encoder as the estimate,
-aggregating into separate latent spaces and not using the aggregated variance as
-an input to the decoder achieves the best results.
+concluded that it performs best when (1) encoding the variance with the same
+encoder as the estimate instead of with separate encoders, (2) aggregating
+observables of different kinds into separate latent spaces instead of the same
+one and (3) not using the aggregated variance as an input to the decoder.
 
 Finally, we have applied a new training method (trust region layers) to
 multi-agent reinforcement learning and compared it to the commonly used PPO. The
 results indicate that TRL is usually at least as good as PPO and in some cases
-outperforms it.
+outperforms it, indicating that it may be a good alternative to PPO for
+environments with sparse rewards, as is the case in many MARL tasks.
 
 ## Future Work
 
