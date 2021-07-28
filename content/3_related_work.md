@@ -142,6 +142,11 @@ simultaneous though, so we only consider environments with simultaneous actions.
 
 @openai create a team-based multi-agent environment with one team of agents
 trying to find and "catch" the agents of the other team.
+@{https://arxiv.org/abs/2107.12808} create a generic physics-based world and a
+system to automatically generate cooperative and adversarial tasks like _Hide
+and Seek_ and _Capture the Flag_ within this world then train agents to be able
+to solve multiple tasks in this world. They then show their agents generalize to
+be able to solve unseen tasks.
 
 @are test their attention-based architecture on three environments: (1) A
 catching game in a discrete 2D world, where multiple paddles moving in one

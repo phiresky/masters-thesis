@@ -47,7 +47,14 @@ layers of the encoders of each aggregation group. The numbers after `agg` are
 the layer sizes in the decoder after the concatenation of the proprioceptive
 observations with the aggregated observations (compare @fig:model).
 
+We start with a very simple task (rendezvous), then look at progressively more
+difficult tasks with more complex information that needs to be aggregated.
+
 ### Rendezvous task
+
+The rendezvous task is very simple and thus gives a good baseline to show
+whether our model works in general. It only has one simple aggregation group
+(the agents).
 
 @Fig:resrendezvous shows a comparison between mean and Bayesian aggregation on
 the rendezvous task with twenty agents in a two-dimensional square world with
@@ -88,23 +95,33 @@ Log.svg){#fig:resrendezvouslog}
 
 ### Single-evader pursuit task
 
+The pursuit task is a slightly more complex task with the single evader being in
+a second aggregation group with one observable. The results here show that the
+learned policies can handle a moving object in the world and that the
+architecture works with multiple observation groups.
+
 @Fig:ressp shows the results on the single-evader pursuit task with 10 pursuers
 and one evader. The neural network architecture is fixed at `120-60-agg-160` for
-all methods. All methods learn the task quickly, with the mean aggregation
-achieving the maximum performance slightly faster. This shows that the task is
-simpler than the multi-evader pursuit task, which is both due to the fact that
+all methods. All methods learn the task quickly with the same best performance,
+with the mean aggregation achieving the maximum performance slightly faster.
+This shows that the task is simpler than the multi-evader pursuit task, even
+though the policy architecture is the same. This is both due to the fact that
 there are fewer evaders and that the reward is more sparse (minimum-distance for
 single-evader vs count-catches for multi-evader).
 
-![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation acheiving the best performacne slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
+![Results on Single Pursuit task. The performance is similar for all methods, with the mean aggregation achieving the best performance slightly faster.](images/plots/2021-07-14_13.55.20-Single-evader
 Pursuit.svg){#fig:ressp}
 
 ### Multi-evader pursuit task
 
-Here, we consider the multi-evader pursuit task with 20 pursuers and 5 evaders
-on a torus. @Fig:resmpsmall shows the results of the multi-evader pursuit task
-with different aggregation methods with the same architecture used in
-[@maxpaper] to be able to directly compare the results. The architecture is
+The multi-evader pursuit task adds complexity by having multiple evaders that
+need to be caught. In addition, the reward is sparser due to the fact that each
+catch only gives a binary reward signal. The results here show whether our
+policy is able to process multiple aggregation groups with multiple moving
+entities. Here, we consider the multi-evader pursuit task with 20 pursuers and 5
+evaders on a torus. @Fig:resmpsmall shows the results of the multi-evader
+pursuit task with different aggregation methods with the same architecture used
+in [@maxpaper] to be able to directly compare the results. The architecture is
 64-agg-64 with the tanh activation function. With this architecture, the
 Bayesian aggregation performs best.
 
@@ -162,17 +179,27 @@ Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
 ### Assembly task
 
-@Fig:resassembly shows the results on the assembly task with ten agents and four
-boxes. The three aggregation methods perform very similar, with the attentive
-aggregation learning the task slightly quicker.
+The assembly task is different from the previous tasks in that the agents have
+to manipulate the environment in order reach their goal. In order to solve the
+task, the agents need to show collaborative skills in deciding on the final
+destination of the assembled cluster of objects as well as succeed in moving the
+objects to that location. They also need to understand when the goal has been
+reached in order to not move the boxes apart again. @Fig:resassembly shows the
+results on the assembly task with ten agents and four boxes. The three
+aggregation methods perform very similar, with the attentive aggregation
+learning the task slightly quicker.
 
 ![Results on the assembly task.](images/plots/2021-07-22_17.44.09-assembly (by
 agg method).svg){#fig:resassembly}
 
 ### Clustering task with two clusters
 
-@Fig:resclustering2 shows the results on the clustering task with four boxes
-split into two clusters. The results are similar in all cases. An example of a
+The clustering task is an extension of the assembly task with a _third_
+aggregation group for the second cluster of objects. To successfully solve this
+task, the agents need to be able to distinguish between the two object types and
+split the work of moving them. @Fig:resclustering2 shows the results on the
+clustering task with four boxes split into two clusters. The results are similar
+in all cases, with all policies solving the task for most runs. An example of a
 successful episode with mean aggregation is shown in @fig:clustering2.
 
 ![Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.](images/plots/2021-07-10_18.56.32-Clustering
@@ -184,14 +211,21 @@ Doesn't work :(
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 
-In the following, we show some results of the trust region layers policy
-gradient (TRL) training method (see [@sec:trl]) compared to PPO.
+In multi-agent fully cooperative tasks, the reward can be even more sparse than
+it is for single-agent tasks, since the same reward is used for all agents. One
+agent can thus not know whether its own actions or the actions of a different
+agent lead to a specific reward signal. Trust region layers policy gradient
+(TRL) (see [@sec:trl]) was published for single-agent reinforcement learning,
+but since TRL promises to improve the exploration over PPO and possibly find a
+better optimal solution, we apply it to our multi-agent experiments in a direct
+comparison to PPO.
 
-@Fig:resmptrl shows the learning algorithm comparison on the multi-evader
-pursuit task. The architectures are the ones hyper-parameter optimized on PPO on
-each of the aggregation methods. TRL seems to show significantly improved
-training performance for the Bayesian aggregation and similar performance for
-the mean aggregation.
+In the following, we show some training graphs of the TRL training method
+compared to PPO. @Fig:resmptrl shows the learning algorithm comparison on the
+multi-evader pursuit task. The architectures are the ones hyper-parameter
+optimized on PPO on each of the aggregation methods. TRL seems to show
+significantly improved training performance for the Bayesian aggregation and
+similar performance for the mean aggregation.
 
 <!-- @Fig:resmptrltop
 shows the same result for only the top one third of runs. The results are very
@@ -220,10 +254,21 @@ worse.
 ![TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL.](images/plots/2021-07-11_13.13.37-assembly
 (by train algo and agg method).svg){#fig:resasstrl}
 
-In summary, TRL seems to perform the same or better in most cases, with the
-Bayesian aggregation on the assembly task being an outlier.
+In summary, TRL seems to perform the same or better than PPO in most cases, with
+the Bayesian aggregation on the assembly task being an outlier. Since we did not
+do extensive testing with different hyper-parameters for TRL, we can conclude
+that TRL may have good potential of performing better, in general, than PPO on
+multi-task environments with sparse rewards.
 
-## Same space vs separate space aggregation
+\FloatBarrier
+
+## Bayesian aggregation variants
+
+In the results comparing the different aggregation methods above, we always use
+the same setup for the Bayesian aggregation. The following shows the results for
+some variants of the Bayesian aggregation on selected tasks.
+
+### Same space vs separate space aggregation
 
 For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
@@ -263,10 +308,6 @@ Pursuit samespace.svg){#fig:ressameseparate}
 samespace.svg){#fig:ressameseparate2}
 
 -->
-
-## Bayesian aggregation variants
-
-The following shows the results for some variants of the Bayesian aggregation.
 
 ### Separate vs common encoder
 

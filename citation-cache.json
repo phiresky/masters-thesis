@@ -3666,6 +3666,199 @@
 				"title": "Rational and convergent learning in stochastic games",
 				"type": "paper-conference"
 			}
+		},
+		"https://arxiv.org/abs/2107.12808": {
+			"fetched": "2021-07-28T13:36:58.128Z",
+			"bibtex": [
+				"",
+				"@article{team_open-ended_2021,",
+				"   title = {Open-{Ended} {Learning} {Leads} to {Generally} {Capable} {Agents}},",
+				"   url = {http://arxiv.org/abs/2107.12808},",
+				"   abstract = {In this work we create agents that can perform well beyond a single, individual task, that exhibit much wider generalisation of behaviour to a massive, rich space of challenges. We define a universe of tasks within an environment domain and demonstrate the ability to train agents that are generally capable across this vast space and beyond. The environment is natively multi-agent, spanning the continuum of competitive, cooperative, and independent games, which are situated within procedurally generated physical 3D worlds. The resulting space is exceptionally diverse in terms of the challenges posed to agents, and as such, even measuring the learning progress of an agent is an open research problem. We propose an iterative notion of improvement between successive generations of agents, rather than seeking to maximise a singular objective, allowing us to quantify progress despite tasks being incomparable in terms of achievable rewards. We show that through constructing an open-ended learning process, which dynamically changes the training task distributions and training objectives such that the agent never stops learning, we achieve consistent learning of new behaviours. The resulting agent is able to score reward in every one of our humanly solvable evaluation levels, with behaviour generalising to many held-out points in the universe of tasks. Examples of this zero-shot generalisation include good performance on Hide and Seek, Capture the Flag, and Tag. Through analysis and hand-authored probe tasks we characterise the behaviour of our agent, and find interesting emergent heuristic behaviours such as trial-and-error experimentation, simple tool use, option switching, and cooperation. Finally, we demonstrate that the general capabilities of this agent could unlock larger scale transfer of behaviour through cheap finetuning.},",
+				"   urldate = {2021-07-28},",
+				"   journal = {arXiv:2107.12808 [cs]},",
+				"   author = {Team, Open-Ended Learning and Stooke, Adam and Mahajan, Anuj and Barros, Catarina and Deck, Charlie and Bauer, Jakob and Sygnowski, Jakub and Trebacz, Maja and Jaderberg, Max and Mathieu, Michael and McAleese, Nat and Bradley-Schmieg, Nathalie and Wong, Nathaniel and Porcel, Nicolas and Raileanu, Roberta and Hughes-Fitt, Steph and Dalibard, Valentin and Czarnecki, Wojciech Marian},",
+				"   month = jul,",
+				"   year = {2021},",
+				"   note = {arXiv: 2107.12808},",
+				"   keywords = {Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Computer Science - Multiagent Systems},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "http://arxiv.org/abs/2107.12808",
+				"abstract": "In this work we create agents that can perform well beyond a single, individual task, that exhibit much wider generalisation of behaviour to a massive, rich space of challenges. We define a universe of tasks within an environment domain and demonstrate the ability to train agents that are generally capable across this vast space and beyond. The environment is natively multi-agent, spanning the continuum of competitive, cooperative, and independent games, which are situated within procedurally generated physical 3D worlds. The resulting space is exceptionally diverse in terms of the challenges posed to agents, and as such, even measuring the learning progress of an agent is an open research problem. We propose an iterative notion of improvement between successive generations of agents, rather than seeking to maximise a singular objective, allowing us to quantify progress despite tasks being incomparable in terms of achievable rewards. We show that through constructing an open-ended learning process, which dynamically changes the training task distributions and training objectives such that the agent never stops learning, we achieve consistent learning of new behaviours. The resulting agent is able to score reward in every one of our humanly solvable evaluation levels, with behaviour generalising to many held-out points in the universe of tasks. Examples of this zero-shot generalisation include good performance on Hide and Seek, Capture the Flag, and Tag. Through analysis and hand-authored probe tasks we characterise the behaviour of our agent, and find interesting emergent heuristic behaviours such as trial-and-error experimentation, simple tool use, option switching, and cooperation. Finally, we demonstrate that the general capabilities of this agent could unlock larger scale transfer of behaviour through cheap finetuning.",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							28
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Team",
+						"given": "Open-Ended Learning"
+					},
+					{
+						"family": "Stooke",
+						"given": "Adam"
+					},
+					{
+						"family": "Mahajan",
+						"given": "Anuj"
+					},
+					{
+						"family": "Barros",
+						"given": "Catarina"
+					},
+					{
+						"family": "Deck",
+						"given": "Charlie"
+					},
+					{
+						"family": "Bauer",
+						"given": "Jakob"
+					},
+					{
+						"family": "Sygnowski",
+						"given": "Jakub"
+					},
+					{
+						"family": "Trebacz",
+						"given": "Maja"
+					},
+					{
+						"family": "Jaderberg",
+						"given": "Max"
+					},
+					{
+						"family": "Mathieu",
+						"given": "Michael"
+					},
+					{
+						"family": "McAleese",
+						"given": "Nat"
+					},
+					{
+						"family": "Bradley-Schmieg",
+						"given": "Nathalie"
+					},
+					{
+						"family": "Wong",
+						"given": "Nathaniel"
+					},
+					{
+						"family": "Porcel",
+						"given": "Nicolas"
+					},
+					{
+						"family": "Raileanu",
+						"given": "Roberta"
+					},
+					{
+						"family": "Hughes-Fitt",
+						"given": "Steph"
+					},
+					{
+						"family": "Dalibard",
+						"given": "Valentin"
+					},
+					{
+						"family": "Czarnecki",
+						"given": "Wojciech Marian"
+					}
+				],
+				"container-title": "arXiv:2107.12808 [cs]",
+				"id": "https://arxiv.org/abs/2107.12808",
+				"issued": {
+					"date-parts": [
+						[
+							2021,
+							7
+						]
+					]
+				},
+				"keyword": "Computer Science - Machine Learning, Computer Science - Artificial Intelligence, Computer Science - Multiagent Systems",
+				"note": "arXiv: 2107.12808",
+				"title": "Open-Ended Learning Leads to Generally Capable Agents",
+				"type": "article-journal"
+			}
+		},
+		"https://openreview.net/forum?id=r1etN1rtPB": {
+			"fetched": "2021-07-28T15:00:08.830Z",
+			"bibtex": [
+				"",
+				"@inproceedings{engstrom_implementation_2019,",
+				"   title = {Implementation {Matters} in {Deep} {RL}: {A} {Case} {Study} on {PPO} and {TRPO}},",
+				"   shorttitle = {Implementation {Matters} in {Deep} {RL}},",
+				"   url = {https://openreview.net/forum?id=r1etN1rtPB},",
+				"   abstract = {We study the roots of algorithmic progress in deep policy gradient algorithms through a case study on two popular algorithms: Proximal Policy Optimization (PPO) and Trust Region Policy Optimization...},",
+				"   language = {en},",
+				"   urldate = {2021-07-28},",
+				"   author = {Engstrom, Logan and Ilyas, Andrew and Santurkar, Shibani and Tsipras, Dimitris and Janoos, Firdaus and Rudolph, Larry and Madry, Aleksander},",
+				"   month = sep,",
+				"   year = {2019},",
+				"}",
+				""
+			],
+			"csl": {
+				"URL": "https://openreview.net/forum?id=r1etN1rtPB",
+				"abstract": "We study the roots of algorithmic progress in deep policy gradient algorithms through a case study on two popular algorithms: Proximal Policy Optimization (PPO) and Trust Region Policy Optimization...",
+				"accessed": {
+					"date-parts": [
+						[
+							2021,
+							7,
+							28
+						]
+					]
+				},
+				"author": [
+					{
+						"family": "Engstrom",
+						"given": "Logan"
+					},
+					{
+						"family": "Ilyas",
+						"given": "Andrew"
+					},
+					{
+						"family": "Santurkar",
+						"given": "Shibani"
+					},
+					{
+						"family": "Tsipras",
+						"given": "Dimitris"
+					},
+					{
+						"family": "Janoos",
+						"given": "Firdaus"
+					},
+					{
+						"family": "Rudolph",
+						"given": "Larry"
+					},
+					{
+						"family": "Madry",
+						"given": "Aleksander"
+					}
+				],
+				"id": "https://openreview.net/forum?id_x61_r1etN1rtPB",
+				"issued": {
+					"date-parts": [
+						[
+							2019,
+							9
+						]
+					]
+				},
+				"title": "Implementation Matters in Deep RL: A Case Study on PPO and TRPO",
+				"title-short": "Implementation Matters in Deep RL",
+				"type": "paper-conference"
+			}
 		}
 	}
 }

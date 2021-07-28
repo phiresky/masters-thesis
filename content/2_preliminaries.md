@@ -37,13 +37,23 @@ The MDP can either run for an infinite period or finish after a number of
 transitions. The transition function then always returns the same state.
 
 The method by which an agent chooses its actions based on the current state is
-called a _policy_. The policy defines a probability for taking each action based
-on a specific state.
+called a _policy_ $π$. The policy defines a probability for taking each action
+based on a specific state.
 
-Based on a policy we can also define the _value function_, which is the sum of
-all future rewards that an agent gets based on an initial state and a specific
-policy. The value function can also include an exponential decay for weighing
-future rewards, which is especially useful if the horizon is infinite.
+Based on a policy we can also define the _Q-value function_ and the _value
+function_. The value function $V^π$ is the sum of all future expected rewards
+that an agent gets based on an initial state $s_t$ and a specific policy π that
+leads to expected rewards $r$ in each future time step $t+i$ when sampling
+actions according to the policy:
+
+$$V^π(s_t) = \mathop{\mathbb{E}}\left[\sum_{i=0}^\infty γ^i r_{t+i} \right]$$
+
+The value function can include an exponential decay $γ$ for weighing future
+rewards, which is especially useful if the horizon is infinite. The Q-value
+function is the same except that the action at step $t$ is fixed to $a_t$
+instead of chosen by the policy:
+
+$$Q^π(s_t,a_t) = \mathop{\mathbb{E}}\left[\sum_{i=0}^∞ γ^i r_{t+i} \right]$$
 
 Often we need to extend MDPs to allow for an observation model: A _partially
 observable Markov decision process_ (POMDP) is an extension to MDPs that
@@ -97,16 +107,9 @@ step $k$. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
-$A$ is the advantage of taking a specific action in a specific state as opposed
-to the other actions as weighted by the current policy, estimated using
-Generalized Advantage Estimation [@{https://arxiv.org/abs/1506.02438}] based on
-the estimated value function.
-
-Since the performance of PPO depends on a number of implementation details and
-quirks, we use the stable-baselines3 [@stable-baselines3] implementation of
-PPO-Clip, which has been shown to perform as well as the original OpenAI
-implementation
-[@{https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#results}].
+The advantage $A$ is defined as $A^{π}(s,a) = Q^π(s,a) - V^π(s)$ and is
+estimated using Generalized Advantage Estimation
+[@{https://arxiv.org/abs/1506.02438}] based on the estimated value function.
 
 We use PPO as the default for most of our experiments since it is widely used in
 other deep reinforcement learning work.
@@ -400,3 +403,6 @@ by a neural network encoder with mean aggregation.
 -
 
 -->
+
+$$
+$$

@@ -7,19 +7,24 @@ aggregation, Bayesian aggregation, and attentive aggregation to collect a
 varying number of observations on a set of different deep reinforcement learning
 tasks. We have observed that there is no clear advantage of one of the methods
 over the others, with the results differing strongly between the different
-tasks.
+tasks. In addition, the signal to noise ratio of the comparisons was fairly low,
+since other hyperparameters like the sizes of the neural networks or the
+training step size changed the results more than did the chosen aggregation
+method.
 
 <!-- In general, the signal to noise ratio of the experiments was pretty low, -->
 
 We have also shown the results of a few variants of the Bayesian aggregation and
-concluded that encoding the variance with the same encoder as the estimate,
-aggregating into separate latent spaces and not using the aggregated variance as
-an input to the decoder achieves the best results.
+concluded that it performs best when (1) encoding the variance with the same
+encoder as the estimate instead of with separate encoders, (2) aggregating
+observables of different kinds into separate latent spaces instead of the same
+one and (3) not using the aggregated variance as an input to the decoder.
 
 Finally, we have applied a new training method (trust region layers) to
 multi-agent reinforcement learning and compared it to the commonly used PPO. The
 results indicate that TRL is usually at least as good as PPO and in some cases
-outperforms it.
+outperforms it, indicating that it may be a good alternative to PPO for
+environments with sparse rewards, as is the case in many MARL tasks.
 
 ## Future Work
 

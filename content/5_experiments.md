@@ -8,17 +8,20 @@ reinforcement learning framework that provides implementations of various
 reinforcement learning algorithms for TensorFlow. Stable-baselines is an
 extension of the original code base with better documentation and more
 flexibility for custom architectures and environments. Sb3 is the continuation
-of the stable-baselines project, rewritten using PyTorch.
+of the stable-baselines project, rewritten using PyTorch. We rely on sb3 since
+the performance of PPO is known to depend on a number of implementation details
+[@{https://openreview.net/forum?id=r1etN1rtPB}] and the sb3 implementation of
+PPO-Clip has been shown to perform as well as the original OpenAI implementation
+[@{https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#results}].
 
 We extended sb3 for the multi-agent use case by adapting the vectorized
 environment implementation to support multiple agents in a single environment,
 as well as adapting the training and evaluation functionality to correctly
 handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
-order to be able to directly compare PPO and TRL.
-
-When mentioned in the results section, we optimized the hyperparameters using
-Optuna [@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+order to be able to directly compare PPO and TRL. When mentioned in the results
+section, we optimized the hyperparameters using Optuna
+[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
 
 <!-- {describe batch size, other meta settings} -->
 
@@ -29,7 +32,9 @@ where multiple agents can cooperatively solve a task. Since most of the commonly
 used tasks used to benchmark reinforcement learning algorithms are designed for
 a single agent, we use custom-built environments.
 
-The following shows which specific tasks we consider.
+The following shows which specific tasks we consider. We start with a simple
+task and continue with progressively harder tasks that have more complex
+information in the environment that the policy needs to process.
 
 ### Rendezvous task {#sec:rendezvous}
 
@@ -98,7 +103,7 @@ information:
    2. The cos and sin of the relative bearing (the angle between the direction
       the agent is going and the position of the neighbor)
    3. The cos and sin of the neighbor's bearing to us
-3. For each evader:
+3. For the evader:
    1. The distance between the current agent and the evader
    2. The cos and sin of the relative bearing
 
@@ -107,9 +112,13 @@ the evader:
 
 $$r = min_{i=0}^n ||p_{a_i} - p_{e}||$$
 
-The episode ends once the evader is caught or 1024 timesteps have passed. The
+The episode ends once the evader is caught or 1024 time steps have passed. The
 evader is declared as caught if the distance is minimum distance between an
 agent and the evader is less than $1\%$ of the world width.
+
+The observation of the evader is handled as a single observable in a second
+aggregation group to be able to scale the policy architecture to multiple
+evaders without modifications.
 
 ### Multi-evader pursuit
 
@@ -173,7 +182,8 @@ difference of this after the step and before the step.
 The observation space is the same as the observation space of the box assembly
 task, except that each cluster of objects is aggregated into a separate
 aggregation space, and that there is an additional one-hot encoded cluster ID in
-the object observation space.
+the object observation space. @Fig:clustering2 shows an example successful
+episode of the clustering task with two four boxes split into two clusters.
 
 ![Example episode of the clustering task with two clusters.](images/clustering2-episode.drawio.svg){#fig:clustering2}
 

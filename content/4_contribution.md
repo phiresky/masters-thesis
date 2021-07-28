@@ -21,19 +21,24 @@ they can include other information like the distance between $a_k$ and $a_i$,
 and they may be missing some information that may not be known to $a_k$. In
 addition, there can be additional sets of observations, for example for objects
 or scripted agents in the environment. The architecture can handle any amount of
-observation sets, but the observations in each set must have the same shape.
+observation sets.
 
-We call each of the sets of observations "aggregation groups" $G$:
+Since we aggregate each set of observables of the same kind and shape into one
+aggregate, we call each of the sets of observations an "aggregation group" $G$:
 
 $$G = \{ g_1, \dots, g_n \}$$
 
-Since the $g_i$ are later aggregated with a permutation-invariant aggregation
-function, their order does not matter.
+$G$ is a single aggregation group with each of the $n$ aggregatables in the
+group called $g_i$. There can also be multiple aggregation groups that we call
+($G^{(a)}, G^{(b)}$), each with their own number of observables. Since the $g_i$
+are later aggregated with a permutation-invariant aggregation function, their
+order does not matter.
 
 First, we collect the observations for each instance $1<i<n$ of each aggregation
 group $G$. These observations can be relative to the current agent. Each
 observation in the aggregation group $G$ is thus a function of the agent $a_k$
-and the instance $g_i$:
+and the instance $g_i$. We call this observation $o_{k→g_i}$, since agent $k$ is
+observing the $i$th observable in group $G$:
 
 $$o_{k→g_i} = \text{observe}(a_k, g_i)$$
 
@@ -56,9 +61,9 @@ latent space value for each aggregation group:
 $$e_{k→G} = \text{agg}_{i=0}^n(e_{k→g_i})$$
 
 We then concatenate all the latent spaces as well as the proprioceptive
-observations $p$ to get a single encoded value $e_k$:
+observations $p_k$ of the agent $k$ to get a single encoded value $e_k$:
 
-$$e_k = (p, G_1, G_2, ...)$$
+$$e_k = (p_k || e_{k→G^{(a)}} || e_{k→G^{(b)}} || ...)$$
 
 This value is then passed through a decoder that consists of one or more dense
 layers. Finally, the decoded value is transformed to the dimensionality of the
@@ -76,7 +81,7 @@ Gaussian distribution where the mean $μ$ of each action is output by the neural
 network while the variance of each action is a free-standing learnable variable
 only passed through $\exp$ or $\text{softplus}$ to ensure positivity.
 
-### Mean/Max/Softmax Aggregation
+## Mean/Max/Softmax Aggregation
 
 Each sample in the latent space is weighted by a function $\text{weigh}()$ and
 aggregated using an aggregation operator $\bigoplus$:
@@ -98,7 +103,7 @@ aggregation operator is the sum:
 
 $$e_{k→G} = \sum_{i=1}^n \left(\frac{\exp(e_{k→g_i})}{\sum_{j=1}^n \exp(e_{k→g_j})}\right) e_{k→g_i}$$
 
-### Bayesian Aggregation {#sec:bayesianagg}
+## Bayesian Aggregation {#sec:bayesianagg}
 
 We use a separate latent space and thus a separate observation model $p(z)$ for
 each aggregation group.
@@ -139,7 +144,7 @@ A graphical overview of this method is shown in [@fig:bayesianagg].
 
 ![Bayesian Aggregation in graphical form. The observations from the neighboring agents are encoded with the value encoder and the confidence encoder. They are then used to condition the Gaussian prior estimate of the latent variable $z$ to get the final mean and variance of the a-posteriori estimate. The mean and optionally the variance estimate of $z$ are concatenated with the latent spaces from the other aggregatables and passed to the decoder as shown in @fig:model.](images/bayesianagg.drawio.svg){#fig:bayesianagg}
 
-### Attentive Aggregation
+## Attentive Aggregation
 
 When using residual self-attentive aggregation, we define the aggregated feature
 as
