@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-28'
+date-meta: '2021-07-29'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-28" />
-  <meta name="citation_publication_date" content="2021-07-28" />
+  <meta name="dc.date" content="2021-07-29" />
+  <meta name="citation_publication_date" content="2021-07-29" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/)) was automatically
 built from
-[phiresky/masters-thesis@5ee2d6a](https://github.com/phiresky/masters-thesis/tree/5ee2d6a5bc6ed346c596ed37fdeb0aee06dd91d9)
-on July 28, 2021. </em></small>
+[phiresky/masters-thesis@ce99f45](https://github.com/phiresky/masters-thesis/tree/ce99f451026bc8e286b88ca00eb69e2f3ec9277d)
+on July 29, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -95,13 +95,13 @@ learning with real world applications such as unmanned aerial vehicles,
 search-and-rescue, and warehouse organization. There are many different
 approaches for applying the methods used for single-agent reinforcement learning
 to MARL. In this work, we survey different learning methods and environment
-properties and then focus on a problem that persists through most variants: How
-should one agent use the information gathered from a large and varying number of
-observations of the world in order to make decisions? We focus on three
-different methods for aggregating observations and compare them regarding their
-training performance and sample efficiency. We introduce a policy architecture
-for aggregation based on Bayesian conditioning and compare it to mean
-aggregation and attentive aggregation used in related work. We show the
+properties and then focus on a problem that persists through most variants of
+MARL: How should one agent use the information gathered from a large and varying
+number of observations of the world in order to make decisions? We focus on
+three different methods for aggregating observations and compare them regarding
+their training performance and sample efficiency. We introduce a policy
+architecture for aggregation based on Bayesian conditioning and compare it to
+mean aggregation and attentive aggregation used in related work. We show the
 performance of the different methods on a set of cooperative tasks that can
 scale to a large number of agents, including tasks that have other objects in
 the world that need to be observed by the agents in order to solve the task.
@@ -124,8 +124,8 @@ limited strength of every individual.
 
 In recent years and with the advent of deep reinforcement learning, it has
 become possible to create artificial agents that solve fairly complex tasks in
-simulated environments as well as the real world, even when the path to the goal
-is difficult to identify and the reward is sparse. Most of the research,
+simulated environments as well as in the real world, even when the path to the
+goal is difficult to identify and the reward is sparse. Most of the research,
 however, is focused on a single agent interacting with a world, and giving the
 single agent as much power and flexibility as it needs to solve the task. Akin
 to animal swarms, which often consist of fairly simple and limited individuals,
@@ -163,18 +163,18 @@ complicated, inflexible and fragile, as is shown by the success in recent
 applications of reinforcmeent learning to control tasks that have not been
 solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
 Controlling robot swarms using policies learned with deep reinforcement learning
-has promising results in recent literature such as [@openai].
+shows promising results in recent literature such as [@openai].
 
 To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
 varying amount of observations from the neighboring agents into the fixed size
-input of a dense neural network. In this work, we consider three aggregation
-methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
-aggregation, and attentive aggregation. Our main goal is to compare these
-methods with regards to their training performance and sample efficiency. We
-limit ourselves to a specific subset of MARL tasks that are fully cooperative
-with a team reward, with homogenous agents in a
+input of the dense neural network representing the policy. In this work, we
+consider three aggregation methods on a set of different multi-agent tasks: Mean
+aggregation, Bayesian aggregation, and attentive aggregation. Our main goal is
+to compare these methods with regard to their training performance and sample
+efficiency. We limit ourselves to a specific subset of MARL tasks that are fully
+cooperative with a team reward and with homogenous agents in a
 centralized-learning/decentralized-execution setup.
 
 We first give an overview over all the preliminaries we need for our work in
@@ -195,18 +195,17 @@ can draw from the experiments as well as the potential for future work in
 In this chapter, we introduce the preliminaries we need for our work. We
 describe reinforcement learning and two specific policy gradient training
 methods used for deep reinforcement learning in general and then the specifics
-of RL for multi-agent systems. While introducing the different variants and
-properties of multi-agent reinforcement learning we also describe the related
-work.
+of RL for multi-agent systems, including the need for information aggregation
+and the different methods we consider.
 
 ## Reinforcement learning
 
-Reinforcement learning is a method of training an agent to solve a task in an
-environment. As opposed to supervised learning, there is no explicit label /
-path to a solution. Instead, the agent iteratively takes actions that affect its
-environment, and receives a reward when specific conditions are met. The reward
-can be dense (positive or negative signal at every step) or very sparse (only a
-binary reward at the end of an episode).
+Reinforcement learning is a method of training an artificial agent to solve a
+task in an environment. As opposed to supervised learning, there is no explicit
+label / path to a solution. Instead, the agent iteratively takes actions that
+affect its environment, and receives a reward when specific conditions are met.
+The reward can be dense (positive or negative signal at every step) or very
+sparse (only a binary reward at the end of an episode).
 
 Reinforcement learning problems are usually defined as Markov Decision Processes
 (MDPs). An MDP is an extension of a Markov chain, which is a set of states with
@@ -295,7 +294,7 @@ $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
 Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
 state, $a\sim π_{θ_k}$ is the action distribution according to the policy at
-step $k$. $L$ is given by
+step $k$, and $ε=0.2$ is a hyperparameter. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
@@ -365,7 +364,7 @@ agent.
 In our experiments, we impose a set of restrictions on the environments and
 learning process. The restrictions we impose are mostly based on [@maxpaper]. A
 more detailed description of these restrictions, as well as related work using
-other variants is described in @sec:relatedwork.
+other variants is given in in @sec:relatedwork.
 
 In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
@@ -406,7 +405,8 @@ a single step of 10 agents each in 20 different environment becomes 200 separate
 training samples. Each agent still only has access to its own local
 observations, not the global system state. This means that during inference
 time, each agent has to act independently, based on the observations it makes
-locally.
+locally, but is rewarded with the same reward each agent receives. This common
+reward reflects the cooperative structure of the task.
 
 ## Aggregation methods
 
@@ -416,9 +416,11 @@ is of the same kind and shape. For example, one observable group would contain
 all the neighboring agents, while another would contain, e.g., a specific type
 of other observed objects in the world.
 
-We need a method to aggregate the observations in one observable group into a
-format that can be used as the input of a neural network. Specifically, this
-means that the output of the aggregation method needs to have a fixed
+To apply actor-critic training methods, both our policy to predict the actions
+and the critic to estimate the value function are trainable neural networks. We
+need a method to aggregate the observations in one observable group into a
+format that can be used as the input of these neural networks. Specifically,
+this means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
 their properties, including related work that uses those aggregation methods.
 
@@ -427,7 +429,7 @@ their properties, including related work that uses those aggregation methods.
 The simplest aggregation method is concatenation, where each observable is
 concatenated along the feature dimension into a single observation vector. This
 method has a few issues however: We can have a varying number of observables,
-but since the input size of the neural network is fixed, we need to set a
+but since the input size of the neural policy network is fixed, we need to set a
 maximum number of observables, and set the input dimensionality of the policy
 architecture proportional to that maximum. Concatenation also ignores the other
 useful properties of the observables, namely the uniformity (the feature at
@@ -436,8 +438,8 @@ every other observable in a group) and the exchangeability (the order of the
 observables is either meaningless or variable). For concatenation, we have to
 choose an ordering of the observables. This ordering is either stable but
 meaningless (since the observables are by definition permutation-invariant), or
-meaningfull but unstable (ordering by an extrinsic property, for example
-ordering by distance to the current agent).
+meaningful but unstable (ordering by an extrinsic property, for example ordering
+by distance to the current agent).
 
 Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of
@@ -603,7 +605,8 @@ $$
 # Related work {#sec:relatedwork}
 
 There are many variants of applying reinforcement learning to multi-agent
-systems.
+systems. In this chapter, we describe some related work in MARL, including
+variations in the training process and the environments.
 
 An overview over recent MARL work and some of the differing properties can be
 found in [@{https://arxiv.org/abs/1911.10635}] and
@@ -673,7 +676,7 @@ adversarial tasks each agent has their own independent goal that conflicts with
 the goal of the other agents. An example for a cooperative environment is the
 rendezvous task: All agents need to meet up at a single point, where the agents
 have to decide independently on the location. The reward here is the negative
-average pairwise distance of the agents, see [@sec:rendezvous]. Note that a
+average pairwise distance of the agents, see [@sec:rendezvous]. Note that
 cooperative environments can also include other adversarial agents, as long as
 those agents are controlled by an explicit algorithm and not a learned policy.
 From the perspective of the policy, these agents are considered part of the
@@ -854,7 +857,7 @@ completely independent.
 
 @Fig:model shows a schematic of the general model architecture described above.
 
-![A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed though an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.](images/model.drawio.svg){#fig:model}
+![A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed through an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.](images/model.drawio.svg){#fig:model}
 
 The tasks we consider have a continuous action space. We use a diagonalized
 Gaussian distribution where the mean $μ$ of each action is output by the neural
@@ -893,9 +896,9 @@ policy network, we need an estimation describing the Gaussian prior ($μ_{z_0}$
 and $σ_{z_0}^2$) as well as the observed means $r_i$ and variances $σ_{r_i}^2$.
 
 The mean and variance of the Gaussian prior are learned as free-standing
-variables using the backpropagation during training. The prior variance as well
-as the variance of the observations are rectified to enforce positivity using
-$\text{softplus}$.
+variables using the backpropagation during training, independent of the inputs
+of the neural network. The prior variance as well as the variance of the
+observations are rectified to enforce positivity using $\text{softplus}$.
 
 To get the observed elements $r_i$, we use the two encoder networks $enc_r$ and
 $enc_σ$ that consist of a set of dense layers:
@@ -940,7 +943,7 @@ _Residual_ means that the input is added to the output of the attention
 mechanism, so the attention mechanism only has to learn a _residual_ value that
 modifies the input features.
 
-The $\text{MHA}$ module is the multi-head attention module from
+The $\text{MHA}()$ module is the multi-head attention module from
 [@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
 sec. 3.2.2] as described in @sec:mha.
 
@@ -1128,7 +1131,7 @@ The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an
 arrangement such that boxes of the same color are as close together as possible,
 while boxes of different colors are far away. Each color of box has an explicit
-target one corner of the world. The reward is calculated by taking the sum of
+target in one corner of the world. The reward is calculated by taking the sum of
 negative distances between each box and its cluster target, then taking the
 difference of this after the step and before the step.
 
@@ -1152,8 +1155,8 @@ PettingZoo tasks (without results?)
 In this section, we present the results of our experiments. We compare (1) the
 training performance of the different aggregation methods on various tasks, (2)
 aggregating different observation sets into a single vs multiple latent spaces
-(3) various variants of Bayesian aggregation (4) the training algorithms PPO and
-TRL.
+(3) various variants of Bayesian aggregation, and (4) the training algorithms
+PPO and TRL.
 
 In order to compare the performance of different variants, we consider the
 average reward per episode over the agent steps used during training. This way
@@ -1167,8 +1170,8 @@ of evaluation environments.
 
 Unless mentioned otherwise, the following setup is used:
 
-- Plotted is the median reward of the n runs at a specific training step, the
-  error band is the 25th and 75th percentile of runs
+- The result plots show the median reward of the n runs at a specific training
+  step, the error band is the 25th and 75th percentile of runs
 - The activation function used after each layer is LeakyReLU
 - For the Bayesian aggregation:
   - We only use the mean value $μ_z$ as an output, not $μ_z$ and $σ_z^2$
@@ -1232,7 +1235,7 @@ point, but instead continue to circle a small area. For the optimized
 architecture, the consensus is reached quickly (after 100 of 1000 time steps)
 and stays at the same spot.
 
-![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+![Results on the rendezvous task. _Opt_ is the hyper-parameter optimized architecture. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
 
 ![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
 
@@ -1314,7 +1317,7 @@ location if they have enough space, so this strategy works well. The strategy of
 the Bayesian aggregation policy seems to be more flexible, where different
 groups of pursuers catch different groups of evaders at the same time instead of
 all concentrating on a single cluster of evaders. This strategy does not lead to
-better over-all performance, however.
+better overall performance, however.
 
 ![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-22_15.16.03-Multi-Evader
 Pursuit (hpsopt).svg){#fig:resmpopt}
@@ -1322,7 +1325,7 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
+![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total catch count up to the current time step is in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
 
 \FloatBarrier
 
@@ -1417,7 +1420,7 @@ In the results comparing the different aggregation methods above, we always use
 the same setup for the Bayesian aggregation. The following shows the results for
 some variants of the Bayesian aggregation on selected tasks.
 
-### Same space vs separate space aggregation
+### Single space vs separate space aggregation
 
 For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
@@ -1431,23 +1434,23 @@ also scale to a larger number of categories of objects (aggregation groups).
 In the other experiments we always use separate spaces. @Fig:ressameseparate
 shows the results of aggregating into a single space vs. into separate spaces
 for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
-pursuit task same-space aggregation means that both the neighboring pursuers and
-all the evaders are aggregated into one space. For the assembly task, both the
-neighboring agents and the boxes are aggregated into one space. The
+pursuit task single-space aggregation means that both the neighboring pursuers
+and all the evaders are aggregated into one space. For the assembly task, both
+the neighboring agents and the boxes are aggregated into one space. The
 separate-space aggregation performs better in both tasks, with a higher margin
 in the multi-evader task.
 
-In summary, while the same-space aggregation is promising by in theory being
+In summary, while the single-space aggregation is promising by in theory being
 able to scale to more complex environment, it performs worse for our tasks. This
 might be due to the fact that learning different encoder networks to output
 information into the same latent space is hard. An alternative explanation might
-be that our experiments only having few aggregation groups, so the value of
+be that our experiments only have few aggregation groups, so the value of
 parameter sharing is low, or due to the lack of experiments with more different
 hyper-parameters.
 
-![Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
+![Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
 
-![Separate vs same-space aggregation on the multi-evader pursuit and assembly tasks. The same-space aggregation performs worse in both tasks.](images/plots/2021-07-22_16.05.47-samespace.svg){#fig:ressameseparate}
+![Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks.](images/plots/2021-07-22_16.05.47-samespace.svg){#fig:ressameseparate}
 
 <!--
 ![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
@@ -1492,7 +1495,7 @@ performance.
 The decreasing performance could be a result of the increased dimension of the
 decoder inputs. Adding the variance inputs doubles the number of values the
 decoder has to process and learn from. Since the structure of the encoded values
-and variances can not known beforehand to the decoder, it has to learn to
+and variances can not be known beforehand to the decoder, it has to learn to
 interpret more information than when receiving just the mean values. The added
 variance inputs should give the decoder the ability to understand the confidence
 of each of the value predictions and weigh them accordingly, but the added
@@ -1554,10 +1557,12 @@ limited by range or by obstacles.
 
 Even though we show in our experiments that Bayesian aggregation into the same
 latent space is worse than aggregating into separate spaces, there might be
-potential there to be able to scale the number of aggregation groups with more
-hyperparameter tuning or by introducing a two-stage encoder where the first
-encoder is separate by aggregation group and the second encoder is shared, then
-aggregating the output of the second encoder into the same space.
+potential with this and the other variants of Bayesian aggregation we introduced
+to be able to scale the number of aggregation groups more. This could be
+accomplished with more hyperparameter tuning or by introducing a two-stage
+encoder where the first encoder is separate by aggregation group and the second
+encoder is shared, then aggregating the output of the second encoder into the
+same space.
 
 We also only considered tasks with implicit communication — the agents had to
 infer the intent of the other agents purely by their actions. There is related

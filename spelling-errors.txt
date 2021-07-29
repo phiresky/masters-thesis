@@ -33,7 +33,6 @@ MDP
 MDPs
 meanagg
 meanfielduav
-meaningfull
 mha
 mpe
 NN
@@ -74,7 +73,7 @@ RL
 rollouts
 Ruede
 sameseparate
-scalable
+Scalable
 SISL
 Softmax
 StarCraft
