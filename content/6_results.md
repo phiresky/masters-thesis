@@ -118,7 +118,7 @@ The multi-evader pursuit task adds complexity by having multiple evaders that
 need to be caught. In addition, the reward is sparser due to the fact that each
 catch only gives a binary reward signal. The results here show whether our
 policy is able to process multiple aggregation groups with multiple moving
-entities. Here, we consider the multi-evader pursuit task with 20 pursuers and 5
+entities. Here, we consider the multi-evader pursuit task with 50 pursuers and 5
 evaders on a torus. @Fig:resmpsmall shows the results of the multi-evader
 pursuit task with different aggregation methods with the same architecture used
 in [@maxpaper] to be able to directly compare the results. The architecture is
@@ -207,7 +207,7 @@ task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
-Doesn't work :(
+We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see @sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 

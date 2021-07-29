@@ -1,4 +1,4 @@
-Multi-Agenten-Verstärkungslernen (MARL) ist ein aufkommendes Feld des
+Mehr-Agenten-Reinforcement-Learning (MARL) ist ein aufkommendes Feld des
 Reinforcement Learning mit realen Anwendungen wie unbemannte Luftfahrzeuge,
 Such- und Rettungsdienste und Lagerorganisation. Es gibt viele verschiedene
 Ansätze, um die Methoden des Single-Agent Reinforcement Learning auf MARL
