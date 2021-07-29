@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/)) was automatically
 built from
-[phiresky/masters-thesis@ce99f45](https://github.com/phiresky/masters-thesis/tree/ce99f451026bc8e286b88ca00eb69e2f3ec9277d)
+[phiresky/masters-thesis@74ed935](https://github.com/phiresky/masters-thesis/tree/74ed9358f4bf504ce8b9799bedacfaae324a5dfe)
 on July 29, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -110,6 +110,32 @@ We optimize the hyperparameters to be able to show which parameters lead to the
 best results for each of the methods. In addition, we compare different variants
 of Bayesian aggregation and compare the recently introduced Trust Region Layers
 learning method to the commonly used Proximal Policy Optimization.
+
+
+Mehr-Agenten-Reinforcement-Learning (MARL) ist ein aufkommendes Feld des
+Reinforcement Learning mit realen Anwendungen wie unbemannte Luftfahrzeuge,
+Such- und Rettungsdienste und Lagerorganisation. Es gibt viele verschiedene
+Ansätze, um die Methoden des Single-Agent Reinforcement Learning auf MARL
+anzuwenden. In dieser Arbeit geben wir einen Überblick über verschiedene
+Lernmethoden und Umgebungseigenschaften und konzentrieren uns dann auf ein
+Problem, das bei den meisten Varianten von MARL auftritt: Wie sollte ein Agent
+die Informationen nutzen, die er aus einer großen und variierenden Anzahl von
+Beobachtungen der Welt gesammelt hat, um Entscheidungen zu treffen? Wir
+konzentrieren uns auf drei verschiedene Methoden zur Aggregation von
+Beobachtungen und vergleichen sie hinsichtlich ihrer Trainingsleistung und
+Sample Efficiency. Wir stellen eine auf Bayes'scher Konditionierung basierende
+Policy-Architektur für die Aggregation vor und vergleichen sie mit der
+Mittelwertaggregation und der Attention-Aggregation, die in verwandten Arbeiten
+verwendet werden. Wir zeigen die Leistung der verschiedenen Methoden an einer
+Reihe von kooperativen Aufgaben, die auf eine große Anzahl von Agenten skaliert
+werden können, einschließlich Aufgaben, die andere Objekte in der Welt haben,
+die von den Agenten beobachtet werden müssen, um die Aufgabe zu lösen.
+
+Wir optimieren die Hyperparameter, um zeigen zu können, welche Parameter zu den
+besten Ergebnissen für jede der Methoden führen. Darüber hinaus vergleichen wir
+verschiedene Varianten der Bayes'schen Aggregation und vergleichen die kürzlich
+eingeführte Lernmethode Trust Region Layers mit der allgemein bekannten Proximal
+Policy Optimization (PPO).
 
 
 # Introduction
@@ -1270,7 +1296,7 @@ The multi-evader pursuit task adds complexity by having multiple evaders that
 need to be caught. In addition, the reward is sparser due to the fact that each
 catch only gives a binary reward signal. The results here show whether our
 policy is able to process multiple aggregation groups with multiple moving
-entities. Here, we consider the multi-evader pursuit task with 20 pursuers and 5
+entities. Here, we consider the multi-evader pursuit task with 50 pursuers and 5
 evaders on a torus. @Fig:resmpsmall shows the results of the multi-evader
 pursuit task with different aggregation methods with the same architecture used
 in [@maxpaper] to be able to directly compare the results. The architecture is
@@ -1359,7 +1385,7 @@ task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
-Doesn't work :(
+We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see @sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 
@@ -1607,3 +1633,26 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.
 [@bayesiancontextaggregation]: https://openreview.net/forum?id=ufZN2-aehFa
 [@trl]: https://openreview.net/forum?id=qYZD-AO1Vn
 [@pettingzoo]: https://arxiv.org/abs/2009.14471
+
+
+\printbibliography[heading=none]{}
+
+\backmatter
+
+\cleardoublepage
+
+\appendix
+
+
+
+
+## Experiment Hyper-Parameters and Overview {#sec:appendixhyper}
+
+| Experiment                  | Entities                                | Dynamics                   | Walls   | Batch size | Environment steps per training step | Max Training Steps |
+| --------------------------- | --------------------------------------- | -------------------------- | ------- | ---------- | ----------------------------------- | ------------------ |
+| Rendezvous                  | 20 agents                               | Double-Integrator Unicycle | Bounded | 1000       | 164000                              | 160                |
+| Single-Evader Pursuit       | 10 agents, 1 evader                     | Single-Integrator Unicycle | Torus   | 10200      | 102000                              | 500                |
+| Multi-Evader Pursuit        | 50 agents, 5 evaders (respawning)       | Single-Integrator Unicycle | Torus   | 10200      | 102000                              | 500                |
+| Box Assembly                | 10 agents, 4 boxes                      | Single-Integrator Unicycle | Bounded | 5000       | 250000                              | 200                |
+| Box Clustering (2 clusters) | 10 agents, 2 clusters with 2 boxes each | Single-Integrator Unicycle | Bounded | 10000      | 512000                              | 2000               |
+| Box Clustering (3 clusters) | 20 agents, 3 clusters with 4 boxes each | Single-Integrator Unicycle | Bounded | 100000     | 12800000                            | 500                |
