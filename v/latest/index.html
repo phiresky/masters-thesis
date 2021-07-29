@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -78,9 +78,9 @@
 <h1 class="title">Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</h1>
 </header>
 <p><small><em> This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/ce99f451026bc8e286b88ca00eb69e2f3ec9277d/">permalink</a>) was automatically
+(<a href="https://phiresky.github.io/masters-thesis/v/74ed9358f4bf504ce8b9799bedacfaae324a5dfe/">permalink</a>) was automatically
 built from
-<a href="https://github.com/phiresky/masters-thesis/tree/ce99f451026bc8e286b88ca00eb69e2f3ec9277d">phiresky/masters-thesis@ce99f45</a>
+<a href="https://github.com/phiresky/masters-thesis/tree/74ed9358f4bf504ce8b9799bedacfaae324a5dfe">phiresky/masters-thesis@74ed935</a>
 on July 29, 2021. </em></small></p>
 <h1 class="unnumbered" id="authors">Authors</h1>
 <ul>
@@ -110,6 +110,29 @@ the world that need to be observed by the agents in order to solve the task.</p>
 best results for each of the methods. In addition, we compare different variants
 of Bayesian aggregation and compare the recently introduced Trust Region Layers
 learning method to the commonly used Proximal Policy Optimization.</p>
+<p>Mehr-Agenten-Reinforcement-Learning (MARL) ist ein aufkommendes Feld des
+Reinforcement Learning mit realen Anwendungen wie unbemannte Luftfahrzeuge,
+Such- und Rettungsdienste und Lagerorganisation. Es gibt viele verschiedene
+Ansätze, um die Methoden des Single-Agent Reinforcement Learning auf MARL
+anzuwenden. In dieser Arbeit geben wir einen Überblick über verschiedene
+Lernmethoden und Umgebungseigenschaften und konzentrieren uns dann auf ein
+Problem, das bei den meisten Varianten von MARL auftritt: Wie sollte ein Agent
+die Informationen nutzen, die er aus einer großen und variierenden Anzahl von
+Beobachtungen der Welt gesammelt hat, um Entscheidungen zu treffen? Wir
+konzentrieren uns auf drei verschiedene Methoden zur Aggregation von
+Beobachtungen und vergleichen sie hinsichtlich ihrer Trainingsleistung und
+Sample Efficiency. Wir stellen eine auf Bayes’scher Konditionierung basierende
+Policy-Architektur für die Aggregation vor und vergleichen sie mit der
+Mittelwertaggregation und der Attention-Aggregation, die in verwandten Arbeiten
+verwendet werden. Wir zeigen die Leistung der verschiedenen Methoden an einer
+Reihe von kooperativen Aufgaben, die auf eine große Anzahl von Agenten skaliert
+werden können, einschließlich Aufgaben, die andere Objekte in der Welt haben,
+die von den Agenten beobachtet werden müssen, um die Aufgabe zu lösen.</p>
+<p>Wir optimieren die Hyperparameter, um zeigen zu können, welche Parameter zu den
+besten Ergebnissen für jede der Methoden führen. Darüber hinaus vergleichen wir
+verschiedene Varianten der Bayes’schen Aggregation und vergleichen die kürzlich
+eingeführte Lernmethode Trust Region Layers mit der allgemein bekannten Proximal
+Policy Optimization (PPO).</p>
 <h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
 <p>Ant colonies, bee swarms, fish colonies, and migrating birds all exhibit
 swarming behavior to achieve a common goal or to gain an advantage over what’s
@@ -1028,7 +1051,7 @@ single-evader vs count-catches for multi-evader).</p>
 need to be caught. In addition, the reward is sparser due to the fact that each
 catch only gives a binary reward signal. The results here show whether our
 policy is able to process multiple aggregation groups with multiple moving
-entities. Here, we consider the multi-evader pursuit task with 20 pursuers and 5
+entities. Here, we consider the multi-evader pursuit task with 50 pursuers and 5
 evaders on a torus. <a href="#fig:resmpsmall">Figure 11</a> shows the results of the multi-evader
 pursuit task with different aggregation methods with the same architecture used
 in <span class="citation" data-cites="https://jmlr.org/beta/papers/v20/18-476.html">[<a href="#ref-https://jmlr.org/beta/papers/v20/18-476.html" role="doc-biblioref">19</a>]</span> to be able to directly compare the results. The architecture is
@@ -1107,7 +1130,7 @@ successful episode with mean aggregation is shown in <a href="#fig:clustering2">
 <img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result." /><figcaption aria-hidden="true">Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.</figcaption>
 </figure>
 <h3 data-number="6.1.6" id="clustering-task-with-three-clusters"><span class="header-section-number">6.1.6</span> Clustering Task With Three Clusters</h3>
-<p>Doesn’t work :(</p>
+<p>We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see <a href="#sec:appendixhyper">Section 7.3</a>). Figure <strong>¿fig:clustering3?</strong> shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.</p>
 <h2 data-number="6.2" id="learning-algorithm-comparison-ppo-vs-pg-trl"><span class="header-section-number">6.2</span> Learning Algorithm Comparison (PPO vs PG-TRL)</h2>
 <p>In multi-agent fully cooperative tasks, the reward can be even more sparse than
 it is for single-agent tasks, since the same reward is used for all agents. One
@@ -1441,6 +1464,85 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <div class="csl-left-margin">51. </div><div class="csl-right-inline"><strong>Cooperative pursuit with Voronoi partitions</strong><div class="csl-block">Zhengyuan Zhou, Wei Zhang, Jerry Ding, Haomiao Huang, Dušan M Stipanović, Claire J Tomlin</div><em>Automatica</em> (2016-10) <a href="https://www.sciencedirect.com/science/article/pii/S0005109816301911">https://www.sciencedirect.com/science/article/pii/S0005109816301911</a></div>
 </div>
 </div>
+<h2 data-number="7.3" id="sec:appendixhyper"><span class="header-section-number">7.3</span> Experiment Hyper-Parameters and Overview</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 24%" />
+<col style="width: 16%" />
+<col style="width: 4%" />
+<col style="width: 6%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Experiment</th>
+<th>Entities</th>
+<th>Dynamics</th>
+<th>Walls</th>
+<th>Batch size</th>
+<th>Environment steps per training step</th>
+<th>Max Training Steps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendezvous</td>
+<td>20 agents</td>
+<td>Double-Integrator Unicycle</td>
+<td>Bounded</td>
+<td>1000</td>
+<td>164000</td>
+<td>160</td>
+</tr>
+<tr class="even">
+<td>Single-Evader Pursuit</td>
+<td>10 agents, 1 evader</td>
+<td>Single-Integrator Unicycle</td>
+<td>Torus</td>
+<td>10200</td>
+<td>102000</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>Multi-Evader Pursuit</td>
+<td>50 agents, 5 evaders (respawning)</td>
+<td>Single-Integrator Unicycle</td>
+<td>Torus</td>
+<td>10200</td>
+<td>102000</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>Box Assembly</td>
+<td>10 agents, 4 boxes</td>
+<td>Single-Integrator Unicycle</td>
+<td>Bounded</td>
+<td>5000</td>
+<td>250000</td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td>Box Clustering (2 clusters)</td>
+<td>10 agents, 2 clusters with 2 boxes each</td>
+<td>Single-Integrator Unicycle</td>
+<td>Bounded</td>
+<td>10000</td>
+<td>512000</td>
+<td>2000</td>
+</tr>
+<tr class="even">
+<td>Box Clustering (3 clusters)</td>
+<td>20 agents, 3 clusters with 4 boxes each</td>
+<td>Single-Integrator Unicycle</td>
+<td>Bounded</td>
+<td>100000</td>
+<td>12800000</td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
 <!-- default theme -->
 
 <style>
