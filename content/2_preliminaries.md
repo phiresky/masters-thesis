@@ -3,18 +3,17 @@
 In this chapter, we introduce the preliminaries we need for our work. We
 describe reinforcement learning and two specific policy gradient training
 methods used for deep reinforcement learning in general and then the specifics
-of RL for multi-agent systems. While introducing the different variants and
-properties of multi-agent reinforcement learning we also describe the related
-work.
+of RL for multi-agent systems, including the need for information aggregation
+and the different methods we consider.
 
 ## Reinforcement learning
 
-Reinforcement learning is a method of training an agent to solve a task in an
-environment. As opposed to supervised learning, there is no explicit label /
-path to a solution. Instead, the agent iteratively takes actions that affect its
-environment, and receives a reward when specific conditions are met. The reward
-can be dense (positive or negative signal at every step) or very sparse (only a
-binary reward at the end of an episode).
+Reinforcement learning is a method of training an artificial agent to solve a
+task in an environment. As opposed to supervised learning, there is no explicit
+label / path to a solution. Instead, the agent iteratively takes actions that
+affect its environment, and receives a reward when specific conditions are met.
+The reward can be dense (positive or negative signal at every step) or very
+sparse (only a binary reward at the end of an episode).
 
 Reinforcement learning problems are usually defined as Markov Decision Processes
 (MDPs). An MDP is an extension of a Markov chain, which is a set of states with
@@ -103,7 +102,7 @@ $$θ_{k+1} = \text{argmax}_{θ} E_{s,a \sim π_{θ_k}} [L(s, a, θ_k, θ)]$$
 
 Where $π_{θ_k}$ is a policy with parameters $θ$ in training step $k$, $s$ is the
 state, $a\sim π_{θ_k}$ is the action distribution according to the policy at
-step $k$. $L$ is given by
+step $k$, and $ε=0.2$ is a hyperparameter. $L$ is given by
 
 $$L(s,a,θ_k,θ) = \min \left( \frac{π_θ(a|s)}{π_{θ_k}(a|s)} A^{π_{θ_k}}(s,a), \text{clip}(\frac{π_θ(a|s)}{π_{θ_k}(a|s)}, 1 - ε, 1 + ε) A^{π_{θ_k}}(s,a) \right).$$
 
@@ -173,7 +172,7 @@ agent.
 In our experiments, we impose a set of restrictions on the environments and
 learning process. The restrictions we impose are mostly based on [@maxpaper]. A
 more detailed description of these restrictions, as well as related work using
-other variants is described in @sec:relatedwork.
+other variants is given in in @sec:relatedwork.
 
 In general, the agents in a multi-agent environment can differ in their
 intrinsic properties. For example, they can have different control dynamics,
@@ -214,7 +213,8 @@ a single step of 10 agents each in 20 different environment becomes 200 separate
 training samples. Each agent still only has access to its own local
 observations, not the global system state. This means that during inference
 time, each agent has to act independently, based on the observations it makes
-locally.
+locally, but is rewarded with the same reward each agent receives. This common
+reward reflects the cooperative structure of the task.
 
 ## Aggregation methods
 
@@ -224,9 +224,11 @@ is of the same kind and shape. For example, one observable group would contain
 all the neighboring agents, while another would contain, e.g., a specific type
 of other observed objects in the world.
 
-We need a method to aggregate the observations in one observable group into a
-format that can be used as the input of a neural network. Specifically, this
-means that the output of the aggregation method needs to have a fixed
+To apply actor-critic training methods, both our policy to predict the actions
+and the critic to estimate the value function are trainable neural networks. We
+need a method to aggregate the observations in one observable group into a
+format that can be used as the input of these neural networks. Specifically,
+this means that the output of the aggregation method needs to have a fixed
 dimensionality. In the following, we present different aggregation methods and
 their properties, including related work that uses those aggregation methods.
 
@@ -235,7 +237,7 @@ their properties, including related work that uses those aggregation methods.
 The simplest aggregation method is concatenation, where each observable is
 concatenated along the feature dimension into a single observation vector. This
 method has a few issues however: We can have a varying number of observables,
-but since the input size of the neural network is fixed, we need to set a
+but since the input size of the neural policy network is fixed, we need to set a
 maximum number of observables, and set the input dimensionality of the policy
 architecture proportional to that maximum. Concatenation also ignores the other
 useful properties of the observables, namely the uniformity (the feature at
@@ -244,8 +246,8 @@ every other observable in a group) and the exchangeability (the order of the
 observables is either meaningless or variable). For concatenation, we have to
 choose an ordering of the observables. This ordering is either stable but
 meaningless (since the observables are by definition permutation-invariant), or
-meaningfull but unstable (ordering by an extrinsic property, for example
-ordering by distance to the current agent).
+meaningful but unstable (ordering by an extrinsic property, for example ordering
+by distance to the current agent).
 
 Concatenation scales poorly with a large number of observables since the input
 size of the neural network has to scale proportionally to the maximum number of

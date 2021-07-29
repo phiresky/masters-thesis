@@ -74,7 +74,7 @@ completely independent.
 
 @Fig:model shows a schematic of the general model architecture described above.
 
-![A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed though an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.](images/model.drawio.svg){#fig:model}
+![A schematic of our general model architecture for deep MARL policies with scalable information aggregation. The observation inputs consist of the agent itself and multiple aggregatable observation groups. The observations from the aggregation groups are each passed through an encoder and aggregated with an aggregator. Afterwards all the aggregated observations are concatenated and decoded to get the policy and value function.](images/model.drawio.svg){#fig:model}
 
 The tasks we consider have a continuous action space. We use a diagonalized
 Gaussian distribution where the mean $μ$ of each action is output by the neural
@@ -113,9 +113,9 @@ policy network, we need an estimation describing the Gaussian prior ($μ_{z_0}$
 and $σ_{z_0}^2$) as well as the observed means $r_i$ and variances $σ_{r_i}^2$.
 
 The mean and variance of the Gaussian prior are learned as free-standing
-variables using the backpropagation during training. The prior variance as well
-as the variance of the observations are rectified to enforce positivity using
-$\text{softplus}$.
+variables using the backpropagation during training, independent of the inputs
+of the neural network. The prior variance as well as the variance of the
+observations are rectified to enforce positivity using $\text{softplus}$.
 
 To get the observed elements $r_i$, we use the two encoder networks $enc_r$ and
 $enc_σ$ that consist of a set of dense layers:
@@ -160,7 +160,7 @@ _Residual_ means that the input is added to the output of the attention
 mechanism, so the attention mechanism only has to learn a _residual_ value that
 modifies the input features.
 
-The $\text{MHA}$ module is the multi-head attention module from
+The $\text{MHA}()$ module is the multi-head attention module from
 [@{https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
 sec. 3.2.2] as described in @sec:mha.
 

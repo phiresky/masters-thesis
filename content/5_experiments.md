@@ -175,7 +175,7 @@ The task setup for box clustering is the same as for the box assembly task,
 except that each box is assigned a color. The goal is to move the boxes into an
 arrangement such that boxes of the same color are as close together as possible,
 while boxes of different colors are far away. Each color of box has an explicit
-target one corner of the world. The reward is calculated by taking the sum of
+target in one corner of the world. The reward is calculated by taking the sum of
 negative distances between each box and its cluster target, then taking the
 difference of this after the step and before the step.
 

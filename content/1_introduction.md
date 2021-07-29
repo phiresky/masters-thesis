@@ -10,8 +10,8 @@ limited strength of every individual.
 
 In recent years and with the advent of deep reinforcement learning, it has
 become possible to create artificial agents that solve fairly complex tasks in
-simulated environments as well as the real world, even when the path to the goal
-is difficult to identify and the reward is sparse. Most of the research,
+simulated environments as well as in the real world, even when the path to the
+goal is difficult to identify and the reward is sparse. Most of the research,
 however, is focused on a single agent interacting with a world, and giving the
 single agent as much power and flexibility as it needs to solve the task. Akin
 to animal swarms, which often consist of fairly simple and limited individuals,
@@ -49,18 +49,18 @@ complicated, inflexible and fragile, as is shown by the success in recent
 applications of reinforcmeent learning to control tasks that have not been
 solved by pre-programmed algorithms [@{https://arxiv.org/abs/1808.00177}].
 Controlling robot swarms using policies learned with deep reinforcement learning
-has promising results in recent literature such as [@openai].
+shows promising results in recent literature such as [@openai].
 
 To apply deep reinforcement learning to multi-agent systems, we need to make a
 few adjustments to the existing learning algorithms and figure out how best to
 design the policy network. Specifically, we need a way to feed a large and
 varying amount of observations from the neighboring agents into the fixed size
-input of a dense neural network. In this work, we consider three aggregation
-methods on a set of different multi-agent tasks: Mean aggregation, Bayesian
-aggregation, and attentive aggregation. Our main goal is to compare these
-methods with regards to their training performance and sample efficiency. We
-limit ourselves to a specific subset of MARL tasks that are fully cooperative
-with a team reward, with homogenous agents in a
+input of the dense neural network representing the policy. In this work, we
+consider three aggregation methods on a set of different multi-agent tasks: Mean
+aggregation, Bayesian aggregation, and attentive aggregation. Our main goal is
+to compare these methods with regard to their training performance and sample
+efficiency. We limit ourselves to a specific subset of MARL tasks that are fully
+cooperative with a team reward and with homogenous agents in a
 centralized-learning/decentralized-execution setup.
 
 We first give an overview over all the preliminaries we need for our work in

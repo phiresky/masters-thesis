@@ -1,7 +1,8 @@
 # Related work {#sec:relatedwork}
 
 There are many variants of applying reinforcement learning to multi-agent
-systems.
+systems. In this chapter, we describe some related work in MARL, including
+variations in the training process and the environments.
 
 An overview over recent MARL work and some of the differing properties can be
 found in [@{https://arxiv.org/abs/1911.10635}] and
@@ -71,7 +72,7 @@ adversarial tasks each agent has their own independent goal that conflicts with
 the goal of the other agents. An example for a cooperative environment is the
 rendezvous task: All agents need to meet up at a single point, where the agents
 have to decide independently on the location. The reward here is the negative
-average pairwise distance of the agents, see [@sec:rendezvous]. Note that a
+average pairwise distance of the agents, see [@sec:rendezvous]. Note that
 cooperative environments can also include other adversarial agents, as long as
 those agents are controlled by an explicit algorithm and not a learned policy.
 From the perspective of the policy, these agents are considered part of the

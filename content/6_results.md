@@ -3,8 +3,8 @@
 In this section, we present the results of our experiments. We compare (1) the
 training performance of the different aggregation methods on various tasks, (2)
 aggregating different observation sets into a single vs multiple latent spaces
-(3) various variants of Bayesian aggregation (4) the training algorithms PPO and
-TRL.
+(3) various variants of Bayesian aggregation, and (4) the training algorithms
+PPO and TRL.
 
 In order to compare the performance of different variants, we consider the
 average reward per episode over the agent steps used during training. This way
@@ -18,8 +18,8 @@ of evaluation environments.
 
 Unless mentioned otherwise, the following setup is used:
 
-- Plotted is the median reward of the n runs at a specific training step, the
-  error band is the 25th and 75th percentile of runs
+- The result plots show the median reward of the n runs at a specific training
+  step, the error band is the 25th and 75th percentile of runs
 - The activation function used after each layer is LeakyReLU
 - For the Bayesian aggregation:
   - We only use the mean value $μ_z$ as an output, not $μ_z$ and $σ_z^2$
@@ -83,7 +83,7 @@ point, but instead continue to circle a small area. For the optimized
 architecture, the consensus is reached quickly (after 100 of 1000 time steps)
 and stays at the same spot.
 
-![Results on the rendezvous task. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
+![Results on the rendezvous task. _Opt_ is the hyper-parameter optimized architecture. The results barely differ between the mean and Bayesian aggregation, but the size of the policy architecture makes a difference. In the logarithmic view on the right it can be seen that the medium architecture does not reach the same final performance as the other two architectures.](images/plots/2021-07-22_15.51.34-Rendezvous.svg){#fig:resrendezvous}
 
 ![View of a random episode of the rendezvous task with the medium and optimized architectures. _Bayesian agg. (medium)_ tends to drift and have stragglers even after a consensus seems to have been reached. _Mean agg. (medium)_ does not converge to an exact point, the agents continue to circle a small area. Both aggregations with the _opt_ architecture converge quickly to a single point and stay in one place.](images/rendezvous-eg.drawio.svg){#fig:rendezvouseg}
 
@@ -165,7 +165,7 @@ location if they have enough space, so this strategy works well. The strategy of
 the Bayesian aggregation policy seems to be more flexible, where different
 groups of pursuers catch different groups of evaders at the same time instead of
 all concentrating on a single cluster of evaders. This strategy does not lead to
-better over-all performance, however.
+better overall performance, however.
 
 ![Results on the multi-evader pursuit task with the NN architecture hyper-parameter optimized for each aggregation method. The mean aggregation performs best.](images/plots/2021-07-22_15.16.03-Multi-Evader
 Pursuit (hpsopt).svg){#fig:resmpopt}
@@ -173,7 +173,7 @@ Pursuit (hpsopt).svg){#fig:resmpopt}
 ![Like @fig:resmpopt but only the top 1/3 of runs. This shows that the peak performance of the mean and the Bayesian aggregation is similar.](images/plots/2021-07-10_16.07.12-Multi-Evader
 Pursuit (hpsopt top.33).svg){#fig:resmpopttop}
 
-![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total count in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
+![Random episode with the median and best performing policy of each aggregation method. Evaders are respawned when they are caught. Locations where an evader is caught are marked in green, with the total catch count up to the current time step is in the top right. The best performing policies of the different aggregation methods seem to have different strategies.](images/pursuit-eg.drawio.svg){#fig:pursuiteg}
 
 \FloatBarrier
 
@@ -268,7 +268,7 @@ In the results comparing the different aggregation methods above, we always use
 the same setup for the Bayesian aggregation. The following shows the results for
 some variants of the Bayesian aggregation on selected tasks.
 
-### Same space vs separate space aggregation
+### Single space vs separate space aggregation
 
 For tasks where we have multiple aggregation groups, we can also aggregate all
 observables into the same latent space instead of separate ones. This means that
@@ -282,23 +282,23 @@ also scale to a larger number of categories of objects (aggregation groups).
 In the other experiments we always use separate spaces. @Fig:ressameseparate
 shows the results of aggregating into a single space vs. into separate spaces
 for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
-pursuit task same-space aggregation means that both the neighboring pursuers and
-all the evaders are aggregated into one space. For the assembly task, both the
-neighboring agents and the boxes are aggregated into one space. The
+pursuit task single-space aggregation means that both the neighboring pursuers
+and all the evaders are aggregated into one space. For the assembly task, both
+the neighboring agents and the boxes are aggregated into one space. The
 separate-space aggregation performs better in both tasks, with a higher margin
 in the multi-evader task.
 
-In summary, while the same-space aggregation is promising by in theory being
+In summary, while the single-space aggregation is promising by in theory being
 able to scale to more complex environment, it performs worse for our tasks. This
 might be due to the fact that learning different encoder networks to output
 information into the same latent space is hard. An alternative explanation might
-be that our experiments only having few aggregation groups, so the value of
+be that our experiments only have few aggregation groups, so the value of
 parameter sharing is low, or due to the lack of experiments with more different
 hyper-parameters.
 
-![Schematic comparison of separate space vs. same-space aggregation. In same-space aggregation the encoders are still separate, but the latent space is shared. The same-space aggregation shares more parameters and can scale better to more aggregation groups.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
+![Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups.](images/model-sameseparate.drawio.svg){#fig:sameseparate}
 
-![Separate vs same-space aggregation on the multi-evader pursuit and assembly tasks. The same-space aggregation performs worse in both tasks.](images/plots/2021-07-22_16.05.47-samespace.svg){#fig:ressameseparate}
+![Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks.](images/plots/2021-07-22_16.05.47-samespace.svg){#fig:ressameseparate}
 
 <!--
 ![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
@@ -343,7 +343,7 @@ performance.
 The decreasing performance could be a result of the increased dimension of the
 decoder inputs. Adding the variance inputs doubles the number of values the
 decoder has to process and learn from. Since the structure of the encoded values
-and variances can not known beforehand to the decoder, it has to learn to
+and variances can not be known beforehand to the decoder, it has to learn to
 interpret more information than when receiving just the mean values. The added
 variance inputs should give the decoder the ability to understand the confidence
 of each of the value predictions and weigh them accordingly, but the added

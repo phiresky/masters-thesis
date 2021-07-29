@@ -39,10 +39,12 @@ limited by range or by obstacles.
 
 Even though we show in our experiments that Bayesian aggregation into the same
 latent space is worse than aggregating into separate spaces, there might be
-potential there to be able to scale the number of aggregation groups with more
-hyperparameter tuning or by introducing a two-stage encoder where the first
-encoder is separate by aggregation group and the second encoder is shared, then
-aggregating the output of the second encoder into the same space.
+potential with this and the other variants of Bayesian aggregation we introduced
+to be able to scale the number of aggregation groups more. This could be
+accomplished with more hyperparameter tuning or by introducing a two-stage
+encoder where the first encoder is separate by aggregation group and the second
+encoder is shared, then aggregating the output of the second encoder into the
+same space.
 
 We also only considered tasks with implicit communication — the agents had to
 infer the intent of the other agents purely by their actions. There is related
