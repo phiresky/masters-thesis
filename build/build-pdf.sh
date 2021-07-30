@@ -12,7 +12,7 @@ mkdir -p output/content-tex
     done
 )
 
-rm output/content-tex/{00.front-matter.md,0_abstract.md, abstract_de.md}
+rm output/content-tex/{00.front-matter.md,0_abstract.md}
 
 export SVG2PDF_OUT_DIR=output/latex-intermediaries
 
