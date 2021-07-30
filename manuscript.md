@@ -50,17 +50,16 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
   <!-- end Manubot generated metadata -->
-bibliography:
-- content/manual-references.json
+bibliography: []
 manubot-output-bibliography: output/references.json
 manubot-output-citekeys: output/citations.tsv
 manubot-requests-cache-path: ci/cache/requests-cache
@@ -72,9 +71,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/)) was automatically
 built from
-[phiresky/masters-thesis@ba64c24](https://github.com/phiresky/masters-thesis/tree/ba64c2451958b7cd0364f91412c9a2b33150651c)
+[phiresky/masters-thesis@3c28d8c](https://github.com/phiresky/masters-thesis/tree/3c28d8cb9c11f711df7070c556566c072bfc738a)
 on July 30, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -1360,7 +1359,22 @@ task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
-We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see @sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.
+We can extend the clustering task to have any number of boxes in any number of
+clusters, making it more difficult. We find that when extending the task to
+three clusters, none of our trained policies manage to adequately solve the
+task. In most cases, the agents only move the boxes of one cluster, manage to
+mostly move those boxes to their target location, but then stay in the corner
+completely ignore the boxes in the other clusters. Only when increasing the
+number of trajectories per training step and the batch size to 10x the size used
+in the other experiments does a policy consider boxes in multiple clusters (see
+@sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful
+episodes and with the best policy trained with Bayesian aggregation. Even the
+best policy only considers two of the three clusters and ignores boxes in the
+third cluster. The agents stay in the respective corner even though half the
+episode time is remaining. Since the task is not solved, we do not provide a
+comparison graph of the different aggregation methods.
+
+![Example episodes with four different policies on the clustering task with 3 clusters, in ascending order of performance. In most cases, the policy ignores two clusters (policy 1 and 2). Only with a very large batch size does it consider boxes in two clusters, though it still sometimes misses a box.](images/clustering3.drawio.svg){#fig:clustering3}
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 
@@ -1624,10 +1638,10 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.
 # Experiment Hyper-Parameters and Overview {#sec:appendixhyper}
 
 | Experiment                  | Entities                                | Dynamics                   | Batch size | Environment steps per training step | Max Training Steps |
-| --------------------------- | --------------------------------------- | -------------------------- | ---------- | ----------------------------------- | ------------------ |
-| Rendezvous                  | 20 agents                               | Double-Integrator Unicycle | 1000       | 164000                              | 160                |
-| Single-Evader Pursuit       | 10 agents, 1 evader                     | Single-Integrator Unicycle | 10200      | 102000                              | 500                |
-| Multi-Evader Pursuit        | 50 agents, 5 evaders (respawning)       | Single-Integrator Unicycle | 10200      | 102000                              | 500                |
-| Box Assembly                | 10 agents, 4 boxes                      | Single-Integrator Unicycle | 5000       | 250000                              | 200                |
-| Box Clustering (2 clusters) | 10 agents, 2 clusters with 2 boxes each | Single-Integrator Unicycle | 10000      | 512000                              | 2000               |
-| Box Clustering (3 clusters) | 20 agents, 3 clusters with 4 boxes each | Single-Integrator Unicycle | 100000     | 12800000                            | 500                |
+| --------------------------- | --------------------------------------- | -------------------------- | ---------: | ----------------------------------: | -----------------: |
+| Rendezvous                  | 20 agents                               | Double-Integrator Unicycle |       1000 |                              164000 |                160 |
+| Single-Evader Pursuit       | 10 agents, 1 evader                     | Single-Integrator Unicycle |      10200 |                              102000 |                500 |
+| Multi-Evader Pursuit        | 50 agents, 5 evaders (respawning)       | Single-Integrator Unicycle |      10200 |                              102000 |                500 |
+| Box Assembly                | 10 agents, 4 boxes                      | Single-Integrator Unicycle |       5000 |                              250000 |                200 |
+| Box Clustering (2 clusters) | 10 agents, 2 clusters with 2 boxes each | Single-Integrator Unicycle |      10000 |                              512000 |               2000 |
+| Box Clustering (3 clusters) | 20 agents, 3 clusters with 4 boxes each | Single-Integrator Unicycle |     100000 |                            12800000 |                500 |

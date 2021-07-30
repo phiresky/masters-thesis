@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -78,9 +78,9 @@
 <h1 class="title">Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</h1>
 </header>
 <p><small><em> This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/">permalink</a>) was automatically
+(<a href="https://phiresky.github.io/masters-thesis/v/3c28d8cb9c11f711df7070c556566c072bfc738a/">permalink</a>) was automatically
 built from
-<a href="https://github.com/phiresky/masters-thesis/tree/ba64c2451958b7cd0364f91412c9a2b33150651c">phiresky/masters-thesis@ba64c24</a>
+<a href="https://github.com/phiresky/masters-thesis/tree/3c28d8cb9c11f711df7070c556566c072bfc738a">phiresky/masters-thesis@3c28d8c</a>
 on July 30, 2021. </em></small></p>
 <h1 class="unnumbered" id="authors">Authors</h1>
 <ul>
@@ -1108,7 +1108,23 @@ successful episode with mean aggregation is shown in <a href="#fig:clustering2">
 <img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result." /><figcaption aria-hidden="true">Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.</figcaption>
 </figure>
 <h3 data-number="6.1.6" id="clustering-task-with-three-clusters"><span class="header-section-number">6.1.6</span> Clustering Task With Three Clusters</h3>
-<p>We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see <a href="#sec:appendixhyper">Section 8</a>). Figure <strong>¿fig:clustering3?</strong> shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.</p>
+<p>We can extend the clustering task to have any number of boxes in any number of
+clusters, making it more difficult. We find that when extending the task to
+three clusters, none of our trained policies manage to adequately solve the
+task. In most cases, the agents only move the boxes of one cluster, manage to
+mostly move those boxes to their target location, but then stay in the corner
+completely ignore the boxes in the other clusters. Only when increasing the
+number of trajectories per training step and the batch size to 10x the size used
+in the other experiments does a policy consider boxes in multiple clusters (see
+<a href="#sec:appendixhyper">Section 8</a>). <a href="#fig:clustering3">Figure 17</a> shows an episode with some unsuccessful
+episodes and with the best policy trained with Bayesian aggregation. Even the
+best policy only considers two of the three clusters and ignores boxes in the
+third cluster. The agents stay in the respective corner even though half the
+episode time is remaining. Since the task is not solved, we do not provide a
+comparison graph of the different aggregation methods.</p>
+<figure>
+<img src="images/clustering3.drawio.svg" id="fig:clustering3" alt="Figure 17: Example episodes with four different policies on the clustering task with 3 clusters, in ascending order of performance. In most cases, the policy ignores two clusters (policy 1 and 2). Only with a very large batch size does it consider boxes in two clusters, though it still sometimes misses a box." /><figcaption aria-hidden="true">Figure 17: Example episodes with four different policies on the clustering task with 3 clusters, in ascending order of performance. In most cases, the policy ignores two clusters (policy 1 and 2). Only with a very large batch size does it consider boxes in two clusters, though it still sometimes misses a box.</figcaption>
+</figure>
 <h2 data-number="6.2" id="learning-algorithm-comparison-ppo-vs-pg-trl"><span class="header-section-number">6.2</span> Learning Algorithm Comparison (PPO vs PG-TRL)</h2>
 <p>In multi-agent fully cooperative tasks, the reward can be even more sparse than
 it is for single-agent tasks, since the same reward is used for all agents. One
@@ -1119,7 +1135,7 @@ but since TRL promises to improve the exploration over PPO and possibly find a
 better optimal solution, we apply it to our multi-agent experiments in a direct
 comparison to PPO.</p>
 <p>In the following, we show some training graphs of the TRL training method
-compared to PPO. <a href="#fig:resmptrl">Figure 17</a> shows the learning algorithm comparison on the
+compared to PPO. <a href="#fig:resmptrl">Figure 18</a> shows the learning algorithm comparison on the
 multi-evader pursuit task. The architectures are the ones hyper-parameter
 optimized on PPO on each of the aggregation methods. TRL seems to show
 significantly improved training performance for the Bayesian aggregation and
@@ -1129,23 +1145,23 @@ shows the same result for only the top one third of runs. The results are very
 similar. This indicates that TRL makes the training more stable on this task,
 fewer runs fail to achieve the optimal performance. -->
 <figure>
-<img src="images/plots/2021-07-22_16.26.13-Multi-Evader%20Pursuit%20TRL.svg" id="fig:resmptrl" alt="Figure 17: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar." /><figcaption aria-hidden="true">Figure 17: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar.</figcaption>
+<img src="images/plots/2021-07-22_16.26.13-Multi-Evader%20Pursuit%20TRL.svg" id="fig:resmptrl" alt="Figure 18: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar." /><figcaption aria-hidden="true">Figure 18: TRL vs PPO learning algorithms on the multi-evader pursuit task. For Bayesian aggregation, the training is faster, and the end result better. For mean aggregation, the results are fairly similar.</figcaption>
 </figure>
 <!--
 ![TRL vs PPO (multi-evader pursuit). Top 1/3 of runs](images/plots/2021-07-11_13.23.22-Multi-Evader
 Pursuit TRL Top.33.svg){#fig:resmptrltop}
 -->
-<p><a href="#fig:ressptrl">Figure 18</a> shows the comparison on the single-evader pursuit task. Here, the
+<p><a href="#fig:ressptrl">Figure 19</a> shows the comparison on the single-evader pursuit task. Here, the
 performance of TRL is better than PPO on both the mean and the Bayesian
 aggregation.</p>
 <figure>
-<img src="images/plots/2021-07-15_12.57.59-Single-evader%20Pursuit%20TRL%20vs%20PPO.svg" id="fig:ressptrl" alt="Figure 18: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation." /><figcaption aria-hidden="true">Figure 18: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation.</figcaption>
+<img src="images/plots/2021-07-15_12.57.59-Single-evader%20Pursuit%20TRL%20vs%20PPO.svg" id="fig:ressptrl" alt="Figure 19: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation." /><figcaption aria-hidden="true">Figure 19: TRL vs PPO learning algorithms on single-evader pursuit task. The performance of TRL is better for both the mean and the Bayesian aggregation.</figcaption>
 </figure>
-<p><a href="#fig:resasstrl">Figure 19</a> shows the comparison on the assembly task. All aggregation
+<p><a href="#fig:resasstrl">Figure 20</a> shows the comparison on the assembly task. All aggregation
 methods perform the same, except the Bayesian aggregation with TRL, which is
 worse.</p>
 <figure>
-<img src="images/plots/2021-07-11_13.13.37-assembly%20(by%20train%20algo%20and%20agg%20method).svg" id="fig:resasstrl" alt="Figure 19: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL." /><figcaption aria-hidden="true">Figure 19: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL.</figcaption>
+<img src="images/plots/2021-07-11_13.13.37-assembly%20(by%20train%20algo%20and%20agg%20method).svg" id="fig:resasstrl" alt="Figure 20: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL." /><figcaption aria-hidden="true">Figure 20: TRL vs PPO learning algorithms on the assembly task. The training performance is the same for all aggregation methods, except that the Bayesian aggregation performs worse with TRL.</figcaption>
 </figure>
 <p>In summary, TRL seems to perform the same or better than PPO in most cases, with
 the Bayesian aggregation on the assembly task being an outlier. Since we did not
@@ -1164,8 +1180,8 @@ aggregatables, the single aggregation space must contain the information of all
 observables as it pertains to the current agent. The potential advantage is that
 the policy can share more parameters and thus be more sample efficient. It can
 also scale to a larger number of categories of objects (aggregation groups).
-<a href="#fig:sameseparate">Figure 20</a> shows a schematic comparison between the two methods.</p>
-<p>In the other experiments we always use separate spaces. <a href="#fig:ressameseparate">Figure 21</a>
+<a href="#fig:sameseparate">Figure 21</a> shows a schematic comparison between the two methods.</p>
+<p>In the other experiments we always use separate spaces. <a href="#fig:ressameseparate">Figure 22</a>
 shows the results of aggregating into a single space vs. into separate spaces
 for the multi-evader pursuit and assembly tasks. In the case of the multi-evader
 pursuit task single-space aggregation means that both the neighboring pursuers
@@ -1181,10 +1197,10 @@ be that our experiments only have few aggregation groups, so the value of
 parameter sharing is low, or due to the lack of experiments with more different
 hyper-parameters.</p>
 <figure>
-<img src="images/model-sameseparate.drawio.svg" id="fig:sameseparate" alt="Figure 20: Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups." /><figcaption aria-hidden="true">Figure 20: Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups.</figcaption>
+<img src="images/model-sameseparate.drawio.svg" id="fig:sameseparate" alt="Figure 21: Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups." /><figcaption aria-hidden="true">Figure 21: Schematic comparison of separate space vs. single-space aggregation. In single-space aggregation the encoders are still separate, but the latent space is shared. The single-space aggregation shares more parameters and can scale better to more aggregation groups.</figcaption>
 </figure>
 <figure>
-<img src="images/plots/2021-07-22_16.05.47-samespace.svg" id="fig:ressameseparate" alt="Figure 21: Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks." /><figcaption aria-hidden="true">Figure 21: Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks.</figcaption>
+<img src="images/plots/2021-07-22_16.05.47-samespace.svg" id="fig:ressameseparate" alt="Figure 22: Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks." /><figcaption aria-hidden="true">Figure 22: Separate vs single-space aggregation on the multi-evader pursuit and assembly tasks. The single-space aggregation performs worse in both tasks.</figcaption>
 </figure>
 <!--
 ![Multi-pursuit same space comparison](images/plots/2021-07-14_13.37.01-Multi-Evader
@@ -1213,7 +1229,7 @@ it with the mean predictions in the hope that the neural network is able to use
 this additional information:</p>
 <p><span class="math display">\[e_{k→G}=(μ_z, σ_z^2)\]</span></p>
 <p>The results of applying this method to the multi-evader pursuit are seen in
-<a href="#fig:resoutputvariance">Figure 22</a>. The neural network architecture is the same as for the
+<a href="#fig:resoutputvariance">Figure 23</a>. The neural network architecture is the same as for the
 other experiments with Bayesian aggregation on multi-evader pursuit
 (<code>120-60-agg-160</code>). Including the variance in the decoder inputs decreases the
 performance.</p>
@@ -1226,7 +1242,7 @@ variance inputs should give the decoder the ability to understand the confidence
 of each of the value predictions and weigh them accordingly, but the added
 complexity seems to make it not worth it.</p>
 <figure>
-<img src="images/plots/2021-07-22_18.16.40-Pursuit%20(bayes%20outputvariance).svg" id="fig:resoutputvariance" alt="Figure 22: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean." /><figcaption aria-hidden="true">Figure 22: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.</figcaption>
+<img src="images/plots/2021-07-22_18.16.40-Pursuit%20(bayes%20outputvariance).svg" id="fig:resoutputvariance" alt="Figure 23: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean." /><figcaption aria-hidden="true">Figure 23: Results of Bayesian aggregation on the multi-evader pursuit task, depending on whether the variance is also fed into the decoder or only the mean.</figcaption>
 </figure>
 <!-- ### Local obs aggregation space -->
 <!-- ### Activation functions
@@ -1457,9 +1473,9 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <th>Experiment</th>
 <th>Entities</th>
 <th>Dynamics</th>
-<th>Batch size</th>
-<th>Environment steps per training step</th>
-<th>Max Training Steps</th>
+<th style="text-align: right;">Batch size</th>
+<th style="text-align: right;">Environment steps per training step</th>
+<th style="text-align: right;">Max Training Steps</th>
 </tr>
 </thead>
 <tbody>
@@ -1467,49 +1483,49 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Rendezvous</td>
 <td>20 agents</td>
 <td>Double-Integrator Unicycle</td>
-<td>1000</td>
-<td>164000</td>
-<td>160</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">164000</td>
+<td style="text-align: right;">160</td>
 </tr>
 <tr class="even">
 <td>Single-Evader Pursuit</td>
 <td>10 agents, 1 evader</td>
 <td>Single-Integrator Unicycle</td>
-<td>10200</td>
-<td>102000</td>
-<td>500</td>
+<td style="text-align: right;">10200</td>
+<td style="text-align: right;">102000</td>
+<td style="text-align: right;">500</td>
 </tr>
 <tr class="odd">
 <td>Multi-Evader Pursuit</td>
 <td>50 agents, 5 evaders (respawning)</td>
 <td>Single-Integrator Unicycle</td>
-<td>10200</td>
-<td>102000</td>
-<td>500</td>
+<td style="text-align: right;">10200</td>
+<td style="text-align: right;">102000</td>
+<td style="text-align: right;">500</td>
 </tr>
 <tr class="even">
 <td>Box Assembly</td>
 <td>10 agents, 4 boxes</td>
 <td>Single-Integrator Unicycle</td>
-<td>5000</td>
-<td>250000</td>
-<td>200</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">250000</td>
+<td style="text-align: right;">200</td>
 </tr>
 <tr class="odd">
 <td>Box Clustering (2 clusters)</td>
 <td>10 agents, 2 clusters with 2 boxes each</td>
 <td>Single-Integrator Unicycle</td>
-<td>10000</td>
-<td>512000</td>
-<td>2000</td>
+<td style="text-align: right;">10000</td>
+<td style="text-align: right;">512000</td>
+<td style="text-align: right;">2000</td>
 </tr>
 <tr class="even">
 <td>Box Clustering (3 clusters)</td>
 <td>20 agents, 3 clusters with 4 boxes each</td>
 <td>Single-Integrator Unicycle</td>
-<td>100000</td>
-<td>12800000</td>
-<td>500</td>
+<td style="text-align: right;">100000</td>
+<td style="text-align: right;">12800000</td>
+<td style="text-align: right;">500</td>
 </tr>
 </tbody>
 </table>
