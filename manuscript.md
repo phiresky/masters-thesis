@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,9 +72,9 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/ba64c2451958b7cd0364f91412c9a2b33150651c/)) was automatically
 built from
-[phiresky/masters-thesis@dba86dd](https://github.com/phiresky/masters-thesis/tree/dba86ddb12e62270751735d2d776f67645a25d74)
+[phiresky/masters-thesis@ba64c24](https://github.com/phiresky/masters-thesis/tree/ba64c2451958b7cd0364f91412c9a2b33150651c)
 on July 30, 2021. </em></small>
 
 # Authors {.unnumbered}
@@ -977,7 +977,8 @@ handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
 order to be able to directly compare PPO and TRL. When mentioned in the results
 section, we optimized the hyperparameters using Optuna
-[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+[@{https://dl.acm.org/doi/10.1145/3292500.3330701}]. A more detailed list of
+batch sizes and other relevant settings can be found in @sec:appendixhyper.
 
 <!-- {describe batch size, other meta settings} -->
 
