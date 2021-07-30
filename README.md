@@ -2,6 +2,24 @@
 
 My master's thesis. Written in Pandoc-Markdown.
 
+To install the dependencies:
+
+`poetry install`
+
+To compile the website:
+
+`poetry run build/build.sh && poetry run manubot webpage`
+
+Then open `webpage/index.html` in your browser.
+
+The above steps are automatically run by GitHub CI whenever you push.
+
+To compile the LaTeX PDF:
+
+`DISPLAY=:0 poetry run build/build-pdf.sh`
+
+The pdf is then in `output/manuscript.pdf`.
+
 The hosted version is here:
 
 https://phiresky.github.io/masters-thesis/
