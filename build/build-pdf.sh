@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# hacky script to build a latex PDF with a latex template
 ln -s content/images
 
 # copy files to new dir but without the stuff we process separately
@@ -12,7 +13,7 @@ mkdir -p output/content-tex
     done
 )
 
-rm output/content-tex/{00.front-matter.md,0_abstract.md}
+rm output/content-tex/{0a_front-matter.md,0b_abstract.md} # we don't want these files in our PDF in the main section
 
 export SVG2PDF_OUT_DIR=output/latex-intermediaries
 
@@ -33,7 +34,9 @@ pandoc \
     --verbose
 
 args=(--shift-heading-level-by=-1 --top-level-division=chapter)
-pandoc "${args[@]}" content/0_abstract.md -o output/output-tex/abstract.tex
+
+# convert these files separately since they are included without the main section
+pandoc "${args[@]}" content/0b_abstract.md -o output/output-tex/abstract.tex
 pandoc "${args[@]}" content/abstract_de.md -o output/output-tex/abstract_de.tex
 
 TEXINPUTS=.::build/assets/latex::output/output-tex latexmk -silent -outdir=output/latex-intermediaries -xelatex build/assets/latex/thesis.tex

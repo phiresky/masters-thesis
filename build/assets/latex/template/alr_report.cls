@@ -41,7 +41,7 @@ parskip,numbers=endperiod]{scrreprt} % scrartcl
 \usepackage{booktabs}
 \usepackage{fontspec}
 % \usepackage[scaled=0.92]{helvet} % Different fonts
-\setsansfont{Helvetica}
+\setsansfont{Arial}
 \usepackage{courier}
 \setmonofont{Courier New}
 \usepackage{mathptmx}

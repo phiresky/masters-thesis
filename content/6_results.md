@@ -207,7 +207,22 @@ task (2 clusters, by agg method).svg){#fig:resclustering2}
 
 ### Clustering task with three clusters
 
-We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see @sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.
+We can extend the clustering task to have any number of boxes in any number of
+clusters, making it more difficult. We find that when extending the task to
+three clusters, none of our trained policies manage to adequately solve the
+task. In most cases, the agents only move the boxes of one cluster, manage to
+mostly move those boxes to their target location, but then stay in the corner
+completely ignore the boxes in the other clusters. Only when increasing the
+number of trajectories per training step and the batch size to 10x the size used
+in the other experiments does a policy consider boxes in multiple clusters (see
+@sec:appendixhyper). @Fig:clustering3 shows an episode with some unsuccessful
+episodes and with the best policy trained with Bayesian aggregation. Even the
+best policy only considers two of the three clusters and ignores boxes in the
+third cluster. The agents stay in the respective corner even though half the
+episode time is remaining. Since the task is not solved, we do not provide a
+comparison graph of the different aggregation methods.
+
+![Example episodes with four different policies on the clustering task with 3 clusters, in ascending order of performance. In most cases, the policy ignores two clusters (policy 1 and 2). Only with a very large batch size does it consider boxes in two clusters, though it still sometimes misses a box.](images/clustering3.drawio.svg){#fig:clustering3}
 
 ## Learning algorithm comparison (PPO vs PG-TRL)
 
