@@ -21,7 +21,8 @@ handle the centralized-learning decentralized-execution method. We also
 implement Trust Region Layers [@trl] as a new training algorithm for sb3 in
 order to be able to directly compare PPO and TRL. When mentioned in the results
 section, we optimized the hyperparameters using Optuna
-[@{https://dl.acm.org/doi/10.1145/3292500.3330701}].
+[@{https://dl.acm.org/doi/10.1145/3292500.3330701}]. A more detailed list of
+batch sizes and other relevant settings can be found in @sec:appendixhyper.
 
 <!-- {describe batch size, other meta settings} -->
 
