@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# hacky script to build a latex PDF with a latex template
+# hacky script to build a latex PDF with a latex template. does not (currently) run in github CI
+
 ln -s content/images
 
 # copy files to new dir but without the stuff we process separately
@@ -19,6 +20,7 @@ export SVG2PDF_OUT_DIR=output/latex-intermediaries
 
 mkdir -p "$SVG2PDF_OUT_DIR"
 
+# basically same as build.sh but using a subset of the input files
 manubot process \
   --content-directory=output/content-tex \
   --output-directory=output/output-tex \
