@@ -6,7 +6,7 @@ keywords:
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-29'
+date-meta: '2021-07-30'
 author-meta:
 - Robin Ruede
 cref: true
@@ -34,8 +34,8 @@ header-includes: |-
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-29" />
-  <meta name="citation_publication_date" content="2021-07-29" />
+  <meta name="dc.date" content="2021-07-30" />
+  <meta name="citation_publication_date" content="2021-07-30" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -72,10 +72,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/)) was automatically
 built from
-[phiresky/masters-thesis@4ae86e9](https://github.com/phiresky/masters-thesis/tree/4ae86e97d4c2b0cca501d2270418908b804c658e)
-on July 29, 2021. </em></small>
+[phiresky/masters-thesis@dba86dd](https://github.com/phiresky/masters-thesis/tree/dba86ddb12e62270751735d2d776f67645a25d74)
+on July 30, 2021. </em></small>
 
 # Authors {.unnumbered}
 
@@ -1620,13 +1620,13 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.
 
 
 
-## Experiment Hyper-Parameters and Overview {#sec:appendixhyper}
+# Experiment Hyper-Parameters and Overview {#sec:appendixhyper}
 
-| Experiment                  | Entities                                | Dynamics                   | Walls   | Batch size | Environment steps per training step | Max Training Steps |
-| --------------------------- | --------------------------------------- | -------------------------- | ------- | ---------- | ----------------------------------- | ------------------ |
-| Rendezvous                  | 20 agents                               | Double-Integrator Unicycle | Bounded | 1000       | 164000                              | 160                |
-| Single-Evader Pursuit       | 10 agents, 1 evader                     | Single-Integrator Unicycle | Torus   | 10200      | 102000                              | 500                |
-| Multi-Evader Pursuit        | 50 agents, 5 evaders (respawning)       | Single-Integrator Unicycle | Torus   | 10200      | 102000                              | 500                |
-| Box Assembly                | 10 agents, 4 boxes                      | Single-Integrator Unicycle | Bounded | 5000       | 250000                              | 200                |
-| Box Clustering (2 clusters) | 10 agents, 2 clusters with 2 boxes each | Single-Integrator Unicycle | Bounded | 10000      | 512000                              | 2000               |
-| Box Clustering (3 clusters) | 20 agents, 3 clusters with 4 boxes each | Single-Integrator Unicycle | Bounded | 100000     | 12800000                            | 500                |
+| Experiment                  | Entities                                | Dynamics                   | Batch size | Environment steps per training step | Max Training Steps |
+| --------------------------- | --------------------------------------- | -------------------------- | ---------- | ----------------------------------- | ------------------ |
+| Rendezvous                  | 20 agents                               | Double-Integrator Unicycle | 1000       | 164000                              | 160                |
+| Single-Evader Pursuit       | 10 agents, 1 evader                     | Single-Integrator Unicycle | 10200      | 102000                              | 500                |
+| Multi-Evader Pursuit        | 50 agents, 5 evaders (respawning)       | Single-Integrator Unicycle | 10200      | 102000                              | 500                |
+| Box Assembly                | 10 agents, 4 boxes                      | Single-Integrator Unicycle | 5000       | 250000                              | 200                |
+| Box Clustering (2 clusters) | 10 agents, 2 clusters with 2 boxes each | Single-Integrator Unicycle | 10000      | 512000                              | 2000               |
+| Box Clustering (3 clusters) | 20 agents, 3 clusters with 4 boxes each | Single-Integrator Unicycle | 100000     | 12800000                            | 500                |

@@ -42,7 +42,7 @@ observables
 openai
 optimality
 Optuna
-PettingZoo
+pettingzoo
 phiresky
 POMDP
 POMDPs
@@ -75,9 +75,9 @@ RL
 rollouts
 Ruede
 sameseparate
-Scalable
+scalable
 SISL
-softmax
+Softmax
 StarCraft
 SwarMDP
 tanh
