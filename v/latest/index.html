@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Robin Ruede" />
-  <meta name="dcterms.date" content="2021-07-29" />
+  <meta name="dcterms.date" content="2021-07-30" />
   <meta name="keywords" content="MARL, multi-agent, mreinforcement learning, Bayesian conditioning" />
   <title>Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</title>
   <style>
@@ -47,8 +47,8 @@
   <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
   <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-29" />
-  <meta name="citation_publication_date" content="2021-07-29" />
+  <meta name="dc.date" content="2021-07-30" />
+  <meta name="citation_publication_date" content="2021-07-30" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -63,9 +63,9 @@
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -78,10 +78,10 @@
 <h1 class="title">Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning</h1>
 </header>
 <p><small><em> This manuscript
-(<a href="https://phiresky.github.io/masters-thesis/v/4ae86e97d4c2b0cca501d2270418908b804c658e/">permalink</a>) was automatically
+(<a href="https://phiresky.github.io/masters-thesis/v/dba86ddb12e62270751735d2d776f67645a25d74/">permalink</a>) was automatically
 built from
-<a href="https://github.com/phiresky/masters-thesis/tree/4ae86e97d4c2b0cca501d2270418908b804c658e">phiresky/masters-thesis@4ae86e9</a>
-on July 29, 2021. </em></small></p>
+<a href="https://github.com/phiresky/masters-thesis/tree/dba86ddb12e62270751735d2d776f67645a25d74">phiresky/masters-thesis@dba86dd</a>
+on July 30, 2021. </em></small></p>
 <h1 class="unnumbered" id="authors">Authors</h1>
 <ul>
 <li><strong>Robin Ruede</strong><br> ·
@@ -1107,7 +1107,7 @@ successful episode with mean aggregation is shown in <a href="#fig:clustering2">
 <img src="images/plots/2021-07-10_18.56.32-Clustering%20task%20(2%20clusters,%20by%20agg%20method).svg" id="fig:resclustering2" alt="Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result." /><figcaption aria-hidden="true">Figure 16: Results on the clustering task with two clusters. The attentive aggregation starts learning slightly faster, but has a lower final result.</figcaption>
 </figure>
 <h3 data-number="6.1.6" id="clustering-task-with-three-clusters"><span class="header-section-number">6.1.6</span> Clustering Task With Three Clusters</h3>
-<p>We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see <a href="#sec:appendixhyper">Section 7.3</a>). Figure <strong>¿fig:clustering3?</strong> shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.</p>
+<p>We can extend the clustering task to have any number of boxes in any number of clusters, making it more difficult. We find that when extending the task to three clusters, none of our trained policies manage to adequately solve the task. In most cases, the agents only move the boxes of one cluster, manage to mostly move those boxes to their target location, but then stay in the corner completely ignore the boxes in the other clusters. Only when increasing the number of trajectories per training step and the batch size to 10x the size used in the other experiments does a policy consider boxes in multiple clusters (see <a href="#sec:appendixhyper">Section 8</a>). Figure <strong>¿fig:clustering3?</strong> shows an episode with some unsuccessful episodes and with the best policy trained with Bayesian aggregation. Even the best policy only considers two of the three clusters and ignores boxes in the third cluster. Since the task is not solved, we do not provide a comparison graph of the different aggregation methods.</p>
 <h2 data-number="6.2" id="learning-algorithm-comparison-ppo-vs-pg-trl"><span class="header-section-number">6.2</span> Learning Algorithm Comparison (PPO vs PG-TRL)</h2>
 <p>In multi-agent fully cooperative tasks, the reward can be even more sparse than
 it is for single-agent tasks, since the same reward is used for all agents. One
@@ -1441,15 +1441,14 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <div class="csl-left-margin">51. </div><div class="csl-right-inline"><strong>Cooperative pursuit with Voronoi partitions</strong><div class="csl-block">Zhengyuan Zhou, Wei Zhang, Jerry Ding, Haomiao Huang, Dušan M Stipanović, Claire J Tomlin</div><em>Automatica</em> (2016-10) <a href="https://www.sciencedirect.com/science/article/pii/S0005109816301911">https://www.sciencedirect.com/science/article/pii/S0005109816301911</a></div>
 </div>
 </div>
-<h2 data-number="7.3" id="sec:appendixhyper"><span class="header-section-number">7.3</span> Experiment Hyper-Parameters and Overview</h2>
+<h1 data-number="8" id="sec:appendixhyper"><span class="header-section-number">8</span> Experiment Hyper-Parameters and Overview</h1>
 <table style="width:100%;">
 <colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
 <col style="width: 16%" />
-<col style="width: 24%" />
-<col style="width: 16%" />
-<col style="width: 4%" />
 <col style="width: 6%" />
-<col style="width: 21%" />
+<col style="width: 22%" />
 <col style="width: 11%" />
 </colgroup>
 <thead>
@@ -1457,7 +1456,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <th>Experiment</th>
 <th>Entities</th>
 <th>Dynamics</th>
-<th>Walls</th>
 <th>Batch size</th>
 <th>Environment steps per training step</th>
 <th>Max Training Steps</th>
@@ -1468,7 +1466,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Rendezvous</td>
 <td>20 agents</td>
 <td>Double-Integrator Unicycle</td>
-<td>Bounded</td>
 <td>1000</td>
 <td>164000</td>
 <td>160</td>
@@ -1477,7 +1474,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Single-Evader Pursuit</td>
 <td>10 agents, 1 evader</td>
 <td>Single-Integrator Unicycle</td>
-<td>Torus</td>
 <td>10200</td>
 <td>102000</td>
 <td>500</td>
@@ -1486,7 +1482,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Multi-Evader Pursuit</td>
 <td>50 agents, 5 evaders (respawning)</td>
 <td>Single-Integrator Unicycle</td>
-<td>Torus</td>
 <td>10200</td>
 <td>102000</td>
 <td>500</td>
@@ -1495,7 +1490,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Box Assembly</td>
 <td>10 agents, 4 boxes</td>
 <td>Single-Integrator Unicycle</td>
-<td>Bounded</td>
 <td>5000</td>
 <td>250000</td>
 <td>200</td>
@@ -1504,7 +1498,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Box Clustering (2 clusters)</td>
 <td>10 agents, 2 clusters with 2 boxes each</td>
 <td>Single-Integrator Unicycle</td>
-<td>Bounded</td>
 <td>10000</td>
 <td>512000</td>
 <td>2000</td>
@@ -1513,7 +1506,6 @@ aggregation methods used and thus might be a use case for Bayesian aggregation.<
 <td>Box Clustering (3 clusters)</td>
 <td>20 agents, 3 clusters with 4 boxes each</td>
 <td>Single-Integrator Unicycle</td>
-<td>Bounded</td>
 <td>100000</td>
 <td>12800000</td>
 <td>500</td>
