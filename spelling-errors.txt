@@ -39,7 +39,7 @@ mpe
 NN
 observability
 observables
-openai
+OpenAI
 optimality
 Optuna
 PettingZoo
@@ -77,7 +77,7 @@ Ruede
 sameseparate
 Scalable
 SISL
-softmax
+Softmax
 StarCraft
 SwarMDP
 tanh

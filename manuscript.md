@@ -1,12 +1,12 @@
 ---
-title: Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning
+title: Bayesian and Attentive Aggregation for Multi-Agent Deep Reinforcement Learning
 keywords:
 - MARL
 - multi-agent
 - mreinforcement learning
 - Bayesian conditioning
 lang: en-US
-date-meta: '2021-07-30'
+date-meta: '2021-07-31'
 author-meta:
 - Robin Ruede
 cref: true
@@ -30,12 +30,12 @@ header-includes: |-
   Suggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html
   -->
   <meta name="dc.format" content="text/html" />
-  <meta name="dc.title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="citation_title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta property="og:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Cooperative Multi-Agent Deep Reinforcement Learning" />
-  <meta name="dc.date" content="2021-07-30" />
-  <meta name="citation_publication_date" content="2021-07-30" />
+  <meta name="dc.title" content="Bayesian and Attentive Aggregation for Multi-Agent Deep Reinforcement Learning" />
+  <meta name="citation_title" content="Bayesian and Attentive Aggregation for Multi-Agent Deep Reinforcement Learning" />
+  <meta property="og:title" content="Bayesian and Attentive Aggregation for Multi-Agent Deep Reinforcement Learning" />
+  <meta property="twitter:title" content="Bayesian and Attentive Aggregation for Multi-Agent Deep Reinforcement Learning" />
+  <meta name="dc.date" content="2021-07-31" />
+  <meta name="citation_publication_date" content="2021-07-31" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/2ba35ef7cdba2bbc966116e12b05e4ee9072b511/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/2ba35ef7cdba2bbc966116e12b05e4ee9072b511/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/2ba35ef7cdba2bbc966116e12b05e4ee9072b511/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -71,10 +71,10 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/2ba35ef7cdba2bbc966116e12b05e4ee9072b511/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/)) was automatically
 built from
-[phiresky/masters-thesis@2ba35ef](https://github.com/phiresky/masters-thesis/tree/2ba35ef7cdba2bbc966116e12b05e4ee9072b511)
-on July 30, 2021. </em></small>
+[phiresky/masters-thesis@4af5901](https://github.com/phiresky/masters-thesis/tree/4af59011e8fa4e29dc98575678c0c8d0baf06823)
+on July 31, 2021. </em></small>
 
 # Authors {.unnumbered}
 
