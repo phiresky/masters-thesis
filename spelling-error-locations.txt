@@ -330,7 +330,7 @@ content/8_conclusion.md:25:PPO
 content/8_conclusion.md:25:TRL
 content/8_conclusion.md:26:PPO
 content/8_conclusion.md:37:observability
-content/8_conclusion.md:44:hyperparameter
+content/8_conclusion.md:47:hyperparameter
 content/9a_back-matter.md:23:openai
 content/9a_back-matter.md:24:maxpaper
 content/9a_back-matter.md:26:bayesiancontextaggregation

@@ -50,9 +50,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://phiresky.github.io/masters-thesis/" />
   <meta name="citation_pdf_url" content="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://phiresky.github.io/masters-thesis/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/" />
-  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/" />
-  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://phiresky.github.io/masters-thesis/v/3c0b9b3e46a7f1a90a4d212f23f9742038bab044/" />
+  <meta name="manubot_html_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c0b9b3e46a7f1a90a4d212f23f9742038bab044/" />
+  <meta name="manubot_pdf_url_versioned" content="https://phiresky.github.io/masters-thesis/v/3c0b9b3e46a7f1a90a4d212f23f9742038bab044/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -71,12 +71,12 @@ manubot-clear-requests-cache: false
 
 
  <small><em> This manuscript
-([permalink](https://phiresky.github.io/masters-thesis/v/4af59011e8fa4e29dc98575678c0c8d0baf06823/)) was automatically
+([permalink](https://phiresky.github.io/masters-thesis/v/3c0b9b3e46a7f1a90a4d212f23f9742038bab044/)) was automatically
 built from
-[phiresky/masters-thesis@4af5901](https://github.com/phiresky/masters-thesis/tree/4af59011e8fa4e29dc98575678c0c8d0baf06823)
+[phiresky/masters-thesis@3c0b9b3](https://github.com/phiresky/masters-thesis/tree/3c0b9b3e46a7f1a90a4d212f23f9742038bab044)
 on July 31, 2021. </em></small>
 
-# Authors {.unnumbered}
+## Authors {.unnumbered}
 
  
 
@@ -748,7 +748,7 @@ simultaneous though, so we only consider environments with simultaneous actions.
 trying to find and "catch" the agents of the other team.
 @{https://arxiv.org/abs/2107.12808} create a generic physics-based world and a
 system to automatically generate cooperative and adversarial tasks like _Hide
-and Seek_ and _Capture the Flag_ within this world then train agents to be able
+and Seek_ and _Capture the Flag_ within this world, then train agents to be able
 to solve multiple tasks in this world. They then show their agents generalize to
 be able to solve unseen tasks.
 
@@ -1568,7 +1568,10 @@ local visibility making it harder to make any strong conclusions. Since the
 local visibility case also increases the uncertainty of each observation though,
 it might be a case where Bayesian aggregation performs better. Future work
 should include experiments that have a larger environment with observability
-limited by range or by obstacles.
+limited by range or by obstacles. We also only considered fully cooperative
+environments with a common reward. The same aggregation methods might be
+beneficial for other kinds of environments, including team-based and adversarial
+ones.
 
 Even though we show in our experiments that Bayesian aggregation into the same
 latent space is worse than aggregating into separate spaces, there might be
