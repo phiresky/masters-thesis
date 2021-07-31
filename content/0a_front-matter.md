@@ -16,7 +16,7 @@ built {% if manubot.ci_source is defined -%} from
 [{{manubot.ci_source.repo_slug}}@{{manubot.ci_source.commit | truncate(length=7, end='', leeway=0)}}](https://github.com/{{manubot.ci_source.repo_slug}}/tree/{{manubot.ci_source.commit}})
 {% endif -%} on {{manubot.date}}. </em></small>
 
-# Authors {.unnumbered}
+## Authors {.unnumbered}
 
 {## Template for listing authors ##} {% for author in manubot.authors %}
 

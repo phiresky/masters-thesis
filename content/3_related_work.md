@@ -145,7 +145,7 @@ simultaneous though, so we only consider environments with simultaneous actions.
 trying to find and "catch" the agents of the other team.
 @{https://arxiv.org/abs/2107.12808} create a generic physics-based world and a
 system to automatically generate cooperative and adversarial tasks like _Hide
-and Seek_ and _Capture the Flag_ within this world then train agents to be able
+and Seek_ and _Capture the Flag_ within this world, then train agents to be able
 to solve multiple tasks in this world. They then show their agents generalize to
 be able to solve unseen tasks.
 

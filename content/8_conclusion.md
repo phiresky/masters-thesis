@@ -35,7 +35,10 @@ local visibility making it harder to make any strong conclusions. Since the
 local visibility case also increases the uncertainty of each observation though,
 it might be a case where Bayesian aggregation performs better. Future work
 should include experiments that have a larger environment with observability
-limited by range or by obstacles.
+limited by range or by obstacles. We also only considered fully cooperative
+environments with a common reward. The same aggregation methods might be
+beneficial for other kinds of environments, including team-based and adversarial
+ones.
 
 Even though we show in our experiments that Bayesian aggregation into the same
 latent space is worse than aggregating into separate spaces, there might be
